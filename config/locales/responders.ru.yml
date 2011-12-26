@@ -1,0 +1,16 @@
+ru:
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} создан.'
+      update:
+        notice: '%{resource_name} изменен.'
+      destroy:
+        notice: '%{resource_name} удален.'
+        alert: '%{resource_name} не может быть удален.'
+
+    games:
+      create:
+        notice: 'Игра создана.'
+      update:
+        notice: 'Игра изменена.'

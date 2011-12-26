@@ -1,0 +1,25 @@
+ru:
+
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+
+  links:
+    show: "Показать"
+    edit: "Изменить"
+    destroy: "Удалить"
+    back: "Назад"
+    new: "Создать"
+    sure: "Вы уверены?"
+
+  views:
+    pagination:
+      previous: "← предыдущая"
+      next: "следующая →"
+      truncate: '...'
+
+  cancan:
+    exceptions:
+      denied: "Вам запрещен доступ к данной странице."
+
+

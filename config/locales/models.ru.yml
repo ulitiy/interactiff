@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    models:
+      domain: 'Домен'
+      host: 'Хост'
+      game: 'Игра'
+      hint: 'Подсказка'
+      sector: 'Сектор'
+      task: 'Задание'
+      answer: 'Код'
+      event: 'Событие'
+      condition: 'Условие'
+    attributes:
+      domain:
+        name: 'Название'
+        main_host: 'Основной хост'
+      host:
+        name: 'Имя'
+      game:
+        name: 'Название'
+        description: 'Описание'
+      hint:
+        body: 'Текст'
+      sector:
+        name: 'Название'
+      task:
+        name: 'Название'
+        comment: 'Комментарий'
+        weight: 'Вес'
