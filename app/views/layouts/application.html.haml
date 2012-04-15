@@ -8,13 +8,10 @@
     %title= yield :head_title
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
-    = csrf_meta_tags
+    = csrf_meta_tags unless response.cache_control[:public]
   %body
     #main_block
       #admin_menu
-        =link_to t('admin.domains.index'), admin_domains_path
-        |
-        =link_to t('admin.games.index'), root_path
       #content
         %h1= yield :body_title
         -if true #unless notice.blank? && alert.blank?

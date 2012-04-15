@@ -16,7 +16,7 @@ module Joygen
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir["#{config.root}/app/models/blocks", "#{config.root}/app/models/blocks/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -33,6 +33,8 @@ module Joygen
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.i18n.default_locale = :ru
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -41,5 +43,11 @@ module Joygen
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    config.assets.precompile += %w(admin.js application.js application.css)
+
+    config.active_record.whitelist_attributes = true
+
+    ActiveRecord::Base.include_root_in_json = false
   end
 end

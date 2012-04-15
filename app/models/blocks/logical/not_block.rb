@@ -1,0 +1,2 @@
+class NotBlock < Block
+end

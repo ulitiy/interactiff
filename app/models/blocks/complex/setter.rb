@@ -1,0 +1,2 @@
+class Setter < Block
+end

@@ -1,0 +1,73 @@
+ru:
+  admin:
+    links:
+      save: "Сохранить"
+    path:
+      root: "Корень"
+    domain:
+      new:  "Новый домен"
+      tool: "Домен"
+      name: "Название"
+      main_host: "Главный хост"
+    host:
+      tool: "Хост"
+      name: "Имя"
+      make_main_host: "Сделать основным"
+      second_level: "joygen.net"
+    game:
+      name: "Название"
+      tool: "Сценарий"
+      new: "Новый сценарий"
+    task:
+      name: "Название"
+      tool: "Задание"
+      new: "Новое задание"
+    answer:
+      tool: "Ответ"
+      new: "Ответ"
+      body: "Содержимое"
+    hint:
+      tool: "Текст"
+      body: "Содержимое"
+      new: "Текст задания"
+    timer:
+      tool: "Таймер"
+    clock:
+      tool: "Часы"
+
+    setter:
+      tool: "Присвоить"
+    checker:
+      tool: "Проверка"
+    eval_block:
+      tool: "Исполнить код"
+    distributor:
+      tool: "Распределитель"
+
+    and_block:
+      tool: "И"
+      new: "И"
+    or_block:
+      tool: "ИЛИ"
+      new: "ИЛИ"
+    not_block:
+      tool: "НЕ"
+      new: "НЕ"
+
+    task_given:
+      new: "Дано"
+    task_passed:
+      new: "Выполнено"
+    game_started:
+      new: "Начат"
+    game_passed:
+      new: "Пройден"
+    input:
+      new: "Вход"
+      tool: "Вход"
+    output:
+      new: "Выход"
+      tool: "Выход"
+
+    properties:
+      confirm_exit: "Изменения выделенного блока не были сохранены. Чтобы сохранить изменения, снимите с него выделение."

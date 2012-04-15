@@ -1,0 +1,2 @@
+class TaskPassed < Block
+end

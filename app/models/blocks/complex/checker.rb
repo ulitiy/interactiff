@@ -1,0 +1,2 @@
+class Checker < Block
+end

@@ -1,0 +1,2 @@
+class AndBlock < Block
+end

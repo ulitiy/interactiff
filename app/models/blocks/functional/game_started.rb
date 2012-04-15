@@ -1,0 +1,2 @@
+class GameStarted < Block
+end

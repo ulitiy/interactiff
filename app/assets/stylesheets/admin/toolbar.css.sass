@@ -1,0 +1,28 @@
+@mixin background-gradient($dir,$l,$d)
+  background: -moz-linear-gradient($dir, $l, $d)
+  background: -webkit-linear-gradient($dir, $l, $d)
+
+#toolbar
+  overflow-x: hidden
+  .tool
+    $lg:#666
+    $dg:#000
+    $llg:lighten($lg,5)
+    $ldg:lighten($dg,5)
+
+    cursor: default
+    padding: 5px
+    white-space: nowrap
+    position: relative
+    #border: 1px solid gray
+    color: #FFF
+    @include background-gradient(top,$lg,$dg)
+    box-shadow: 0px 0px 2px rgba(255,255,255,0.7) inset
+    &:hover
+      @include background-gradient(top,$llg,$ldg)
+    &:active
+      @include background-gradient(top,$ldg,$llg)
+    .name, .title
+      display: inline
+    .icon
+      padding: 3px

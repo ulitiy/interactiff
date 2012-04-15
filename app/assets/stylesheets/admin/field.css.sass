@@ -1,0 +1,56 @@
+#field
+  background: #F6F6FA
+  overflow: scroll !important
+  #keyInput
+    position: absolute
+    width: 1px
+    height: 1px
+    border: none
+    left: -10px
+    top: -10px
+  #stretcher
+    position: absolute
+    width: 1px
+    height: 1px
+    left: 2000px
+    top: 1500px
+  #refresh
+    position: absolute
+    right: 0
+    top: 0
+    padding: 3px
+  .block
+    $shadow: 2px 2px 7px
+    white-space: nowrap
+    position: absolute
+    background: white
+    padding: 11px
+    min-width: 60px
+    border: 1px solid gray
+    border-radius: 8px
+    box-shadow: $shadow #AAA
+    cursor: default
+    .title
+      display: inline
+    .destroy
+      position: absolute
+      color: white
+      right: 5px
+      top: 0
+      font-size: 75%
+      &:hover
+        color: red !important
+    &:hover .destroy
+      color: black
+
+    $sel-color: #CA0
+    &.ui-selecting
+      box-shadow: $shadow lighten($sel-color,30)
+    &.ui-selected
+      box-shadow: $shadow $sel-color
+      z-index: 100
+    &.ui-draggable-dragging
+      opacity: 0.8
+      z-index: 100
+  ._jsPlumb_endpoint
+    z-index: 101

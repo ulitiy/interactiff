@@ -1,0 +1,2 @@
+class GamePassed < Block
+end

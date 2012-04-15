@@ -1,0 +1,2 @@
+class EvalBlock < Block
+end

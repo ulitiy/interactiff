@@ -1,0 +1,11 @@
+!!! 5
+%html
+  %head
+    -head_title " | #{@current_domain.name}"
+    %title= yield :head_title
+    = stylesheet_link_tag    "admin"#, "/css/ui-lightness/jquery-ui-1.8.17.custom.css"
+    = javascript_include_tag "admin"
+    = csrf_meta_tags unless response.cache_control[:public]
+  %body
+    ="3#{response.cache_control[:public]}"
+    =yield

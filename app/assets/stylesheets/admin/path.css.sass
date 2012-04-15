@@ -1,0 +1,41 @@
+#path-container
+  $height: 28px
+  $padding: 3px
+  overflow: hidden !important
+  padding-right: $height+8
+  #path
+    padding: $padding
+    white-space: nowrap
+    overflow: hidden
+    width: 100%
+    *
+      display: inline
+    .path-element
+      *
+        display: inline
+      a
+        color: white
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+  #lvl-up
+    position: absolute
+    top: 0
+    right: 0
+    background: gray
+    a
+      display: block
+      width: $height
+      height: $height
+      text-align: center
+  #scroller-left
+    position: absolute
+    top: 0
+    width: $height/2
+    height: $height
+  #scroller-right
+    position: absolute
+    top: 0
+    right: $height
+    width: $height/2
+    height: $height

@@ -1,0 +1,2 @@
+class Output < Block
+end
