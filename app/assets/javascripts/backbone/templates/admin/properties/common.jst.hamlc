@@ -1,0 +1,18 @@
+#properties
+  %table
+    %tbody
+      %tr
+        %th
+          %label(for="id")= I18n.t("admin.#{@modelName}.tool")
+        %td
+          .id(data-bind="text id")
+      %tr
+        %th
+          %label(for="title")= I18n.t("admin.block.title")
+        %td
+          %input(id="title", type="text")
+      -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
+      -if tmp
+        !=tmp(this)
+#save-properties
+  %input{type: "button", value:  "#{I18n.t('admin.links.save')}"}

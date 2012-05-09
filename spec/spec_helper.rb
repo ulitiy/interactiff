@@ -1,13 +1,13 @@
-  module Kernel
-    alias :__at_exit :at_exit
-    def at_exit(&block)
-      __at_exit do
-        exit_status = $!.status if $!.is_a?(SystemExit)
-        block.call
-        exit exit_status if exit_status
-      end
+module Kernel
+  alias :__at_exit :at_exit
+  def at_exit(&block)
+    __at_exit do
+      exit_status = $!.status if $!.is_a?(SystemExit)
+      block.call
+      exit exit_status if exit_status
     end
   end
+end
 
 require 'rubygems'
 require 'spork'
@@ -39,9 +39,7 @@ Spork.prefork do
     end
     config.before(:each, :type=>:request) { create_domain }
     config.after(:each, :type=>:request) { destroy_domain }
-    config.after do
-      DatabaseCleaner.clean
-    end
+    config.after { DatabaseCleaner.clean }
 
   end
 

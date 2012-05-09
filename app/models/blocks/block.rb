@@ -24,7 +24,7 @@ class Block < ActiveRecord::Base
   has_many :hosts, foreign_key: "parent_id"
   has_many :timers, foreign_key: "parent_id"
 
-  attr_accessible :x,:y,:parent,:parent_id
+  attr_accessible :x,:y,:parent,:parent_id,:comment,:title
 
   before_create :set_ids
 
@@ -38,7 +38,7 @@ class Block < ActiveRecord::Base
   end
 
   def as_json options={}
-    super options.merge(:methods=>:type)
+    {sid: id}.merge( super options.merge(:methods=>:type) )
   end
 
   def type

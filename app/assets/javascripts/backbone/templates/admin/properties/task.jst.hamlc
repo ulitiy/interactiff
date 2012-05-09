@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="name")= I18n.t("admin.task.name")
+  %td
+    %input(id="name", type="text")

@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="name")= I18n.t("admin.game.name")
+  %td
+    %input(id="name", type="text")

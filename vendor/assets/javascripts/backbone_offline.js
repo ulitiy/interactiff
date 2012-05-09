@@ -8,9 +8,9 @@
         switch (method) {
           case 'read':
             if (_.isUndefined(model.id)) {
-              return store.findAll();
+              return store.findAll(options);
             } else {
-              return store.find(model);
+              return store.find(model, options);
             }
             break;
           case 'create':
@@ -77,16 +77,20 @@
       return this.remove(model);
     };
 
-    Storage.prototype.find = function(model) {
+    Storage.prototype.find = function(model, options) {
+      if (options == null) options = {};
       return JSON.parse(localStorage.getItem("" + this.name + "-" + model.id));
     };
 
-    Storage.prototype.findAll = function() {
+    Storage.prototype.findAll = function(options) {
       var id, _i, _len, _ref, _results;
-      if (this.isEmpty()) {
-        this.sync.full();
-      } else {
-        this.sync.incremental();
+      if (options == null) options = {};
+      if (!options.local) {
+        if (this.isEmpty()) {
+          this.sync.full();
+        } else {
+          this.sync.incremental();
+        }
       }
       _ref = this.allIds.values;
       _results = [];
@@ -202,10 +206,13 @@
         success: function(response, status, xhr) {
           var item, _i, _len;
           _this.storage.clear();
-          _this.collection.items.reset([]);
+          _this.collection.items.reset([], {
+            silent: true
+          });
           for (_i = 0, _len = response.length; _i < _len; _i++) {
             item = response[_i];
             _this.collection.items.create(item, {
+              silent: true,
               local: true,
               regenerateId: true
             });

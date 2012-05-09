@@ -22,6 +22,7 @@
 //= require admin/path_init
 //= require admin/css_position_plugin
 //= require admin/random_plugin
+// require admin/offline_sync_patch
 
 //= require backbone/joygen
 //= require admin/backbone_init

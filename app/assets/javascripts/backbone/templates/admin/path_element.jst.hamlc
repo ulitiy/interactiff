@@ -1,0 +1,4 @@
+%a{href: "/#{@adminPath()}"}
+  .icon
+    %img(src="#{@icon}")
+  .title(data-bind="text name")

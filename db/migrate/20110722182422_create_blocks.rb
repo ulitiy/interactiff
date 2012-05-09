@@ -2,6 +2,8 @@ class CreateBlocks < ActiveRecord::Migration
   def change
     create_table :blocks do |t|
       t.string :type
+      t.string :title
+      #t.string :comment
       t.integer :x
       t.integer :y
       t.references :parent

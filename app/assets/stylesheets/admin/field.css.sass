@@ -20,18 +20,27 @@
     top: 0
     padding: 3px
   .block
+    padding: 11px 27px 11px 11px
     $shadow: 2px 2px 7px
     white-space: nowrap
+    max-width: 170px
     position: absolute
     background: white
-    padding: 11px
     min-width: 60px
     border: 1px solid gray
     border-radius: 8px
     box-shadow: $shadow #AAA
     cursor: default
+    .icon
+      float: left
+      width: 20px
+      line-height: 20px
+      vertical-align: middle
+    .caption
     .title
-      display: inline
+      font-size: x-small
+      color: #444
+      white-space: normal
     .destroy
       position: absolute
       color: white
@@ -54,3 +63,16 @@
       z-index: 100
   ._jsPlumb_endpoint
     z-index: 101
+    .sourceTitle, .targetTitle
+      position: absolute
+      font-size: xx-small
+      color: #444
+      white-space: nowrap
+    .sourceTitle
+      top: -7px
+      left: 10px
+    .targetTitle
+      top: -7px
+      right: 10px
+  ._jsPlumb_connector:hover
+    z-index: 100

@@ -1,0 +1,3 @@
+#loading-overlay.overlay
+#loading-sign
+  %img(src="/assets/admin/loader.gif")
