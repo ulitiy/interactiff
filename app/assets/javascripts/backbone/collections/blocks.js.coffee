@@ -24,7 +24,7 @@ class Joygen.Collections.BlocksCollection extends Backbone.Collection
     @find (item)-> item.id==id
 
   children: (id)=>
-    if id==0
+    if id=="0"
       return @filter (block)->
         block.get("type")=="Domain"
     @filter (block)->

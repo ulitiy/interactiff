@@ -43,7 +43,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
   dragstopchild: =>
     @model.setPosition $(@el).css_position()
   dragstart: =>
-    window.selected=$('.ui-selected') unless selected?
+    window.selected=$('.ui-selected')# unless selected? #т.к. при релоаде остается
     selected.each ->
       $(this).data "originalPosition", $(this).css_position()
   drag: (event,ui,ddl,ddt)=>

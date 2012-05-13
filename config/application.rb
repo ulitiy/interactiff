@@ -1,6 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+#require 'rails/all'
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
+require "rails/test_unit/railtie"
+require "sprockets/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -46,8 +51,10 @@ module Joygen
 
     config.assets.precompile += %w(admin.js application.js application.css)
 
-    config.active_record.whitelist_attributes = true
+    Mongoid.config.preload_models=true
 
-    ActiveRecord::Base.include_root_in_json = false
+    #config.active_record.whitelist_attributes = true
+
+    #ActiveRecord::Base.include_root_in_json = false
   end
 end

@@ -1,44 +1,31 @@
-class Block < ActiveRecord::Base
-  acts_as_citier
+class Block
+  include Mongoid::Document
 
-  belongs_to :parent, class_name: "Block" #TODO validate
-  has_many :children, class_name: "Block", foreign_key: "parent_id", dependent: :destroy
-  has_many :out_relations, class_name: "Relation", foreign_key: "from_id", dependent: :destroy
-  has_many :in_relations, class_name: "Relation", foreign_key: "to_id"#, dependent: :destroy
-  belongs_to :game
-  belongs_to :task
+  field :x, type: Integer
+  field :y, type: Integer
+  field :title, type: String
 
-  #functional
-  has_many :game_starteds, foreign_key: "parent_id"
-  has_many :game_passeds, foreign_key: "parent_id"
-  has_many :inputs, foreign_key: "parent_id"
-  has_many :outputs, foreign_key: "parent_id"
-  has_many :task_givens, foreign_key: "parent_id"
-  has_many :task_passeds, foreign_key: "parent_id"
-  #containers
-  has_many :games, foreign_key: "parent_id"
-  has_many :tasks, foreign_key: "parent_id"
-  #basic
-  has_many :hints, foreign_key: "parent_id"
-  has_many :answers, foreign_key: "parent_id"
-  has_many :hosts, foreign_key: "parent_id"
-  has_many :timers, foreign_key: "parent_id"
+  belongs_to :parent, class_name: "Block", index: true #TODO validate
+  belongs_to :game, index: true
+  belongs_to :task, index: true
+  has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
+  has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy
+  has_many :in_relations, class_name: "Relation", inverse_of: :to#, dependent: :destroy
 
-  attr_accessible :x,:y,:parent,:parent_id,:comment,:title
+  has_many :inputs, class_name: "Input", inverse_of: :parent
+  has_many :outputs, class_name: "Output", inverse_of: :parent
 
-  before_create :set_ids
+  attr_accessible :x,:y,:title,:parent,:parent_id
+
+  before_create :set_ids #t
 
   def set_ids
     self.game=self.parent.parent_game if self.parent
     self.task=self.parent.parent_task if self.parent
   end
 
-  def self.functional
-    [:game_starteds,:game_passeds,:inputs,:outputs]
-  end
-
-  def as_json options={}
-    {sid: id}.merge( super options.merge(:methods=>:type) )
+  def as_json options={}#t
+    super options.merge(:methods=>[:type,:id])
   end
 
   def type
@@ -72,9 +59,9 @@ class Block < ActiveRecord::Base
     return Domain.all if id=="0"
     b=Block.find(id)
     if b.is_a? Domain
-      c=b.children.includes(Block.functional)
-      io=c.reduce([]) { |arr,child| arr+child.game_starteds+child.game_passeds+child.inputs+child.outputs}
-      return [b]+c+io
+      c=b.children#.includes([:inputs, :outputs]) #все детишки (можно с ранней подгрузкой внуков)
+      io=c.reduce([]) { |arr,child| arr+child.children.where(:_type=>{"$in"=>["Input","Output"]})} #все необходимые внуки
+      return [b]+c+io #я, дети и внуки
     end
     b=b.parent_game
     arr=b.path+b.descendants

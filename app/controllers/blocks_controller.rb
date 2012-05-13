@@ -5,13 +5,7 @@ class BlocksController < InheritedResources::Base
 
   def show
     @blocks=Block.master_collection(params[:id])
-    b=Block.find_by_id params[:id]
-    @relations=[] and return if params[:id]=="0"# || !b.parent_game
-    unless b.parent_game
-      @relations=@blocks.reduce [] { |arr,b| arr+=b.out_relations }
-      return
-    end
-    @relations=b.parent_game.relations
+    @relations=Relation.relations_collection(@blocks,params[:id])
     #здесь не надо вводить кэширование, т.к. оно работает медленнее чем рендер в json
   end
 
@@ -20,7 +14,9 @@ class BlocksController < InheritedResources::Base
   end
 
   def update
-    respond_with(Block.find(params[:id]).update_attributes!(params[:block]))
+    b=Block.find(params[:id])
+    b.update_attributes(params[:block])
+    respond_with b
   end
 
 end

@@ -1,7 +1,9 @@
 class Game < Block
-  acts_as_citier
-  has_many :descendants, class_name: 'Block', foreign_key: 'game_id'#, dependent: :destroy #override
-  has_many :relations#, dependent: :destroy
+  field :name, type: String
+  field :description, type: String
+
+  has_many :descendants, class_name: 'Block', inverse_of: :game
+  has_many :game_relations, class_name: 'Relation', inverse_of: :game
+
   attr_accessible :name, :description
-  validates_presence_of :name
 end

@@ -17,8 +17,8 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#properties-container")
 
   index: (id,eid) ->
-    id=parseInt(id)
-    eid=parseInt(eid)
+    # id=parseInt(id)
+    # eid=parseInt(eid)
     window.editId=eid
     window.parentId=id
     window.loading=true

@@ -1,7 +1,5 @@
 class Task < Block
-  acts_as_citier
+  field :name, type: String
 
-  attr_accessible :name, :comment
-
-  validates_presence_of :name
+  attr_accessible :name
 end

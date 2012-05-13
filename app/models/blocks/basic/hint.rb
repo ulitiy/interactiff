@@ -1,5 +1,5 @@
 class Hint < Block
-  acts_as_citier
+  field :body, type: String
 
   attr_accessible :body
 end
