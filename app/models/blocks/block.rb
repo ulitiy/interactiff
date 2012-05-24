@@ -19,34 +19,41 @@ class Block
 
   before_create :set_ids #t
 
+  # Sets game and task properties using parent
   def set_ids
     self.game=self.parent.parent_game if self.parent
     self.task=self.parent.parent_task if self.parent
   end
 
+  # Overriden as_json adding type and id fields
   def as_json options={}#t
     super options.merge(:methods=>[:type,:id])
   end
 
+  # @return [String] block class name
   def type
     self.class.name
   end
 
+  # @return [Array] all ancestors + self
   def path #t
     return [self] unless self.parent
     self.parent.path+[self]
   end
 
+  # @return [Game] first Game in path (self or ancestor)
   def parent_game #t
    return self if self.class==Game
    self.game
   end
 
+  # @return [Game] first Task in path (self or ancestor)
   def parent_task #t
    return self if self.class==Task
    self.task
   end
 
+  # @return [Array] all descendants (children + their descentants)
   def descendants #t
     children.reduce(children) do |arr,c|
       arr+c.descendants
@@ -55,6 +62,8 @@ class Block
 
   alias direct_descendants descendants #т.к. для экономии времени сделаем прямую ссылку на некоторые типы контейнеров
 
+  # @param [Integer] id id of current page (parent)
+  # @return [Array] all blocks necessary for requested page: in game – game path+descendants, all domains or domain children otherwise+I/O
   def self.master_collection id #t
     return Domain.all if id=="0"
     b=Block.find(id)

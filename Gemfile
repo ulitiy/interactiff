@@ -8,12 +8,8 @@ group :assets do
   gem 'execjs'
 end
 gem 'sprockets', '~> 2.0'
-# gem "mysql2"
-# gem 'citier'
-# gem 'rails_sql_views', :git=> 'https://github.com/morgz/rails_sql_views.git'
-# gem 'pg'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "mongoid", "~> 2.4"
+gem 'yard'
 gem "bson_ext", "~> 1.5"
 gem 'devise', :git=> "https://github.com/plataformatec/devise.git"
 gem 'russian', :git=> "https://github.com/yaroslav/russian.git"
