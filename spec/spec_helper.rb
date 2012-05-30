@@ -19,22 +19,15 @@ Spork.prefork do
   require "capybara/rspec"
   include Capybara::DSL
 
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
-    config.use_transactional_fixtures = false #false!!! см ниже
+    config.use_transactional_fixtures = false
     config.include(ControllerMacros)
     config.include(IntegrationMacros)
-    #если использовать транзакционную очистку с js, то придёт звизда
     config.before :each do
-      if Capybara.current_driver == :rack_test
-        DatabaseCleaner.strategy = :transaction
-      else
-        DatabaseCleaner.strategy = :truncation
-      end
+      DatabaseCleaner[:mongoid].strategy = :truncation
       DatabaseCleaner.start
     end
     config.before(:each, :type=>:request) { create_domain }
@@ -46,17 +39,15 @@ Spork.prefork do
   Capybara.configure do |config|
     config.app_host   = 'http://requests.lvh.me:54163'
     config.server_port = '54163'
+    config.javascript_driver = :webkit #comment to see in Firefox
   end
-
-  Selenium::WebDriver::Firefox.path = "/Applications/Firefox.app/Contents/MacOS/firefox-bin-selenium"
 
   def t param
     I18n.t param
   end
+
 end
 
 Spork.each_run do
   FactoryGirl.reload
-  `killall firefox-bin-selenium`
 end
-

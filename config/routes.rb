@@ -7,5 +7,5 @@ Joygen::Application.routes.draw do
     :checkers, :setters, :distributors, :eval_blocks,
     :path=>"/blocks"
   resources :relations
-  match "/admin/:postfix" => "Admin::Blocks#index", :constraints => { :postfix => /.*/ }
+  match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", :constraints => { parent_id: /0|[0-9a-f]{24}*/,select_id: /0|[0-9a-f]{24}*/ }, as: :admin
 end

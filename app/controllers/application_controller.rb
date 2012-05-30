@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # @return [Host] requested host
   def current_host
-    @current_host||=Block::Host.first(:conditions=>{:name=>request.host})
+    @current_host||=Host.first(:conditions=>{:name=>request.host})
   end
 
   before_filter :check_current_domain

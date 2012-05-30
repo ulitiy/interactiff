@@ -21,11 +21,11 @@ class Relation
   end
 
   # @return [Array] relations, that can be shown in current context (game or outside)
-  def self.relations_collection blocks,id
-    return [] if id=="0"# || !b.parent_game
+  def self.relations_collection id, blocks=[]
+    return [] if id=="0"
     b=Block.find id
     unless b.parent_game #если снаружи игры
-      return blocks.reduce [] { |arr,b| arr+=b.out_relations }
+      return blocks.reduce [] { |arr,b1| arr+=b1.out_relations }
     end
     b.parent_game.game_relations
   end

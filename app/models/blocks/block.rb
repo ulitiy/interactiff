@@ -5,9 +5,9 @@ class Block
   field :y, type: Integer
   field :title, type: String
 
-  belongs_to :parent, class_name: "Block", index: true #TODO validate
-  belongs_to :game, index: true
-  belongs_to :task, index: true
+  belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
+  belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
+  belongs_to :task, class_name: "Task", inverse_of: :descendants, index: true
   has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
   has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy
   has_many :in_relations, class_name: "Relation", inverse_of: :to#, dependent: :destroy
@@ -26,7 +26,7 @@ class Block
   end
 
   # Overriden as_json adding type and id fields
-  def as_json options={}#t
+  def as_json options={}
     super options.merge(:methods=>[:type,:id])
   end
 
@@ -36,25 +36,25 @@ class Block
   end
 
   # @return [Array] all ancestors + self
-  def path #t
+  def path
     return [self] unless self.parent
     self.parent.path+[self]
   end
 
   # @return [Game] first Game in path (self or ancestor)
-  def parent_game #t
+  def parent_game
    return self if self.class==Game
    self.game
   end
 
   # @return [Game] first Task in path (self or ancestor)
-  def parent_task #t
+  def parent_task
    return self if self.class==Task
    self.task
   end
 
   # @return [Array] all descendants (children + their descentants)
-  def descendants #t
+  def descendants
     children.reduce(children) do |arr,c|
       arr+c.descendants
     end
@@ -64,7 +64,7 @@ class Block
 
   # @param [Integer] id id of current page (parent)
   # @return [Array] all blocks necessary for requested page: in game – game path+descendants, all domains or domain children otherwise+I/O
-  def self.master_collection id #t
+  def self.master_collection id
     return Domain.all if id=="0"
     b=Block.find(id)
     if b.is_a? Domain
