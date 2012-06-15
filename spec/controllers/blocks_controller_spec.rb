@@ -4,6 +4,7 @@ describe BlocksController do
 
   describe "POST create" do
     it "sets the correct type of the block" do
+      sign_in create(:root_user)
       post :create, block: {type: "Domain"}
       assigns(:block).should be_a(Domain)
     end

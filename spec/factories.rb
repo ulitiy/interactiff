@@ -32,4 +32,18 @@ FactoryGirl.define do
       association :game
     end
   end
+
+  factory :user do
+    sequence(:email,1000) { |n| "#{n}user@example.com" }
+    password "secret"
+    factory :user_with_role, aliases: [:root_user] do
+      ignore do
+        block nil
+        access :manage_roles
+      end
+      after(:create) { |user, evaluator| user.roles.create block: evaluator.block, access: evaluator.access }
+    end
+  end
+
+  factory :and_block
 end

@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe "Admin module", :js=>true do
 
-  let(:domain) { FactoryGirl.create :domain, name: "test domain"}
-  let(:game) { FactoryGirl.create :game, name: "test game", parent: domain }
-  let(:task) { FactoryGirl.create :task, name: "test task", parent: game }
-  let(:answer) { FactoryGirl.create :answer, parent: task, x: 100, y: 0 }
-  let(:hint) { FactoryGirl.create :hint, parent: task, x: 0, y: 0 }
+  let(:domain) { create :domain, name: "test domain"}
+  let(:game) { create :game, name: "test game", parent: domain }
+  let(:task) { create :task, name: "test task", parent: game }
+  let(:answer) { create :answer, parent: task, x: 100, y: 0 }
+  let(:hint) { create :hint, parent: task, x: 0, y: 0 }
+
+  before { login(create(:root_user)) }
 
   describe "router" do
 
@@ -104,6 +106,9 @@ describe "Admin module", :js=>true do
       sleep 0.1
       find("#field").should have_content("test domain")
     end
+
+    it 'destroys blocks on backspace/delete'
+    it 'destroys block on x click'
 
     #no tools
     it 'moves on up-down-left-right keys (no tools)'

@@ -11,6 +11,7 @@ gem 'sprockets', '~> 2.0'
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 gem 'devise', :git=> "https://github.com/plataformatec/devise.git"
+gem 'cancan'
 gem 'russian', :git=> "https://github.com/yaroslav/russian.git"
 gem 'inherited_resources', :git=> 'https://github.com/zerobearing2/inherited_resources.git'
 gem 'has_scope', :git=> "https://github.com/plataformatec/has_scope.git"
@@ -27,7 +28,7 @@ group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
-  gem "growl_notify"
+  gem "growl"
   gem 'database_cleaner'
   gem 'spork'
   gem 'guard-spork'

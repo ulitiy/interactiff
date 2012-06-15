@@ -1,13 +1,18 @@
 require 'spec_helper'
 
 describe Block do
-  let(:domain) { FactoryGirl.create :domain }
-  let(:host) { FactoryGirl.create :host, parent: domain }
-  let(:game) { FactoryGirl.create :game, parent: domain }
-  let(:task) { FactoryGirl.create :task, parent: game }
-  let(:answer) { FactoryGirl.create :answer, parent: task }
-  let(:domain2) { FactoryGirl.create :domain }
-  let(:game2) { FactoryGirl.create :game, parent: domain2 }
+  let(:domain) { create :domain }
+  let(:host) { create :host, parent: domain }
+  let(:game) { create :game, parent: domain }
+  let(:task) { create :task, parent: game }
+  let(:answer) { create :answer, parent: task }
+  let(:domain2) { create :domain }
+  let(:game2) { create :game, parent: domain2 }
+  let(:and_block) { create :and_block, parent: game }
+
+  before { domain;host;game;task;answer;and_block;domain2;game2 }
+
+  it "REWRITE SPECS in the best practices"
 
   describe "#as_json" do
     it "returns type and id fields" do
@@ -37,6 +42,10 @@ describe Block do
     it "sets game_id for a created grandchild block" do
       answer.game.should eq(game)
     end
+
+    it "sets game_id for a new grandchild block" do
+      Answer.new(parent:task).game.should eq(game)
+    end
   end
 
   describe "#parent_game" do
@@ -44,7 +53,7 @@ describe Block do
       game.parent_game.should eq(game)
     end
 
-    it "returns parent game if it's grandchild" do
+    it "returns parent game if it's a grandchild" do
       answer.parent_game.should eq(game)
     end
   end
@@ -60,40 +69,20 @@ describe Block do
   end
 
   describe "#path" do
-    it "returns all parents" do
-      game2
-      answer.path.should eq([domain,game,task,answer])
-    end
+    subject { answer.path }
+    it { should eq([domain,game,task,answer]) }
   end
 
   describe "#descendants" do
-    it "returns all children and grandchildren" do
-      task;answer
-      and_block=AndBlock.create parent: game
-      game.descendants.should eq([task,answer,and_block])
-    end
+    subject { game.descendants }
+    it { should eq([task,answer,and_block]) }
   end
 
   describe "master_collection" do
-    it "should return all domains for 0" do
-      domain;game;task;domain2;game2
-      Block.master_collection("0").should eq([domain,domain2])
-    end
-
-    it "should return domain + children for domain id" do
-      task;game2
-      Block.master_collection(domain.id.to_s).should eq([domain,game])
-    end
-
-    it "should return game children and path for game id" do
-      answer;game2
-      Block.master_collection(game.id.to_s).should eq([domain,game,task,answer])
-    end
-
-    it "should return game children and path for game grandchild id" do
-      answer;domain2;game2
-      Block.master_collection(task.id.to_s).should eq([domain,game,task,answer])
-    end
+    it("when 0 should return all domains") { Block.master_collection("0").should eq([domain,domain2]) }
+    it("when domain id should return domain + children") { Block.master_collection(domain.id.to_s).should eq([domain,host,game]) }
+    it("when game id should return game children and path") { Block.master_collection(game.id.to_s).should eq([domain,game,task,answer,and_block]) }
+    it("when game grandchild id should return game children and path") { Block.master_collection(task.id.to_s).should eq([domain,game,task,answer,and_block]) }
   end
 
 end

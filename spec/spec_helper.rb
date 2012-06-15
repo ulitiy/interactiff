@@ -23,9 +23,11 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.mock_with :rspec
-    config.use_transactional_fixtures = false
-    config.include(ControllerMacros)
-    config.include(IntegrationMacros)
+    #config.use_transactional_fixtures = false
+    config.include Devise::TestHelpers, :type => :controller
+    config.include FactoryGirl::Syntax::Methods
+    config.include ControllerMacros
+    config.include IntegrationMacros
     config.before :each do
       DatabaseCleaner[:mongoid].strategy = :truncation
       DatabaseCleaner.start
@@ -44,6 +46,13 @@ Spork.prefork do
 
   def t param
     I18n.t param
+  end
+
+  def login(user)
+    visit new_user_session_path
+    fill_in "user_email", with: user.email
+    fill_in "user_password", with: 'secret'
+    click_button 'Sign in'
   end
 
 end

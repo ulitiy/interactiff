@@ -1,5 +1,5 @@
 class Host < Block
-  field :name, type: String
+  field :name, type: String, :null => false, :default => ""
 
   attr_accessible :name
 

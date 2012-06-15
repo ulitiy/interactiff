@@ -105,7 +105,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @addSources()
       @addTargets()
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length
-      $(@el).css("min-height",m*22)
+      $(@el).css("min-height",m*14)
 
   addSources: ()=>
     arr=@model.getContainerSources()

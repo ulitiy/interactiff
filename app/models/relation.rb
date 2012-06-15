@@ -6,7 +6,7 @@ class Relation
   belongs_to :game
   validates_presence_of :from, :to
   validates_uniqueness_of :to_id, scope: :from_id
-  attr_accessible :from_id, :to_id, :game_id
+  attr_accessible :from_id, :to_id, :game_id, :from, :to
 
   before_create :set_ids
 

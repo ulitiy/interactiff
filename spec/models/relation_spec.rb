@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe Relation do
-  let(:relation) { FactoryGirl.create :relation }
-  let(:game_relation) { FactoryGirl.create :game_relation }
-  let(:game) { FactoryGirl.create :game }
-  let(:game2) { FactoryGirl.create :game }
+  let(:relation) { create :relation }
+  let(:game_relation) { create :game_relation }
+  let(:game) { create :game }
+  let(:game2) { create :game }
 
   describe "#as_json" do
     it "returns id field" do
@@ -15,7 +15,7 @@ describe Relation do
 
   describe "#set_ids" do
     it "sets game_id for game relations" do
-      rel=FactoryGirl.build :relation
+      rel=build :relation
       rel.from.game=game
       rel.to.game=game
       rel.save
@@ -23,7 +23,7 @@ describe Relation do
     end
 
     it "doesn't set game_id for out-game relations" do
-      rel=FactoryGirl.build :relation
+      rel=build :relation
       rel.from.game=game
       rel.to.game=game2
       rel.save

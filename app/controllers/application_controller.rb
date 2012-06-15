@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery
+  # check_authorization :unless => :devise_controller?
 
   # @return [Domain] domain-parent of requested host
   def current_domain

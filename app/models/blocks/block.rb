@@ -1,9 +1,9 @@
 class Block
   include Mongoid::Document
 
-  field :x, type: Integer
-  field :y, type: Integer
-  field :title, type: String
+  field :x, type: Integer, null: false, default: 0
+  field :y, type: Integer, null: false, default: 0
+  field :title, type: String, :null => false, default: ""
 
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
@@ -17,12 +17,13 @@ class Block
 
   attr_accessible :x,:y,:title,:parent,:parent_id
 
-  before_create :set_ids #t
+  before_create :set_ids
+  after_initialize :set_ids
 
   # Sets game and task properties using parent
   def set_ids
-    self.game=self.parent.parent_game if self.parent
-    self.task=self.parent.parent_task if self.parent
+    self.game||=self.parent.parent_game if self.parent
+    self.task||=self.parent.parent_task if self.parent
   end
 
   # Overriden as_json adding type and id fields
