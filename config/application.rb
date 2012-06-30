@@ -51,7 +51,7 @@ module Joygen
 
     config.assets.precompile += %w(admin.js application.js application.css)
 
-    Mongoid.config.preload_models=true
+    config.mongoid.preload_models=true
 
     #config.active_record.whitelist_attributes = true
 

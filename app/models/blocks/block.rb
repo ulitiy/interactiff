@@ -1,9 +1,10 @@
 class Block
   include Mongoid::Document
+  include Mongoid::Timestamps
 
-  field :x, type: Integer, null: false, default: 0
-  field :y, type: Integer, null: false, default: 0
-  field :title, type: String, :null => false, default: ""
+  field :x, type: Integer, default: 0
+  field :y, type: Integer, default: 0
+  field :title, type: String, default: ""
 
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true

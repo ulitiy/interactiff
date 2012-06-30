@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.5'
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
@@ -8,7 +8,7 @@ group :assets do
   gem 'execjs'
 end
 gem 'sprockets', '~> 2.0'
-gem "mongoid", "~> 2.4"
+gem "mongoid", "~> 3.0.0.rc" #timestamps with milliseconds
 gem "bson_ext", "~> 1.5"
 gem 'devise', :git=> "https://github.com/plataformatec/devise.git"
 gem 'cancan'

@@ -1,5 +1,5 @@
 class Hint < Block
-  field :body, type: String, :null => false, :default => ""
+  field :body, type: String, :default => ""
 
   attr_accessible :body
 end

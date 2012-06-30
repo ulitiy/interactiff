@@ -1,5 +1,11 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+
+  embeds_many :roles
+  has_many :events
+  has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members"
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -7,8 +13,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
-  field :encrypted_password, :type => String, :null => false, :default => ""
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -30,5 +36,6 @@ class User
   # field :confirmation_sent_at, :type => Time
   # field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
-  embeds_many :roles
+  validates_presence_of :email
+  validates_presence_of :encrypted_password
 end
