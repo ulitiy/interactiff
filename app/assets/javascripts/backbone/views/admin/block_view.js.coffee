@@ -28,7 +28,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       trigger:true
 
   selectedone: =>
-    router.navigate "#{mainPath}#{parentId}/#{@model.id}",
+    router.navigate "#{parentId}/#{@model.id}",
       trigger:true
       replace:true
     window.editId=@model.id

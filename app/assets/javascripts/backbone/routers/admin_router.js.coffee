@@ -2,7 +2,7 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
   initialize: (options) ->
 
   routes:
-    "admin/:id/:edit_id" : "index"
+    ":id/:edit_id" : "index"
 
   initialize: ->
     window.masterCollection=new Joygen.Collections.BlocksCollection()
@@ -17,12 +17,10 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#properties-container")
 
   index: (id,eid) ->
-    # id=parseInt(id)
-    # eid=parseInt(eid)
-    window.editId=eid
+    window.editId=(if eid=="0" then id else eid)
     window.parentId=id
     window.loading=true
-    @loadProperties(eid)
+    @loadProperties(editId)
     if @oldId!=id
       pathView.id=id
       fieldView.id=id

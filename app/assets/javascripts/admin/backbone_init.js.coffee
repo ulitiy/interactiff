@@ -1,3 +1,3 @@
 $ ->
   window.router = new Joygen.Routers.AdminRouter()
-  Backbone.history.start({pushState:true})
+  Backbone.history.start({pushState:true,root:"/admin/"})

@@ -13,6 +13,8 @@ test:
       database: joygen_test
       hosts:
         - localhost:27017
+  options:
+    identity_map_enabled: true
 
 production:
   host: <%= ENV['MONGOID_HOST'] %>

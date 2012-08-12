@@ -42,7 +42,7 @@ class Joygen.Models.Block extends Backbone.Model
   icon: "/assets/admin/icons/16/050.png"
   toolName: -> I18n.t("admin.#{@modelName}.tool")
   adminPath: ->
-    "#{mainPath}#{@id}/#{@id}"
+    "#{@id}/0"
   children: ->
     @collection.children(@id)
   parent: ->
@@ -75,6 +75,6 @@ class Joygen.Models.Block extends Backbone.Model
 window.rootBlock=new Joygen.Models.Block
     id:0
     name:I18n.t("admin.path.root")
-rootBlock.adminPath= -> "#{mainPath}0/0"
+rootBlock.adminPath= -> "0/0"
 rootBlock.icon="/assets/admin/icons/16/092.png"
 rootBlock.tools=["Domain"]

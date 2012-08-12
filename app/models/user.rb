@@ -4,7 +4,9 @@ class User
 
   embeds_many :roles
   has_many :events
-  has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members"
+  has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members", index: true
+  belongs_to :team
+  #TODO: множественное присваивание
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -19,7 +19,6 @@
 //= require admin/layout
 //= require admin/loading_init
 //= require admin/jsplumb_init
-//= require admin/path_init
 //= require admin/css_position_plugin
 //= require admin/random_plugin
 // require admin/offline_sync_patch

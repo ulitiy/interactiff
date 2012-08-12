@@ -7,5 +7,4 @@
     = javascript_include_tag "admin"
     = csrf_meta_tags unless response.cache_control[:public]
   %body
-    ="3#{response.cache_control[:public]}"
     =yield

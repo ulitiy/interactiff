@@ -10,6 +10,9 @@ end
 gem 'sprockets', '~> 2.0'
 gem "mongoid", "~> 3.0.0.rc" #timestamps with milliseconds
 gem "bson_ext", "~> 1.5"
+gem 'delayed_job_mongoid'
+gem 'dj_mon'
+gem "daemons"
 gem 'devise', :git=> "https://github.com/plataformatec/devise.git"
 gem 'cancan'
 gem 'russian', :git=> "https://github.com/yaroslav/russian.git"

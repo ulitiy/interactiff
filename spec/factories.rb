@@ -1,4 +1,6 @@
 FactoryGirl.define do
+  factory :block
+
   factory :domain do
     sequence(:name){|n| "domain#{n}"}
   end
@@ -16,12 +18,27 @@ FactoryGirl.define do
     sequence(:name) { |n| "task#{n}" }
   end
 
+  factory :task_given
+  factory :task_passed
+
   factory :answer do
     sequence(:body) { |n| "answer#{n}" }
   end
 
   factory :hint do
     sequence(:body) { |n| "hint#{n}" }
+  end
+
+  factory :and_block
+
+  factory :or_block
+
+  factory (:clock) do
+    time 1.second.from_now
+  end
+
+  factory (:timer) do
+    time 1
   end
 
   factory :relation do
@@ -45,5 +62,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :and_block
+  factory :team do
+    sequence(:name) { |n| "team #{n}" }
+  end
+
 end

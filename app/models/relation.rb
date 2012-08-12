@@ -2,9 +2,10 @@ class Relation
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  belongs_to :from, class_name: "Block", inverse_of: :out_relations
-  belongs_to :to, class_name: "Block", inverse_of: :to_relations
-  belongs_to :game, inverse_of: :game_relations
+  belongs_to :from, class_name: "Block", inverse_of: :out_relations, index: true
+  belongs_to :to, class_name: "Block", inverse_of: :to_relations, index: true
+  belongs_to :game, inverse_of: :game_relations, index: true
+
   validates_presence_of :from, :to
   validates_uniqueness_of :to_id, scope: :from_id
   attr_accessible :from_id, :to_id, :game_id, :from, :to

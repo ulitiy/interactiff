@@ -14,6 +14,12 @@ require 'spork'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
+
+  require 'rails/mongoid'
+  Spork.trap_class_method(Rails::Mongoid, :load_models)
+  require 'factory_girl_rails'
+  Spork.trap_class_method(FactoryGirl, :find_definitions)
+
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require "capybara/rspec"
@@ -58,5 +64,8 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  # silence_warnings do #reload models
+  #   Dir["#{Rails.root}/app/models/**/*.rb"].each {|f| load f}
+  # end
   FactoryGirl.reload
 end

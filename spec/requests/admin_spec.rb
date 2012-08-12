@@ -35,7 +35,7 @@ describe "Admin module", :js=>true do
       hint;answer
       visit admin_path parent_id: task.id, select_id: hint.id
       find("#field").click
-      current_path.should eq(admin_path parent_id: task.id, select_id: task.id)
+      current_path.should eq(admin_path parent_id: task.id, select_id: 0)
       find("#properties").should have_content(t("admin.task.tool"))
     end
 
@@ -77,7 +77,7 @@ describe "Admin module", :js=>true do
     it 'routes to the parent on up-click' do
       visit admin_path parent_id: task.id, select_id: 0
       find("#path-container #lvl-up").click
-      current_path.should eq(admin_path parent_id: game.id, select_id: game.id)
+      current_path.should eq(admin_path parent_id: game.id, select_id: 0)
     end
 
   end

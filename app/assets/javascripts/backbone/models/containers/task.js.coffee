@@ -6,7 +6,7 @@ class Joygen.Models.Task extends Joygen.Models.Block
       name: I18n.t("admin.task.new")
     )
   container: true
-  tools: ['Hint', 'Answer', 'Message', 'Clock', 'Timer', 'NotBlock', 'AndBlock', 'OrBlock', 'Setter', 'Checker', 'EvalBlock', 'Distributor', "Input", "Output"]
+  tools: ['Hint', 'Answer', 'Message', 'Clock', 'Timer', 'AndBlock', 'OrBlock', 'Setter', 'Checker', 'EvalBlock', 'Distributor', "Input", "Output"]
   icon: "/assets/admin/icons/16/071.png"
   save: (attributes, options) =>
     if @isNew()

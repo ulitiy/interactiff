@@ -14,7 +14,7 @@ class Ability
     cannot :read, :all
     user||=User.new
     #later - better
-    user.roles.each do |role|
+    for role in user.roles do #user.roles.each do |role| #
       next if role.access==:none
       access=case role.access
       when :manage_roles then :manage
