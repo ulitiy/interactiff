@@ -3,6 +3,7 @@ Host.create name: "lvh.me", parent: domain, x:0, y:0
 domain=Domain.create name: "quest.interactiff.net", x:0, y:0
 Host.create name: "quest.interactiff.net", parent: domain, x:0, y:0
 
+
 # game=Game.create name: "Test game", parent: domain, x:100, y:100
 # task=Task.create name: "Test task", parent:game, game:game, x:100, y:100
 #
