@@ -49,7 +49,7 @@ module Joygen
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.assets.precompile += %w(admin.js application.js application.css)
+    config.assets.precompile += %w(admin.js application.js application.css admin.css play.css)
 
     config.mongoid.preload_models=true
 
