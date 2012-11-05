@@ -7,6 +7,7 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
   initialize: ->
     window.masterCollection=new Joygen.Collections.BlocksCollection()
     window.relationsCollection=new Joygen.Collections.RelationsCollection()
+    window.masterView=new Joygen.Views.Admin.MasterView
     window.pathView=new Joygen.Views.Admin.PathView #путь раньше всех, чтобы родители загрузились раньше
       el:$("#path-container")
     window.fieldView=new Joygen.Views.Admin.FieldView
@@ -15,53 +16,20 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el:$("#toolbar")
     window.propertiesView=new Joygen.Views.Admin.PropertiesView
       el: $("#properties-container")
+    window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
+      el: $("#floating-toolbar")
 
-  index: (id,eid) ->
-    window.editId=(if eid=="0" then id else eid)
-    window.parentId=id
+  index: (pid,eid) ->
     window.loading=true
-    @loadProperties(editId)
-    if @oldId!=id
-      pathView.id=id
-      fieldView.id=id
-      if @needLoad(id)
-        @loadCollection(id)
-        @setLoadOverlay()
+    window.editId=(if eid=="0" then pid else eid)
+    window.parentId=pid
+    masterView.loadProperties()
+    if @oldId!=parentId
+      pathView.id=parentId
+      fieldView.id=parentId
+      if masterView.needLoad(parentId)
+        masterView.loadCollection(parentId)
+        masterView.setLoadOverlay()
       else
-        # masterCollection.fetch local:true
-        @renderViews()
-      @oldId=id
-
-  needLoad: (id)->
-    # return false
-    el=masterCollection.get(id)
-    !el? || el.get("type")=="Domain" || el.get("type")=="Game" #&& el.children().length==0 #TODO #because I/O
-
-  loadCollection: (id)->
-    $.ajax
-      url: "/blocks/#{id}"
-      success: (data)->
-        relationsCollection.reset data.relations
-        # masterCollection.storage.sync.reset masterCollection.parse(data.blocks)
-        masterCollection.reset masterCollection.parse(data.blocks)
-        window.loading=false
-        loadingOverlay.hide()
-
-  renderViews: ->
-    pathView.render()
-    fieldView.render()
-    toolbarView.render()
-    propertiesView.render()
-
-  loadProperties: (id) ->
-    propertiesView.id=id
-    propertiesView.render() if masterCollection.length || parentId? && id==parentId
-    #рендер при тыке на блок (коллекция уже загружена, иначе - после загрузки)
-    #либо когда удаляем все блоки на поле, надо выбрать предка
-
-  load_timeout: 300
-
-  setLoadOverlay: ->
-    setTimeout ->
-        loadingOverlay.show() if loading
-      ,@load_timeout
+        masterView.renderViews()
+      @oldId=parentId

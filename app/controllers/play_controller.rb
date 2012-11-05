@@ -1,6 +1,6 @@
 class PlayController < ApplicationController
-  layout "play"
-  before_filter :authenticate_user!
+  layout false
+  # before_filter :authenticate_user!
 
   # ЕЩЕ КРАЙНЕ ВАЖНО ПРОВЕРИТЬ ДВОЙНОЕ ЗАЖИГАНИЕ БЛОКОВ. ИЛИ ВОВСЕ ЕГО УБРАТЬ ЧЕРЕЗ IS_HIT? HOT?
   # сделать отслеживание возникающих событий. Например, писать в браузер айдишник последнего ивента или его время
@@ -9,17 +9,24 @@ class PlayController < ApplicationController
   # для оптимизации - предзагрузка всей игры целиком, чтобы не таскать из БД каждый блок отдельно
   # сделать отдельные интерфейсы под апи для инфов, линейной/штурмовой игры
   # обязательная установка переменной из части ответа (использовать скобки)
+  # бэктрэк нужен не только для входа в игру, но и для изменения уже существующей игры
 
   def show
     @game=Game.find(params[:game_id])
     @handler=EventHandler.new(user: current_user, game: @game)
-    @tasks_available=@handler.tasks_available #TODO: везде проверить сортировку по y,x!!!
+    @play_tasks=@handler.play_tasks #TODO: везде проверить сортировку по y,x!!!
     begin
       @task=Task.find(params[:task_id])
       raise if @task.game_id!=@game.id
     rescue
-      @task=@tasks_available.first
-      redirect_to play_show_url(game_id: @game.id, task_id: @task.id) if @task
+      @task=@play_tasks.find{ |t| !t.passed }
+      redirect_to play_show_url(game_id: @game.id, task_id: @task.id) || return if @task
+    end
+    if @task
+      @handler.options[:task]=@task
+      @hint_events=@handler.hint_events
+      @hints_given=@handler.hints_given
+      @answers=@handler.task_answers
     end
   end
 
@@ -29,13 +36,19 @@ class PlayController < ApplicationController
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     CriticalSection.synchronize @game.id do
       @fired_events=@handler.input(params[:input])
-      if @handler.task_passed?
-        @task=@handler.tasks_available.first
-        flash[:notice]=t("play.task_passed")
+      @handler.flush
+      if @handler.game_passed?
+        flash[:notice]=t("play.notice.game_passed")
+        redirect_to play_show_url(game_id: @game.id)
+        return
+      elsif @handler.task_passed?
+        @task=@handler.current_tasks.first
+        flash[:notice]=t("play.notice.task_passed")
       elsif @fired_events.present?
-        flash[:notice]=t("play.fired_events")
+        flash[:alert]=t("play.alert.no_events") #выбран неверный ответ
+        # flash[:notice]=t("play.notice.fired_events")
       else
-        flash[:alert]=t("play.no_events")
+        flash[:alert]=t("play.alert.no_events")
       end
     end
     redirect_to play_show_url(game_id: @game.id, task_id: @task.id)

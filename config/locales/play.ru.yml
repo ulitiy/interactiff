@@ -1,0 +1,9 @@
+ru:
+  play:
+    notice:
+      task_passed: "Задание пройдено! Следующее задание:"
+      fired_events: "Ответ принят."
+      game_passed: "Сценарий пройден!"
+    alert:
+      no_events: "Ответ неверен."
+    submit: "Ввод"

@@ -3,3 +3,11 @@
     %label(for="name")= I18n.t("admin.task.name")
   %td
     %input(id="name", type="text")
+%tr
+  %th
+    %label(for="input_type")= I18n.t("admin.task.input_type.label")
+  %td
+    %select(id="input_type")
+      %option(value="text")= I18n.t("admin.task.input_type.text")
+      %option(value="link")= I18n.t("admin.task.input_type.link")
+      %option(value="none")= I18n.t("admin.task.input_type.none")

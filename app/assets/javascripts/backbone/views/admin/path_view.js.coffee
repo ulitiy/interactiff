@@ -8,9 +8,6 @@ class Joygen.Views.Admin.PathView extends Backbone.View
     "mouseleave #scroller-left" : "stopScroll"
     "mouseleave #scroller-right" : "stopScroll"
 
-  initialize: ()->
-    masterCollection.on 'reset',@render
-
   addPadder: =>
     padder=$("<div> > </div>")
     $("#path",@el).append(padder)

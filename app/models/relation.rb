@@ -11,6 +11,7 @@ class Relation
   attr_accessible :from_id, :to_id, :game_id, :from, :to
 
   before_create :set_ids
+  after_create :backtrack
 
   # Overrides as_json adding id field
   def as_json options={}#t
@@ -30,6 +31,14 @@ class Relation
       return blocks.reduce [] { |arr,b1| arr+=b1.out_relations }
     end
     b.parent_game.game_relations
+  end
+
+
+
+  def backtrack
+    from.events.each do |event|
+      to.hit event.attributes.symbolize_keys.merge(parent: event,source_id: event.source_id||event.id, input: nil, reason: nil)
+    end
   end
 
 end

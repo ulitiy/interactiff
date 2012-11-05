@@ -11,12 +11,13 @@ class Block
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
   belongs_to :task, class_name: "Task", inverse_of: :descendants, index: true
   has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
-  has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy
-  has_many :in_relations, class_name: "Relation", inverse_of: :to#, dependent: :destroy
+  has_many :in_relations, class_name: "Relation", inverse_of: :to, dependent: :destroy # НЕ ТРОГАЙ, висячая связь валит out_blocks при удалении
+  has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy # разве что здесь... но и то мусорно
 
   has_many :inputs, class_name: "Input", inverse_of: :parent
   has_many :outputs, class_name: "Output", inverse_of: :parent
   has_many :events, class_name: 'Event', inverse_of: :block
+  has_many :roles
 
   attr_accessible :x,:y,:title,:parent,:parent_id
 
@@ -25,6 +26,7 @@ class Block
   before_create :set_ids
   after_initialize :set_ids
 
+  #TODO: _type
   index y: 1, x: 1
 
   def personal
@@ -85,10 +87,17 @@ class Block
       return [b]+c+io #я, дети и внуки
     end
     b=b.parent_game
-    arr=b.path+b.descendants
+    b.path+b.descendants
   end
 
 
+
+
+  def descendant_events_of options
+    de=descendant_events.block_type(options[:type]).for_one options[:user]
+    de+=descendant_events.block_type(options[:type]).for_team options[:user].team if options[:user].team_id
+    de+=descendant_events.block_type(options[:type]).for_all
+  end
 
 
 
@@ -117,28 +126,28 @@ class Block
   # @return [Array] all events, arisen
   def fire options={}
     options.merge! scope: get_scope(options)
-    options.delete :force_scope
+    mutex=options[:mutex]
+    options.except! :force_scope, :game, :task, :mutex
     options.merge! team: options[:user].team if options[:scope]==:for_team
     options.reverse_merge! time: Time.now, game: game
+    cs=CriticalSection.new(game_id).lock if mutex
     if personal && options[:scope]!=:for_one
-      for user in scope_users(options) do
+      events=for user in scope_users(options) do
         fire options.merge(scope: :for_one, user: user, force_scope: true) #проблема в том, что, если мы делаем P*, то у нас get_scope возвращается всегда for_all и fire уходит в бесконечную рекурсию
       end
-      return scope_users(options)
+      return events
     end
-    event=Event.create options.merge(
-      block: self,
-      game: self.game,
-      block_type: self.type
-    )
+    event=Event.create options.merge block: self
     block_actions options
-    [event]+hit_relations(options.merge(
+    ret=[event]+hit_relations(options.merge(
       parent: event,
       source: options[:source]||event,
       responsible_user: nil,
       reason: nil,
       input: nil
     ))
+    cs.unlock if mutex
+    ret
   end
 
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.

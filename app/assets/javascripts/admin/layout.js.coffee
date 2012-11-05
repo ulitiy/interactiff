@@ -1,9 +1,9 @@
 $(window).unload ->
   layoutState.save 'adminLayout', null
-    domain: "lvh.me"
+    #domain: "lvh.me"
     path: "/admin/"
   layoutState.save 'eastLayout', null
-    domain: "lvh.me"
+    #domain: "lvh.me"
     path: "/admin/"
 
 layoutSettings=

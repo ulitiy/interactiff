@@ -6,8 +6,10 @@ class Clock < Block
   before_save :set_job
 
   def set_job
-    self.job.delete if self.job
-    self.job=delay(run_at: time, queue: "clock").fire(time:time)
+    if changed_attributes["time"] || new_record?
+	    self.job.delete if self.job
+	    self.job=delay(run_at: time, queue: "clock").fire(time:time,scope: :for_all,mutex: true)
+	  end
   end
 
 end

@@ -22,4 +22,45 @@ class ApplicationController < ActionController::Base
     redirect_to [request.protocol,Domain.first.main_host.name,request.port_string].join, :status=>:moved_permanently and return false if cd.nil? #на главный домен
     redirect_to [request.protocol,cd.main_host.name,request.port_string,request.fullpath].join, :status=>:moved_permanently unless(cd.main_host_id==current_host.id || cd.main_host_id.nil?) #на главный хост
   end
+
+  alias old_current_user current_user
+
+  # if user is logged in, return current_user, else return guest_user
+  def current_user
+    if old_current_user
+      if session[:guest_user_id]
+        logging_in
+        guest_user.destroy
+        session[:guest_user_id] = nil
+      end
+      old_current_user
+    else
+      guest_user
+    end
+  end
+
+  # find guest_user object associated with the current session,
+  # creating one as needed
+  def guest_user
+    request.session_options[:expire_after] = 1.month
+    User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id  : session[:guest_user_id])
+  end
+
+  private
+
+  # called (once) when the user logs in, insert any code your application needs
+  # to hand off from guest_user to current_user.
+  # TODO: TEST ME, update_attributes
+  def logging_in
+    guest_user.events.each do |event|
+      event.user_id=old_current_user.id
+      event.save
+    end
+  end
+
+  def create_guest_user
+    u = Guest.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+    u.save(:validate => false)
+    u
+  end
 end

@@ -1,16 +1,16 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.8.17.custom.min
-//= require jquery.layout-1.2.0
+//= require jquery.ui.all
+//= require jquery.layout-latest
 //= require jquery.layout.state
-//= require jquery.jsPlumb-1.3.7-all-min
+//= require jquery.jsPlumb-1.3.13-all
+//= require mousetrap
 
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone.modelbinding
-//= require backbone_offline
 //= require hamlcoffee
 //= require i18n
 //= require i18n/translations
@@ -21,7 +21,7 @@
 //= require admin/jsplumb_init
 //= require admin/css_position_plugin
 //= require admin/random_plugin
-// require admin/offline_sync_patch
+//= require admin/key_input
 
 //= require backbone/joygen
 //= require admin/backbone_init

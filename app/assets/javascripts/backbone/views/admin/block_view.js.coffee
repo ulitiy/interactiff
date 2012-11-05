@@ -31,7 +31,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     router.navigate "#{parentId}/#{@model.id}",
       trigger:true
       replace:true
-    window.editId=@model.id
+    window.editBlockView=this
 
 
   mousedown: =>
@@ -85,7 +85,8 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     jsPlumb.removeAllEndpoints @el
 
 
-#TODO
+#TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#простановка всех эндпоинтов блока, сначала родных, потом дочерних
   makeEndpoints: ()=>
     if @model.isTarget
       @targetEndpoint=jsPlumb.addEndpoint @el,
@@ -93,6 +94,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         anchor: "LeftMiddle"
         isTarget: true
       @targetEndpoint.model=@model
+      @targetEndpoint.blockView=this
       targetEndpoints.push @targetEndpoint
     if @model.isSource
       @sourceEndpoint=jsPlumb.addEndpoint @el,
@@ -100,6 +102,9 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         anchor: "RightMiddle"
         isSource: true
       @sourceEndpoint.model=@model
+      @sourceEndpoint.blockView=this
+      @sourceEndpoint.bind 'click', (e1)=>
+        floatingToolbarView.show(e1)
       sourceEndpoints.push @sourceEndpoint
     if @model.container?
       @addSources()
@@ -107,6 +112,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length
       $(@el).css("min-height",m*14)
 
+#простановка дочерних
   addSources: ()=>
     arr=@model.getContainerSources()
     i=0
@@ -116,10 +122,14 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         anchor:[1,(++i)/(arr.length+1),1,0]
         isSource: true
       e.model=block
+      e.blockView=this
+      e.bind 'click', (e1)=>
+        floatingToolbarView.show(e1)
       $(e.canvas).append "<div class=\"sourceTitle\">#{block.endpointCaption()}</div>"
       sourceEndpoints.push e #window
       e
 
+#то же
   addTargets: ()=>
     arr=@model.getContainerTargets()
     i=0
@@ -129,6 +139,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         anchor:[0,(++i)/(arr.length+1),-1,0]
         isTarget: true
       e.model=block
+      e.blockView=this
       $(e.canvas).append "<div class=\"targetTitle\">#{block.endpointCaption()}</div>"
       targetEndpoints.push e #window
       e

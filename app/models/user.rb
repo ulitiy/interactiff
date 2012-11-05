@@ -2,10 +2,10 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  embeds_many :roles
+  has_many :roles
   has_many :events
   has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members", index: true
-  belongs_to :team
+  belongs_to :team, index: true
   #TODO: множественное присваивание
 
   # Include default devise modules. Others available are:
@@ -40,4 +40,10 @@ class User
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
+
+  # @return [Array] games, where the user is an author
+  def games
+    roles.map { |role| role.block if role.block.is_a?(Game) && role.access.in?([:manage,:manage_roles]) }.compact
+  end
+
 end

@@ -1,0 +1,3 @@
+.icon
+  %img(src="#{@model.icon}")
+.name=@num

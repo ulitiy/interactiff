@@ -80,5 +80,35 @@ describe User do
       it { should_not be_able_to(:manage, Block) }
       it { should_not be_able_to(:manage, Relation) }
     end
+
+    context "membership" do
+      context "when registered user" do
+        let(:user) { create :user }
+        it { should be_able_to(:join, game) }
+      end
+      context "when not registered user" do #impossible scenario, but let's try
+        let(:user) { User.new }
+        it { should_not be_able_to(:join, game) }
+      end
+    end
+
+    context "play" do
+      it "should authorise for play"
+    end
+
+  end
+
+  describe "#games" do
+    let(:game1) { create :game }
+    let(:game2) { create :game }
+    let(:game3) { create :game }
+    let(:user) { create :user }
+    before do
+      user.roles.create block: game1, access: :manage_roles
+      user.roles.create block: game2, access: :manage
+      user.roles.create block: game3, access: :read
+    end
+    subject { user.games }
+    it { should eq [game1,game2] }
   end
 end

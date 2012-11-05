@@ -11,4 +11,9 @@ class Game < Block
   attr_accessible :name, :description
 
   alias domain parent
+
+  # @return [Array] users, that have manage access to the game
+  def authors
+  	roles.map { |role| role.user if role.access.in? [:manage,:manage_roles] }
+  end
 end

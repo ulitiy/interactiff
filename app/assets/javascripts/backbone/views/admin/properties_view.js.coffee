@@ -2,7 +2,6 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.PropertiesView extends Backbone.View
   initialize: ->
-    masterCollection.on 'reset', @reset
     $(window).unload @save #TODO???
 
   events:
@@ -15,7 +14,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
   template: JST["backbone/templates/admin/properties/common"]
 
   save: =>
-    $("*:focus").not("#keyInput").blur()
+    $("*:focus").blur()
     @model.save() if @model? && @model.modelChanged
 
   draw: (newmodel)=>
@@ -29,9 +28,9 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   render: =>
     Backbone.ModelBinding.unbind this
-    newmodel=masterCollection.get(@id)
-    @save() if @model!=newmodel || !newmodel?
-    if newmodel? && newmodel!=rootBlock
-      @draw(newmodel)
+    window.editBlock=masterCollection.get(editId)
+    @save() if @model!=editBlock || !editBlock?
+    if editBlock? && editBlock!=rootBlock
+      @draw(editBlock)
     else
       @clear()

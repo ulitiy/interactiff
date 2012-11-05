@@ -13,6 +13,10 @@ class Ability
     cannot :manage, :all
     cannot :read, :all
     user||=User.new
+
+    can :join, Game unless user.new_record?
+    can :play, Game
+
     #later - better
     for role in user.roles do #user.roles.each do |role| #
       next if role.access==:none
@@ -42,7 +46,7 @@ class Ability
         #independent of current role
         can :manage, Role do |r|
           #может админить роль, если может админить роль предка
-          can? :manage, Role.new(block_id: r.block.parent_id) if r.block.parent_id.present? #если не new, а просто доппараметром, то не срабатывает!!! Специфика FactoryGirl
+          can? :manage, Role.new(block_id: r.block.parent_id) if r.block.parent_id #если не new, а просто доппараметром, то не срабатывает!!! Специфика FactoryGirl
         end
       end
 

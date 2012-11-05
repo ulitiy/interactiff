@@ -8,6 +8,7 @@ describe Block do
   let(:answer) { create :answer, parent: task }
   let(:domain2) { create :domain }
   let(:game2) { create :game, parent: domain2 }
+  let(:task2) { create :task, parent: game2 }
   let(:and_block) { create :and_block, parent: game }
 
   before { domain;host;game;task;answer;and_block;domain2;game2 }
@@ -157,13 +158,13 @@ describe Block do
 
   describe "#fire" do
     context "common" do
-      let(:block1) { create :block, parent: game }
-        let(:block2) { create :block, parent: game }
-        let(:block3) { create :block, parent: game }
-          let(:block4) { create :block, parent: game }
-          let(:block5) { create :block, parent: game }
-      let(:block6) { create :block, parent: game }
-      let(:hint) { create :hint, parent: game }
+      let(:block1) { create :block, parent: task }
+        let(:block2) { create :block, parent: task }
+        let(:block3) { create :block, parent: task }
+          let(:block4) { create :block, parent: task2 }
+          let(:block5) { create :block, parent: task2 }
+      let(:block6) { create :block, parent: task2 }
+      let(:hint) { create :hint, parent: task }
       before do
         create :relation, from: block1, to: block2
         create :relation, from: block1, to: block3
@@ -178,9 +179,19 @@ describe Block do
       it("should not fire other blocks") { block1.fire; block6.events.count.should eq(0) }
       it("should set parent event") { block1.fire; block4.events.first.parent.block.should eq(block3) }
       it("should set source event") { block1.fire; block4.events.first.source.block.should eq(block1) }
-      it("should set game") { block1.fire; block4.events.first.game.should eq(game) }
+      it("should set correct game") { block1.fire; block4.events.first.game.should eq(game2) }
+      it("should set correct task") { block1.fire; block4.events.first.task.should eq(task2) }
       it("should set correct block_type") { hint.fire; hint.events.first.block_type.should eq("Hint") }
       it("should return correct array")
+      # it("should set mutex on mutex: true") do
+      #   Thread.new { block1.fire(mutex: true) }
+      #   sleep 0.01
+      #   c=CriticalSection.new game.id
+      #   c.lock?.should be_true
+      #   sleep 0.1
+      #   c.lock?.should be_false
+      # end
+      # it("should not set mutex") { Thread.new { block1.fire }; CriticalSection.new(game.id).lock?.should be_false }
     end
 
     context "scope" do
@@ -198,7 +209,7 @@ describe Block do
       end
       context "for_one to personal for_all" do
         let(:block1) { create :block, parent: game, scope: :for_one }
-        let(:block2) { create :block, parent: game, scope: :for_all }
+        let(:block2) { create :sms, parent: game, scope: :for_all }
         before do
           [user1,user12,user2].each { |u| u.member_of_games<<game; }
           game.reload
@@ -206,6 +217,7 @@ describe Block do
           block1.fire(user: user)
         end
 
+        it { block2.personal.should eq(true) }
         it { block2.events.count.should eq(3) }
         it { block2.events.first.scope.should eq(:for_one) }
         it { block2.events.last.user.should eq(user2) }

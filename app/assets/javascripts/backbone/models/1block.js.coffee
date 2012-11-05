@@ -41,6 +41,10 @@ class Joygen.Models.Block extends Backbone.Model
     "/blocks/#{@id}"
   icon: "/assets/admin/icons/16/050.png"
   toolName: -> I18n.t("admin.#{@modelName}.tool")
+  outTools: ->
+    _.filter @tools, (tool)->
+      t=Joygen.Models[tool].prototype
+      t.isSource || t.container
   adminPath: ->
     "#{@id}/0"
   children: ->
@@ -52,6 +56,10 @@ class Joygen.Models.Block extends Backbone.Model
   #   item.destroy() for item in @outRelations()
   #   item.destroy() for item in @inRelations()
   #   super options
+
+
+
+
 
   getContainerSources: ->
     arr=_.filter @children(), (block)->

@@ -2,9 +2,6 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.ToolbarView extends Backbone.View
 
-  initialize: ()->
-    masterCollection.on('reset',@render)
-
   addAll: ()=>
     tools=parentBlock.tools
     _.each(tools,@addOne)

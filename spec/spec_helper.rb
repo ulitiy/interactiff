@@ -17,11 +17,14 @@ Spork.prefork do
 
   require 'rails/mongoid'
   Spork.trap_class_method(Rails::Mongoid, :load_models)
+  Spork.trap_method(Rails::Application, :eager_load!)
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
   require 'factory_girl_rails'
   Spork.trap_class_method(FactoryGirl, :find_definitions)
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+  #require 'shoulda/matchers/integrations/rspec'
   require "capybara/rspec"
   include Capybara::DSL
 
@@ -50,22 +53,11 @@ Spork.prefork do
     config.javascript_driver = :webkit #comment to see in Firefox
   end
 
-  def t param
-    I18n.t param
-  end
-
-  def login(user)
-    visit new_user_session_path
-    fill_in "user_email", with: user.email
-    fill_in "user_password", with: 'secret'
-    click_button 'Sign in'
-  end
-
 end
 
 Spork.each_run do
   # silence_warnings do #reload models
-  #   Dir["#{Rails.root}/app/models/**/*.rb"].each {|f| load f}
+  #   Dir["#{Rails.root}/app/models/**.rb"].each {|f| load f}
   # end
   FactoryGirl.reload
 end

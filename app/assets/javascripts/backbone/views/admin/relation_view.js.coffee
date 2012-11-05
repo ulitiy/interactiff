@@ -38,7 +38,7 @@ class Joygen.Views.Admin.RelationView extends Backbone.View
       source:@options.sourceEndpoint
       target:@options.targetEndpoint
       paintStyle:
-        lineWidth:3.6
+        lineWidth:1.2
         strokeStyle:"##{$.random(0,9)}#{$.random(0,9)}#{$.random(0,9)}"
     @prepare()
     jsPlumb.silent=false

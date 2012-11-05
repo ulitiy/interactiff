@@ -3,7 +3,6 @@ Joygen.Views.Admin ||= {}
 class Joygen.Views.Admin.FieldView extends Backbone.View
 
   initialize: ->
-    masterCollection.on 'reset', @render
     masterCollection.on 'add', @collectionAdd
     $(@el).selectable
       filter:'.block'
@@ -27,14 +26,15 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     return false
 
   refresh: =>
-    router.loadCollection(@id)
+    masterView.loadCollection(@id)
 
   selectablestop: =>
-    $("#keyInput").focus()
+    floatingToolbarView.hide()
     window.selected=$('.ui-selected') #нужно для массового дрэга
     if selected.length==1
       selected.trigger("selectedone")
     else
+      window.editBlockView=null
       router.navigate (parentBlock||rootBlock).adminPath(),
         trigger:true
 
@@ -70,38 +70,19 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
           targetEndpoint:tep
         relView.render()
 
-  addStretcher: =>
+  addElements: =>
     $(@el).append('<div id="stretcher"></div>')
-
-  addKeyInput: =>
-    $(@el).append('<input type="text" id="keyInput"/>')
-    $("#keyInput",@el).keydown (e)=>
-      switch e.which
-        when $.ui.keyCode.BACKSPACE, $.ui.keyCode.DELETE
-          @deleteKey()
-        when $.ui.keyCode.UP
-          Joygen.Views.Admin.BlockView.prototype.move(0,-gridStep)
-        when $.ui.keyCode.DOWN
-          Joygen.Views.Admin.BlockView.prototype.move(0,gridStep)
-        when $.ui.keyCode.LEFT
-          Joygen.Views.Admin.BlockView.prototype.move(-gridStep,0)
-        when $.ui.keyCode.RIGHT
-          Joygen.Views.Admin.BlockView.prototype.move(gridStep,0)
-        else return true
-      false
-
+    $(@el).append('<div id="floating-toolbar"></div>')
 
   refreshTemplate: JST["backbone/templates/admin/refresh"]
 
   render: =>
     @options.blocks=masterCollection.children(@id)
-    window.parentBlock=masterCollection.get(@id) || rootBlock
     $(@el).html('')
     #window.blockViews=[]
     window.targetEndpoints=[]
     window.sourceEndpoints=[]
     @addBlocks()
     @addRelations()
-    @addStretcher()
-    @addKeyInput()
+    @addElements()
     $(@el).append(@refreshTemplate)

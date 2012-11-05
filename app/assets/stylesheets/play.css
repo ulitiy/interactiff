@@ -1,0 +1,311 @@
+/*
+ *= require bootstrap_and_overrides
+*/
+/*Шрифты*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext);
+
+/*Все что нужно*/
+body {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 13px;
+	background-color: #fff;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+
+h1 {
+	line-height: 71px;
+    font-size: 25px;
+	color: #0096D4;
+}
+
+.tasks-column h2 {
+	font-size: 16px;
+	border-bottom:1px solid #e2e2e2;
+	line-height: 21px;
+	padding-bottom: 10px;
+}
+
+.time-column h2 {
+	font-size: 14px; font-weight: normal; 
+	line-height: 1px;
+}
+
+.window h2 {
+	font-size: 20px;
+	line-height: 17px;
+	color: #0096d4;
+}
+
+
+.align-right {
+	text-align: right;
+}
+
+.center-me {
+	text-align: center;
+}
+
+ /*------------------------------*/
+
+ .window {
+ 	position: relative;
+ 	background-color: #e2e2e2;
+ 	background-image: url(http://interactiff.net/assets/noize.png);
+ 	padding: 20px;
+ 	border-radius: 5px;
+ 	border:1px solid #d4d4d4;
+ 	
+ }
+
+ .window:before {
+ 	content: "";
+ 	position: absolute;
+ 	width: 100%; height: 49px;
+ 	top: 100%;
+ 	left:0;
+ 	background-image: url("c-shadow.png");
+ 	background-size: 100%;
+ 	background-repeat: no-repeat;
+ 	background-position: center top;
+ }
+
+.game-tasks .span2 {
+background-repeat: no-repeat;
+ 	background-position: center;
+
+	font-size: 10px;
+	color: #777;
+margin: 0;
+}
+
+.game-tasks .span10 {
+	margin-bottom: 20px;
+}
+
+
+.answers {
+
+}
+
+.answers a {
+	padding: 0 10px 0 10px;
+	margin-left: -10px;
+}
+
+.answers a:active {
+	border-radius: 50px;
+	box-shadow: 0 -1px 2px rgba(0,0,0,.4), 0 1px 1px rgba(255,255,255,.8);
+	background-color: #d4d4d4;
+	color: black;
+	text-decoration: none;
+}
+
+.tasks-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.tasks-list li {
+	padding:5px;
+	margin:10px 0 10px 0;
+}
+
+.tasks-list .active{
+	color: #0096D4;
+	margin: 0;
+
+box-shadow: inset 0 2px 0 #0096D4, inset 0 -2px 0 #0096D4, -2px 0 0 #0096D4;
+
+/*	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #0096D4;
+    border-right:0 solid transparent;*/
+}
+
+.tasks-list .done {
+	color: #919191;
+	position: relative;
+}
+
+
+.tasks-list .done:before {
+	content:"✔";
+	color: #3ab729;
+	position: absolute;
+	width:10px; height: 10px;
+	right:100%;
+	top: 5px;
+}
+
+.task-type-switch {
+	display: none;
+}
+
+.tab {
+	display: inline-block;
+	border-bottom:2px solid transparent;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#all-tasks:checked ~ .first-tab{
+	border-bottom:2px solid #0096D4;
+} 
+
+#all-tasks:checked ~ .tasks-list li {
+	display: inherit;
+}
+
+
+
+#current-tasks:checked ~ .second-tab{
+	border-bottom:2px solid #0096D4;
+} 
+
+#current-tasks:checked ~ .tasks-list .done {
+	display: none;
+}
+
+#current-tasks:checked ~ .tasks-list .active {
+	margin:10px 0 10px 0;
+}
+
+#completed-tasks:checked ~ .third-tab{
+	border-bottom:2px solid #0096D4;
+} 
+
+#completed-tasks:checked ~ .tasks-list .common,
+#completed-tasks:checked ~ .tasks-list .active {
+	display: none;
+}
+
+.tasks-list .active{
+	position: relative;
+}
+
+.tasks-list .active:after {
+	content: "";
+	position: absolute;
+	width:12px;
+	height: 100%;
+	background-image: url(arrr.png);
+	background-size: 100% 100%;
+	right: -12px;
+	top: 0;
+}
+/*.tasks-list .active:after {
+	content: "";
+	position: absolute;
+	width:0;
+	height:0;
+	right: -14px;
+	top:50%;
+	margin-top: -15px;
+	border-left: 9px solid white;
+	border-right:5px solid transparent;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+}*/
+
+.timer {
+	border-bottom:1px solid #e2e2e2;
+	font-size: 16px;
+	font-weight:bold;
+	padding-bottom: 9px;
+}
+
+.time-points {
+	border-bottom:1px solid #e2e2e2;
+	padding: 9px 0 9px 0;
+	margin-left: -5px;
+}
+
+.time-points span {
+	margin:0 5px 0 5px;
+}
+
+.time-points .over {
+	color: #777;
+}
+
+.stats h5 {
+	display: inline-block;
+	font-size: 11px;
+	color: #777;
+	line-height: 10px;
+	margin-bottom: 0;
+	margin-right: 5px;
+}
+
+.progress {
+	width: 80%;
+	height: 8px;
+	margin-bottom: 5px;
+}
+
+
+
+.time-points {
+	border-bottom:1px solid #e2e2e2;
+	padding: 9px 0 9px 0;
+	margin-left: -5px;
+}
+
+.time-points span {
+	margin:0 5px 0 5px;
+}
+
+.time-points .over {
+	color: #777;
+}
+
+.stats h5 {
+	display: inline-block;
+	font-size: 11px;
+	color: #777;
+	line-height: 10px;
+}
+
+.prg-val {
+	float:right;
+	font-size: 11px;
+	color:#777;
+	margin-top: 17px;
+	width: 20%;
+	position: relative;
+	left: 10px;
+}
+
+.answers input[type="checkbox"],
+.answers input[type="radio"] {
+	float: left;
+	margin-right: 10px;
+}
+
+.answers label span {
+	overflow: hidden;
+	display: block;
+}
+
+.answers textarea {
+	width: 97.7%;
+	height: 70px;
+}
+
+.answers input[type="text"] {
+	width: 97.7%;
+}
+
+.footer {
+	margin-top:100px;
+	margin-bottom: 40px;
+}
+
+.bolder {
+	font-weight: 600 !important;
+	font-size: 13px !important;
+}
