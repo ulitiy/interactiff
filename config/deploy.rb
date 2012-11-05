@@ -19,3 +19,12 @@ set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
+
+namespace :mongoid do
+  desc "Create MongoDB indexes"
+  task :index do
+    run "cd #{current_path} && bundle exec rake db:mongoid:create_indexes", :once => true
+  end
+end
+
+after "deploy:update", "mongoid:index"
