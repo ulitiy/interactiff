@@ -17,13 +17,10 @@ test:
     identity_map_enabled: true
 
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
+  sessions:
+    default:
+      database: joygen_production
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
