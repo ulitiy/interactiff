@@ -73,7 +73,7 @@
               <% elsif @task.input_type=="text" %>
                 <dt class="span2 bolder">Ответ</dt>
                 <dd class="span10 answers">
-                  <input type="text" name="" value="" placeholder="">
+                  <%= text_field_tag "input" %>
                 </dd>
               <% end %>
             </dl>
