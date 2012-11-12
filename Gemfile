@@ -33,6 +33,7 @@ gem 'i18n-js'
 gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
+gem 'whenever', :require => false
 group :development do
   gem 'capistrano'
   gem 'capistrano-unicorn'

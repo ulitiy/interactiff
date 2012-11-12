@@ -9,25 +9,20 @@ class PlayController < ApplicationController
   # для оптимизации - предзагрузка всей игры целиком, чтобы не таскать из БД каждый блок отдельно
   # сделать отдельные интерфейсы под апи для инфов, линейной/штурмовой игры
   # обязательная установка переменной из части ответа (использовать скобки)
-  # бэктрэк нужен не только для входа в игру, но и для изменения уже существующей игры
 
   def show
     @game=Game.find(params[:game_id])
     @handler=EventHandler.new(user: current_user, game: @game)
     @play_tasks=@handler.play_tasks #TODO: везде проверить сортировку по y,x!!!
-    begin
-      @task=Task.find(params[:task_id])
-      raise if @task.game_id!=@game.id
-    rescue
+    @task=Task.where(id:params[:task_id]).first
+    @handler.options[:task]=@task
+    if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нет такого задания или если задание не в игре или если задание не дано
       @task=@play_tasks.find{ |t| !t.passed }
-      redirect_to play_show_url(game_id: @game.id, task_id: @task.id) || return if @task
+      redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return if @task
     end
-    if @task
-      @handler.options[:task]=@task
-      @hint_events=@handler.hint_events
-      @hints_given=@handler.hints_given
-      @answers=@handler.task_answers
-    end
+    @hint_events=@handler.hint_events
+    @hints_given=@handler.hints_given
+    @answers=@handler.task_answers
   end
 
   def submit
