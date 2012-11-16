@@ -16,9 +16,11 @@ set :default_environment, {
   'LANG' => 'ru_RU.UTF-8'
 }
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
+set :whenever_command, "bundle exec whenever"
 
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
+require "whenever/capistrano"
 
 desc "Remote console"
 task :console, :roles => :app do

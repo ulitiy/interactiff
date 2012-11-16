@@ -5,7 +5,6 @@ Delayed::Worker.max_run_time = 2.minutes
 Delayed::Worker.read_ahead = 1000 #грузить по 1000 работ из очереди, чтобы меньше нагрузка на БД
 Delayed::Worker.delay_jobs = !Rails.env.test?
 
-
 #
 # clear Mongoid::IdentityMap before each job
 #
