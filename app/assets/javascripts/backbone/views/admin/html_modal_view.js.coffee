@@ -25,5 +25,6 @@ class Joygen.Views.Admin.HtmlModalView extends Backbone.View
   hide: =>
     $(@el).dialog "close"
     @bindInput.val(@editor.html())
+    @bindInput.trigger("change")
     @bindInput.focus()
     @shown=false
