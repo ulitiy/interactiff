@@ -6,6 +6,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   events:
     "click #save-properties input" : "save"
+    "click #html" : "htmlModal"
 
   reset: =>
     @model=null #предварительно чистим модель, чтобы при рефреше не было сохранения//не трогать
@@ -13,14 +14,28 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   template: JST["backbone/templates/admin/properties/common"]
 
+  htmlModal: (event)=>
+    htmlModalView.show(event)
+
   save: =>
-    $("*:focus").blur()
     @model.save() if @model? && @model.modelChanged
 
   draw: (newmodel)=>
     @model=newmodel
     $(@el).html(@template(@model))
+    @setTimePicker()
     Backbone.ModelBinding.bind(this);
+
+  setTimePicker: =>
+    $(".timer").datetimepicker
+      showSecond: true
+      timeOnly: true
+      hourMax: 240
+      timeFormat: "H:mm:ss"
+    $(".datetime").datetimepicker
+      showSecond: true
+      timeFormat: "HH:mm:ss"
+      dateFormat: "yy-mm-dd"
 
   clear: =>
     $(@el).html("")

@@ -29,6 +29,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     masterView.loadCollection(@id)
 
   selectablestop: =>
+    $("*:focus").blur()
     floatingToolbarView.hide()
     window.selected=$('.ui-selected') #нужно для массового дрэга
     if selected.length==1

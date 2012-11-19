@@ -5,7 +5,7 @@
         %th
           %label(for="id")= I18n.t("admin.#{@modelName}.tool")
         %td
-          .id(data-bind="text id")
+          %input(id="id", type="text", readonly="readonly")
       %tr
         %th
           %label(for="title")= I18n.t("admin.block.title")

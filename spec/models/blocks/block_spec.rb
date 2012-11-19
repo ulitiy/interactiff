@@ -11,13 +11,14 @@ describe Block do
   let(:task2) { create :task, parent: game2 }
   let(:and_block) { create :and_block, parent: game }
 
-  before { domain;host;game;task;answer;and_block;domain2;game2 }
+  before { host;answer;and_block;game2 }
 
   describe "#as_json" do
     it "returns type and id fields" do
-      json=domain.as_json
-      json["type"].should eq("Domain")
-      json["id"].should eq(domain._id)
+      json=answer.as_json
+      json["type"].should eq("Answer")
+      json["id"].should eq(answer._id)
+      json["digest"].should eq(answer.digest)
     end
   end
 

@@ -41,7 +41,7 @@ class Block
 
   # Overriden as_json adding type and id fields
   def as_json options={}
-    super options.merge(:methods=>[:type,:id])
+    super options.merge(:methods=>[:type,:id,:digest])
   end
 
   # @return [String] block class name

@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="time")= I18n.t("admin.timer.time")
+  %td
+    %input#time.timer(type="text")

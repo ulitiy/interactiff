@@ -5,11 +5,12 @@
 //= require jquery.layout.state
 //= require jquery.jsPlumb-1.3.13-all
 //= require mousetrap
+//= require jquery-ui-timepicker-addon
 
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
-//= require backbone_datalink
+// require backbone_datalink
 //= require backbone.modelbinding
 //= require hamlcoffee
 //= require i18n

@@ -28,6 +28,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-backbone', :git=> "git://github.com/codebrew/backbone-rails.git", :require=> "backbone-rails"
+gem 'markitup-rails'
 
 gem 'i18n-js'
 gem 'jbuilder'

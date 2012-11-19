@@ -11,12 +11,13 @@ class Joygen.Models.Block extends Backbone.Model
     @on "change",=>
       ca=@changedAttributes()
       delete ca["caption"]
+      delete ca["link"]
       @modelChanged=true if Object.keys(ca).length
     @on "sync",=>
       @modelChanged=false
     @on "change:name", => @set "caption": @getCaption()
     @on "change:body", => @set "caption": @getCaption()
-    @on "change:title": => @set "caption": @getCaption()
+    @on "change:title", => @set "caption": @getCaption()
     setTimeout => @set "caption": @getCaption()
     ,0
 
@@ -27,7 +28,7 @@ class Joygen.Models.Block extends Backbone.Model
   getCaption: ->
     n=@get("name")||@get("body")
     return n if n? && n.length <= 20
-    n.substr(0,15)+"..."
+    n.substr(0,15)+"..." if n?
 
   endpointCaption: ->
     @get("title")||@getCaption()

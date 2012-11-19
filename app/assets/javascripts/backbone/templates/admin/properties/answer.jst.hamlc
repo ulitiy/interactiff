@@ -3,3 +3,9 @@
     %label(for="body")= I18n.t("admin.answer.body")
   %td
     %input(id="body", type="text")
+    %input(id="html", type="button", value="html", data-for="body")
+%tr
+  %th
+    %label(for="link")= I18n.t("admin.answer.link")
+  %td
+    %input(id="link", type="text", readonly="readonly")

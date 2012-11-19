@@ -18,6 +18,7 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#properties-container")
     window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
       el: $("#floating-toolbar")
+    window.htmlModalView=new Joygen.Views.Admin.HtmlModalView()
 
   index: (pid,eid) ->
     window.loading=true

@@ -16,6 +16,7 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
     pathView.render()
     toolbarView.render()
     floatingToolbarView.render()
+    htmlModalView.render()
     fieldView.selectablestop()
 
 

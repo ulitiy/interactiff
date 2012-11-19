@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="time")= I18n.t("admin.clock.time")
+  %td
+    %input#time.datetime(type="text")
