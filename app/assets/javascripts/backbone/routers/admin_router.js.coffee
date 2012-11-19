@@ -7,8 +7,9 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
   initialize: ->
     window.masterCollection=new Joygen.Collections.BlocksCollection()
     window.relationsCollection=new Joygen.Collections.RelationsCollection()
+    window.htmlModalView=new Joygen.Views.Admin.HtmlModalView()
     window.masterView=new Joygen.Views.Admin.MasterView
-    window.pathView=new Joygen.Views.Admin.PathView #путь раньше всех, чтобы родители загрузились раньше
+    window.pathView=new Joygen.Views.Admin.PathView
       el:$("#path-container")
     window.fieldView=new Joygen.Views.Admin.FieldView
       el:$("#field")
@@ -18,7 +19,6 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#properties-container")
     window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
       el: $("#floating-toolbar")
-    window.htmlModalView=new Joygen.Views.Admin.HtmlModalView()
 
   index: (pid,eid) ->
     window.loading=true

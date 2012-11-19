@@ -3,6 +3,7 @@ Joygen.Views.Admin ||= {}
 class Joygen.Views.Admin.MasterView extends Backbone.View
   initialize: ->
     masterCollection.on 'reset', @reset
+    htmlModalView.render()
 
   reset: =>
     @unsetLoadOverlay()
@@ -16,7 +17,6 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
     pathView.render()
     toolbarView.render()
     floatingToolbarView.render()
-    htmlModalView.render()
     fieldView.selectablestop()
 
 

@@ -27,12 +27,12 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     Backbone.ModelBinding.bind(this);
 
   setTimePicker: =>
-    $(".timer").datetimepicker
+    $(".timer",$(@el)).datetimepicker
       showSecond: true
       timeOnly: true
-      hourMax: 240
+      hourMax: 120
       timeFormat: "H:mm:ss"
-    $(".datetime").datetimepicker
+    $(".datetime",$(@el)).datetimepicker
       showSecond: true
       timeFormat: "HH:mm:ss"
       dateFormat: "yy-mm-dd"
