@@ -2,5 +2,5 @@
   %th
     %label(for="body")= I18n.t("admin.hint.body")
   %td
-    %input(id="body", type="text")
+    %textarea(id="body", type="text", rows="10")
     %input(id="html", type="button", value="html", data-for="body")
