@@ -16,8 +16,8 @@ class Block
 
   has_many :inputs, class_name: "Input", inverse_of: :parent
   has_many :outputs, class_name: "Output", inverse_of: :parent
-  has_many :events, class_name: 'Event', inverse_of: :block
-  has_many :roles
+  has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
+  has_many :roles, dependent: :destroy
 
   attr_accessible :x,:y,:title,:parent,:parent_id
 
@@ -92,19 +92,27 @@ class Block
 
 
 
-
+  # @return Array descendant events of the game for user(his team and common), optionally by the var name
   def descendant_events_of options
-    de=descendant_events.block_type(options[:type]).for_one options[:user]
-    de+=descendant_events.block_type(options[:type]).for_team options[:user].team if options[:user].team_id
-    de+=descendant_events.block_type(options[:type]).for_all
+    de=descendant_events.block_type(options[:type]).for_one(options[:user]).var(options[:variable])
+    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).var(options[:variable]) if options[:user].team_id
+    de+=descendant_events.block_type(options[:type]).for_all.var(options[:variable])
   end
+
+
+
+
+
+
+
+
 
 
 
 
   # returns true, if the block should fire on hit. Is overriden by descendants
   def hot? options #срабатывать ли?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    true #AND!
+    true
   end
 
   # method is called when the incoming relation is fired
@@ -131,23 +139,28 @@ class Block
     options.merge! team: options[:user].team if options[:scope]==:for_team
     options.reverse_merge! time: Time.now, game: game
     cs=CriticalSection.new(game_id).lock if mutex
-    if personal && options[:scope]!=:for_one
-      events=for user in scope_users(options) do
-        fire options.merge(scope: :for_one, user: user, force_scope: true) #проблема в том, что, если мы делаем P*, то у нас get_scope возвращается всегда for_all и fire уходит в бесконечную рекурсию
+      if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
+        events=for user in scope_users(options) do
+          fire options.merge(scope: :for_one, user: user, force_scope: true) #проблема в том, что, если мы делаем P*, то у нас get_scope возвращается всегда for_all и fire уходит в бесконечную рекурсию
+        end
+        return events
       end
-      return events
-    end
-    event=Event.create options.merge block: self
-    block_actions options
-    ret=[event]+hit_relations(options.merge(
-      parent: event,
-      source: options[:source]||event,
-      responsible_user: nil,
-      reason: nil,
-      input: nil
-    ))
+      event=create_event options
+      block_actions options
+      ret=[event]+hit_relations(options.merge(
+        parent: event,
+        source: options[:source]||event,
+        responsible_user: nil,
+        reason: nil,
+        input: nil
+      ))
     cs.unlock if mutex
     ret
+  end
+
+  # @returns event created
+  def create_event options
+    Event.create options.merge block: self
   end
 
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.
@@ -187,5 +200,7 @@ class Block
   def hit_relations options
     blocks_to_hit.map { |block| block.hit(options) }.flatten
   end
+
+  attr_accessor :t
 
 end

@@ -5,7 +5,7 @@ class EventHandler
   def initialize opt
     @options=opt
     @options[:game]=@options[:task].parent if !@options[:game]
-    #game necessary
+    @options[:handler]=self
   end
 
   # hits the block with options
@@ -24,7 +24,7 @@ class EventHandler
 
   # hits the task's first by y right answer
   def input input
-    task_answers.to_a.find { |answer| answer.hit(options.merge(input: input)) } if task_given?
+    task_answers.to_a.find { |answer| answer.hit(options.merge(input: input)) } if play_task?
   end
 
 
@@ -72,6 +72,11 @@ class EventHandler
   end
 
 
+  # @return String last answer
+  def last_answer
+    options[:game].descendant_events.block_type("Answer").where(user_id: options[:user].id).order_by(time: -1).first.input
+  end
+
   # @return [Array] tasks given, but not passed
   def current_tasks
     tasks_given-tasks_passed
@@ -90,6 +95,10 @@ class EventHandler
 
   def task_passed?
     options[:task].in? tasks_passed
+  end
+
+  def play_task?
+    options[:task].in? play_tasks
   end
 
   def game_passed?

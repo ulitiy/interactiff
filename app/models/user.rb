@@ -2,8 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  has_many :roles
-  has_many :events
+  has_many :roles, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members", index: true
   belongs_to :team, index: true
   #TODO: множественное присваивание

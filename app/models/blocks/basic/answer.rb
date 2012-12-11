@@ -1,7 +1,11 @@
 class Answer < Block
   field :body, type: String, default: ""
+  # можешь активировать несколько раз один блок ответа :for_all
+  # ты не можешь, но другие могут :for_other
+  # никто не может использовать один ответ :no
   field :reusable, type: Symbol, default: :for_other
-  field :spelling_matters, type: Boolean, default: true #only if regexp is true and reusable is false
+  # другие могут активировать, если написание отличается
+  field :spelling_matters, type: Boolean, default: true #only if regexp is true and reusable is no
   attr_accessible :body
 
   before_create :set_digest

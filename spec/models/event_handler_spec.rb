@@ -56,7 +56,17 @@ describe EventHandler do
     end
   end
 
+  describe "#last_answer" do
+    before do
+      Event.create user: user, block: answer, scope: :for_one, input: "hello2", time: Time.now
+      Event.create user: user, block: answer, scope: :for_one, input: "hello1", time: Time.now-1
+    end
+    subject { handler.last_answer }
+    it { should eq("hello2") }
+  end
+
   describe "#play_tasks" do
     it "test me"
   end
+
 end

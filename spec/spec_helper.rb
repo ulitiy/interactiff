@@ -27,6 +27,7 @@ Spork.prefork do
   #require 'shoulda/matchers/integrations/rspec'
   require "capybara/rspec"
   include Capybara::DSL
+  require 'capybara/poltergeist'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
@@ -50,7 +51,8 @@ Spork.prefork do
   Capybara.configure do |config|
     config.app_host   = 'http://requests.lvh.me:54163'
     config.server_port = '54163'
-    config.javascript_driver = :webkit #comment to see in Firefox
+    #config.javascript_driver = :webkit #comment to see in Firefox
+    config.javascript_driver = :poltergeist
   end
 
 end

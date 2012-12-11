@@ -14,4 +14,4 @@ class Joygen.Models.Answer extends Joygen.Models.Block
     ,0
 
   getLink: ->
-    "http://quest.interactiff.net/play/sumbit?task_id=#{@get('parent_id')}&input=#{@get('digest')}"
+    "http://quest.interactiff.net/play/submit?task_id=#{@get('parent_id')}&input=#{@get('digest')}"

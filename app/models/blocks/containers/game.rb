@@ -5,6 +5,7 @@ class Game < Block
   has_many :descendants, class_name: 'Block', inverse_of: :game
   has_many :game_relations, class_name: 'Relation', inverse_of: :game
   has_many :descendant_events, class_name: 'Event', inverse_of: :game
+  has_many :variables, dependent: :destroy
 
   has_and_belongs_to_many :members, class_name: "User", inverse_of: "member_of_games", index: true
 

@@ -41,7 +41,7 @@ group :development do
 end
 group :test do
   gem "factory_girl_rails"
-  gem "capybara"
+  gem "capybara", '~> 1.1.0'
   gem "guard-rspec", '~> 0.7.3'
   gem "growl"
   gem 'database_cleaner'
@@ -49,7 +49,8 @@ group :test do
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
   gem "selenium-webdriver"
-  gem "capybara-webkit" #https://github.com/thoughtbot/capybara-webkit/issues/296
+  #gem "capybara-webkit", git: "https://github.com/thoughtbot/capybara-webkit.git"
+  gem "poltergeist"
   gem 'turn', :require=> false
 end
 group :production do

@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe "Admin module", :js=>true do
 
+  sleep_time=0.2
   let(:domain) { create :domain, name: "test domain"}
   let(:game) { create :game, name: "test game", parent: domain }
   let(:task) { create :task, name: "test task", parent: game }
-  let(:answer) { create :answer, parent: task, x: 100, y: 0 }
+  let(:answer) { create :answer, parent: task, body: "answer", x: 100, y: 0 }
   let(:hint) { create :hint, parent: task, x: 0, y: 0 }
 
   before { login(create(:root_user)) }
@@ -16,15 +17,15 @@ describe "Admin module", :js=>true do
       hint;answer
       visit admin_path parent_id: task.id, select_id: hint.id
       page.should have_no_selector(".block:contains('#{game.name}')")
-      page.should have_selector(".block:contains('#{t("admin.answer.new")}')")
+      page.should have_selector(".block:contains('answer')")
       page.should have_selector(".block.ui-selected:contains('#{hint.body}')")
     end
 
     it 'changes the route & renders properties on the block selection' do
       hint;answer
       visit admin_path parent_id: task.id, select_id: hint.id
-      find(".block:contains('#{t("admin.answer.new")}')").click
-      page.should have_selector(".block.ui-selected:contains('#{t("admin.answer.new")}')")
+      find(".block:contains('answer')").click
+      page.should have_selector(".block.ui-selected:contains('answer')")
       current_path.should eq(admin_path parent_id: task.id, select_id: answer.id) #TODO: https://github.com/thoughtbot/capybara-webkit/issues/296
       find("#properties").should have_content(t("admin.answer.tool"))
     end
@@ -45,19 +46,19 @@ describe "Admin module", :js=>true do
 
     it 'creates domain' do
       visit admin_path parent_id: 0, select_id: 0
-      expect { find(".tool:contains('#{t("admin.domain.tool")}')").click; sleep(0.1) }.to change{ Domain.count }.by(1)
+      expect { find(".tool:contains('#{t("admin.domain.tool")}')").click; sleep(sleep_time) }.to change{ Domain.count }.by(1)
       page.should have_selector(".block:contains('#{t("admin.domain.new")}')")
     end
 
     it 'creates game' do
       visit admin_path parent_id: domain.id, select_id: 0
-      expect { find(".tool:contains('#{t("admin.game.tool")}')").click; sleep(0.1) }.to change{ Game.count }.by(1)
+      expect { find(".tool:contains('#{t("admin.game.tool")}')").click; sleep(sleep_time) }.to change{ Game.count }.by(1)
       page.should have_selector(".block:contains('#{t("admin.game.new")}')")
     end
 
     it 'creates task' do
       visit admin_path parent_id: game.id, select_id: 0
-      expect { find(".tool:contains('#{t("admin.task.tool")}')").click; sleep(0.1) }.to change{ Task.count }.by(1)
+      expect { find(".tool:contains('#{t("admin.task.tool")}')").click; sleep(sleep_time) }.to change{ Task.count }.by(1)
       page.should have_selector(".block:contains('#{t("admin.task.new")}')")
     end
 

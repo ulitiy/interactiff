@@ -21,6 +21,8 @@ FactoryGirl.define do
   factory :task_given
   factory :task_passed
   factory :sms
+  factory :setter
+  factory :variable
 
   factory :answer do
     sequence(:body) { |n| "answer#{n}" }
