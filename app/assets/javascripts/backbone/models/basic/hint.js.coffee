@@ -6,4 +6,4 @@ class Joygen.Models.Hint extends Joygen.Models.Block
       body: I18n.t("admin.hint.new")
     )
   icon: "/assets/admin/icons/16/022.png"
-  isTarget: true
+  isTarget: -> true

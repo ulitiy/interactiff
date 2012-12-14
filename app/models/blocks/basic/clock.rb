@@ -4,16 +4,16 @@ class Clock < Block
   attr_accessible :job, :time
 
   before_save :set_job
+  skip_callback :save, :before, :set_job, if: -> { @skip_set_job }
 
   def set_job
-    return if @deep
-    @deep=true
+    @skip_set_job=true
     if changed_attributes["time"] || new_record?
 	    self.job.delete if self.job
       save
 	    self.job=delay(run_at: time, queue: "clock").fire(time:time,scope: :for_all,mutex: true)
 	  end
-    @deep=false
+    @skip_set_job=false
     true
   end
 

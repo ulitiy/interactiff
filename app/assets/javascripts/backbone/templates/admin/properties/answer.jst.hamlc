@@ -6,6 +6,11 @@
     %input(id="html", type="button", value="html", data-for="body")
 %tr
   %th
+    %label(for="container_source")= I18n.t("admin.answer.container_source")
+  %td
+    %input(id="container_source", type="checkbox")
+%tr
+  %th
     %label(for="link")= I18n.t("admin.answer.link")
   %td
     %input(id="link", type="text", readonly="readonly")

@@ -6,5 +6,5 @@ class Joygen.Models.NotBlock extends Joygen.Models.Block
       name: I18n.t("admin.not_block.new")
     )
   icon: "/assets/admin/icons/16/104.png"
-  isTarget: true
-  isSource: true
+  isTarget: -> true
+  isSource: -> true

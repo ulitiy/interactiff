@@ -6,6 +6,6 @@ class Joygen.Models.GameStarted extends Joygen.Models.Block
       name: I18n.t("admin.game_started.new")
     )
   icon: "/assets/admin/icons/16/143.png"
-  isSource: true
-  isTarget: true
+  isSource: -> true
+  isTarget: -> true
   deletable: false

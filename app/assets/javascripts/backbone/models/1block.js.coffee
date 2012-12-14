@@ -45,7 +45,7 @@ class Joygen.Models.Block extends Backbone.Model
   outTools: ->
     _.filter @tools, (tool)->
       t=Joygen.Models[tool].prototype
-      t.isSource || t.container
+      t.isSource?() || t.container
   adminPath: ->
     "#{@id}/0"
   children: ->
@@ -64,12 +64,12 @@ class Joygen.Models.Block extends Backbone.Model
 
   getContainerSources: ->
     arr=_.filter @children(), (block)->
-      block.isContainerSource?
+      block.isContainerSource?()
     _.sortBy arr, (block)->
       block.get("y")+block.get("x")/10000 #таким образом получаем первичную сортировку по y, вторичную по x
   getContainerTargets: ->
     arr=_.filter @children(), (block)->
-      block.isContainerTarget?
+      block.isContainerTarget?()
     _.sortBy arr, (block)->
       block.get("y")+block.get("x")/10000
 

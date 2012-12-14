@@ -34,11 +34,8 @@ class Event
 
   # САМОЕ ВАЖНОЕ В ПРОИСВОДИТЕЛЬНОСТИ ДВИЖКА – ЗДЕСЬ, ИНДЕКСЫ. Но надо учитывать уменьшение скорости на вставку.
   index time: 1, id: 1
-  # index game_id:1, block_type: 1, scope: 1, user_id: 1, variable: 1
-  index game_id:1, block_type: 1, scope: 1, team_id: 1, user_id: 1, variable: 1, time: 1
-  # index game_id:1, block_type: 1, scope: 1, variable: 1
-  # index block_type: 1, scope: 1, user_id: 1
-  # index block_type: 1, scope: 1, team_id: 1, user_id: 1
+  index game_id:1, block_type: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
+  # index block_id: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
 
   scope :block_type, ->(type) { where(block_type: type) }
   scope :for_one, ->(user) { where(scope: :for_one, user_id: user.id) }

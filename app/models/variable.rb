@@ -4,7 +4,7 @@ class Variable
 
   field :name, type: String, default: ""
   field :display_name, type: String, default: ""
-  field :member_scope, type: Symbol, default: :for_one # for_one, for_team, for_all # УБРАТЬ!?!?!??!?!? интересная возможность!!!
+  field :member_scope, type: Symbol, default: :for_one # for_one, for_team, for_all
   # field :block_scope, type: Symbol, default: :in_game
   field :display_type, type: Symbol, default: :string #string, status_bar, bool, bool_html, html ##integer, float, ?
   field :default, default: 0

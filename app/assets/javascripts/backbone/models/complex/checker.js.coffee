@@ -6,4 +6,4 @@ class Joygen.Models.Checker extends Joygen.Models.Block
       name: I18n.t("admin.checker.tool")
     )
   icon: "/assets/admin/icons/16/089.png"
-  isSource: true
+  isSource: -> true

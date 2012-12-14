@@ -8,8 +8,9 @@ group :assets do
   gem 'execjs'
   gem 'compass-rails'
 end
+gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
-gem "mongoid", ">= 3.0.3" #timestamps with milliseconds
+gem "mongoid", git: 'https://github.com/mongoid/mongoid.git' #timestamps with milliseconds
 gem 'delayed_job_mongoid'
 gem 'dj_mon'
 gem "daemons"

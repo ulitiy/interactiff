@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Admin module", :js=>true do
 
-  sleep_time=0.2
+  sleep_time=1
   let(:domain) { create :domain, name: "test domain"}
   let(:game) { create :game, name: "test game", parent: domain }
   let(:task) { create :task, name: "test task", parent: game }

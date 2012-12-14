@@ -24,7 +24,7 @@ class EventHandler
 
   # hits the task's first by y right answer
   def input input
-    task_answers.to_a.find { |answer| answer.hit(options.merge(input: input)) } if play_task?
+    task_answers.to_a.find { |answer| answer.hit(options.merge(input: input)) } if current_task?
   end
 
 
@@ -97,8 +97,9 @@ class EventHandler
     options[:task].in? tasks_passed
   end
 
-  def play_task?
-    options[:task].in? play_tasks
+  # if the task is given, but not passed
+  def current_task?
+    options[:task].in? current_tasks
   end
 
   def game_passed?

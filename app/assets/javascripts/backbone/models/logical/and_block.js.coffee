@@ -6,5 +6,5 @@ class Joygen.Models.AndBlock extends Joygen.Models.Block
       name: I18n.t("admin.and_block.new")
     )
   icon: "/assets/admin/icons/16/101.png"
-  isTarget: true
-  isSource: true
+  isTarget: -> true
+  isSource: -> true

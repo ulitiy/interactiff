@@ -8,6 +8,7 @@ describe EventHandler do
   let(:answer2) { create :answer, parent: task, body: ".*", y: 20 }
   let(:answer3) { create :answer, parent: task, body: "ehlo", y: 15 }
   let(:tg) { create :task_given, parent: task }
+  let(:tp) { create :task_passed, parent: task }
   let(:handler) { EventHandler.new(user: user,task: task) }
   let(:task1) { create :task, parent: game }
   let(:tg1) { create :task_given, parent: task1 }
@@ -29,13 +30,23 @@ describe EventHandler do
   end
 
   describe "#input" do
-    before { tg.hit user: user, scope: :for_all; }
-    before { answer3;answer2;answer;handler.input "Hellllo, world!";}
+    before { answer3;answer2;answer }
     context "task given" do
-      it("should hit the right answer") { handler.is_hit?(answer).should be_true }
-      it("shouldn't hit the second answer") { handler.is_hit?(answer2).should be_false }
-      it("shouldn't hit the wrong answer") { handler.is_hit?(answer3).should be_false }
+      before { tg.hit user: user, scope: :for_all }
+      before { handler.input "Hellllo, world!" }
+      it("should fire the right answer") { handler.is_hit?(answer).should be_true }
+      it("shouldn't fire the second answer") { handler.is_hit?(answer2).should be_false }
+      it("shouldn't fire the wrong answer") { handler.is_hit?(answer3).should be_false }
       it("should set input") { answer.events.first.input.should eq("Hellllo, world!") }
+    end
+    context "task not given" do
+      before { handler.input "Hellllo, world!" }
+      it("should not fire the right answer") { handler.is_hit?(answer).should be_false }
+    end
+    context "task passed" do
+      before { tp.hit user: user, scope: :for_all }
+      before { handler.input "Hellllo, world!" }
+      it("should not fire the right answer") { handler.is_hit?(answer).should be_false }
     end
   end
 

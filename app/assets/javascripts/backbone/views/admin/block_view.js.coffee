@@ -88,7 +88,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 #TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #простановка всех эндпоинтов блока, сначала родных, потом дочерних
   makeEndpoints: ()=>
-    if @model.isTarget
+    if @model.isTarget?()
       @targetEndpoint=jsPlumb.addEndpoint @el,
         hoverPaintStyle:{ fillStyle:"#F00" }
         anchor: "LeftMiddle"
@@ -96,7 +96,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @targetEndpoint.model=@model
       @targetEndpoint.blockView=this
       targetEndpoints.push @targetEndpoint
-    if @model.isSource
+    if @model.isSource?()
       @sourceEndpoint=jsPlumb.addEndpoint @el,
         hoverPaintStyle:{ fillStyle:"#F00" }
         anchor: "RightMiddle"
@@ -106,7 +106,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @sourceEndpoint.bind 'click', (e1)=>
         floatingToolbarView.show(e1)
       sourceEndpoints.push @sourceEndpoint
-    if @model.container?
+    if @model.container?()
       @addSources()
       @addTargets()
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length

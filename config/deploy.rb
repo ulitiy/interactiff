@@ -39,8 +39,11 @@ end
 
 namespace :mongoid do
   desc "Create MongoDB indexes"
-  task :index do
+  task :create_indexes do
     run "cd #{current_path} && bundle exec rake db:mongoid:create_indexes", :once => true
+  end
+  task :remove_indexes do
+    run "cd #{current_path} && bundle exec rake db:mongoid:remove_indexes", :once => true
   end
 end
 
@@ -62,4 +65,4 @@ end
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
-after "deploy:update", "mongoid:index"
+after "deploy:update", "mongoid:create_indexes"

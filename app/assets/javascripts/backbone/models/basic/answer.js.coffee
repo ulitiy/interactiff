@@ -5,7 +5,8 @@ class Joygen.Models.Answer extends Joygen.Models.Block
       type: "Answer"
     )
   icon: "/assets/admin/icons/16/102.png"
-  isSource: true
+  isSource: -> true
+  isContainerSource: -> @get("container_source")
   initialize: ->
     super
     @on "change:id", =>

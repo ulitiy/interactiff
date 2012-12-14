@@ -6,6 +6,6 @@ class Joygen.Models.TaskPassed extends Joygen.Models.Block
       name: I18n.t("admin.task_passed.new")
     )
   icon: "/assets/admin/icons/16/137.png"
-  isTarget: true
-  isContainerSource: true
+  isTarget: -> true
+  isContainerSource: -> true
   deletable: false

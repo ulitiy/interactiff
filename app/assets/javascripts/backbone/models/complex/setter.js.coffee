@@ -6,4 +6,4 @@ class Joygen.Models.Setter extends Joygen.Models.Block
       name: I18n.t("admin.setter.tool")
     )
   icon: "/assets/admin/icons/16/051.png"
-  isTarget: true
+  isTarget: -> true

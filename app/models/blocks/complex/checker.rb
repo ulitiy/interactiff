@@ -1,6 +1,6 @@
 class Checker < EvalBlock
 
-  has_and_belongs_to_many :variables, class_name: "Variable", inverse_of: :checkers, index: true
+  has_and_belongs_to_many :variables, class_name: "Variable", inverse_of: :checkers, index: true, dependent: :nullify #https://github.com/mongoid/mongoid/issues/2630
   field :expression, type: String, default: ""
 
   before_save :set_variables

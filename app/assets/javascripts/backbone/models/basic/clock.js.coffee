@@ -6,4 +6,4 @@ class Joygen.Models.Clock extends Joygen.Models.Block
       name: I18n.t("admin.clock.tool")
     )
   icon: "/assets/admin/icons/16/087.png"
-  isSource: true
+  isSource: -> true

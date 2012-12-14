@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="expression")= I18n.t("admin.checker.expression")
+  %td
+    %input(id="expression", type="text")

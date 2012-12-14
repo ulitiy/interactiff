@@ -91,11 +91,12 @@ class Block
   end
 
 
-
+  # ПРОТЕСТИРОВАТЬ ПРИ ОТСУТСТВИИ КОМАНДЫ/ПОЛЬЗОВАТЕЛЯ для общих случаев, например общее присвоение переменной/проверка
   # @return Array descendant events of the game for user(his team and common), optionally by the var name
   def descendant_events_of options
-    de=descendant_events.block_type(options[:type]).for_one(options[:user]).var(options[:variable])
-    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).var(options[:variable]) if options[:user].team_id
+    de=[]
+    de+=descendant_events.block_type(options[:type]).for_one(options[:user]).var(options[:variable]) if options[:user]
+    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).var(options[:variable]) if options[:user]&&options[:user].team_id
     de+=descendant_events.block_type(options[:type]).for_all.var(options[:variable])
   end
 
@@ -122,7 +123,7 @@ class Block
 
   # @return [Boolean] if there are any events, related to current user and this block
   def is_hit? options
-    events.or({user_id: options[:user].id}, {scope: :for_all}, {scope: :for_team, team_id: options[:user].team_id}).any? #moped doesn't understand <model>
+    events.or({scope: :for_one, user_id: options[:user].id}, {scope: :for_team, team_id: options[:user].team_id}, {scope: :for_all}).any? #moped doesn't understand <model>
   end
 
   # @return [Boolean] if there are any events, related to this block

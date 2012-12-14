@@ -6,4 +6,4 @@ class Joygen.Models.Message extends Joygen.Models.Block
       body: I18n.t("admin.message.new")
     )
   icon: "/assets/admin/icons/16/197.png"
-  isTarget: true
+  isTarget: -> true

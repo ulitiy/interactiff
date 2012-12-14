@@ -14,6 +14,7 @@ describe Checker do
     subject { checker.reload.variables }
     it { should eq([var1,var2,var22]) }
     it { var1.reload.checkers.should eq([checker,checker2]) } #!!!
+    it { checker.destroy }
   end
 
   describe "#hot?" do

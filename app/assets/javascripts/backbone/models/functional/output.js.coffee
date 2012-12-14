@@ -6,5 +6,5 @@ class Joygen.Models.Output extends Joygen.Models.Block
       name: I18n.t("admin.output.new")
     )
   icon: "/assets/admin/icons/16/131.png"
-  isTarget: true
-  isContainerSource: true
+  isTarget: -> true
+  isContainerSource: -> true

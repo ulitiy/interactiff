@@ -5,8 +5,8 @@ class Joygen.Models.Game extends Joygen.Models.Block
       type: "Game"
       name: I18n.t("admin.game.new")
     )
-  container: true
-  tools: ["Task", 'Clock', 'Timer', 'AndBlock', 'OrBlock']
+  container: -> true
+  tools: ["Task", 'Clock', 'Timer', 'AndBlock', 'OrBlock', "Setter", "Checker"]
   icon: "/assets/admin/icons/16/069.png"
   save: (attributes, options) =>
     if @isNew()

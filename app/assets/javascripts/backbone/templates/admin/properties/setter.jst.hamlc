@@ -1,0 +1,5 @@
+%tr
+  %th
+    %label(for="expression")= I18n.t("admin.setter.expression")
+  %td
+    %input(id="expression", type="text")
