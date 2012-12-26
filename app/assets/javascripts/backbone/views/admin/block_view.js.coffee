@@ -90,7 +90,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
   makeEndpoints: ()=>
     if @model.isTarget?()
       @targetEndpoint=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#F00" }
+        hoverPaintStyle:{ fillStyle:"#89C27F" }
         anchor: "LeftMiddle"
         isTarget: true
       @targetEndpoint.model=@model
@@ -98,7 +98,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       targetEndpoints.push @targetEndpoint
     if @model.isSource?()
       @sourceEndpoint=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#F00" }
+        hoverPaintStyle:{ fillStyle:"#89C27F" }
         anchor: "RightMiddle"
         isSource: true
       @sourceEndpoint.model=@model
@@ -118,7 +118,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     i=0
     @sourceEndpoints=_.map arr, (block)=>
       e=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#F00" }
+        hoverPaintStyle:{ fillStyle:"#89C27F" }
         anchor:[1,(++i)/(arr.length+1),1,0]
         isSource: true
       e.model=block
@@ -135,7 +135,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     i=0
     @targetEndpoints=_.map arr, (block)=>
       e=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#F00" }
+        hoverPaintStyle:{ fillStyle:"#89C27F" }
         anchor:[0,(++i)/(arr.length+1),-1,0]
         isTarget: true
       e.model=block

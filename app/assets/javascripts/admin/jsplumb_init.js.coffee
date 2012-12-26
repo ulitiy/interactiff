@@ -8,13 +8,13 @@ $ ->
     Container: $("#field")
     PaintStyle:
       lineWidth:3.6
-      strokeStyle:"#555"
+      strokeStyle:"#303030"
     EndpointStyle:
       radius:5
-      fillStyle:"#555"
+      fillStyle:"#303030"
       hoverStyle: "endpointHover"
     HoverPaintStyle:
-      strokeStyle:"#F00"
+      strokeStyle:"#89C27F"
       lineWidth:4.2
     Connector: ["Flowchart"]#Flowchart, Straight, StateMachine, Bezier
     ConnectionOverlays:[["Arrow", {foldback:0.4, width: 7, length: 15, location:1}]]

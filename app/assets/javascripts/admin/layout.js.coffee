@@ -12,13 +12,11 @@ layoutSettings=
   west__maxSize: 200
   west__size: 100
   east__size: 100
-  center__onresize: "centerLayout.resizeAll"
-
+  spacing_open: 5
+  togglerLength_open: 35
+  togglerLength_closed: 35
+  togglerContent_open: '<div class="triangle-left"></div>'
+  togglerContent_closed: '<div class="triangle-right"></div>'
 
 $ ->
-  window.adminLayout=$('body').layout $.extend(layoutSettings,layoutState.load('adminLayout'))
-  window.centerLayout=$("#center").layout
-    closable:false
-    spacing_open:1
-    resizable:false
-    north__size:30
+  window.adminLayout=$('#content').layout $.extend(layoutSettings,layoutState.load('adminLayout'))

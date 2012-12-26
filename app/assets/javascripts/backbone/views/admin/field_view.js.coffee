@@ -6,11 +6,14 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     masterCollection.on 'add', @collectionAdd
     $(@el).selectable
       filter:'.block'
-      cancel:'#refresh,svg'
+      cancel:'svg'
 
   events:
     "selectablestop" : "selectablestop"
-    "click #refresh" : "refresh"
+  #   "click #refresh" : "refresh"
+
+  refresh: =>
+    masterView.loadCollection(@id)
 
   deleteKey: =>
     sel=$(".ui-selected") #TODO
@@ -25,8 +28,6 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       @setSelect()
     return false
 
-  refresh: =>
-    masterView.loadCollection(@id)
 
   selectablestop: =>
     $("*:focus").blur()
@@ -75,8 +76,6 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     $(@el).append('<div id="stretcher"></div>')
     $(@el).append('<div id="floating-toolbar"></div>')
 
-  refreshTemplate: JST["backbone/templates/admin/refresh"]
-
   render: =>
     @options.blocks=masterCollection.children(@id)
     $(@el).html('')
@@ -86,4 +85,3 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     @addBlocks()
     @addRelations()
     @addElements()
-    $(@el).append(@refreshTemplate)

@@ -1,7 +1,70 @@
-body
+html, body
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
+  overflow: auto
   user-select: none
   -webkit-user-select: none
   -moz-user-select: -moz-none
+  font-family: 'Open Sans','Trebuchet MS',sans-serif
+.ui-layout-resizer
+  background: #94bad1 !important
+  overflow: visible !important
+.ui-layout-pane
+  border: none
+  padding: 1px
+
+.ui-layout-toggler
+  overflow: visible !important
+.ui-layout-toggler-west
+  //left: 5px !important
+  border-radius: 0 14px 14px 0/ 0 11px 11px 0
+  .triangle-left
+    margin-left: 3px
+    width: 0
+    height: 0
+    border-top: 4px solid transparent
+    border-right: 4px solid #e2ebf0
+    border-bottom: 4px solid transparent
+  .triangle-right
+    margin-left: 3px
+    width: 0
+    height: 0
+    border-top: 4px solid transparent
+    border-left: 4px solid #e2ebf0
+    border-bottom: 4px solid transparent
+
+.ui-layout-toggler-east
+  left: -7px !important
+  border-radius: 14px 0 0 14px/11px 0 0 11px
+  .triangle-right
+    margin-left: 3px
+    width: 0
+    height: 0
+    border-top: 4px solid transparent
+    border-right: 4px solid #e2ebf0
+    border-bottom: 4px solid transparent
+  .triangle-left
+    margin-left: 3px
+    width: 0
+    height: 0
+    border-top: 4px solid transparent
+    border-left: 4px solid #e2ebf0
+    border-bottom: 4px solid transparent
+
+.ui-layout-toggler
+  border: none
+  opacity: 1 !important
+  background: #94bad1 !important
+  width: 12px !important
+
+#content
+  position: absolute
+  top: 57px
+  left: 0
+  bottom: 0
+  right: 0
 .ui-selectable-helper
   border: 1px dotted black
   position: absolute
@@ -27,11 +90,13 @@ body
   margin-top: -27px
   z-index: 1002
 .panel
-  background: #888 !important
+  background: #d2e0e8 !important
 .icon
   vertical-align: middle
   display: inline
+  padding: 3px
 input
   user-select: normal
   -webkit-user-select: normal
   -moz-user-select: text
+

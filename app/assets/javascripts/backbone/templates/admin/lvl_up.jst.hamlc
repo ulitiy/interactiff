@@ -1,3 +1,0 @@
-%a{href: "/#{@adminPath()}"}
-  .icon
-    %img(src="/assets/admin/icons/16/116.png")

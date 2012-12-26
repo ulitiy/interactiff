@@ -53,6 +53,9 @@ module Joygen
 
     config.mongoid.preload_models=true
 
+    config.hamlcoffee.uglify = true
+    config.hamlcoffee.preserveTags = 'div'
+
     #config.active_record.whitelist_attributes = true
 
     #ActiveRecord::Base.include_root_in_json = false

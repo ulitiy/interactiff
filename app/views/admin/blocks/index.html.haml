@@ -1,8 +1,13 @@
-#center.ui-layout-center
+#header
+  #logo
+    =link_to image_tag("logo.png", height: "40", width: "130"), root_path
+  %a#lvl-up.btn(href="")
+    =t "admin.path.level_up"
+  #path
+  %a#reload.btn(href="")
+    =raw(t "admin.path.reload")
+#content
   #field.ui-layout-center
-  #path-container.ui-layout-north.panel
-#east.ui-layout-east.panel
-  / #tree.ui-layout-center.panel
-  #properties-container
-  / .ui-layout-south.panel
-#toolbar.ui-layout-west.panel
+  #east.ui-layout-east.panel
+    #properties-container
+  #toolbar.ui-layout-west.panel

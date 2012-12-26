@@ -1,5 +1,5 @@
 #field
-  background: #F6F6FA
+  background: #FFF
   overflow: scroll !important
   #stretcher
     position: absolute
@@ -13,17 +13,23 @@
     top: 0
     padding: 3px
   .block
-    padding: 11px 27px 11px 11px
+    padding: 5px 43px 5px 5px
     $shadow: 2px 2px 7px
     white-space: nowrap
     max-width: 170px
     position: absolute
     background: white
-    min-width: 60px
-    border: 1px solid gray
-    border-radius: 8px
-    box-shadow: $shadow #AAA
+    min-width: 50px
+    border: 2px solid #94bad1
+    font-size: 16px
+    background: linear-gradient(to bottom, #deeef8 0%, #c2e0f2 100%)
+    background: -webkit-linear-gradient(top, #deeef8 0%, #c2e0f2 100%)
+    border-radius: 4px
+    box-shadow: $shadow #d9dee2
     cursor: default
+    &:hover
+      background: linear-gradient(to bottom, #eaf5fb 0%, #b3d8ef 70%, #d1e8f6 100%)
+      background: -webkit-linear-gradient(top, #eaf5fb 0%, #b3d8ef 70%, #d1e8f6 100%)
     .icon
       float: left
       width: 20px
@@ -36,20 +42,22 @@
       white-space: normal
     .destroy
       position: absolute
-      color: white
-      right: 5px
-      top: 0
+      display: none
+      right: 6px
+      top: 0px
       font-size: 75%
+      color: #058 !important
       &:hover
         color: red !important
     &:hover .destroy
       color: black
+      display: block
 
     $sel-color: #CA0
     &.ui-selecting
-      box-shadow: $shadow lighten($sel-color,30)
+      border-color: #89c27f
     &.ui-selected
-      box-shadow: $shadow $sel-color
+      border-color: #89c27f
       z-index: 100
     &.ui-draggable-dragging
       opacity: 0.8

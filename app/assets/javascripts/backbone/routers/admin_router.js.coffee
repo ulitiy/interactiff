@@ -10,7 +10,7 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
     window.htmlModalView=new Joygen.Views.Admin.HtmlModalView()
     window.masterView=new Joygen.Views.Admin.MasterView
     window.pathView=new Joygen.Views.Admin.PathView
-      el:$("#path-container")
+      el:$("#path")
     window.fieldView=new Joygen.Views.Admin.FieldView
       el:$("#field")
     window.toolbarView=new Joygen.Views.Admin.ToolbarView
@@ -19,6 +19,10 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#properties-container")
     window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
       el: $("#floating-toolbar")
+    window.levelUpView=new Joygen.Views.Admin.LevelUpView
+      el: $("#lvl-up")
+    window.reloadView=new Joygen.Views.Admin.ReloadView
+      el: $("#reload")
 
   index: (pid,eid) ->
     window.loading=true

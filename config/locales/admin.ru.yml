@@ -5,6 +5,8 @@ ru:
       destroy: "Удалить"
     path:
       root: "Корень"
+      level_up: "← Назад"
+      reload: '<span class="carrow">⟳</span> Обновить'
     block:
       id: "Номер"
       title: "Заголовок"

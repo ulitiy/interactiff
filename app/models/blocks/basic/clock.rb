@@ -7,6 +7,7 @@ class Clock < Block
   skip_callback :save, :before, :set_job, if: -> { @skip_set_job }
 
   def set_job
+    self.time=1.month.from_now if time.blank?
     @skip_set_job=true
     if changed_attributes["time"] || new_record?
 	    self.job.delete if self.job

@@ -18,6 +18,7 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
     toolbarView.render()
     floatingToolbarView.render()
     fieldView.selectablestop()
+    levelUpView.setModel()
 
 
   loadProperties: ->
