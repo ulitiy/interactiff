@@ -1,15 +1,8 @@
-%tr
-  %th
-    %label(for="name")= I18n.t("admin.domain.name")
-  %td
-    %input(id="name", type="text")
--hosts=@hosts()
--if hosts.length
-  %tr
-    %th
-      %label(for="main_host_id")= I18n.t("admin.domain.main_host")
-    %td
-      %select(id="main_host_id")
-        %option(value=null)
-        -for host in hosts
-          %option{value: "#{host.get('id')}"}= host.get("name")
+.property
+  %label(for="name")= I18n.t("admin.domain.name")
+  %input(id="name", type="text", data-value="model.name")
+.property
+  %label(for="main_host_id")= I18n.t("admin.domain.main_host")
+  %select(id="main_host_id", data-value="model.main_host_id")
+    %option(value=null)
+    %option{data-each-host: "model:hosts", data-text: "host.name", data-value: "host.id"}

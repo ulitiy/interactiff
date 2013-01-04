@@ -7,9 +7,9 @@ class BlocksController < InheritedResources::Base
 
   # Renders json (blocks and relations) for one admin page
   def show #TODO: rewrite in other action
-    @blocks=Block.master_collection(params[:id]).find_all{ |block| can? :read, block }
-    @relations=Relation.relations_collection(params[:id],@blocks).find_all{ |rel| can? :read, rel }
-    #no caching here, it's slower than json render
+    @blocks=Block.master_collection(params[:id]).find_all{ |block| can? :read, block }.to_a
+    @relations=Relation.relations_collection(params[:id],@blocks).find_all{ |rel| can? :read, rel }.to_a
+    fresh_when etag: [@blocks,@relations]
   end
 
   # Creates a model of the specified type

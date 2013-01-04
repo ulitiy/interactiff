@@ -1,5 +1,3 @@
-%tr
-  %th
-    %label(for="expression")= I18n.t("admin.setter.expression")
-  %td
-    %input(id="expression", type="text")
+.property
+  %label(for="expression")= I18n.t("admin.setter.expression")
+  %input(id="expression", type="text", data-value="model.expression")

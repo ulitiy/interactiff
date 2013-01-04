@@ -1,5 +1,3 @@
-%tr
-  %th
-    %label(for="body")= I18n.t("admin.message.body")
-  %td
-    %input(id="body", type="text")
+.property
+  %label(for="body")= I18n.t("admin.message.body")
+  %input(id="body", type="text", data-value="model.body")

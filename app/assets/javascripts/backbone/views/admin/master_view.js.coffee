@@ -29,7 +29,7 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
   needLoad: (id)->
     # return false
     el=masterCollection.get(id)
-    !el? || el.get("type")=="Domain" || el.get("type")=="Game" #&& el.children().length==0 #TODO #because I/O
+    !el? || el.get("type")=="Domain" || el.get("type")=="Game" && el.children().length==0
 
   loadCollection: (id)->
     $.ajax

@@ -35,6 +35,7 @@ class Block
 
   # Sets game and task properties using parent
   def set_ids
+    return if self.game_id #designer performance
     self.game||=self.parent.parent_game if self.parent
     self.task||=self.parent.parent_task if self.parent
   end

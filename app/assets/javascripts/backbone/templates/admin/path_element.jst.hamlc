@@ -1,1 +1,1 @@
-%a{href: "/#{@adminPath()}", data-bind: "text caption"}
+%a{href: "/admin/#{@adminPath()}", data-text: "model:caption < .name"}

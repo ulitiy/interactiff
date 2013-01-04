@@ -1,5 +1,3 @@
-%tr
-  %th
-    %label(for="name")= I18n.t("admin.host.name")
-  %td
-    %input(id="name", type="text")
+.property
+  %label(for="name")= I18n.t("admin.host.name")
+  %input(id="name", type="text", data-value="model.name")

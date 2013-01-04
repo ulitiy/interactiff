@@ -1,6 +1,6 @@
 .icon
   %img(width="16" height="16" src="#{@icon}")
-.caption(data-bind="text caption")
-.title(data-bind="text title")
+.caption(data-text="model:caption < .name .body .title")
+.title(data-text="model.title")
 -if(@deletable)
   .destroy{title: I18n.t('admin.links.destroy')} x

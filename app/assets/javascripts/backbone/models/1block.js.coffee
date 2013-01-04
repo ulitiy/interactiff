@@ -5,33 +5,19 @@ class Joygen.Models.Block extends Backbone.Model
     x: Math.round(Math.random()*50)*10
     y: Math.round(Math.random()*30)*10
     parent_id: null
-    modelChanged:false
-
-  initialize: ->
-    @on "change",=>
-      ca=@changedAttributes()
-      delete ca["caption"]
-      delete ca["link"]
-      @modelChanged=true if Object.keys(ca).length
-    @on "sync",=>
-      @modelChanged=false
-    @on "change:name", => @set "caption": @getCaption()
-    @on "change:body", => @set "caption": @getCaption()
-    @on "change:title", => @set "caption": @getCaption()
-    setTimeout => @set "caption": @getCaption()
-    ,0
 
   modelName: "block"
 
   deletable: true
 
-  getCaption: ->
-    n=@get("name")||@get("body")
+  caption: ->
+    n=@get("name")||@get("body")||""
+    n=n.replace(/(<([^>]+)>)/ig,"") #strip html
     return n if n? && n.length <= 20
     n.substr(0,15)+"..." if n?
 
   endpointCaption: ->
-    @get("title")||@getCaption()
+    @get("title") || @caption()
 
   setPosition: (position)->
     @save
@@ -52,11 +38,7 @@ class Joygen.Models.Block extends Backbone.Model
     @collection.children(@id)
   parent: ->
     @collection.parent(@id)
-  # destroy: (options) =>
-  #   item.destroy() for item in @children()
-  #   item.destroy() for item in @outRelations()
-  #   item.destroy() for item in @inRelations()
-  #   super options
+
 
 
 

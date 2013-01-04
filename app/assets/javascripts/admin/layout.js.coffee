@@ -4,7 +4,7 @@ $(window).unload ->
 
 layoutSettings=
   useStateCookie: true
-  minSize: 100
+  minSize: 150
   maxSize: 400
   east__resizerCursor: "col-resize"
   west__resizerCursor: "col-resize"

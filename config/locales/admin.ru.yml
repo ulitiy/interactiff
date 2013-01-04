@@ -9,7 +9,7 @@ ru:
       reload: '<span class="carrow">⟳</span> Обновить'
     block:
       id: "Номер"
-      title: "Заголовок"
+      title: "Комментарий"
       comment: "Комментарий"
     domain:
       new:  "Новый домен"

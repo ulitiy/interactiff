@@ -10,8 +10,7 @@
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
-// require backbone_datalink
-//= require backbone.modelbinding
+//= require rivets
 //= require hamlcoffee
 //= require i18n
 //= require i18n/translations
@@ -23,6 +22,7 @@
 //= require admin/css_position_plugin
 //= require admin/random_plugin
 //= require admin/key_input
+//= require admin/rivest_init
 
 //= require backbone/joygen
 //= require admin/backbone_init

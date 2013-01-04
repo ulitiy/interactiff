@@ -1,5 +1,3 @@
-%tr
-  %th
-    %label(for="time")= I18n.t("admin.timer.time")
-  %td
-    %input#time.timer(type="text")
+.property
+  %label(for="time")= I18n.t("admin.timer.time")
+  %input#time.timer(type="text", data-value="model.time")

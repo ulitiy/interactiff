@@ -81,7 +81,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
   destroy: =>
     @model.destroy()
     @remove()
-    Backbone.ModelBinding.unbind this
+    @rivestView.unbind()
     jsPlumb.removeAllEndpoints @el
 
 
@@ -156,5 +156,5 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     $(@el).draggable("option","delay",200)
     $(@el).draggable("option","distance",gridStep)
     $(@el).draggable("option","grid",[gridStep,gridStep])
-    Backbone.ModelBinding.bind(this);
+    @rivestView=rivets.bind $(@el), {model: @model}
     this

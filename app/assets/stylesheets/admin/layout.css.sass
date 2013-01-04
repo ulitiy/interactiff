@@ -8,6 +8,41 @@ html, body
   -webkit-user-select: none
   -moz-user-select: -moz-none
   font-family: 'Open Sans','Trebuchet MS',sans-serif
+
+.btn
+  display: inline-block
+  font-size: 12px
+  border: 1px solid #13ABEC
+  color: white
+  text-decoration: none
+  box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.4)
+  text-shadow: 0 1px 1px black
+  border-radius: 5px
+  box-shadow: 0 2px 2px #00567A, 0 -1px 1px rgba(255, 255, 255, 0.4)
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#13ABEC), to(#0092CF))
+  background-image: -webkit-linear-gradient(top, #13ABEC, #0092CF)
+  background-image: -o-linear-gradient(top, #13ABEC, #0092CF)
+  background-image: linear-gradient(to bottom, #13ABEC,#0092CF)
+  background-image: -moz-linear-gradient(top, #13ABEC, #0092CF)
+  background-position: center
+  padding: 6px 14px
+  cursor: pointer
+  &:hover
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#13ABEC), to(#13ABEC))
+    background-image: -webkit-linear-gradient(top, #13ABEC, #13ABEC)
+    background-image: -o-linear-gradient(top, #13ABEC, #13ABEC)
+    background-image: linear-gradient(to bottom, #13ABEC, #13ABEC)
+    background-image: -moz-linear-gradient(top, #13ABEC, #13ABEC)
+    background-position: center
+  &:active
+    box-shadow: 0 1px 1px #00567a
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0092cf), to(#13abec))
+    background-image: -webkit-linear-gradient(top, #0092cf, #13abec)
+    background-image: -o-linear-gradient(top, #0092cf, #13abec)
+    background-image: linear-gradient(to bottom, #0092cf,#13abec)
+    background-image: -moz-linear-gradient(top, #0092cf, #13abec)
+    background-position: center
+
 .ui-layout-resizer
   background: #94bad1 !important
   overflow: visible !important
@@ -18,7 +53,6 @@ html, body
 .ui-layout-toggler
   overflow: visible !important
 .ui-layout-toggler-west
-  //left: 5px !important
   border-radius: 0 14px 14px 0/ 0 11px 11px 0
   .triangle-left
     margin-left: 3px

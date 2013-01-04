@@ -1,6 +1,4 @@
-%tr
-  %th
-    %label(for="body")= I18n.t("admin.hint.body")
-  %td
-    %textarea(id="body", type="text", rows="10")
-    %input(id="html", type="button", value="html", data-for="body")
+.property
+  %label(for="body")= I18n.t("admin.hint.body")
+  %input.html(type="button", value="html", data-for="body")
+  %textarea(id="body", rows="10", data-text="model.body")

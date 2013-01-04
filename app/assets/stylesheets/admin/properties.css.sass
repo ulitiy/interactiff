@@ -1,27 +1,40 @@
 #properties-container
-  overflow: hidden !important
-  padding-bottom: 23px
+  overflow: auto !important
+  padding: 18px
+  h3
+    font-size: 18px
+    font-weight: normal
+    margin: -5px 0 6px
   #properties
-    overflow: auto
-    height: 100%
-    table
-      border-collapse: collapse
-      padding: 0
-      font-size: 80%
-      width: 100%
-      th, td
-        padding: 2px
-        border: 1px solid gray
-        font-weight: normal
-      th
-        color: white
-        background: #444
-      td
-        input
-          width: 95%
+    .property
+      padding: 6px 0
+      line-height: 25px
+      font-weight: lighter
+      label
+        font-size: 14px
+      input:not(.html), select, textarea
+        font-size: 14px
+        width: 100%
+        box-sizing: border-box
+        border-radius: 5px
+        border: 1px solid #b3bfc7
+        padding: 5px
+        -moz-box-sizing: border-box
+        -webkit-box-sizing: border-box
+        -ms-box-sizing: border-box
+      input[type="checkbox"]
+        width: 13px !important
+      .html
+        float: right
+        margin-top: 5px
+        border-radius: 20px
+        border: none
+        box-shadow: 0px 1px 1px #9cb1bd, 0px -1px 1px white
+        background: inherit
+        color: #0092cf
+        &:active
+          box-shadow: 0px 1px 1px white, 0px -1px 1px #9cb1bd
   #save-properties
-    position: absolute
-    bottom: 0
-    width: 100%
+    margin-top: 13px
     input
       width: 100%

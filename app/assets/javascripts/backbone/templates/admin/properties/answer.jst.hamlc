@@ -1,16 +1,10 @@
-%tr
-  %th
-    %label(for="body")= I18n.t("admin.answer.body")
-  %td
-    %input(id="body", type="text")
-    %input(id="html", type="button", value="html", data-for="body")
-%tr
-  %th
-    %label(for="container_source")= I18n.t("admin.answer.container_source")
-  %td
-    %input(id="container_source", type="checkbox")
-%tr
-  %th
-    %label(for="link")= I18n.t("admin.answer.link")
-  %td
-    %input(id="link", type="text", readonly="readonly")
+.property
+  %label(for="body")= I18n.t("admin.answer.body")
+  %input.html(type="button", value="html", data-for="body")
+  %input#body(type="text", data-value="model.body")
+.property
+  %label(for="container_source")= I18n.t("admin.answer.container_source")
+  %input#container_source(type="checkbox", data-checked="model.container_source")
+.property
+  %label(for="link")= I18n.t("admin.answer.link")
+  %input#link(type="text", readonly="readonly", data-value="model.link")

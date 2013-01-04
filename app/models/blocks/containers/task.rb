@@ -5,5 +5,5 @@ class Task < Block
   has_many :descendants, class_name: 'Block', inverse_of: :task
   has_many :descendant_events, class_name: 'Event', inverse_of: :task
   attr_accessible :name, :input_type
-  attr_accessor :passed
+  # attr_accessor :passed
 end

@@ -6,7 +6,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   events:
     "click #save-properties input" : "save"
-    "click #html" : "htmlModal"
+    "click .html" : "htmlModal"
 
   reset: =>
     @model=null #предварительно чистим модель, чтобы при рефреше не было сохранения//не трогать
@@ -18,13 +18,13 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     htmlModalView.show(event)
 
   save: =>
-    @model.save() if @model? && @model.modelChanged
+    @model.save({}) if @model? && @model.changedAttributes() #странное поведение если не {}
 
   draw: (newmodel)=>
     @model=newmodel
     $(@el).html(@template(@model))
     @setTimePicker()
-    Backbone.ModelBinding.bind(this);
+    @rivetsView=rivets.bind $(@el), model: @model
 
   setTimePicker: =>
     $(".timer",$(@el)).datetimepicker
@@ -42,7 +42,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     @model=null
 
   render: =>
-    Backbone.ModelBinding.unbind this
+    @rivetsView?.unbind()
     window.editBlock=masterCollection.get(editId)
     @save() if @model!=editBlock || !editBlock?
     if editBlock? && editBlock!=rootBlock
