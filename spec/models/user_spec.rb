@@ -87,13 +87,17 @@ describe User do
         it { should be_able_to(:join, game) }
       end
       context "when not registered user" do #impossible scenario, but let's try
-        let(:user) { User.new }
+        let(:user) { Guest.new }
         it { should_not be_able_to(:join, game) }
       end
     end
 
     context "play" do
       it "should authorise for play"
+    end
+
+    context "create game" do
+      it "should authorise for create game"
     end
 
   end

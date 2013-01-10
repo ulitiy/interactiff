@@ -1,8 +1,7 @@
 !!! 5
 %html
   %head
-    -head_title " | #{@current_domain.name}"
-    %title= yield :head_title
+    %title= "Конструктор Interactiff"
     = stylesheet_link_tag    "admin"
     = javascript_include_tag "admin","/wymeditor/jquery.wymeditor.min.js"
     = csrf_meta_tags unless response.cache_control[:public]

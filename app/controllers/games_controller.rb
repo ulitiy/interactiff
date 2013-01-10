@@ -12,6 +12,6 @@ class GamesController < InheritedResources::Base
   end
 
   def collection
-    @games||=current_domain.games
+    @games||=current_user.games
   end
 end

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="<%= ::I18n.locale %>">
+  <head>
+    <meta charset='<%= Rails.application.config.encoding %>' />
+    <title>Мои квесты | Interactiff </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags -%>
+    <%= stylesheet_link_tag "http://interactiff.net/assets/application.css" %>
+  </head>
+  <body>
+    <div class="blue-wrap">
+      <div class="container">
+      <header class="row-fluid">
+        <div class="span3 logo"><a href="/"><img src="/assets/logo.png"></a></div>
+        <div class="span6 center-me">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <ul class="nav">
+                <li><a href="">Тарифы</a></li>
+                <li><a href="">Помощь</a></li>
+                <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags <%= ::I18n.locale %>"></i><%= t("i18n.language.short_name") %></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "" do %><i class="flags ru"></i><%= t("i18n.language.name", locale: :ru) %><% end %></li>
+                    <li><%= link_to "" do %><i class="flags en"></i><%= t("i18n.language.name", locale: :en) %><% end %></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="span3"><a href="" class="btn pull-right">Вход или регистрация</a></div>
+      </header>
+      </div>
+    </div>
+
+    <section class="container">
+      <%= yield %>
+    </section>
+
+    <footer class="blue-wrap">
+      <%= yield :footer %>
+    </footer>
+
+  </body>
+</html>

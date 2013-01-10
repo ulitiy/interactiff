@@ -12,10 +12,14 @@ class Ability
   def initialize(user)
     cannot :manage, :all
     cannot :read, :all
-    user||=User.new
+    user||=Guest.new
 
-    can :join, Game unless user.new_record?
-    can :play, Game
+    unless user.is_a? Guest
+      can :join, Game
+      can :create, Game
+      #can :play, Game unless user.is_a Guest
+    end
+    can :play, Game #, guest_access: true
 
     #later - better
     for role in user.roles do #user.roles.each do |role| #
@@ -52,21 +56,18 @@ class Ability
 
       #block itself
       can access, Block, _id: role.block_id
-      #children
-      can access, Block, parent_id: role.block_id
       #game descendants
       can access, Block, game_id: role.block_id
       #task descendants
       can access, Block, task_id: role.block_id
+      #children
+      can access, Block, parent_id: role.block_id
 
       #independent of current role
+      #я так понял, что это работает только для домена, поэтому убрал task и game
       can access, Block do |block|
-        can?(access, block.task) or
-        can?(access, block.game) or
-        (
-          block.game.present? and
-          can?(access, block.game.parent)
-        )
+        block.game.present? and
+        can?(access, block.game.parent)
       end
     end #each
   end #initialize

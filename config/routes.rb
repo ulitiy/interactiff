@@ -3,7 +3,7 @@ Joygen::Application.routes.draw do
 
   devise_for :users
 
-  root to: "blocks#index"
+  root to: "games#index"
   resources :blocks#, except: [:index,:new]
   resources :domains, :games, :tasks,
     :answers, :hints, :hosts, :messages, :timers, :clocks,
