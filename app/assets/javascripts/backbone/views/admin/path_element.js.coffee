@@ -10,6 +10,7 @@ class Joygen.Views.Admin.PathElementView extends Backbone.View
     "click":"click"
 
   click: =>
+    return true if @model.id==0
     router.navigate @model.adminPath(),
       trigger:true
     false

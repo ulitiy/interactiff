@@ -11,6 +11,7 @@ Joygen::Application.routes.draw do
     :not_blocks, :and_blocks, :or_blocks,
     :checkers, :setters, :distributors, :eval_blocks,
     :path=>"/blocks"
+  match "/blocks/:id/master" => "blocks#master"
   resources :relations
   match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", as: :admin,
     :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get

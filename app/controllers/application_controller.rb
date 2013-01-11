@@ -63,4 +63,13 @@ class ApplicationController < ActionController::Base
     u.save(:validate => false)
     u
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    if !current_user.is_a? Guest
+      flash[:notice] = t("cancan.exceptions.denied")
+      redirect_to root_url
+    else
+      authenticate_user!
+    end
+  end
 end

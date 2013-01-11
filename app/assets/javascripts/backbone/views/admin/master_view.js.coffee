@@ -33,7 +33,7 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
 
   loadCollection: (id)->
     $.ajax
-      url: "/blocks/#{id}"
+      url: "/blocks/#{id}/master"
       success: (data)->
         relationsCollection.reset data.relations
         masterCollection.reset masterCollection.parse(data.blocks)

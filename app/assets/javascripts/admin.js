@@ -9,6 +9,7 @@
 
 //= require underscore
 //= require backbone
+// require backbone-edge
 //= require backbone_rails_sync
 //= require rivets
 //= require hamlcoffee

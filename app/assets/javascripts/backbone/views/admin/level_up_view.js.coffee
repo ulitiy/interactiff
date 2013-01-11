@@ -6,8 +6,7 @@ class Joygen.Views.Admin.LevelUpView extends Backbone.View
     "click": "click"
 
   click: ->
-    if @model.id==0
-      return true
+    return true if @model.id==0
     router.navigate @path,
       trigger:true
     false

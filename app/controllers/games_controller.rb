@@ -1,6 +1,7 @@
 class GamesController < InheritedResources::Base
   actions :index, :show, :create, :destroy
-  load_and_authorize_resource
+  load_resource except: :index
+  authorize_resource
 
   # makes the user member of the game
   def join

@@ -14,6 +14,14 @@ class Game < Block
 
   alias domain parent
 
+  before_validation :new_game, on: :create
+
+  def new_game
+    self.name=I18n.t("admin.games.new")
+    GameStarted.create! parent: self, x: 100, y: 100
+    GamePassed.create! parent: self, x: 600, y: 100
+  end
+
   def path
     [self]
   end
