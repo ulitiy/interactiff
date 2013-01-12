@@ -40,6 +40,7 @@ gem 'whenever', :require => false
 group :development do
   gem 'capistrano'
   gem 'capistrano-unicorn'
+  gem 'pry-rails'
 end
 group :test do
   gem "factory_girl_rails"

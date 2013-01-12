@@ -23,6 +23,7 @@ describe User do
       it { should_not be_able_to(:read, Block) }
       it { should_not be_able_to(:read, Role) }
       it { should_not be_able_to(:read, Relation) }
+      it { should be_able_to(:create, Game) }
     end
     context "when is a root user" do
       let(:user) { create :root_user }
