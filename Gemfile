@@ -7,6 +7,7 @@ group :assets do
   gem 'haml_coffee_assets'
   gem 'execjs'
   gem 'compass-rails'
+  gem 'turbo-sprockets-rails3'
 end
 gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
