@@ -15,8 +15,7 @@ class Ability
     user||=Guest.new
 
     unless user.is_a? Guest
-      can :join, Game
-      can :create, Game
+      can [:join,:create,:index], Game
       #can :play, Game unless user.is_a Guest
     end
     can :play, Game #, guest_access: true
