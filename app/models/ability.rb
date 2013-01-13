@@ -8,6 +8,7 @@ end
 
 class Ability
   include CanCan::Ability
+  #TODO: CHECK & TEST EVERY CONTROLLER ACTION
 
   def initialize(user)
     cannot :manage, :all
@@ -33,6 +34,7 @@ class Ability
   end
 
   def apply_role role
+    #ГОЛАКТЕКО ОПАСНОСТЕ!!! Если делаешь can :manage, block то после can :manage, Block для КЛАССА становится истиной!!! Но при этом наоборот работает норм.
     return if role.access==:none
     access=get_resource_access role
 
@@ -45,7 +47,7 @@ class Ability
 
     #root
     if role.block.nil?
-      can access, Block
+      can access, Block #т.е. это норм, стопудов
       can :manage, Role if role.access==:manage_roles
       return
     end

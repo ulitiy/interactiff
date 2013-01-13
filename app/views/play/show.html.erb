@@ -31,7 +31,7 @@
           <label class="tab third-tab" for="completed-tasks">Выполненные</label>
 
         <ul class="tasks-list">
-          <% for task in @play_tasks %>
+          <% for task in @handler.play_tasks %>
             <li class="<%="active " if task==@task%><%= if task.passed then "done" else "common" end %>"><%= link_to task.name, play_show_path(task_id: task.id, game_id: @game.id) %></li>
           <% end %>
         </ul>
@@ -56,7 +56,7 @@
 
           <%= form_tag play_submit_path(task_id: @task.id) do %>
             <dl class="row-fluid game-tasks">
-              <% @hints_given.zip(@hint_events).each do |hint,event| %>
+              <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
                 <dt class="span2"><%=raw(l(event.time,format: :dmy)+"<br/>") if event.time<Date.today %><%= l event.time, format: :hms %></dt>
                 <dd class="span10"><%= raw hint.body %></dd>
               <% end %>
@@ -65,7 +65,7 @@
                 <dt class="span2 bolder">Ответ</dt>
                 <dd class="span10 answers">
                   <ul class="unstyled">
-                    <% for answer in @answers %>
+                    <% for answer in @handler.task_answers %>
                       <li><%= link_to raw(answer.body), play_submit_path(task_id:@task.id, input: raw(answer.digest)) %></li>
                     <% end %>
                   </ul>

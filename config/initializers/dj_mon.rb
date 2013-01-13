@@ -1,2 +1,4 @@
-Joygen::Application.config.dj_mon.username = "ulitiy"
-Joygen::Application.config.dj_mon.password = "xcvxcv"
+DelayedJobWeb.use Rack::Auth::Basic do |username, password|
+  username == 'ulitiy'
+  password == 'xcvxcv'
+end

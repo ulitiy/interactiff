@@ -4,6 +4,6 @@ class Domain < Block
   belongs_to :main_host, class_name: "Host", index: true
 
   def games
-  	children.where(type: "Game")
+    children.where(type: "Game")
   end
 end

@@ -9,6 +9,11 @@ class Joygen.Models.Block extends Backbone.Model
   modelName: "block"
 
   deletable: true
+  @dirty: false
+
+  initialize: ->
+    @on "change", =>
+      @dirty=true
 
   caption: ->
     n=@get("name")||@get("body")||""

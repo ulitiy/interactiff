@@ -1,3 +1,4 @@
+# Event for user/team/all for the block (which is action or potential event)
 class Event
   include Mongoid::Document
 
@@ -50,6 +51,7 @@ class Event
     self.block_type||=block.type
   end
 
+  # get events of some type for the user
   def self.of options
     Event.block_type(options[:type]).for_one options[:user]
     Event.block_type(options[:type]).for_team options[:user].team if options[:user].team_id

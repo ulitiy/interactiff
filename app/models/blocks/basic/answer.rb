@@ -1,3 +1,4 @@
+# Potential input block
 class Answer < Block
   field :body, type: String, default: ""
   # можешь активировать несколько раз один блок ответа :for_all
@@ -11,6 +12,7 @@ class Answer < Block
 
   before_create :set_digest
 
+  # set the digest for link access to the answer
   def set_digest
     self.body=digest if self.body.empty?
   end
@@ -41,10 +43,12 @@ class Answer < Block
     end
   end
 
+  # checks if the answer text itself is correct
   def body_hot? options
     options[:input] =~ Regexp.new(body, "i") || options[:input] == digest
   end
 
+  # override
   def hot? options
     body_hot?(options) && reusable_hot?(options)
   end

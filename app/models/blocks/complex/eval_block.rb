@@ -15,7 +15,7 @@ class EvalBlock < Block
     @vars={}
     for var_name in var_list(expr) do
       if var_name=="last_answer"
-        @vars[var_name]=options[:handler].last_answer;
+        @vars[var_name]=options[:handler].last_answer; #TODO: плохо -> handler.options[:handler] тоже
       else
         @vars[var_name]=Variable.where(game: options[:game], name: var_name).first.value(options)
       end
@@ -36,7 +36,7 @@ class EvalBlock < Block
         $SAFE=4
         eval str
       end
-      @t.kill unless t.join(0.1)
+      @t.kill unless @t.join(0.1)
       @t.value
     rescue Exception => e
       raise e

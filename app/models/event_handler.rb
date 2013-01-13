@@ -1,10 +1,13 @@
 class EventHandler
-  attr_accessor :options
+  attr_accessor :options, :game, :task, :user, :input
 
   # Sets options
   def initialize opt
     @options=opt
     @options[:game]=@options[:task].parent if !@options[:game]
+    @game=@options[:game]
+    @task=@options[:task]
+    @user=@options[:user]
     @options[:handler]=self
   end
 
@@ -19,7 +22,7 @@ class EventHandler
 
   # @return [Array] all task's answers ordered by y
   def task_answers
-    @task_answers||=options[:task].children.where(_type:"Answer").order_by(y:1,x:1)
+    @task_answers||=task.children.where(_type:"Answer").order_by(y:1,x:1)
   end
 
   # hits the task's first by y right answer
@@ -33,27 +36,26 @@ class EventHandler
 
 
 
-
   def hint_events
-    @hint_events||=options[:task].descendant_events_of type: "Hint", user: options[:user]
+    @hint_events||=task.descendant_events_of type: "Hint", user: user
   end
   def hints_given
     @hints_given||=get_blocks hint_events
   end
   def tasks_given
-    @tasks_given||=get_tasks options[:game].descendant_events_of type: "TaskGiven", user: options[:user]
+    @tasks_given||=get_tasks game.descendant_events_of type: "TaskGiven", user: user
   end
   def tasks_passed
-    @tasks_passed||=get_tasks options[:game].descendant_events_of type: "TaskPassed", user: options[:user]
+    @tasks_passed||=get_tasks game.descendant_events_of type: "TaskPassed", user: user
   end
   def games_started
-    @games_started||=get_games Event.of type: "GameStarted", user: options[:user]
+    @games_started||=get_games Event.of type: "GameStarted", user: user
   end
   def games_passed
-    @games_passed||=get_games Event.of type: "GamePassed", user: options[:user]
+    @games_passed||=get_games Event.of type: "GamePassed", user: user
   end
-  # @return [Array] hints for the functional blocks
-  # @param [Array] fun an array of the functional blocks
+  # @return [Array] blocks for events
+  # @param [Array] fun an array of events
   def get_blocks fun
     ids=fun.map &:block_id
     Block.find(ids)
@@ -74,40 +76,40 @@ class EventHandler
 
   # @return String last answer
   def last_answer
-    options[:game].descendant_events.block_type("Answer").where(user_id: options[:user].id).order_by(time: -1).first.input
+    game.descendant_events.block_type("Answer").where(user_id: user.id).order_by(time: -1).first.input
   end
 
   # @return [Array] tasks given, but not passed
   def current_tasks
-    tasks_given-tasks_passed
+    @current_tasks||=tasks_given-tasks_passed
   end
 
   # @return [Array] tasks given with additional attribute of passed
   def play_tasks
-    tasks_given.each do |task|
+    @play_tasks||=tasks_given.each do |task|
       task.passed=tasks_passed.include?(task)
     end
   end
 
   def task_given?
-    options[:task].in? tasks_given
+    task.in? tasks_given
   end
 
   def task_passed?
-    options[:task].in? tasks_passed
+    task.in? tasks_passed
   end
 
   # if the task is given, but not passed
   def current_task?
-    options[:task].in? current_tasks
+    task.in? current_tasks
   end
 
   def game_passed?
-    options[:game].in? games_passed
+    game.in? games_passed
   end
 
   def flush
-    @task_answers=@hint_events=@hints_given=@tasks_given=@tasks_passed=@games_started=@games_passed=nil
+    @play_tasks,@current_tasks,@task_answers,@hint_events,@hints_given,@tasks_given,@tasks_passed,@games_started,@games_passed=nil
     self
   end
 

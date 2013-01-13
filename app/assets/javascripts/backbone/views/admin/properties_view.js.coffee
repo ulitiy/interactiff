@@ -18,7 +18,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     htmlModalView.show(event)
 
   save: =>
-    @model.save({}) if @model? && @model.changedAttributes() #странное поведение если не {}
+    @model.save({},{ success: (model)-> model.dirty=false }) if @model? && @model.dirty
 
   draw: (newmodel)=>
     @model=newmodel

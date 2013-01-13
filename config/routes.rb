@@ -1,5 +1,6 @@
 Joygen::Application.routes.draw do
-  mount DjMon::Engine => 'dj_mon'
+  # mount DjMon::Engine => 'dj_mon'
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
 
   devise_for :users
 

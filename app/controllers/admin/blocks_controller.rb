@@ -1,3 +1,4 @@
+# Admin constructor no-responsibility controller
 class Admin::BlocksController < ApplicationController
   layout "admin"
   before_filter :authenticate_user!

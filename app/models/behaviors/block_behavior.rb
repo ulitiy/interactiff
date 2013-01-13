@@ -1,6 +1,16 @@
 module BlockBehavior
+
+  # ПРОТЕСТИРОВАТЬ ПРИ ОТСУТСТВИИ КОМАНДЫ/ПОЛЬЗОВАТЕЛЯ для общих случаев, например общее присвоение переменной/проверка
+  # @return Array descendant events of the game for user(his team and common), optionally by the var name
+  def descendant_events_of options
+    de=[]
+    de+=descendant_events.block_type(options[:type]).for_one(options[:user]).var(options[:variable]) if options[:user]
+    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).var(options[:variable]) if options[:user] && options[:user].team_id
+    de+=descendant_events.block_type(options[:type]).for_all.var(options[:variable])
+  end
+
   # returns true, if the block should fire on hit. Is overriden by descendants
-  def hot? options #срабатывать ли?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  def hot? options #срабатывать ли?
     true
   end
 

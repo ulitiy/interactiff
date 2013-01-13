@@ -1,3 +1,4 @@
+# API blocks controller for an author. Can manage all the blocks.
 class BlocksController < InheritedResources::Base
   respond_to :json
   #skip CSRF protection due to API

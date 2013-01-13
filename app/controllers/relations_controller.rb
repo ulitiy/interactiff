@@ -1,3 +1,4 @@
+# API relations controller
 class RelationsController < InheritedResources::Base
   actions :create, :destroy
   respond_to :json

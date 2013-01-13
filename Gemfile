@@ -13,7 +13,8 @@ gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
 gem "mongoid", git: 'https://github.com/mongoid/mongoid.git' #timestamps with milliseconds
 gem 'delayed_job_mongoid'
-gem 'dj_mon'
+# gem 'dj_mon'
+gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
 gem "daemons"
 gem 'devise'#, :git=> "https://github.com/plataformatec/devise.git"
 gem 'cancan'
@@ -54,6 +55,7 @@ group :test do
   gem "selenium-webdriver"
   #gem "capybara-webkit", git: "https://github.com/thoughtbot/capybara-webkit.git"
   gem "poltergeist"
+  gem "metric_fu"
   gem 'turn', :require=> false
 end
 group :production do
