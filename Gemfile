@@ -40,7 +40,7 @@ gem 'yard'
 gem 'whenever', :require => false
 gem "metric_fu"
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', :github => 'capistrano/capistrano'
   gem 'capistrano-unicorn'
   gem 'pry-rails'
 end
