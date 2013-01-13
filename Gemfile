@@ -38,6 +38,7 @@ gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
 gem 'whenever', :require => false
+gem "metric_fu"
 group :development do
   gem 'capistrano'
   gem 'capistrano-unicorn'
@@ -55,7 +56,6 @@ group :test do
   gem "selenium-webdriver"
   #gem "capybara-webkit", git: "https://github.com/thoughtbot/capybara-webkit.git"
   gem "poltergeist"
-  gem "metric_fu"
   gem 'turn', :require=> false
 end
 group :production do
