@@ -11,10 +11,10 @@ group :assets do
 end
 gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
-gem "mongoid", git: 'https://github.com/mongoid/mongoid.git' #timestamps with milliseconds
+gem "mongoid"#, git: 'https://github.com/mongoid/mongoid.git' #timestamps with milliseconds
 gem 'delayed_job_mongoid'
 # gem 'dj_mon'
-gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
+# gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
 gem "daemons"
 gem 'devise'#, :git=> "https://github.com/plataformatec/devise.git"
 gem 'cancan'
@@ -42,7 +42,10 @@ gem "metric_fu"
 group :development do
   gem 'capistrano', :github => 'capistrano/capistrano'
   gem 'capistrano-unicorn'
+  gem 'quiet_assets'
+  gem 'thin'
   gem 'pry-rails'
+  # gem 'rack-mini-profiler'
 end
 group :test do
   gem "factory_girl_rails"

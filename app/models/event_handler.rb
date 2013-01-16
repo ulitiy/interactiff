@@ -1,10 +1,27 @@
 class EventHandler
   attr_accessor :options, :game, :task, :user, :input
 
+  # options:
+    # scope
+    # game
+    # task
+    # user
+    # parent
+    # source
+    # time
+    # input
+
+    # mutex
+    # handler
+    # force_scope
+    # responsible_user
+
+  # reason
+
   # Sets options
   def initialize opt
     @options=opt
-    @options[:game]=@options[:task].parent if !@options[:game]
+    @options[:game] ||= @options[:task].parent
     @game=@options[:game]
     @task=@options[:task]
     @user=@options[:user]

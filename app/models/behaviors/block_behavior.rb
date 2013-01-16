@@ -55,10 +55,9 @@ module BlockBehavior
 
   # prepare options for fire
   def prepare_options options
-    options.merge! scope: get_scope(options)
-    options.except! :force_scope, :game, :task, :mutex
-    options.merge! team: options[:user].team if options[:scope]==:for_team
-    options.reverse_merge! time: Time.now, game: game
+    options.merge! scope: get_scope(options), game: game, task: task, force_scope: nil, mutex: nil
+    options[:team]=options[:user].team if options[:scope]==:for_team
+    options.reverse_merge! time: Time.now
   end
 
   # @returns event created
