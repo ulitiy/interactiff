@@ -13,21 +13,21 @@ class Block
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
   belongs_to :task, class_name: "Task", inverse_of: :descendants, index: true
-  # has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
-  # has_many :in_relations, class_name: "Relation", inverse_of: :to, dependent: :destroy # НЕ ТРОГАЙ, висячая связь валит out_blocks при удалении
-  # has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy # разве что здесь... но и то мусорно
+  has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
+  has_many :in_relations, class_name: "Relation", inverse_of: :to, dependent: :destroy # НЕ ТРОГАЙ, висячая связь валит out_blocks при удалении
+  has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy # разве что здесь... но и то мусорно
 
-  # has_many :inputs, class_name: "Input", inverse_of: :parent
-  # has_many :outputs, class_name: "Output", inverse_of: :parent
-  # has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
+  has_many :inputs, class_name: "Input", inverse_of: :parent
+  has_many :outputs, class_name: "Output", inverse_of: :parent
+  has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
   has_many :roles, dependent: :destroy
 
   attr_accessible :x,:y,:title,:parent,:parent_id
 
   default_scope order_by(y:1,x:1)
 
-  # before_create :set_ids
-  # after_initialize :set_ids
+  before_create :set_ids
+  after_initialize :set_ids
 
   #TODO: _type
   index y: 1, x: 1

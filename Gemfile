@@ -11,26 +11,25 @@ group :assets do
 end
 gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
-gem "mongoid"#, git: 'https://github.com/mongoid/mongoid.git' #timestamps with milliseconds
+gem "mongoid"
 gem 'delayed_job_mongoid'
-# gem 'dj_mon'
-# gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
+gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
 gem "daemons"
-gem 'devise'#, :git=> "https://github.com/plataformatec/devise.git"
+gem 'devise'
 gem 'cancan'
-gem 'russian', :git=> "https://github.com/yaroslav/russian.git"
-gem 'inherited_resources'#, :git=> 'https://github.com/zerobearing2/inherited_resources.git'
-gem 'has_scope'#, :git=> "https://github.com/plataformatec/has_scope.git"
+gem 'russian'
+gem 'inherited_resources'
+gem 'has_scope'
 gem 'haml'
 gem 'haml-rails'
 
 gem 'mousetrap-rails'
 gem "therubyracer"
 gem "less-rails"
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'rails-backbone', :git=> "git://github.com/codebrew/backbone-rails.git", :require=> "backbone-rails"
+gem 'rails-backbone', github: "codebrew/backbone-rails", :require=> "backbone-rails"
 gem 'markitup-rails'
 
 gem 'i18n-js'
@@ -38,7 +37,6 @@ gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
 gem 'whenever', :require => false
-gem "metric_fu"
 group :development do
   gem 'capistrano', :github => 'capistrano/capistrano'
   gem 'capistrano-unicorn'

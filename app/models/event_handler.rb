@@ -15,8 +15,7 @@ class EventHandler
     # handler
     # force_scope
     # responsible_user
-
-  # reason
+    # reason
 
   # Sets options
   def initialize opt
