@@ -10,9 +10,9 @@
   </head>
   <body>
     <div class="allwrap">
-      <div class="blue-wrap">
+      <div class="blue-wrap header">
         <div class="container">
-        <header class="row-fluid">
+        <div class="row-fluid">
           <div class="span3 logo"><a href="/"><img src="/assets/logo.png"></a></div>
           <div class="span6 center-me">
             <div class="navbar">
@@ -20,30 +20,38 @@
                 <ul class="nav">
                   <li><a href="">Тарифы</a></li>
                   <li><a href="">Помощь</a></li>
-                  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags <%= ::I18n.locale %>"></i><%= t("i18n.language.short_name") %></a>
+                  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags <%= ::I18n.locale %>"></i>Рус</a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to "" do %><i class="flags ru"></i><%= t("i18n.language.name", locale: :ru) %><% end %></li>
-                      <li><%= link_to "" do %><i class="flags en"></i><%= t("i18n.language.name", locale: :en) %><% end %></li>
+                      <li><%= link_to "" do %><i class="flags ru"></i>Русский<% end %></li>
+                      <li><%= link_to "" do %><i class="flags en"></i>English<% end %></li>
                     </ul>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="span3"><a href="" class="btn pull-right">Вход или регистрация</a></div>
-        </header>
+          <div class="span3">
+            <%=
+              if current_user.is_a? Guest
+                link_to "Вход или регистрация", new_user_registration_path, class: "btn pull-right"
+              else
+                link_to "Выйти", destroy_user_session_path, :method => :delete, class: "btn pull-right"
+              end
+            %>
+          </div>
+        </div>
         </div>
       </div>
 
-      <section class="container">
+      <div class="container">
         <%= yield %>
-      </section>
+      </div>
 
       <div class="push"></div>
     </div>
-    <footer class="blue-wrap">
+    <div class="footer blue-wrap last-blue-wrap">
       <%= yield :footer %>
-    </footer>
+    </div>
 
   </body>
 </html>
