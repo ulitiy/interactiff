@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Game < Block
   field :name, type: String, default: ""
   field :description, type: String, default: ""
@@ -18,8 +19,20 @@ class Game < Block
 
   def new_game
     self.name=I18n.t("admin.games.new")
-    GameStarted.create! parent: self, x: 100, y: 100
-    GamePassed.create! parent: self, x: 600, y: 100
+    c=Clock.create! parent: self, x: 30, y: 30, title: "Игра начнется по часам"
+    gs=GameStarted.create! parent: self, x: 280, y: 100, title: "Начало игры"
+    Relation.create from: c, to: gs
+    t1=Task.create! parent: self, x: 530, y: 170, name: "Задание 1", title: "с выбором ответа", input_type: "link"
+    tg1=TaskGiven.create! parent: t1, x: 100, y: 100
+    Relation.create! from: gs, to: tg1
+    h=Hint.create! parent: t1, x: 270, y: 100, body: "Это текст первого задания. Вы можете его редактировать в панели свойств справа, а также использовать html редактор."
+    Relation.create! from: tg1, to: h
+    a1=Answer.create! parent: t1, x: 550, y: 100, body: "Верный ответ"
+    tp1=TaskPassed.create! parent: t1, x: 800, y: 100
+    Relation.create! from: a1, to: tp1
+    Answer.create! parent: t1, x: 550, y: 180, body: "Неверный ответ"
+    gp=GamePassed.create! parent: self, x: 800, y: 310, title: "Игра пройдена, Ура!"
+    Relation.create from: tp1, to: gp
   end
 
   def path
