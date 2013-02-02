@@ -5,8 +5,8 @@ ru:
       destroy: "Удалить"
     path:
       root: "Мои квесты"
-      level_up: "← Назад"
-      reload: '<span class="carrow">⟳</span> Обновить'
+      level_up: "&larr; Назад"
+      reload: '<span class="carrow">&#8635</span> Обновить'
     block:
       id: "Номер"
       title: "Комментарий"

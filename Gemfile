@@ -43,19 +43,20 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
   gem 'pry-rails'
-  # gem 'rack-mini-profiler'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'meta_request'
 end
 group :test do
   gem "factory_girl_rails"
-  gem "capybara", '~> 1.1.0'
-  gem "guard-rspec", '~> 0.7.3'
+  gem "capybara"#, '~> 1.1.0'
+  gem "guard-rspec"#, '~> 0.7.3'
   gem "growl"
   gem 'database_cleaner'
   gem 'spork'
   gem 'guard-spork'
-  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'rb-fsevent'#, '~> 0.9.1'
   gem "selenium-webdriver"
-  #gem "capybara-webkit", git: "https://github.com/thoughtbot/capybara-webkit.git"
   gem "poltergeist"
   gem 'turn', :require=> false
 end

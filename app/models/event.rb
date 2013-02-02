@@ -14,10 +14,10 @@ class Event
 
   belongs_to :variable, index: true
   belongs_to :block , class_name: "Block", inverse_of: :events, index: true
-  belongs_to :game  , class_name: "Game" , inverse_of: :descendant_events, index: true
+  belongs_to :game  , class_name: "Game" , inverse_of: :descendant_events#, index: true # есть более точный индекс
   belongs_to :task  , class_name: "Task" , inverse_of: :descendant_events, index: true
 
-  belongs_to :parent, class_name: "Event", inverse_of: :children, index: true
+  belongs_to :parent, class_name: "Event", inverse_of: :children#, index: true # все равно запрашиваем через source
   belongs_to :source, class_name: "Event", inverse_of: :descendants, index: true
 
   belongs_to :responsible_user, class_name: "User", inverse_of: nil, index: true

@@ -17,8 +17,8 @@ class Block
   has_many :in_relations, class_name: "Relation", inverse_of: :to, dependent: :destroy # НЕ ТРОГАЙ, висячая связь валит out_blocks при удалении
   has_many :out_relations, class_name: "Relation", inverse_of: :from, dependent: :destroy # разве что здесь... но и то мусорно
 
-  has_many :inputs, class_name: "Input", inverse_of: :parent
-  has_many :outputs, class_name: "Output", inverse_of: :parent
+  # has_many :inputs, class_name: "Input", inverse_of: :parent
+  # has_many :outputs, class_name: "Output", inverse_of: :parent
   has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
   has_many :roles, dependent: :destroy
 
@@ -29,7 +29,6 @@ class Block
   before_create :set_ids
   after_initialize :set_ids
 
-  #TODO: _type
   index y: 1, x: 1
 
   def personal

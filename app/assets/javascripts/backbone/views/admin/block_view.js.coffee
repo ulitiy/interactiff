@@ -13,6 +13,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     "destroy": "destroy"
     "click .destroy": "destroyConfirm"
     "dblclick": "dblclick"
+    "doubletap": "dblclick"
     "selectedone" : "selectedone"
 
   tagName: "div"

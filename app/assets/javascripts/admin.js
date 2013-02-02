@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.ui.touch-punch
+//= require jquery.mobile-events
 //= require jquery.layout-latest
 //= require jquery.layout.state
 //= require jquery.jsPlumb-1.3.13-all

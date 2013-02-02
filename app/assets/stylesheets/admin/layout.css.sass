@@ -4,10 +4,14 @@ html, body
   margin: 0
   padding: 0
   overflow: auto
-  user-select: none
+  -webkit-touch-callout: none
   -webkit-user-select: none
-  -moz-user-select: -moz-none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
   font-family: 'Open Sans','Trebuchet MS',sans-serif
+  font-size: 12px
 
 .btn
   display: inline-block
@@ -101,8 +105,8 @@ html, body
   right: 0
 .ui-selectable-helper
   border: 1px dotted black
-  position: absolute
-  z-index: 100
+  // position: absolute
+  // z-index: 100
 #loading-overlay.overlay
   z-index: 1001
   background: #FFF
@@ -129,7 +133,7 @@ html, body
   vertical-align: middle
   display: inline
   padding: 3px
-input
+input:not([type="button"])
   user-select: normal
   -webkit-user-select: normal
   -moz-user-select: text
