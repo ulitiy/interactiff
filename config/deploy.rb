@@ -18,12 +18,6 @@ set :default_environment, {
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :whenever_command, "bundle exec whenever"
 
-require 'bundler/capistrano'
-require 'capistrano-unicorn'
-require "whenever/capistrano"
-
-load 'deploy/assets'
-
 desc "Remote console"
 task :console, :roles => :app do
   run_interactively "bundle exec rails console #{rails_env}"
@@ -66,9 +60,15 @@ end
 
 namespace :deploy do
   task :custom_symlink, roles: :app do
-    run "ln -nfs #{shared_path}/secret_token.rb #{current_path}/config/initializers/secret_token.rb"
+    run "ln -nfs #{shared_path}/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
 end
+
+require 'bundler/capistrano'
+require 'capistrano-unicorn'
+require "whenever/capistrano"
+
+load 'deploy/assets'
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
