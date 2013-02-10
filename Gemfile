@@ -40,7 +40,7 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-backbone', :require=> "backbone-rails" #, github: "codebrew/backbone-rails"
-gem 'markitup-rails'
+# gem 'markitup-rails'
 
 gem 'i18n-js'
 gem 'jbuilder'

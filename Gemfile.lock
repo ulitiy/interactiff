@@ -207,8 +207,6 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    markitup-rails (1.0.1)
-      rails (>= 3.1)
     meta_request (0.2.1)
       rack-contrib
       rails
@@ -450,7 +448,6 @@ DEPENDENCIES
   jquery-ui-rails
   less-rails
   libv8 (~> 3.11.8)
-  markitup-rails
   meta_request
   mongoid
   mousetrap-rails
