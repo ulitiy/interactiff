@@ -1,1 +1,1 @@
-%a{href: if this.id==0 then "/" else "/admin/#{@adminPath()}", data-text: "model:caption < .name"}
+%a{href: if this.id==0 then "/quests" else "/admin/#{@adminPath()}", data-text: "model:caption < .name"}

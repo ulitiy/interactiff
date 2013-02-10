@@ -22,3 +22,10 @@ guard 'rspec', :cli=>"--drb -t ~js" do # -t ~js
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| ["spec/requests/#{m[1]}_spec.rb"] }
   #TODO: attach admin to specs
 end
+
+# guard 'brakeman', :run_on_start => true do
+#   watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
+#   watch(%r{^config/.+\.rb$})
+#   watch(%r{^lib/.+\.rb$})
+#   watch('Gemfile')
+# end

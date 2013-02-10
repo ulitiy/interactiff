@@ -21,7 +21,6 @@ ru:
       tool: "Хост"
       name: "Имя"
       make_main_host: "Сделать основным"
-      second_level: "joygen.net"
       hint: "Доменное имя вашего домена"
     game:
       name: "Название"

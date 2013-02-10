@@ -8,10 +8,10 @@ describe Game do
     let(:user2) { create :user }
     let(:user3) { create :user }
     before do
-      user1.roles.create block: game1, access: :manage_roles
-      user1.roles.create block: game2, access: :manage
-      user2.roles.create block: game1, access: :manage
-      user3.roles.create block: game2, access: :manage
+      user1.engine_roles.create block: game1, access: :manage_roles
+      user1.engine_roles.create block: game2, access: :manage
+      user2.engine_roles.create block: game1, access: :manage
+      user3.engine_roles.create block: game2, access: :manage
     end
     subject { game1.authors }
     it { should eq [user1,user2] }

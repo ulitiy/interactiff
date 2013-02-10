@@ -14,7 +14,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Joygen
+module Interactiff
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -53,8 +53,25 @@ module Joygen
 
     config.mongoid.preload_models=true
 
-    #config.active_record.whitelist_attributes = true
+    config.active_record.whitelist_attributes = true
 
     #ActiveRecord::Base.include_root_in_json = false
+
+
+    # refinery
+    # config.before_initialize do
+    #   require 'refinery_patch'
+    #   require 'restrict_refinery_to_refinery_users'
+    # end
+
+    include Refinery::Engine
+    after_inclusion do
+      [::ApplicationController, ::ApplicationHelper, ::Refinery::AdminController].each do |c|
+        c.send :include, ::RefineryPatch
+      end
+
+      ::Refinery::AdminController.send :include, ::RestrictRefineryToRefineryUsers
+      ::Refinery::AdminController.send :before_filter, :restrict_refinery_to_refinery_users
+    end
   end
 end

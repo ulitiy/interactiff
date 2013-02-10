@@ -1,12 +1,12 @@
 default_run_options[:pty] = true
-set :application, "quest.interactiff.net"
+set :application, "interactiff.net"
 server application, :app, :web, :db, :primary => true
-set :deploy_to, "/home/interactiff/quest.interactiff.net"
+set :deploy_to, "/home/interactiff/interactiff.net"
 set :domain, "interactiff@interactiff.net"
 set :port, 60321
 set :user, "interactiff"
 ssh_options[:forward_agent] = true #заставляет сервер юзать ключи компьютера
-set :repository, "git@github.com:ulitiy/joygen.git"
+set :repository, "git@github.com:ulitiy/interactiff.git"
 set :scm, "git"
 set :branch, "master"
 set :use_sudo, false
@@ -64,7 +64,14 @@ namespace :delayed_job do
   end
 end
 
+namespace :deploy do
+  task :custom_symlink, roles: :app do
+    run "ln -nfs #{shared_path}/secret_token.rb #{current_path}/config/initializers/secret_token.rb"
+  end
+end
+
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
 after "deploy:update", "mongoid:create_indexes"
+after 'deploy:update_code', "deploy:custom_symlink"

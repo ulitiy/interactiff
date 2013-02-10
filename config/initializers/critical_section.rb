@@ -5,7 +5,7 @@ class CriticalSection
   end
 
   def get_file
-    @file||=File.open "#{Dir.tmpdir}/joygen.#{@file_str}.lock", 'w'
+    @file||=File.open "#{Dir.tmpdir}/interactiff.#{@file_str}.lock", 'w'
   end
 
   def lock

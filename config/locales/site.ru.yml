@@ -1,0 +1,8 @@
+ru:
+  i18n:
+    language:
+      name: "Русский"
+      short_name: "Рус"
+  news:
+    recent_posts: "Новости"
+    all_html: "Далее &rsaquo;"

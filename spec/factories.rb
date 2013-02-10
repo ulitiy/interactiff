@@ -61,7 +61,7 @@ FactoryGirl.define do
         block nil
         access :manage_roles
       end
-      after(:create) { |user, evaluator| user.roles.create block: evaluator.block, access: evaluator.access }
+      after(:create) { |user, evaluator| user.engine_roles.create block: evaluator.block, access: evaluator.access }
     end
   end
 

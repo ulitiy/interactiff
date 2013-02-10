@@ -1,0 +1,86 @@
+<% content_for :body_class, "home" %>
+<% content_for :blue_wrap do %>
+  <section class="center-me">
+
+    <div id="slider" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="active item center-me"><img src="/assets/slide-1.png"></div>
+        <div class="item center-me"><img src="/assets/slide-2.png"></div>
+        <div class="item center-me"><img src="/assets/slide-3.png"></div>
+        <div class="item center-me"><img src="/assets/slide-4.png"></div>
+        <div class="item center-me"><img src="/assets/slide-5.png"></div>
+        </div>
+      <a class="carousel-control left" href="#slider" data-slide="prev"></a>
+      <a class="carousel-control right" href="#slider" data-slide="next"></a>
+    </div>
+
+    <div id="carousel-nav">
+    <a href="#slider" data-to="1" class="active"></a>
+    <a href="#slider" data-to="2"></a>
+    <a href="#slider" data-to="3"></a>
+    <a href="#slider" data-to="4"></a>
+    <a href="#slider" data-to="5"></a>
+    </div>
+
+  </section>
+<% end %>
+
+
+<%= raw @page.content_for :body %>
+
+
+<% content_for :footer do %>
+  <div class="container">
+    <div class="center-me extra-padding get-light">
+      <a href="" class="btn btn-large round-corner btn-extra-blue-2">Создай свой квест!</a>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <img src="/assets/news.png" class="footer-icons">
+        <div class="mini-wrap">
+          <% @items = Refinery::News::Item.latest(5) %>
+          <%= render '/refinery/news/items/recent_posts' %>
+        </div>
+      </div>
+      <div class="span6">
+        <img src="/assets/contact.png" class="footer-icons">
+
+        <div class="mini-wrap">
+          <h2>Обратная связь</h2>
+          <div style="margin:4px;">
+            <a href="" class="btn">Задать вопрос</a> или <a href="">перейти в раздел помощи</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="darker-wrap">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span6">
+          <ul class="footer-menu">
+            <li><a href="">Главная</a>
+              <ul>
+                <li><a href="">Игровые квесты</a></li>
+                <li><a href="">Обучающие квесты</a></li>
+                <li><a href="">Гуру для сайта</a></li>
+              </ul>
+            </li>
+
+            <li><a href="">Тарифы</a></li>
+
+            <li><a href="">Помощь</a></li>
+            <li><a href="">Новости</a></li>
+            <li><a href="">Отзывы</a></li>
+
+          </ul>
+        </div>
+        <div class="span6"><span class="pull-right">© 2012 ООО «Интерактифф»</span></div>
+
+      </div>
+    </div>
+  </div>
+<% end %>

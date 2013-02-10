@@ -109,9 +109,9 @@ describe User do
     let(:game3) { create :game }
     let(:user) { create :user }
     before do
-      user.roles.create block: game1, access: :manage_roles
-      user.roles.create block: game2, access: :manage
-      user.roles.create block: game3, access: :read
+      user.engine_roles.create block: game1, access: :manage_roles
+      user.engine_roles.create block: game2, access: :manage
+      user.engine_roles.create block: game3, access: :read
     end
     subject { user.games }
     it { should eq [game1,game2] }

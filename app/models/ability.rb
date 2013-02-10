@@ -22,7 +22,7 @@ class Ability
     can :play, Game #, guest_access: true
 
     #later - better
-    user.roles.each { |role| apply_role role }
+    user.engine_roles.each { |role| apply_role role }
   end
 
   def get_resource_access role

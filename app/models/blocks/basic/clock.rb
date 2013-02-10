@@ -17,7 +17,8 @@ class Clock < Block
     self.job.destroy if self.job
     self.job=delay(run_at: time, queue: "clock").fire(time:time,scope: :for_all,mutex: true)
     save!
-    !@skip_set_job=false
+    @skip_set_job=false
+    true
   end
 
 end

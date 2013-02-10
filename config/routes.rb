@@ -1,9 +1,11 @@
-Joygen::Application.routes.draw do
+Interactiff::Application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 
   devise_for :users
+  root :to => 'refinery/pages#home'
 
-  root to: "games#index"
+  # root to: "games#index"
+  match "/quests" => "games#index"
   resources :blocks#, except: [:index,:new]
   resources :domains, :games, :tasks,
     :answers, :hints, :hosts, :messages, :timers, :clocks,
@@ -18,4 +20,5 @@ Joygen::Application.routes.draw do
   #здесь разные форматы format: :json
   match "/play/:game_id(/:task_id)" => "play#show", as: :play_show, :constraints => { game_id: /[0-9a-f]{24}/,task_id: /[0-9a-f]{24}/ }, via: [:get]
   match "/play/submit" => "play#submit", as: :play_submit, via: [:get, :post]
+  mount Refinery::Core::Engine, :at => '/'
 end

@@ -18,7 +18,7 @@ class BlocksController < InheritedResources::Base
     @block=params[:block][:type].constantize.new params[:block]
     if @block.is_a? Game
       @block.parent=current_domain
-      current_user.roles.create! access: :manage_roles, block: @block
+      current_user.engine_roles.create! access: :manage_roles, block: @block
     end
     authorize!(params[:action],@block)
     @block.save!

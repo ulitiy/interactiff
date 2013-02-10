@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Joygen::Application.load_tasks
+Interactiff::Application.load_tasks

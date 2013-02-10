@@ -1,0 +1,9 @@
+<h2><%= t('news.recent_posts') %></h2>
+<dl class="news">
+<% @items.each do |item| %>
+	<dt><% if item.source.present? %><span class="source"><%= URI.parse(item.source).host %></span> / <% end %><span><%= l(item.publish_date, format: :long) %></span></dt>
+	<dd><%= link_to item.title, refinery.news_item_path(item) %></dd>
+<% end %>
+
+<dd><%= link_to t("news.all_html"), refinery.news_root_path %></a></dd>
+</dl>

@@ -23,22 +23,6 @@ class ApplicationController < ActionController::Base
     redirect_to [request.protocol,cd.main_host.name,request.port_string,request.fullpath].join, :status=>:moved_permanently unless(cd.main_host_id==current_host.id || cd.main_host_id.nil?) #на главный хост
   end
 
-  alias old_current_user current_user
-
-  # if user is logged in, return current_user, else return guest_user
-  def current_user
-    if old_current_user
-      if session[:guest_user_id]
-        logging_in
-        guest_user.destroy
-        session[:guest_user_id] = nil
-      end
-      old_current_user
-    else
-      guest_user
-    end
-  end
-
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user
@@ -64,12 +48,39 @@ class ApplicationController < ActionController::Base
     u
   end
 
+  def old_current_user
+    @current_user ||= warden.authenticate(:scope => :user)
+  end
+
+  def current_user
+    if old_current_user
+      if session[:guest_user_id]
+        logging_in
+        guest_user.destroy
+        session[:guest_user_id] = nil
+      end
+      old_current_user
+    else
+      guest_user
+    end
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
-    if !current_user.is_a? Guest
+    if user_signed_in? && !current_user.is_a?(Guest)
       flash[:notice] = t("cancan.exceptions.denied")
       redirect_to root_url
     else
       authenticate_user!
     end
   end
+
+
+  def refinery_user_required?
+    false
+  end
+
+  def default_url_options(options={})
+    { asdf: 5 }
+  end
+
 end
