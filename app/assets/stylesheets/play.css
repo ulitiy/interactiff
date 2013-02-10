@@ -2,7 +2,7 @@
  *= require bootstrap_and_overrides
 */
 /*Шрифты*/
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext);
 
 /*Все что нужно*/
 body {

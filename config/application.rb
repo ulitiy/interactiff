@@ -57,12 +57,13 @@ module Interactiff
 
     #ActiveRecord::Base.include_root_in_json = false
 
-
-    # refinery
-    # config.before_initialize do
-    #   require 'refinery_patch'
-    #   require 'restrict_refinery_to_refinery_users'
-    # end
+    config.after_initialize do |app| #fucking refinery override
+      ::ApplicationController.module_eval do
+        def default_url_options(options={})
+          {}
+        end
+      end
+    end
 
     include Refinery::Engine
     after_inclusion do
