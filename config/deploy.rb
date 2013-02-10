@@ -62,6 +62,7 @@ namespace :deploy do
   task :custom_symlink, roles: :app do
     run "ln -nfs #{shared_path}/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
   end
 end
 

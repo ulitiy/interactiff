@@ -35,8 +35,8 @@ gem 'refinerycms-copywriting'
 
 
 gem 'mousetrap-rails'
-gem "therubyracer"
-gem "less-rails"
+# gem "therubyracer"
+# gem "less-rails"
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
