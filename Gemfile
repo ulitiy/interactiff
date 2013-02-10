@@ -9,7 +9,15 @@ group :assets do
   gem 'execjs'
   gem 'compass-rails'
   gem 'turbo-sprockets-rails3'
+  gem 'mousetrap-rails'
+  gem "therubyracer"
+  gem "less-rails"
+  gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  gem 'rails-backbone', :require=> "backbone-rails" #, github: "codebrew/backbone-rails"
 end
+
 gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
 gem "mongoid"
@@ -32,16 +40,6 @@ gem 'refinerycms-i18n', '~> 2.0.0'
 gem "refinerycms-news", '~> 2.0.0'
 gem 'refinerycms-inquiries', '~> 2.0.0'
 gem 'refinerycms-copywriting'
-
-
-gem 'mousetrap-rails'
-# gem "therubyracer"
-# gem "less-rails"
-gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'rails-backbone', :require=> "backbone-rails" #, github: "codebrew/backbone-rails"
-# gem 'markitup-rails'
 
 gem 'i18n-js'
 gem 'jbuilder'
