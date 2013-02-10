@@ -14,6 +14,7 @@ gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
 gem "mongoid"
 gem 'delayed_job_mongoid'
+gem 'daemons' #dj
 gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
 gem 'devise'
 gem 'cancan'

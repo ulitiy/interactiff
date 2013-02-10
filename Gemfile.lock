@@ -427,6 +427,7 @@ DEPENDENCIES
   capybara
   coffee-rails (>= 3.2.2)
   compass-rails
+  daemons
   database_cleaner
   delayed_job_mongoid
   delayed_job_web!
