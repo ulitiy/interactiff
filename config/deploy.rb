@@ -36,10 +36,10 @@ end
 namespace :mongoid do
   desc "Create MongoDB indexes"
   task :create_indexes do
-    run "cd #{current_path} && bundle exec rake db:mongoid:create_indexes", :once => true
+    run "cd #{current_path} && RAILS_ENV=production bundle exec rake db:mongoid:create_indexes", :once => true
   end
   task :remove_indexes do
-    run "cd #{current_path} && bundle exec rake db:mongoid:remove_indexes", :once => true
+    run "cd #{current_path} && RAILS_ENV=production bundle exec rake db:mongoid:remove_indexes", :once => true
   end
 end
 
@@ -61,6 +61,7 @@ end
 namespace :deploy do
   task :custom_symlink, roles: :app do
     run "ln -nfs #{shared_path}/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
+    run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
   end
 end
 
@@ -68,10 +69,10 @@ require 'bundler/capistrano'
 require 'capistrano-unicorn'
 require "whenever/capistrano"
 
-load 'deploy/assets'
-
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
 after "deploy:update", "mongoid:create_indexes"
 after 'deploy:update_code', "deploy:custom_symlink"
+
+load 'deploy/assets'
