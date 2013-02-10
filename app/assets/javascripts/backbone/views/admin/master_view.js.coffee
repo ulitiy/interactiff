@@ -6,8 +6,8 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
     htmlModalView.render()
 
   reset: =>
-    @unsetLoadOverlay()
     @renderViews()
+    @unsetLoadOverlay()
 
   renderViews: ->
     window.parentBlock=masterCollection.get(parentId) || rootBlock

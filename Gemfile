@@ -8,14 +8,13 @@ group :assets do
   gem 'haml_coffee_assets'
   gem 'execjs'
   gem 'compass-rails'
-  # gem 'turbo-sprockets-rails3'
+  gem 'turbo-sprockets-rails3'
 end
 gem 'libv8', '~> 3.11.8'
 gem 'sprockets', '>= 2.0'
 gem "mongoid"
 gem 'delayed_job_mongoid'
 gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
-# gem "daemons"
 gem 'devise'
 gem 'cancan'
 gem 'russian'
