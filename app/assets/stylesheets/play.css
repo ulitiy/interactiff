@@ -51,7 +51,7 @@ h1 {
  .window {
  	position: relative;
  	background-color: #e2e2e2;
- 	background-image: url(http://interactiff.net/assets/noize.png);
+ 	background-image: url(noize.png);
  	padding: 20px;
  	border-radius: 5px;
  	border:1px solid #d4d4d4;
