@@ -15,7 +15,7 @@ class EvalBlock < Block
     @vars={}
     for var_name in var_list(expr) do
       if var_name=="last_answer"
-        @vars[var_name]=options[:handler].last_answer; #TODO: плохо -> handler.options[:handler] тоже
+        @vars[var_name]=options[:handler].last_answer; #TODO: плохо -> handler.options[:handler] тоже. М.б. синглтон?
       else
         @vars[var_name]=Variable.where(game: options[:game], name: var_name).first.value(options)
       end
@@ -44,6 +44,7 @@ class EvalBlock < Block
     end
   end
 
+  #TODO: convert methods to constants
   # @return RegExp for variable
   def self.var_reg
     /[а-яА-Яa-zA-Z0-9_\.][а-яА-Яa-zA-Z0-9_]*/
