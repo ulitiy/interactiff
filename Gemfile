@@ -41,7 +41,7 @@ gem "refinerycms-news", '~> 2.0.0'
 gem 'refinerycms-inquiries', '~> 2.0.0'
 gem 'refinerycms-copywriting'
 
-gem 'i18n-js'
+gem 'i18n-js', github: "fnando/i18n-js"
 gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
