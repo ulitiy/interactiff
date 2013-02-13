@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   # TODO: TEST ME, update_attributes
   def logging_in
     guest_user.events.each do |event|
-      event.user_id=old_current_user.id
+      event.user_id=current_user_without_guest.id
       event.save
     end
   end
@@ -48,18 +48,18 @@ class ApplicationController < ActionController::Base
     u
   end
 
-  def old_current_user
+  def current_user_without_guest
     @current_user ||= warden.authenticate(:scope => :user)
   end
 
-  def current_user
-    if old_current_user
+  def current_user_with_guest
+    if current_user_without_guest
       if session[:guest_user_id]
         logging_in
         guest_user.destroy
         session[:guest_user_id] = nil
       end
-      old_current_user
+      current_user_without_guest
     else
       guest_user
     end
@@ -79,8 +79,8 @@ class ApplicationController < ActionController::Base
     false
   end
 
-  def default_url_options(options={})
-    { asdf: 5 }
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || games_path
   end
 
 end

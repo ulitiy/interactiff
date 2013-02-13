@@ -60,8 +60,9 @@ module Interactiff
     config.after_initialize do |app| #fucking refinery override
       ::ApplicationController.module_eval do
         def default_url_options(options={})
-          {}
+          ::I18n.locale != ::Refinery::I18n.default_frontend_locale ? { :locale => ::I18n.locale } : {}
         end
+        alias_method_chain :current_user, :guest
       end
     end
 
