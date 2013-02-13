@@ -52,7 +52,7 @@ class EvalBlock < Block
 
   # @return RegExp for constants and methods
   def self.const_reg
-    /^[А-ЯA-Z0-9\.]/
+    /\A[А-ЯA-Z0-9\.]/
   end
 
   # @return Array of variables used in the expression

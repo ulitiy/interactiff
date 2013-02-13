@@ -8,7 +8,7 @@ class Setter < EvalBlock
 
   # sets variable from the expression
   def set_variable
-    arr=expression.scan(/^(#{EvalBlock.var_reg})=.+/)[0]
+    arr=expression.scan(/\A(#{EvalBlock.var_reg})=.+/)[0]
     return unless arr
     var_name=arr[0]
     self.variable=Variable.where(game: game, name: var_name).first
@@ -20,7 +20,7 @@ class Setter < EvalBlock
   end
 
   def right_part
-    expression.scan(/^#{EvalBlock.var_reg}=(.+)/)[0][0]
+    expression.scan(/\A#{EvalBlock.var_reg}=(.+)/)[0][0]
   end
 
   # setter should hit all checkers of the variable
