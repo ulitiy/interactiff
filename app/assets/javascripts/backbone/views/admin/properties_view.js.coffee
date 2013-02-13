@@ -23,8 +23,8 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
   draw: (newmodel)=>
     @model=newmodel
     $(@el).html(@template(@model))
-    @setTimePicker()
     @rivetsView=rivets.bind $(@el), model: @model
+    @setTimePicker()
 
   setTimePicker: =>
     $(".timer",$(@el)).datetimepicker

@@ -1,11 +1,5 @@
-#ОБЯЗАТЕЛЬНО СДЕЛАТЬ ТОЛЬКО ОДНО СОХРАНЕНИЕ В ЕДИНИЦУ ВРЕМЕНИ
-#сделать чтобы при удалении контейнеров, удалялись связи
-
 class Joygen.Collections.BlocksCollection extends Backbone.Collection
   model: Joygen.Models.Block
-  # url: "/blocks"
-  # initialize:  ->
-  #   @storage = new Offline.Storage('blocks', this, keys: {parent_id: this, game_id: this, task_id: this})
 
   parse: (resp)->
     _(resp).map (attrs) ->

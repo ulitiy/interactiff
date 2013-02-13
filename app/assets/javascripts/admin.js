@@ -10,7 +10,7 @@
 //= require jquery-ui-timepicker-addon
 
 //= require underscore
-//= require backbone-0.9.10
+//= require backbone-edge
 //= require backbone_rails_sync
 //= require rivets
 //= require hamlcoffee
