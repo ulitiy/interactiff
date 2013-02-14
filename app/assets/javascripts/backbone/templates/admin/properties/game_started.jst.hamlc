@@ -1,0 +1,3 @@
+.property
+  %label(for="time")= I18n.t("admin.clock.time")
+  %input#time.datetime(type="text", data-value="model.time")
