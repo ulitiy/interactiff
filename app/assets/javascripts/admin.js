@@ -9,7 +9,7 @@
 //= require mousetrap
 //= require jquery-ui-timepicker-addon
 
-//= require underscore
+//= require underscore-edge
 //= require backbone-edge
 //= require backbone_rails_sync
 //= require rivets

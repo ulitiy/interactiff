@@ -9,6 +9,8 @@ class Block
   field :y, type: Integer, default: 0
   field :title, type: String, default: ""
   field :scope, type: Symbol, default: :for_one
+  field :container_source, type: Boolean, default: false
+  field :container_target, type: Boolean, default: false
 
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
@@ -22,7 +24,7 @@ class Block
   has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
   has_many :roles, dependent: :destroy
 
-  attr_accessible :x,:y,:title,:parent,:parent_id
+  attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target
 
   default_scope order_by(y:1,x:1)
 

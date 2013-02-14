@@ -7,8 +7,7 @@ class Answer < Block
   field :reusable, type: Symbol, default: :for_other
   # другие могут активировать, если написание отличается
   field :spelling_matters, type: Boolean, default: true #only if regexp is true and reusable is no
-  field :container_source, type: Boolean, default: false
-  attr_accessible :body,:container_source,:reusable,:spelling_matters
+  attr_accessible :body,:reusable,:spelling_matters
 
   before_create :set_digest
 

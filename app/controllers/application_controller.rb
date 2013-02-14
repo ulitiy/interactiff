@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     redirect_to [request.protocol,cd.main_host.name,request.port_string,request.fullpath].join, :status=>:moved_permanently unless(cd.main_host_id==current_host.id || cd.main_host_id.nil?) #на главный хост
   end
 
+  def current_user
+    @current_user ||= warden.authenticate(:scope => :user)
+  end
+
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user

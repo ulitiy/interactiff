@@ -21,10 +21,12 @@ class Game < Block
     self.name=I18n.t("admin.games.new")
     gs=GameStarted.create! parent: self, x: 280, y: 100, title: "Начало игры"
     t1=Task.create! parent: self, x: 530, y: 170, name: "Задание 1", title: "с выбором ответа", input_type: "link"
-    tg1=TaskGiven.create! parent: t1, x: 100, y: 100, body: "Это текст первого задания. Вы можете его редактировать в панели свойств справа, а также использовать html редактор."
+    tg1=TaskGiven.create! parent: t1, x: 100, y: 100, container_target: true,
+                          body: "Это текст первого задания. Вы можете его редактировать в панели свойств справа, а также использовать html редактор.",
+                          title: "Дано"
     Relation.create! from: gs, to: tg1
     a1=Answer.create! parent: t1, x: 550, y: 100, body: "Верный ответ"
-    tp1=TaskPassed.create! parent: t1, x: 800, y: 100
+    tp1=TaskPassed.create! parent: t1, x: 800, y: 100, container_source: true
     Relation.create! from: a1, to: tp1
     Answer.create! parent: t1, x: 550, y: 180, body: "Неверный ответ"
     gp=GamePassed.create! parent: self, x: 800, y: 310, title: "Игра пройдена, Ура!"

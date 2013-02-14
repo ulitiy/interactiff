@@ -4,6 +4,7 @@ class Joygen.Models.TaskPassed extends Joygen.Models.Block
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "TaskPassed"
       name: I18n.t("admin.task_passed.new")
+      container_source: true
     )
   icon: "/assets/admin/icons/16/137.png"
   isTarget: -> true

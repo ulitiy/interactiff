@@ -57,7 +57,7 @@ module Interactiff
 
     #ActiveRecord::Base.include_root_in_json = false
 
-    config.after_initialize do |app| #fucking refinery override
+    config.to_prepare do |app| #fucking refinery override
       ::ApplicationController.module_eval do
         def default_url_options(options={})
           ::I18n.locale != ::Refinery::I18n.default_frontend_locale ? { :locale => ::I18n.locale } : {}

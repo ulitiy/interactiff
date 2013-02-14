@@ -14,8 +14,8 @@ class Joygen.Collections.BlocksCollection extends Backbone.Collection
     return [b] unless b.get("parent_id")?
     @path(b.get("parent_id")).concat([b])
 
-  parent: (id)=>
-    @find (item)-> item.id==id
+  parent: (model)=>
+    @get(model.get("parent_id"))
 
   children: (id)=>
     if id=="0"

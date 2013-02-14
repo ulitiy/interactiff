@@ -5,6 +5,8 @@ class Joygen.Models.Block extends Backbone.Model
     x: Math.round(Math.random()*50)*10
     y: Math.round(Math.random()*30)*10
     parent_id: null
+    container_source: false
+    container_target: false
 
   modelName: "block"
 
@@ -42,7 +44,7 @@ class Joygen.Models.Block extends Backbone.Model
   children: ->
     @collection.children(@id)
   parent: ->
-    @collection.parent(@id)
+    @collection.parent(this)
 
 
 
@@ -51,12 +53,12 @@ class Joygen.Models.Block extends Backbone.Model
 
   getContainerSources: ->
     arr=_.filter @children(), (block)->
-      block.isContainerSource?()
+      block.get("container_source")
     _.sortBy arr, (block)->
       block.get("y")+block.get("x")/10000 #таким образом получаем первичную сортировку по y, вторичную по x
   getContainerTargets: ->
     arr=_.filter @children(), (block)->
-      block.isContainerTarget?()
+      block.get("container_target")
     _.sortBy arr, (block)->
       block.get("y")+block.get("x")/10000
 

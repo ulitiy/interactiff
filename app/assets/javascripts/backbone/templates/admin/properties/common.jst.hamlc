@@ -3,6 +3,15 @@
   .property
     %label(for="title")= I18n.t("admin.block.title")
     %input(id="title", type="text", data-value="model.title")
+  -if @parent()?.modelName=="task"
+    -if @isSource?() || @isContainerSource?()
+      .property
+        %label(for="container_source")= I18n.t("admin.block.container_source")
+        %input#container_source(type="checkbox", data-checked="model.container_source")
+    -if @isTarget?() || @isContainerTarget?()
+      .property
+        %label(for="container_target")= I18n.t("admin.block.container_target")
+        %input#container_source(type="checkbox", data-checked="model.container_target")
   -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
   -if tmp
     !=tmp(this)
