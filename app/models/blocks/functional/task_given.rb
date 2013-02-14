@@ -1,2 +1,2 @@
-class TaskGiven < Block
+class TaskGiven < Hint
 end

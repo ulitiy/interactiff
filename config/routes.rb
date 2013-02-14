@@ -7,6 +7,12 @@ Interactiff::Application.routes.draw do
   # root to: "games#index"
   resources :games, path: "/quests"
   resources :blocks#, except: [:index,:new]
+  resources :domains, :games, :tasks,
+    :answers, :hints, :hosts, :messages, :timers, :clocks,
+    :task_givens, :task_passeds, :game_starteds, :game_passeds, :inputs, :outputs,
+    :not_blocks, :and_blocks, :or_blocks,
+    :checkers, :setters, :distributors, :eval_blocks,
+    :path=>"/blocks"
   match "/blocks/:id/master" => "blocks#master"
   resources :relations
   match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", as: :admin,

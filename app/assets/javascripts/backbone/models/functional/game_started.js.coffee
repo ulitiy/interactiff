@@ -7,5 +7,4 @@ class Joygen.Models.GameStarted extends Joygen.Models.Block
     )
   icon: "/assets/admin/icons/16/143.png"
   isSource: -> true
-  isTarget: -> true
   deletable: false
