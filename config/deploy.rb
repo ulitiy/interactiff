@@ -62,7 +62,6 @@ namespace :deploy do
   task :custom_symlink, roles: :app do
     run "ln -nfs #{shared_path}/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs `bundle show delayed_job_web`/lib/delayed_job_web/application/public #{current_path}/public/delayed_job"
   end
 end
 
