@@ -1,2 +1,2 @@
-class GameStarted < Block
+class GameStarted < Clock
 end
