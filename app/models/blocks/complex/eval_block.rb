@@ -47,12 +47,12 @@ class EvalBlock < Block
   #TODO: convert methods to constants
   # @return RegExp for variable
   def self.var_reg
-    /[а-яА-Яa-zA-Z0-9_\.][а-яА-Яa-zA-Z0-9_]*/
+    /[а-яА-Яa-zA-Z0-9_\.][а-яА-Яa-zA-Z0-9_]*|[\'\"].*[\'\"]/
   end
 
   # @return RegExp for constants and methods
   def self.const_reg
-    /\A[А-ЯA-Z0-9\.]/
+    /\A[А-ЯA-Z0-9\.\"]/
   end
 
   # @return Array of variables used in the expression

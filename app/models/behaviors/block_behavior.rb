@@ -32,6 +32,7 @@ module BlockBehavior
   # method is called when hit and hot, or when forced
   # @return [Array] all events, arisen
   def fire options={}
+    ret=nil
     options=prepare_options options
     cs=CriticalSection.new(game_id).lock if options[:mutex]
       return personal_fire(options) if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
@@ -44,6 +45,7 @@ module BlockBehavior
         reason: nil,
         input: nil
       ))
+  ensure
     cs.unlock if options[:mutex]
     ret
   end

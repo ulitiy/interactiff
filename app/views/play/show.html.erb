@@ -58,7 +58,7 @@
             <dl class="row-fluid game-tasks">
               <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
                 <dt class="span2"><%=raw(l(event.time,format: :dmy)+"<br/>") if event.time<Date.today %><%= l event.time, format: :hms %></dt>
-                <dd class="span10"><%= raw hint.body %></dd>
+                <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></dd>
               <% end %>
 
               <% if @task.input_type=="link" %>
@@ -66,7 +66,8 @@
                 <dd class="span10 answers">
                   <ul class="unstyled">
                     <% for answer in @handler.task_answers %>
-                      <li><%= link_to raw(answer.body), play_submit_path(task_id:@task.id, input: raw(answer.digest)) %></li>
+                      <li><%= link_to raw(answer.body_with_vars(game: @game, user: current_user, handler: @handler)),
+                                          play_submit_path(task_id:@task.id, input: raw(answer.digest)) %></li>
                     <% end %>
                   </ul>
                 </dd>
@@ -91,7 +92,7 @@
     </div>
 
   <div class="footer center-me">
-    Powered by <%= link_to "Interactiff", "http://interactiff.net" %>
+    Powered by <%= link_to "Interactiff", "https://interactiff.net" %>
   </div>
   </div>
 </body>

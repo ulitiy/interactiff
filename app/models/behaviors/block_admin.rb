@@ -1,5 +1,7 @@
 # Extracted methods for admin part
 module BlockAdmin
+  extend ActiveSupport::Concern
+
   module ClassMethods
     # @param [Integer] id id of current page (parent)
     # @return [Array] all blocks necessary for requested page: in game – game path+descendants, all domains or domain children otherwise+I/O
@@ -54,10 +56,5 @@ module BlockAdmin
     end
 
     # alias direct_descendants descendants #т.к. для экономии времени сделаем прямую ссылку на некоторые типы контейнеров
-  end
-
-  def self.included(receiver)
-    receiver.extend         ClassMethods
-    receiver.send :include, InstanceMethods
   end
 end

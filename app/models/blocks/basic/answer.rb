@@ -1,5 +1,8 @@
 # Potential input block
 class Answer < Block
+  include WithVars
+  with_vars :body
+
   field :body, type: String, default: ""
   # можешь активировать несколько раз один блок ответа :for_all
   # ты не можешь, но другие могут :for_other

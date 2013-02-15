@@ -11,7 +11,7 @@ class Setter < EvalBlock
     arr=expression.scan(/\A(#{EvalBlock.var_reg})=.+/)[0]
     return unless arr
     var_name=arr[0]
-    self.variable=Variable.where(game: game, name: var_name).first
+    self.variable=Variable.find_or_create_by game: game, name: var_name #Variable.where(game: game, name: var_name).first
   end
 
   # creates an event with variable value

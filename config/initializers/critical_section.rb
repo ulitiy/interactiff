@@ -29,9 +29,11 @@ class CriticalSection
   end
 
   def self.synchronize file
+    res=nil
     cs=CriticalSection.new(file)
     cs.lock
     res=yield
+  ensure
     cs.unlock
     res
   end
