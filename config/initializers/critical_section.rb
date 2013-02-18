@@ -29,16 +29,15 @@ class CriticalSection
     self
   end
 
-  def self.synchronize file, l=true
-    if l
-      cs=CriticalSection.new(file)
-      cs.lock
-    end
+  def self.synchronize file
+    cs=CriticalSection.new(file)
+    BlockBehavior.reset_events_count
+    cs.lock
     Timeout.timeout TIMEOUT do
       yield
     end
   #TODO: log exceptions
   ensure
-    cs.unlock if l
+    cs.unlock
   end
 end

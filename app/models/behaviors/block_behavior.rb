@@ -1,5 +1,15 @@
 module BlockBehavior
 
+  MAX_EVENTS_PER_REQUEST=30
+  def check_max_events
+    $EVENTS_COUNT+=1
+    raise "Too many events" if $EVENTS_COUNT>MAX_EVENTS_PER_REQUEST
+  end
+
+  def self.reset_events_count
+    $EVENTS_COUNT=0
+  end
+
   # ПРОТЕСТИРОВАТЬ ПРИ ОТСУТСТВИИ КОМАНДЫ/ПОЛЬЗОВАТЕЛЯ для общих случаев, например общее присвоение переменной/проверка
   # @return Array descendant events of the game for user(his team and common), optionally by the var name
   def descendant_events_of options
@@ -32,6 +42,7 @@ module BlockBehavior
   # method is called when hit and hot, or when forced
   # @return [Array] all events, arisen
   def fire options={}
+    check_max_events
     options=prepare_options options
     return personal_fire(options) if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
     event=create_event options
@@ -46,7 +57,8 @@ module BlockBehavior
   end
 
   def fire_with_critical_section options={}
-    CriticalSection.synchronize game_id, options[:mutex] { fire_without_critical_section options }
+    return fire_without_critical_section options if !options[:mutex]
+    CriticalSection.synchronize game_id do fire_without_critical_section options end
   end
 
   alias_method_chain :fire, :critical_section
