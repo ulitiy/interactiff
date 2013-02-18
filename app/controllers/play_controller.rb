@@ -29,7 +29,7 @@ class PlayController < ApplicationController
       if @task #если есть первое не пройденное
         redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return #то перенаправить туда
       else
-        render "play/show"
+        render "play/no_tasks"
       end
     end
   end
