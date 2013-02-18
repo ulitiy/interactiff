@@ -17,6 +17,7 @@ layoutSettings=
   togglerLength_closed: 35
   togglerContent_open: '<div class="triangle-left"></div>'
   togglerContent_closed: '<div class="triangle-right"></div>'
+  closable: !$.browser.mobile
 
 $ ->
   window.adminLayout=$('#content').layout $.extend(layoutSettings,layoutState.load('adminLayout'))

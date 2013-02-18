@@ -9,6 +9,7 @@
 //= require jquery.jsPlumb-1.3.13-all
 //= require mousetrap
 //= require jquery-ui-timepicker-addon
+//= require detectmobilebrowser
 
 //= require underscore-edge
 //= require backbone-edge
