@@ -121,7 +121,11 @@ class EventHandler
   end
 
   def game_passed?
-    game.in? games_passed
+    game.descendant_events_of(type: "GamePassed",user: user).any?
+  end
+
+  def game_started?
+    game.descendant_events_of(type: "GameStarted",user: user).any?
   end
 
   def flush

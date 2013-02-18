@@ -10,12 +10,27 @@ class PlayController < ApplicationController
   # Display current state of player in game/task
   def show
     @game=Game.find(params[:game_id])
-    @task=Task.where(id:params[:task_id]).first #not to return nil
+    @task=Task.where(id: params[:task_id]).first #not to return nil
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
-    if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нет такого задания или если задание не в игре или если задание не дано
-      @task=@handler.play_tasks.find{ |t| !t.passed } || @handler.play_tasks.first #первое не пройденное или первое
-      #TODO: протестировать если все задания пройдены, что перенаправляется с URL игры
-      redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return if @task
+    if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нельзя показать запрошенное задание
+      redirect_to play_game_url(game_id: @game.id)
+    end
+  end
+
+  def game
+    @game=Game.find(params[:game_id])
+    @handler=EventHandler.new(user: current_user, game: @game, task: @task)
+    if !@handler.game_started?
+      render "play/not_started"
+    elsif @handler.game_passed?
+      render "play/win"
+    else
+      @task=@handler.current_tasks.first
+      if @task #если есть первое не пройденное
+        redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return #то перенаправить туда
+      else
+        render "play/show"
+      end
     end
   end
 
@@ -28,22 +43,23 @@ class PlayController < ApplicationController
       @fired_events=@handler.input(params[:input])
       set_flash
     end
-    redirect_to play_show_url(game_id: @game.id, task_id: @task.id)
   end
 
   # Set flash messages due to current changes
   def set_flash
-    if @handler.flush.game_passed?
-      flash[:notice]=t("play.notice.game_passed")
-      redirect_to play_show_url(game_id: @game.id)
-      return
-    elsif @handler.task_passed?
-      @task=@handler.current_tasks.first
+    # if @handler.flush.game_passed?
+    #   redirect_to play_game_url(game_id: @game.id)
+    #   return
+    # elsif
+    if @handler.flush.task_passed?
       flash[:notice]=t("play.notice.task_passed")
+      redirect_to play_game_url(game_id: @game.id)
+      return
     # elsif @fired_events.present?
     #   flash[:notice]=t("play.notice.fired_events")
     else
       flash[:alert]=t("play.alert.no_events")
+      redirect_to play_show_url(game_id: @game.id, task_id: @task.id)
     end
   end
 end

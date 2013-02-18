@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title><%= @game.name %> — Interactiff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link href="/assets/application.css" rel="stylesheet">
+
+</head>
+<body>
+  <!--[if lte IE 7]>
+<div class="alert alert-error"><h1>Устаревший браузер!</h1><p>Вы используете устаревшую версию Internet Explorer. Если вы хотите продолжить пользоваться вашим браузером, то для правильного отображения этого сайта установите <a href="http://www.google.com/chromeframe?quickenable=true">дополнение</a></p></div>
+<![endif]-->
+
+<!--  -->
+
+  <div class="container">
+    <div class="row-fluid w">
+      <div class="span4">
+        <a href="https://interactiff.net/"><img src="/assets/logo2.png" alt=""></a>
+      </div>
+
+      <div class="span8">
+        <h2><%= @game.name %></h2>
+        <p>Квест пройден!</p>
+        <div class="err win"></div>
+      </div>
+    </div>
+  </div>
+
+
+<!--  -->
+
+
+
+</body>
+</html>

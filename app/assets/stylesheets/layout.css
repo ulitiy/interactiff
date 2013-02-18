@@ -1151,11 +1151,15 @@ span.username {
  }
 
 .e500 {
-	background-image: url(500.png); 	
+	background-image: url(500.png);
 	width: 162px; height: 195px;
  }
 
- 
+.win {
+	background-image: url(win.png);
+	width: 180px; height: 173px;
+}
+
 .sparkle {
 	position: relative;
 }
