@@ -39,5 +39,6 @@ class CriticalSection
   #TODO: log exceptions
   ensure
     cs.unlock
+    BlockBehavior.reset_events_count
   end
 end

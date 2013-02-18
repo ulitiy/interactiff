@@ -3,7 +3,10 @@ require 'spec_helper'
 describe Answer do
   let(:user1) { create :user }
   let(:user2) { create :user }
-  before { answer.hit input: "hello", user: user1 }
+  before do
+    BlockBehavior.reset_events_count
+    answer.hit input: "hello", user: user1
+  end
 
   describe "#spelling_hot?" do
     context "when not reusable" do
