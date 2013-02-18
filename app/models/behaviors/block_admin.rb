@@ -18,43 +18,41 @@ module BlockAdmin
     end
   end
 
-  module InstanceMethods
-    # Overriden as_json adding type and id fields
-    def as_json options={}
-      super options.merge(:methods=>[:type,:id,:digest])
-    end
-
-    # @return [String] block class name
-    def type
-      self.class.name
-    end
-
-    # @return [Array] all ancestors + self
-    def path
-      return [self] unless self.parent
-      self.parent.path+[self]
-    end
-
-    # TODO: make the game link to itself
-    # @return [Game] first Game in path (self or ancestor)
-    def parent_game
-     return self if self.class==Game
-     self.game
-    end
-
-    # @return [Game] first Task in path (self or ancestor)
-    def parent_task
-     return self if self.class==Task
-     self.task
-    end
-
-    # @return [Array] all descendants (children + their descentants)
-    def descendants
-      children.reduce(children) do |arr,c|
-        arr+c.descendants
-      end
-    end
-
-    # alias direct_descendants descendants #т.к. для экономии времени сделаем прямую ссылку на некоторые типы контейнеров
+  # Overriden as_json adding type and id fields
+  def as_json options={}
+    super options.merge(:methods=>[:type,:id,:digest])
   end
+
+  # @return [String] block class name
+  def type
+    self.class.name
+  end
+
+  # @return [Array] all ancestors + self
+  def path
+    return [self] unless self.parent
+    self.parent.path+[self]
+  end
+
+  # TODO: make the game link to itself
+  # @return [Game] first Game in path (self or ancestor)
+  def parent_game
+   return self if self.class==Game
+   self.game
+  end
+
+  # @return [Game] first Task in path (self or ancestor)
+  def parent_task
+   return self if self.class==Task
+   self.task
+  end
+
+  # @return [Array] all descendants (children + their descentants)
+  def descendants
+    children.reduce(children) do |arr,c|
+      arr+c.descendants
+    end
+  end
+
+  # alias direct_descendants descendants #т.к. для экономии времени сделаем прямую ссылку на некоторые типы контейнеров
 end

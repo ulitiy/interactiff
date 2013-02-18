@@ -32,23 +32,24 @@ module BlockBehavior
   # method is called when hit and hot, or when forced
   # @return [Array] all events, arisen
   def fire options={}
-    ret=nil
     options=prepare_options options
-    cs=CriticalSection.new(game_id).lock if options[:mutex]
-      return personal_fire(options) if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
-      event=create_event options
-      block_actions options
-      ret=[event]+hit_relations(options.merge(
-        parent: event,
-        source: options[:source]||event,
-        responsible_user: nil,
-        reason: nil,
-        input: nil
-      ))
-  ensure
-    cs.unlock if options[:mutex]
-    ret
+    return personal_fire(options) if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
+    event=create_event options
+    block_actions options
+    [event]+hit_relations(options.merge(
+      parent: event,
+      source: options[:source]||event,
+      responsible_user: nil,
+      reason: nil,
+      input: nil
+    ))
   end
+
+  def fire_with_critical_section options={}
+    CriticalSection.synchronize game_id, options[:mutex] { fire_without_critical_section options }
+  end
+
+  alias_method_chain :fire, :critical_section
 
   # fire personal events for scope users
   def personal_fire options

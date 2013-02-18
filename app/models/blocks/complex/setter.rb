@@ -8,10 +8,8 @@ class Setter < EvalBlock
 
   # sets variable from the expression
   def set_variable
-    arr=expression.scan(/\A(#{EvalBlock.var_reg})=.+/)[0]
-    return unless arr
-    var_name=arr[0]
-    self.variable=Variable.find_or_create_by game: game, name: var_name #Variable.where(game: game, name: var_name).first
+    var_name=EvalBlock.lasgn(expression)
+    self.variable=Variable.find_or_create_by game: game, name: var_name if var_name #Variable.where(game: game, name: var_name).first
   end
 
   # creates an event with variable value
@@ -20,12 +18,12 @@ class Setter < EvalBlock
   end
 
   def right_part
-    expression.scan(/\A#{EvalBlock.var_reg}=(.+)/)[0][0]
+    expression.scan(/\A#{variable.name}=(.+)/)[0][0]
   end
 
   # setter should hit all checkers of the variable
   def blocks_to_hit
-    variable.checkers
+    variable.checkers if variable
   end
 
 end

@@ -1,13 +1,16 @@
 # encoding: UTF-8
 class EvalBlock < Block
 
+  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt]
+  EVAL_TIMEOUT=0.3
+
   attr_accessor :vars
 
   # calculates value from the expression
   # game, user, handler (for last input)
   def calculate_value expr,options
     get_vars expr, options
-    execute replace_vars expr
+    execute expr
   end
 
   # gets var values from the DB
@@ -22,21 +25,14 @@ class EvalBlock < Block
     end
   end
 
-  # replaces engine vars in expression with local vars
-  def replace_vars expr
-    expr.gsub(self.class.var_reg) { |var| var=~self.class.const_reg ? var : "@vars['#{var}']" }
-  end
-
   # 9**999999, @t=''
   # Executes unsafe ruby code in safe env
   def execute str
     begin
       @t=Thread.start do
-        # yield
-        $SAFE=4
-        eval str
+        sandbox str
       end
-      @t.kill unless @t.join(0.1)
+      @t.kill unless @t.join(EVAL_TIMEOUT)
       @t.value
     rescue Exception => e
       raise e
@@ -44,20 +40,47 @@ class EvalBlock < Block
     end
   end
 
-  #TODO: convert methods to constants
-  # @return RegExp for variable
-  def self.var_reg
-    /[а-яА-Яa-zA-Z0-9_\.][а-яА-Яa-zA-Z0-9_]*|[\'\"].*[\'\"]/
+  def sandbox str
+    s=Shikashi::Sandbox.new
+    p=Shikashi::Privileges.new
+    p.allow_methods *ALLOWED_METHODS
+    p.allow_const_read :Math
+    p.allow_global_write :$SAFE
+    p.allow_global_read :$SANDBOX_VARS
+    $SANDBOX_VARS=@vars
+    s.run p, sandbox_string(str)
   end
 
-  # @return RegExp for constants and methods
-  def self.const_reg
-    /\A[А-ЯA-Z0-9\.\"]/
+  def sandbox_string str
+    <<-SANDBOX
+      #{def_vars var_list(str)}
+      $SAFE=4
+      #{str}
+    SANDBOX
+  end
+
+  def def_vars vl
+    vl.map do |var|
+      <<-VARS
+        def self.#{var}
+          $SANDBOX_VARS["#{var}"]
+        end
+      VARS
+    end.join
   end
 
   # @return Array of variables used in the expression
-  def var_list expr
-    expr.scan(self.class.var_reg).uniq.reject { |var| var=~self.class.const_reg }
+  def self.var_list str
+    RubyParser.new.parse(str).var_search
+  end
+
+  def var_list str
+    self.class.var_list str
+  end
+
+  def self.lasgn str
+    p=RubyParser.new.parse(str)
+    p[1].to_s if p && p[0]==:lasgn
   end
 
 end

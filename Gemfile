@@ -46,6 +46,9 @@ gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
 gem 'whenever', :require => false
+
+gem 'shikashi'
+
 group :development do
   gem 'capistrano', :github => 'capistrano/capistrano'
   gem 'capistrano-unicorn'
@@ -55,7 +58,6 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
-  gem 'guard-brakeman'
 end
 group :test do
   gem "factory_girl_rails"
@@ -71,5 +73,6 @@ group :test do
   gem 'turn', :require=> false
 end
 group :production do
+  gem 'unicorn-worker-killer'
   gem 'unicorn'
 end

@@ -29,10 +29,9 @@ describe Setter do
   end
 
   describe "#blocks_to_hit" do
-    let(:checker1) { Checker.create expression: "var1>var2", parent: game }
-    let(:checker2) { Checker.create expression: "var22>Math.sqrt(var1)", parent: game }
-    let(:checker3) { Checker.create expression: "var22>var2", parent: game }
-    before { checker3 } #объявляем заранее, чтобы убедиться, что он не попадет в результат
+    let!(:checker1) { Checker.create expression: "var1>var2", parent: game }
+    let!(:checker2) { Checker.create expression: "var22>Math.sqrt(var1)", parent: game }
+    let!(:checker3) { Checker.create expression: "var22>var2", parent: game }
     subject { setter.blocks_to_hit }
     it { should eq([checker1,checker2]) }
   end
