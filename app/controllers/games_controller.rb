@@ -16,6 +16,5 @@ class GamesController < InheritedResources::Base
   # IR collection definition for actions
   def collection
     @games||=current_user.games
-    raise "asdf"
   end
 end
