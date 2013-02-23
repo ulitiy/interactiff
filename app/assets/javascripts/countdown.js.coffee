@@ -3,7 +3,7 @@ $ ->
     window.startTime=new Date $("#counter").data("time")
     serverNow=new Date $("#counter").data("now")
     now=new Date()
-    correction=serverNow - now + 1500
+    window.correction=now - serverNow + 1500
     cut=(i)->
       ("00"+i).slice(-2)
     set_time=->
