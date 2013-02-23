@@ -22,8 +22,8 @@ class PlayController < ApplicationController
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if !@handler.game_started?
       @start_time=@game.children.where(_type: "GameStarted").first.time
-      render "play/not_started" if stale? etag: [@start_time,"play/not_started"].join
-      fresh_when etag: [@start_time,"play/not_started"].join, public: true
+      render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join
+      # fresh_when etag: [@start_time,"play/not_started"].join, public: true
     elsif @handler.game_passed?
       render "play/win"
     else

@@ -1,11 +1,14 @@
 $ ->
   if $("#counter")?
     window.startTime=new Date $("#counter").data("time")
+    serverNow=new Date $("#counter").data("now")
+    now=new Date()
+    correction=serverNow - now + 1500
     cut=(i)->
       ("00"+i).slice(-2)
     set_time=->
       now=new Date()
-      diff=(startTime-now)/1000 + 2
+      diff=(startTime - now + correction)/1000
       if diff<1
         location.reload()
       days = Math.floor(diff / 86400);

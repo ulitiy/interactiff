@@ -27,7 +27,7 @@
     <div class="row-fluid w">
       <div class="span8">
         <h2>До начала квеста осталось:</h2><!-- <%= @game.name %> -->
-        <div class="counter" id="counter" data-time="<%= @start_time %>">
+        <div class="counter" id="counter" data-time="<%= @start_time %>" data-now="<%= Time.now %>" >
           <div class="digit"><div class="count days">∞</div><div class="unit days">дней</div></div>
           <div class="colon"> : </div>
           <div class="digit"><div class="count hours">∞</div><div class="unit hours">часов</div></div>
