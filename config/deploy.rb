@@ -76,3 +76,6 @@ after "deploy:update", "mongoid:create_indexes"
 after 'deploy:update_code', "deploy:custom_symlink"
 
 load 'deploy/assets'
+
+        require './config/boot'
+        require 'airbrake/capistrano'

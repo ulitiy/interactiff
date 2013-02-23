@@ -49,6 +49,7 @@ gem 'whenever', :require => false
 
 gem 'shikashi'
 gem 'sanitize'
+gem "airbrake"
 
 group :development do
   gem 'capistrano', :github => 'capistrano/capistrano'
@@ -62,13 +63,13 @@ group :development do
 end
 group :test do
   gem "factory_girl_rails"
-  gem "capybara"#, '~> 1.1.0'
-  gem "guard-rspec"#, '~> 0.7.3'
+  gem "capybara"
+  gem "guard-rspec"
   gem "growl"
   gem 'database_cleaner'
   gem 'spork'
   gem 'guard-spork'
-  gem 'rb-fsevent'#, '~> 0.9.1'
+  gem 'rb-fsevent'
   gem "selenium-webdriver"
   gem "poltergeist"
   gem 'turn', :require=> false
