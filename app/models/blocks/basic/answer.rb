@@ -1,9 +1,11 @@
 # Potential input block
 class Answer < Block
+  include AttrSanitizer
   include WithVars
   with_vars :body
 
   field :body, type: String, default: ""
+  sanitize :body
   # можешь активировать несколько раз один блок ответа :for_all
   # ты не можешь, но другие могут :for_other
   # никто не может использовать один ответ :no

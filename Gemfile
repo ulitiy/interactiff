@@ -48,6 +48,7 @@ gem 'yard'
 gem 'whenever', :require => false
 
 gem 'shikashi'
+gem 'sanitize'
 
 group :development do
   gem 'capistrano', :github => 'capistrano/capistrano'
