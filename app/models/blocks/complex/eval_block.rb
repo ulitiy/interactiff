@@ -2,7 +2,7 @@
 class EvalBlock < Block
 
   ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt]
-  EVAL_TIMEOUT=0.3
+  EVAL_TIMEOUT=0.5
 
   attr_accessor :vars
 

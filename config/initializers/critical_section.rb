@@ -1,6 +1,6 @@
 # MUTEX critical section within file write lock. One file - one mutex.
 class CriticalSection
-  TIMEOUT = 1
+  TIMEOUT = 3
   def initialize file
     @file_str=file.to_s
   end
