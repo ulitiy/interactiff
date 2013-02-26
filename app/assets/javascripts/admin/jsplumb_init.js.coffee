@@ -16,6 +16,6 @@ $ ->
     HoverPaintStyle:
       strokeStyle:"#89C27F"
       lineWidth:4.2
-    Connector: ["Flowchart"]#Flowchart, Straight, StateMachine, Bezier
+    Connector: ["Bezier"]#Flowchart, Straight, StateMachine, Bezier
     ConnectionOverlays:[["Arrow", {foldback:0.4, width: 7, length: 15, location:1}]]
     MaxConnections:-1
