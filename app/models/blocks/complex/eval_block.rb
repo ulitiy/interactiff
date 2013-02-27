@@ -71,7 +71,8 @@ class EvalBlock < Block
 
   # @return Array of variables used in the expression
   def self.var_list str
-    RubyParser.new.parse(str).var_search
+    arr=RubyParser.new.parse(str)
+    arr.var_search if arr
   end
 
   def var_list str
