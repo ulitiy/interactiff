@@ -3,6 +3,7 @@ describe EvalBlock do
   let!(:user) { create :user }
   let!(:game) { create :game }
   let!(:task) { create :task, parent: game }
+  let(:setter) { create :setter, parent: game }
   let!(:answer) { create :answer, parent: task }
   let!(:var1) { create :variable, name: "var1", game: game, default: 10 }
   let!(:var2) { create :variable, name: "var2", game: game }
@@ -45,6 +46,11 @@ describe EvalBlock do
     subject { eb.calculate_value("Math.sqrt(25)+var1", user: user, game: game) }
     it { should eq(15) }
     it { eb.calculate_value("var1;$SANDBOX_VARS",user: user, game: game).should eq({"var1" => 10}) }
+    context "last_answer" do
+      before { Event.create user: user, block: answer, variable: var1, input: "ans" }
+      subject { eb.calculate_value("last_answer==\"ans\"", user: user, game: game, handler: handler) }
+      it { should be_true }
+    end
   end
 
 end

@@ -22,6 +22,7 @@ FactoryGirl.define do
   factory :task_passed
   factory :sms
   factory :setter
+  factory :checker
   factory :variable
 
   factory :answer do

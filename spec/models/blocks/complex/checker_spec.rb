@@ -2,6 +2,8 @@ describe Checker do
   let(:team) { create :team }
   let(:user) { create :user, team: team }
   let(:game) { create :game }
+  let(:task) { create :task, parent: game }
+  # let!(:handler) { EventHandler.new(user: user, game: game, task: task) }
   let!(:var1) { create :variable, name: "var1", game: game, default: 100 }
   let!(:var2) { create :variable, name: "var2", game: game, default: 10 }
   let!(:var22) { create :variable, name: "var22", game: game, default: 5 }
@@ -19,5 +21,10 @@ describe Checker do
   describe "#hot?" do
     subject { checker.hot? user: user, game: game }
     it { should be_true }
+    context "when last_answer is set" do
+      let!(:checker) { Checker.create expression: "var1==\"ans\"", parent: task }
+      before { Event.create user: user, block: setter, variable: var1, var_value: "ans" }
+      it { should be_true }
+    end
   end
 end

@@ -53,18 +53,18 @@ describe EventHandler do
   describe "#tasks_given" do
     subject { handler.tasks_given }
     before { tg1.hit(user: user1, scope: :for_one);tg2.hit(user:user1, team: team1,scope: :for_team);tg3.hit(user:user1,scope: :for_all);tg4 }
-    context "for user1" do
-      let(:handler) { EventHandler.new(user: user1,game: game) }
-      it { should eq([task1,task2,task3]) }
-    end
-    context "for user12" do
-      let(:handler) { EventHandler.new(user: user12,game: game) }
-      it { should eq([task2,task3]) }
-    end
-    context "for user2" do
-      let(:handler) { EventHandler.new(user: user2,game: game) }
-      it { should eq([task3]) }
-    end
+    # context "for user1" do
+    #   let(:handler) { EventHandler.new(user: user1,game: game) }
+    #   it { should eq([task1,task2,task3]) }
+    # end
+    # context "for user12" do
+    #   let(:handler) { EventHandler.new(user: user12,game: game) }
+    #   it { should eq([task2,task3]) }
+    # end
+    # context "for user2" do
+    #   let(:handler) { EventHandler.new(user: user2,game: game) }
+    #   it { should eq([task3]) }
+    # end
   end
 
   describe "#last_answer" do

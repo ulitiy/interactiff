@@ -67,8 +67,10 @@
                 <dd class="span10 answers">
                   <ul class="unstyled">
                     <% for answer in @handler.task_answers %>
-                      <li><%= link_to raw(answer.body_with_vars(game: @game, user: current_user, handler: @handler)),
-                                          play_submit_path(task_id:@task.id, input: raw(answer.digest)) %></li>
+                    <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
+                      <li><%= link_to raw(bwv),
+                                          play_submit_path(task_id:@task.id, input: raw(answer.digest))
+                                          %></li>
                     <% end %>
                   </ul>
                 </dd>

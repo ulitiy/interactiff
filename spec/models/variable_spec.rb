@@ -5,7 +5,7 @@ describe Variable do
   let(:setter) { create :setter, parent: game }
   let(:var1) { create :variable, name: "var1", game: game }
   describe "#value" do
-    subject { var1.value({game: game, user: user}) }
+    subject { var1.value({user: user}) }
     context "default" do
       it { should eq(0) }
     end

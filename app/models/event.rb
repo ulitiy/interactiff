@@ -4,7 +4,7 @@ class Event
 
   field      :input , type: String
   field      :time  , type: Time
-  field      :scope , type: Symbol
+  field      :scope , type: Symbol, default: :for_one
   field      :block_type  , type: String
   field      :visit_count , type: Integer, default: 1
   field      :var_value

@@ -18,7 +18,7 @@ class Setter < EvalBlock
   end
 
   def right_part
-    expression.scan(/\A#{variable.name}=(.+)/)[0][0]
+    expression.scan(/\A#{variable.name}=(.+)\Z/)[0][0]
   end
 
   # setter should hit all checkers of the variable
