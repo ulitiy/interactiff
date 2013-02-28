@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <meta name=description content="">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <link rel=stylesheet href="/css/layout.css">
+    </head>
+    <body>
+        <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
+          <% next if hint.body.empty? %>
+          <h1><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></h1>
+        <% end %>
+
+        <% if @handler.task_answers.count>0 && @task.input_type=="link" %>
+          <ul class="menu">
+            <% for answer in @handler.task_answers %>
+            <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
+              <li><%= link_to raw(bwv),
+                                  play_submit_path(task_id:@task.id, input: raw(answer.digest))
+                                  %></li>
+            <% end %>
+          </ul>
+        <% end %>
+<!--
+        <ul class="info-panel">
+            <li class="info"><small>За бортом</small>-99 °С</li>
+            <li class="info"><small>В Санкт-Петербурге</small>+26 °С</li>
+            <li class="info"><small>До прилета</small>1 час 15 мин.</li>
+            <li class="getinfo"><a href="">Информация о городе</a></li>
+        </ul>
+
+-->
+        <%= link_to "Назад", play_back_path(game_id: @game.id), class: "button" %>
+    </body>
+</html>

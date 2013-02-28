@@ -21,6 +21,7 @@ Interactiff::Application.routes.draw do
   get "/play/:game_id/:task_id" => "play#show", as: :play_show, :constraints => { game_id: /[0-9a-f]{24}/,task_id: /[0-9a-f]{24}/ }
   get "/play/:game_id" => "play#game", as: :play_game, :constraints => { game_id: /[0-9a-f]{24}/ }
   match "/play/submit" => "play#submit", as: :play_submit, via: [:get, :post]
+  get "/play/back" => "play#back", as: :play_back
   match "/aeroflot" => redirect("/play/512cbdf17423384b06000019")
   mount Refinery::Core::Engine, :at => '/'
 end

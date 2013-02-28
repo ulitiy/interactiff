@@ -1,0 +1,200 @@
+@import url(fonts.css); /*Загружаем локальные шрифты*/
+
+html,body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #004798;
+	background-image: url(../img/clouds.png);
+	background-repeat: no-repeat;
+	background-position: right 150px;
+	font-family: 'Open Sans', sans-serif;
+	padding: 6.25% 6.25% 0 6.25%;
+	color: #FFF;
+	height: 100%;
+}
+
+h1{
+	font-weight: 300;
+	font-size: 25px;
+	margin-top: 0;
+}
+
+h1 a {
+	position: relative;
+	margin-left:20px;
+}
+
+h1 a:before {
+	content: "";
+	position: absolute;
+	left:-20px;
+	top:50%;
+	margin-top: -9px;
+	width: 11px; height: 21px;
+	background-image: url(../img/larr.png);
+}
+
+
+a {
+	text-decoration: none;
+}
+
+a:visited{
+	color:inherit;
+}
+
+.button {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;	
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: #d00;
+	font-size: 25px;
+	color: #FFF;
+	font-weight: 300;
+	display: inline-block;	
+	vertical-align: middle;
+	height: 66px;
+	margin-left:-6.25%;
+	margin-right:-6.25%;
+	padding:20px;
+	line-height: 20px;
+	background: -moz-linear-gradient(top, #ff9e36 0%, #f47920 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff9e36), color-stop(100%,#f47920)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff9e36 0%,#f47920 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff9e36 0%,#f47920 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff9e36 0%,#f47920 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ff9e36 0%,#f47920 100%); /* W3C */	
+	box-shadow: inset 0 1px 0 #ffac36, inset 0 0 10px #ff9e36;
+	text-shadow: 0 1px 0 rgba(0,0,0,.3);
+}
+
+
+.button.next:after,
+.getinfo:after {
+	content: "";
+	position: absolute;
+	right:6.25%;
+	top:50%;
+	margin-top: -10px;
+	width: 11px; height: 21px;
+	background-image: url(../img/rarr.png);
+}
+
+.menu {
+	list-style: none;
+	margin: 0;padding: 0;
+	background-color: #004798;
+	border-radius: 10px;
+	position: relative;
+	margin-top: 30px;
+}
+
+.menu small {
+	display: block;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.menu:before{
+	content: "";
+	position: absolute;
+	display: block;
+	width: 18px; height: 20px;
+	background-image: url(../img/tale.png);
+	top:-18px;
+	left:21px;
+}
+
+.menu li a {
+	display: block;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #fff;
+	padding: 10px 20px;
+	color: #FFF;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.menu li:first-child a {
+	border-top: 2px solid #fff;
+	border-radius:10px 10px 0 0;
+	padding-top: 18px;
+}
+
+.menu li:last-child a {
+	border-bottom: 2px solid #fff;
+	border-radius: 0 0 10px 10px;
+	padding-bottom: 18px;
+}
+
+.info-panel {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;		
+	background-color: #3f4f65;
+	background-image: url(../img/noise.png);
+	list-style: none;
+	overflow: hidden;
+	width: 100%;
+	display: block;
+	position: absolute;
+	bottom:50px;
+	left:0;
+	padding-top: 10px;
+	padding-bottom: 42px;
+	padding-left: 20px;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
+	
+}
+
+.info-panel li.info{
+	display: inline-block;
+	margin: 0 0 5px 0;
+	width: 48.93617021276595%;
+  	*width: 48.88297872340425%;
+}
+
+.info-panel small {
+	font-size: 10px;
+	display: block;
+	line-height: 9px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	
+}
+
+.info-panel li {
+	font-size: 22px;
+	font-weight: 300;
+	white-space: nowrap;
+	text-shadow: 0 2px 0 rgba(0,0,0,.5);
+}
+
+.getinfo {
+	padding-left: 20px;
+	width: 100% !important;
+	font-size: 16px !important;
+	height: 42px;
+	position: absolute;
+	bottom:0;
+	left:0;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.getinfo:after {
+	right:40px;
+}
+
+.getinfo a {
+	line-height: 40px;
+	display: block;
+}

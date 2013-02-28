@@ -15,6 +15,11 @@ class PlayController < ApplicationController
     if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нельзя показать запрошенное задание
       redirect_to play_game_url(game_id: @game.id)
     end
+    if File.exists?(Rails.root.join("app", "views", params[:controller],"#{@game.title}.html.erb"))
+      render "play/#{@game.title}"
+    else
+      render "play/show"
+    end
   end
 
   def game
@@ -45,6 +50,20 @@ class PlayController < ApplicationController
       @fired_events=@handler.input(params[:input])
       set_flash
     end
+  end
+
+  def back
+    @game=Game.find(params[:game_id])
+    tgs=@game.descendant_events_of(type: "TaskGiven", user: current_user)
+    ltg=tgs.sort { |tg1,tg2| tg1.time<=>tg2.time }.last
+    events=@game.descendant_events.where(user: current_user).where(time: { "$gt"=> ltg.time })
+    if events.count>0
+      events.delete_all
+    elsif tgs.count>1
+      ltg.delete
+      return back
+    end
+    redirect_to play_game_url(game_id: @game.id)
   end
 
   # Set flash messages due to current changes
