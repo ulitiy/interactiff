@@ -13,18 +13,25 @@
           <% next if hint.body.empty? %>
           <h1><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></h1>
         <% end %>
-        <% if @handler.task_answers.count>0 && @task.input_type=="link" %>
+        <% if @handler.task_answers.count>0 %>
           <ul class="menu">
+          <% if @task.input_type=="link" %>
             <% for answer in @handler.task_answers %>
             <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
               <li><%= link_to raw(bwv),
                                   play_submit_path(task_id:@task.id, input: raw(answer.digest))
                                   %></li>
             <% end %>
+          <% elsif @task.input_type=="text" %>
+            <li>
+              <a>
+              <%= text_field_tag "input" %>
+              <button class="btn btn-success">Отправить</button>
+              </a>
+            </li>
+            <li><a>&nbsp;</a></li>
+          <% end %>
           </ul>
-        <% elsif @task.input_type=="text" %>
-          <%= text_field_tag "input" %>
-          <button class="btn btn-success">Отправить</button>
         <% end %>
 <!--
         <ul class="info-panel">
