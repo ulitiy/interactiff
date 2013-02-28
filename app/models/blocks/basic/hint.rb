@@ -1,9 +1,9 @@
 class Hint < Block
-  include AttrSanitizer
+  # include AttrSanitizer
   include WithVars
   with_vars :body
   field :body, type: String, :default => ""
-  sanitize :body
+  # sanitize :body
 
   attr_accessible :body
 
