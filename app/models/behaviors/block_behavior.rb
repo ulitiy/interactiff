@@ -48,8 +48,8 @@ module BlockBehavior
     event=create_event options
     block_actions options
     [event]+hit_relations(options.merge(
-      parent: event,
-      source: options[:source]||event,
+      parent_id: event.id,
+      source_id: options[:source_id] || (options[:source]||event).id,
       responsible_user: nil,
       reason: nil,
       input: nil
@@ -71,13 +71,14 @@ module BlockBehavior
   # prepare options for fire
   def prepare_options options
     options.merge! scope: get_scope(options), game: game, task: task, force_scope: nil, mutex: nil
+    options[:user]||=User.find options[:user_id] if options[:user_id]
     options[:team]=options[:user].team if options[:scope]==:for_team
     options.reverse_merge! time: Time.now
   end
 
   # @returns event created
   def create_event options
-    Event.create options.merge block: self
+    Event.create options.merge block_id: id
   end
 
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.

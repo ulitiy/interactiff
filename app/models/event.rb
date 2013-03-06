@@ -23,7 +23,7 @@ class Event
   belongs_to :responsible_user, class_name: "User", inverse_of: nil, index: true
   field      :reason, type: String
 
-  attr_accessible :input, :time, :user, :block, :parent, :source, :source_id, :parent_id, :user_id, :responsible_user, :reason,
+  attr_accessible :input, :time, :user, :block, :parent, :source, :block_id, :source_id, :parent_id, :user_id, :responsible_user, :reason,
                   :scope, :team, :variable, :variable_id, :var_value
 
   has_many :children, class_name: "Event", inverse_of: :parent
