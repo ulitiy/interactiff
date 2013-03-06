@@ -14,8 +14,7 @@ class PlayController < ApplicationController
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нельзя показать запрошенное задание
       redirect_to play_game_url(game_id: @game.id)
-    end
-    if File.exists?(Rails.root.join("app", "views", params[:controller],"#{@game.title}.html.erb"))
+    elsif File.exists?(Rails.root.join("app", "views", params[:controller],"#{@game.title}.html.erb"))
       render "play/#{@game.title}"
     else
       render "play/show"
@@ -27,7 +26,7 @@ class PlayController < ApplicationController
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if !@handler.game_started?
       @start_time=@game.children.where(_type: "GameStarted").first.time
-      render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join
+      render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join #не кэшируем из-за синхронизации времени
       # fresh_when etag: [@start_time,"play/not_started"].join, public: true
     elsif @handler.game_passed?
       render "play/win"

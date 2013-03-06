@@ -49,7 +49,7 @@ module Interactiff
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.assets.precompile += %w(admin.js application.js application.css admin.css play.css play.js)
+    config.assets.precompile += %w(admin.js admin.css play.css play.js)
 
     config.mongoid.preload_models=true
 
