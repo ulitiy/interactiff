@@ -30,7 +30,7 @@ class Timer < Block
   #проблема в том, что dj не работает с несохраненными моделями
   def block_actions options
     options.delete :time
-    delay(run_at: time.from_now, queue: "clock").hit_relations_timer(options.merge(mutex: true))
+    delay(run_at: time.from_now, queue: "clock").hit_relations_timer(options.merge(mutex: true, handler: nil))
   end
 
   # replace default behaviour
