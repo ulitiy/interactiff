@@ -18,7 +18,8 @@ class EvalBlock < Block
     @vars={}
     for var_name in var_list(expr) do
       if var_name=="last_answer"
-        @vars[var_name]=options[:handler].last_answer; #TODO: плохо -> handler.options[:handler] тоже. М.б. синглтон?
+        options[:handler]||=EventHandler.new user: options[:user], game: options[:game], task: options[:task] #TODO: test
+        @vars[var_name]=options[:handler].last_answer; #TODO: плохо
       else
         @vars[var_name]=Variable.where(game: options[:game], name: var_name).first.value(options)
       end
