@@ -72,6 +72,7 @@ group :test do
   gem 'rb-fsevent'
   gem "selenium-webdriver"
   gem "poltergeist"
+  gem "launchy"
   gem 'turn', :require=> false
 end
 group :production do

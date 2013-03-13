@@ -42,4 +42,12 @@ class Relation
     end
   end
 
+  def self.from_array arr
+    arr.each do |sub|
+      sub[1..100].each do |to|
+        create from: sub[0], to: to
+      end
+    end
+  end
+
 end

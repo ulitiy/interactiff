@@ -18,6 +18,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "task#{n}" }
   end
 
+  factory :game_started
+  factory :game_passed
   factory :task_given
   factory :task_passed
   factory :sms

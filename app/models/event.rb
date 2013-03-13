@@ -24,7 +24,7 @@ class Event
   field      :reason, type: String
 
   attr_accessible :input, :time, :user, :block, :parent, :source, :block_id, :source_id, :parent_id, :user_id, :responsible_user, :reason,
-                  :scope, :team, :variable, :variable_id, :var_value
+                  :scope, :team, :variable, :variable_id, :var_value, :visit_count
 
   has_many :children, class_name: "Event", inverse_of: :parent
   has_many :descendants, class_name: "Event", inverse_of: :source
@@ -43,6 +43,7 @@ class Event
   scope :for_team, ->(team) { where(scope: :for_team, team_id: (team.is_a?(Moped::BSON::ObjectId) ? team : team.id)) }
   scope :for_all, -> { where(scope: :for_all) }
   scope :var, ->(v) { v ? where(variable_id: v.id) : scoped }
+  scope :visit_count, ->(vc) { vc ? where(visit_count: vc) : scoped }
 
   # callback before create, setting ids and block_type
   def set_ids
@@ -53,9 +54,10 @@ class Event
 
   # get events of some type for the user
   def self.of options
-    Event.block_type(options[:type]).for_one options[:user]
-    Event.block_type(options[:type]).for_team options[:user].team if options[:user].team_id
-    Event.block_type(options[:type]).for_all
+    arr=[]
+    arr+=Event.block_type(options[:type]).for_one options[:user] if options[:user]
+    arr+=Event.block_type(options[:type]).for_team options[:user].team if options[:user] && options[:user].team_id
+    arr+=Event.block_type(options[:type]).for_all
   end
 
 end

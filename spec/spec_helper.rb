@@ -52,7 +52,7 @@ Spork.prefork do
     config.app_host   = 'http://requests.lvh.me:54163'
     config.server_port = '54163'
     #config.javascript_driver = :webkit #comment to see in Firefox
-    config.javascript_driver = :poltergeist
+    # config.javascript_driver = :poltergeist
   end
 
 end

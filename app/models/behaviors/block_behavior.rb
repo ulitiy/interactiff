@@ -1,8 +1,8 @@
 module BlockBehavior
 
-  MAX_EVENTS_PER_REQUEST=30
+  MAX_EVENTS_PER_REQUEST=Rails.env.production? ? 30 : 1000000 unless defined? MAX_EVENTS_PER_REQUEST
   def check_max_events
-    $EVENTS_COUNT+=1
+    $EVENTS_COUNT=($EVENTS_COUNT || 0) + 1
     raise "Too many events" if $EVENTS_COUNT>MAX_EVENTS_PER_REQUEST
   end
 
@@ -14,9 +14,9 @@ module BlockBehavior
   # @return Array descendant events of the game for user(his team and common), optionally by the var name
   def descendant_events_of options
     de=[]
-    de+=descendant_events.block_type(options[:type]).for_one(options[:user]).var(options[:variable]) if options[:user]
-    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).var(options[:variable]) if options[:user] && options[:user].team_id
-    de+=descendant_events.block_type(options[:type]).for_all.var(options[:variable])
+    de+=descendant_events.block_type(options[:type]).for_one(options[:user]).visit_count(options[:visit_count]).var(options[:variable]) if options[:user]
+    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).visit_count(options[:visit_count]).var(options[:variable]) if options[:user] && options[:user].team_id
+    de+=descendant_events.block_type(options[:type]).for_all.visit_count(options[:visit_count]).var(options[:variable])
   end
 
   # returns true, if the block should fire on hit. Is overriden by descendants
@@ -31,7 +31,12 @@ module BlockBehavior
 
   # @return [Boolean] if there are any events, related to current user and this block
   def is_hit? options
-    events.or({scope: :for_one, user_id: options[:user].id}, {scope: :for_team, team_id: options[:user].team_id}, {scope: :for_all}).any? #moped doesn't understand <model>
+    if task
+      !task.visit_count && task.load_rooms(options)
+      events.or({scope: :for_one, user_id: options[:user].id, visit_count: task.visit_count}, {scope: :for_team, team_id: options[:user].team_id, visit_count: task.visit_count}, {scope: :for_all, visit_count: task.visit_count}).any?
+    else
+      events.or({scope: :for_one, user_id: options[:user].id}, {scope: :for_team, team_id: options[:user].team_id}, {scope: :for_all}).any? #moped doesn't understand <model>
+    end
   end
 
   # @return [Boolean] if there are any events, related to this block
@@ -78,7 +83,8 @@ module BlockBehavior
 
   # @returns event created
   def create_event options
-    Event.create options.merge block_id: id
+    task && !task.visit_count && task.load_rooms(options)
+    Event.create options.merge block_id: id, visit_count: task && task.visit_count
   end
 
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.

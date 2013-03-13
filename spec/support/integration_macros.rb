@@ -20,11 +20,4 @@ module IntegrationMacros
     I18n.t param
   end
 
-  def login(user)
-    visit new_user_session_path
-    fill_in "user_email", with: user.email
-    fill_in "user_password", with: 'secret'
-    click_button 'Sign in'
-  end
-
 end

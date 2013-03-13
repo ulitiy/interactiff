@@ -31,7 +31,12 @@ class ApplicationController < ActionController::Base
   # creating one as needed
   def guest_user
     request.session_options[:expire_after] = 1.month
-    User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id  : session[:guest_user_id])
+    g=User.where(id: session[:guest_user_id]).first
+    if g.nil?
+      g=create_guest_user
+      session[:guest_user_id]=g.id
+    end
+    g
   end
 
   private

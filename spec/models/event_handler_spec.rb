@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe EventHandler do
   let(:user) { create :user }
-  let(:game) { create :game }
+  let(:game) do
+    Game.skip_callback(:validation, :before, :new_game)
+    create :game
+  end
   let(:task) { create :task, parent: game }
   let(:answer) { create :answer, parent: task, body: "he(l)*o", y: 10 }
   let(:answer2) { create :answer, parent: task, body: ".*", y: 20 }
@@ -12,8 +15,10 @@ describe EventHandler do
   let(:handler) { EventHandler.new(user: user,task: task) }
   let(:task1) { create :task, parent: game }
   let(:tg1) { create :task_given, parent: task1 }
+  let(:tp1) { create :task_passed, parent: task1 }
   let(:task2) { create :task, parent: game }
   let(:tg2) { create :task_given, parent: task2 }
+  let(:tp2) { create :task_passed, parent: task2 }
   let(:task3) { create :task, parent: game }
   let(:tg3) { create :task_given, parent: task3 }
   let(:task4) { create :task, parent: game }
@@ -53,18 +58,30 @@ describe EventHandler do
   describe "#tasks_given" do
     subject { handler.tasks_given }
     before { tg1.hit(user: user1, scope: :for_one);tg2.hit(user:user1, team: team1,scope: :for_team);tg3.hit(user:user1,scope: :for_all);tg4 }
-    # context "for user1" do
-    #   let(:handler) { EventHandler.new(user: user1,game: game) }
-    #   it { should eq([task1,task2,task3]) }
-    # end
-    # context "for user12" do
-    #   let(:handler) { EventHandler.new(user: user12,game: game) }
-    #   it { should eq([task2,task3]) }
-    # end
-    # context "for user2" do
-    #   let(:handler) { EventHandler.new(user: user2,game: game) }
-    #   it { should eq([task3]) }
-    # end
+    context "for user1" do
+      let(:handler) { EventHandler.new(user: user1,game: game) }
+      it { should eq([task1,task2,task3]) }
+    end
+    context "for user12" do
+      let(:handler) { EventHandler.new(user: user12,game: game) }
+      it { should eq([task2,task3]) }
+    end
+    context "for user2" do
+      let(:handler) { EventHandler.new(user: user2,game: game) }
+      it { should eq([task3]) }
+    end
+  end
+
+  describe "#current_tasks" do
+    subject { handler.current_tasks }
+    before do
+      tg1.hit user: user
+      tg2.hit user: user
+      tp1.hit user: user
+      tp2.hit user: user
+      tg2.hit user: user
+    end
+    it { should eq([task2]) }
   end
 
   describe "#last_answer" do
