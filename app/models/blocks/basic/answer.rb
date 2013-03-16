@@ -5,7 +5,7 @@ class Answer < Block
   with_vars :body
 
   field :body, type: String, default: ""
-  sanitize :body, chain: false
+  sanitize :body
   # можешь активировать несколько раз один блок ответа :for_all
   # ты не можешь, но другие могут :for_other
   # никто не может использовать один ответ :no
