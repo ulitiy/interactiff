@@ -126,8 +126,8 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     t.bind 'click', =>
       return unless dragConnectionFrom?
       relView=new Joygen.Views.Admin.RelationView
-            sourceEndpoint:dragConnectionFrom
-            targetEndpoint:t
+        sourceEndpoint:dragConnectionFrom
+        targetEndpoint:t
       relView.createModel()
       relView.render()
       $(dragConnectionFrom.canvas).removeClass "dcf"
