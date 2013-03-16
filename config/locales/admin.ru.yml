@@ -3,6 +3,7 @@ ru:
     links:
       save: "Сохранить"
       destroy: "Удалить"
+      sure: "Вы уверены?"
     path:
       root: "Мои квесты"
       level_up: "&larr; Назад"

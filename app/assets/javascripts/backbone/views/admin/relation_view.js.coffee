@@ -22,7 +22,7 @@ class Joygen.Views.Admin.RelationView extends Backbone.View
 
   prepare: =>
     @connection.bind "click", =>
-      return unless confirm(I18n.t("links.sure"))
+      return unless confirm(I18n.t("admin.links.sure"))
       @model.destroy()
       jsPlumb.allowDetach=true
       jsPlumb.detach @connection
@@ -40,5 +40,10 @@ class Joygen.Views.Admin.RelationView extends Backbone.View
       paintStyle:
         lineWidth:1.2
         strokeStyle:"##{$.random(0,9)}#{$.random(0,9)}#{$.random(0,9)}"
+    # @connection.applyType
+    #   connector:"straight"
+    #   paintStyle:
+    #     lineWidth:1.2
+    #     strokeStyle:"##{$.random(0,9)}#{$.random(0,9)}#{$.random(0,9)}"
     @prepare()
     jsPlumb.silent=false

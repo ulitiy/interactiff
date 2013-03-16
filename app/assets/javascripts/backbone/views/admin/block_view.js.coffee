@@ -75,7 +75,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 
 
   destroyConfirm: =>
-    return unless confirm(I18n.t("links.sure"))
+    return unless confirm(I18n.t("admin.links.sure"))
     router.navigate parentBlock.adminPath(),
       trigger:true
     @destroy()
@@ -96,6 +96,9 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         isTarget: true
       @targetEndpoint.model=@model
       @targetEndpoint.blockView=this
+      @bindTarget(@targetEndpoint)
+      # @targetEndpoint.bind 'click', ()=>
+
       targetEndpoints.push @targetEndpoint
     if @model.isSource?()
       @sourceEndpoint=jsPlumb.addEndpoint @el,
@@ -104,14 +107,32 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         isSource: true
       @sourceEndpoint.model=@model
       @sourceEndpoint.blockView=this
-      @sourceEndpoint.bind 'click', (e1)=>
-        floatingToolbarView.show(e1)
+      @bindSource(@sourceEndpoint)
+      # @sourceEndpoint.bind 'click', (e1)=>
+      #   floatingToolbarView.show(e1)
       sourceEndpoints.push @sourceEndpoint
     if @model.container?()
       @addSources()
       @addTargets()
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length
       $(@el).css("min-height",m*14)
+
+  bindSource: (s)=>
+    s.bind 'click', =>
+      $(dragConnectionFrom.canvas).removeClass "dcf" if dragConnectionFrom?
+      window.dragConnectionFrom=s
+      $(s.canvas).addClass "dcf"
+  bindTarget: (t)=>
+    t.bind 'click', =>
+      return unless dragConnectionFrom?
+      relView=new Joygen.Views.Admin.RelationView
+            sourceEndpoint:dragConnectionFrom
+            targetEndpoint:t
+      relView.createModel()
+      relView.render()
+      $(dragConnectionFrom.canvas).removeClass "dcf"
+      window.dragConnectionFrom=null
+
 
 #простановка дочерних
   addSources: ()=>
@@ -124,8 +145,9 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         isSource: true
       e.model=block
       e.blockView=this
-      e.bind 'click', (e1)=>
-        floatingToolbarView.show(e1)
+      @bindSource(e)
+      # e.bind 'click', (e1)=>
+      #   floatingToolbarView.show(e1)
       $(e.canvas).append "<div class=\"sourceTitle\">#{block.endpointCaption()}</div>"
       sourceEndpoints.push e #window
       e
@@ -141,6 +163,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         isTarget: true
       e.model=block
       e.blockView=this
+      @bindTarget(e)
       $(e.canvas).append "<div class=\"targetTitle\">#{block.endpointCaption()}</div>"
       targetEndpoints.push e #window
       e

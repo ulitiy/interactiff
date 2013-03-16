@@ -21,7 +21,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       $(domEl).data("view").model.deletable
     sel=$(sel)
     return false unless sel.length
-    if  confirm(I18n.t("links.sure"))
+    if  confirm(I18n.t("admin.links.sure"))
       sel.trigger "destroy"
       router.navigate (parentBlock||rootBlock).adminPath(),
         trigger:true
@@ -30,8 +30,10 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
 
 
   selectablestop: =>
+    $(dragConnectionFrom.canvas).removeClass "dcf" if dragConnectionFrom?
+    window.dragConnectionFrom=null
     $("*:focus").blur()
-    floatingToolbarView.hide()
+    # floatingToolbarView.hide()
     window.selected=$('.ui-selected') #нужно для массового дрэга
     if selected.length==1
       selected.trigger("selectedone")
