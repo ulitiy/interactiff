@@ -11,7 +11,7 @@ Interactiff::Application.routes.draw do
     :answers, :hints, :hosts, :messages, :timers, :clocks,
     :task_givens, :task_passeds, :game_starteds, :game_passeds, :inputs, :outputs,
     :not_blocks, :and_blocks, :or_blocks,
-    :checkers, :setters, :distributors, :eval_blocks,
+    :checkers, :setters, :distributors, :eval_blocks, :request_blocks, :redirect_blocks,
     :path=>"/blocks"
   match "/blocks/:id/master" => "blocks#master"
   resources :relations

@@ -3,8 +3,14 @@ module Delayed
     class Airbrake < Plugin
       module Notify
         def error(job, error)
-          ::Airbrake.notify_or_ignore(error)
-          super
+          ::Airbrake.notify_or_ignore(
+            :error_class   => error.class.name,
+            :error_message => "#{error.class.name}: #{error.message}",
+            :parameters    => {
+              :failed_job => job.inspect,
+            }
+          )
+          # super if defined?(super)
         end
       end
 

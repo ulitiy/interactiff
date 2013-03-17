@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class EvalBlock < Block
 
-  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt]
+  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand]
   EVAL_TIMEOUT=0.5
 
   attr_accessor :vars
