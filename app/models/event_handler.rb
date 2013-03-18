@@ -101,7 +101,7 @@ class EventHandler
     # @current_tasks||=tasks_given-tasks_passed #not roomed version
     events=game.descendant_events_of type: {"$in"=>["TaskGiven", "TaskPassed"]}, user: user
     # ахуеть магия. Самодельный мапредьюс для получения последнего ивента по каждому заданию, затем выбор только тех, где последний ивент - дано.
-    events=events.group_by { |e| e.task_id }.map { |key,arr| arr.sort_by { |e| e.time }.last }.select { |e| e.block_type=="TaskGiven" }
+    events=events.group_by { |e| e.task_id }.map { |key,arr| arr.sort_by { |e| [e.time,e.id] }.last }.select { |e| e.block_type=="TaskGiven" }
     @current_tasks||=get_tasks events
   end
 
