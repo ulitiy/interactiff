@@ -40,6 +40,7 @@ class Joygen.Views.Admin.RelationView extends Backbone.View
       paintStyle:
         lineWidth:1.2
         strokeStyle:"##{$.random(0,9)}#{$.random(0,9)}#{$.random(0,9)}"
+      connector: if @options.sourceEndpoint.element.context==@options.targetEndpoint.element.context then "Flowchart" else "Bezier"
     # @connection.applyType
     #   connector:"straight"
     #   paintStyle:
