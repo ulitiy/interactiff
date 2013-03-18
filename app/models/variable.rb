@@ -20,7 +20,7 @@ class Variable
 
   # @return value of variable for current context
   def value options
-    event=game.descendant_events_of(type: "Setter", user: options[:user], variable: self).sort_by { |e| e.time }.last
+    event=game.descendant_events_of(type: "Setter", user: options[:user], variable: self).sort_by { |e| [e.time, e.id] }.last
     event ? event.var_value : default
   end
 

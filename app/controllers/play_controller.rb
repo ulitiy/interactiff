@@ -14,6 +14,8 @@ class PlayController < ApplicationController
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нельзя показать запрошенное задание
       redirect_to play_game_url(game_id: @game.id)
+    elsif r=@task.get_redirect_event(user: current_user)
+      redirect_to r.block.url_with_vars game: @game, task: @task, user: current_user, handler: @handler
     elsif File.exists?(Rails.root.join("app", "views", params[:controller],"#{@game.title}.html.erb"))
       render "play/#{@game.title}"
     else
