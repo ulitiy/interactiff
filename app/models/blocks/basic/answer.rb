@@ -11,7 +11,7 @@ class Answer < Block
   # никто не может использовать один ответ :no
   field :reusable, type: Symbol, default: :for_other
   # другие могут активировать, если написание отличается
-  field :spelling_matters, type: Boolean, default: true #only if regexp is true and reusable is no
+  field :spelling_matters, type: Boolean, default: false #only if regexp is true and reusable is no
   attr_accessible :body,:reusable,:spelling_matters
 
   before_create :set_digest

@@ -18,7 +18,7 @@ class Joygen.Models.Block extends Backbone.Model
       @dirty=true
 
   caption: ->
-    n=@get("name")||@get("body")||@get("time")||""
+    n=@get("name")||@get("body")||@get("time")||@get("expression")||""
     n=n.replace(/(<([^>]+)>)/ig,"") #strip html
     return n if n? && n.length <= 20
     n.substr(0,17)+"..." if n?
