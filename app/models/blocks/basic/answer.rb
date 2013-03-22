@@ -9,7 +9,7 @@ class Answer < Block
   # можешь активировать несколько раз один блок ответа :for_all
   # ты не можешь, но другие могут :for_other
   # никто не может использовать один ответ :no
-  field :reusable, type: Symbol, default: :for_other
+  field :reusable, type: String, default: "for_other"
   # другие могут активировать, если написание отличается
   field :spelling_matters, type: Boolean, default: false #only if regexp is true and reusable is no
   attr_accessible :body,:reusable,:spelling_matters
@@ -29,11 +29,11 @@ class Answer < Block
   # checks if the answer could be hot by the criteria of the reusability
   def reusable_hot? options
     case reusable
-    when :for_all
+    when "for_all"
       true
-    when :for_other
+    when "for_other"
       !is_hit? options
-    when :no
+    when "no"
       spelling_hot? options
     end
   end

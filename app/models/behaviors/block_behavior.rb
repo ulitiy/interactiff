@@ -10,13 +10,18 @@ module BlockBehavior
     $EVENTS_COUNT=0
   end
 
-  # ПРОТЕСТИРОВАТЬ ПРИ ОТСУТСТВИИ КОМАНДЫ/ПОЛЬЗОВАТЕЛЯ для общих случаев, например общее присвоение переменной/проверка
+  # TODO: ПРОТЕСТИРОВАТЬ ПРИ ОТСУТСТВИИ КОМАНДЫ/ПОЛЬЗОВАТЕЛЯ для общих случаев, например общее присвоение переменной/проверка
   # @return Array descendant events of the game for user(his team and common), optionally by the var name
   def descendant_events_of options
     de=[]
-    de+=descendant_events.block_type(options[:type]).for_one(options[:user]).visit_count(options[:visit_count]).var(options[:variable]) if options[:user]
-    de+=descendant_events.block_type(options[:type]).for_team(options[:user].team).visit_count(options[:visit_count]).var(options[:variable]) if options[:user] && options[:user].team_id
-    de+=descendant_events.block_type(options[:type]).for_all.visit_count(options[:visit_count]).var(options[:variable])
+    de+=de_scoped(options).for_one(options[:user]) if options[:user]
+    de+=de_scoped(options).for_team(options[:user].team) if options[:user] && options[:user].team_id
+    de+=de_scoped(options).for_all
+  end
+
+  # helper method for scoping descendant_events
+  def de_scoped options
+    descendant_events.block_type(options[:type]).visit_count(options[:visit_count]).var(options[:variable])
   end
 
   # returns true, if the block should fire on hit. Is overriden by descendants

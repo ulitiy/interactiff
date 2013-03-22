@@ -24,7 +24,7 @@ describe Answer do
 
   describe "#reusable_hot?" do
     context "when reusable by other" do
-      let(:answer) { create :answer, body: "he(l)*o", reusable: :for_other}
+      let(:answer) { create :answer, body: "he(l)*o", reusable: "for_other"}
       context "when other user" do
         subject { answer.reusable_hot? input: "hello", user: user2 }
         it { should be_true }
@@ -35,7 +35,7 @@ describe Answer do
       end
     end
     context "when reusable by all" do
-      let(:answer) { create :answer, body: "he(l)*o", reusable: :for_all }
+      let(:answer) { create :answer, body: "he(l)*o", reusable: "for_all" }
       subject { answer.reusable_hot? input: "hello", user: user1 }
       it { should be_true }
     end
