@@ -52,7 +52,7 @@ class Event
     self.block_type||=block.type
   end
 
-  # get events of some type for the user
+  # get events of some type for the user. For list of started and passed games
   def self.of options
     arr=[]
     arr+=Event.block_type(options[:type]).for_one options[:user] if options[:user]
