@@ -24,6 +24,7 @@ class PlayController < ApplicationController
   end
 
   def game
+    flash.keep
     @game=Game.find(params[:game_id])
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if !@handler.game_started?
