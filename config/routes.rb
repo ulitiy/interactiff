@@ -7,7 +7,7 @@ Interactiff::Application.routes.draw do
   # root to: "games#index"
   resources :games, path: "/quests"
   resources :blocks#, except: [:index,:new]
-  resources :games, :tasks,
+  resources :domains, :games, :tasks,
     :answers, :hints, :messages, :timers, :clocks,
     :task_givens, :task_passeds, :game_starteds, :game_passeds, :checkpoints, :jumps,
     :and_blocks, :or_blocks,
