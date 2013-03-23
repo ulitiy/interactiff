@@ -11,7 +11,7 @@
     -if @isTarget?() || @isContainerTarget?()
       .property
         %label(for="container_target")= I18n.t("admin.block.container_target")
-        %input#container_source(type="checkbox", data-checked="model.container_target")
+        %input#container_target(type="checkbox", data-checked="model.container_target")
   -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
   -if tmp
     !=tmp(this)
