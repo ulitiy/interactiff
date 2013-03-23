@@ -44,7 +44,10 @@ class EventHandler
 
   # hits the task's first by y right answer
   def input input
-    task_answers.to_a.find { |answer| answer.hit(options.merge(input: input)) } if current_task?
+    if current_task?
+      task_answers.to_a.find { |answer| @events=answer.hit(options.merge(input: input)) }
+      return @events
+    end
   end
 
 
@@ -63,7 +66,7 @@ class EventHandler
     @tasks_given||=get_tasks game.descendant_events_of type: "TaskGiven", user: user
   end
   def tasks_passed
-    @tasks_passed||=get_tasks game.descendant_events_of type: "TaskPassed", user: user
+    @tasks_passed||=get_tasks task_events.select { |e| e.block_type=="TaskPassed" }
   end
   def games_started
     @games_started||=get_games Event.of type: "GameStarted", user: user
@@ -98,17 +101,21 @@ class EventHandler
 
   # @return [Array] tasks given, but not passed
   def current_tasks
-    # @current_tasks||=tasks_given-tasks_passed #not roomed version
-    events=game.descendant_events_of type: {"$in"=>["TaskGiven", "TaskPassed"]}, user: user
-    # ахуеть магия. Самодельный мапредьюс для получения последнего ивента по каждому заданию, затем выбор только тех, где последний ивент - дано.
-    events=events.group_by { |e| e.task_id }.map { |key,arr| arr.sort_by { |e| [e.time,e.id] }.last }.select { |e| e.block_type=="TaskGiven" }
-    @current_tasks||=get_tasks events
+    @current_tasks||=get_tasks task_events.select { |e| e.block_type=="TaskGiven" }
+  end
+
+  # get last functional events for game tasks and current user
+  # GREAT MAGIC!
+  def task_events
+    @task_events||=game.descendant_events_of(type: {"$in"=>["TaskGiven", "TaskPassed"]}, user: user).
+              group_by(&:task_id).map { |key,arr| arr.sort_by { |e| [e.time,e.id] }.last }
   end
 
   # @return [Array] tasks given with additional attribute of passed
   def play_tasks
-    @play_tasks||=tasks_given.each do |task|
-      task.passed=tasks_passed.include?(task)
+    @play_tasks||=task_events.map do |e|
+      e.task.passed=(e.block_type=="TaskPassed")
+      e.task
     end
   end
 
@@ -134,7 +141,7 @@ class EventHandler
   end
 
   def flush
-    @play_tasks,@current_tasks,@task_answers,@hint_events,@hints_given,@tasks_given,@tasks_passed,@games_started,@games_passed=nil
+    @play_tasks,@current_tasks,@task_answers,@hint_events,@hints_given,@tasks_given,@tasks_passed,@games_started,@games_passed,@task_events=nil
     self
   end
 

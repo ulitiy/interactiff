@@ -70,7 +70,7 @@ class PlayController < ApplicationController
 
   # Set flash messages due to current changes
   def set_flash
-    if @handler.flush.task_passed?
+    if @fired_events.to_a.find { |e| e.block_type=="TaskPassed" }
       flash[:notice]=t("play.notice.task_passed")
       redirect_to play_game_url(game_id: @game.id)
       return
