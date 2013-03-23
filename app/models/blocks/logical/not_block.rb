@@ -1,2 +1,0 @@
-class NotBlock < Block
-end

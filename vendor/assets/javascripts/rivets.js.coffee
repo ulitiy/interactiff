@@ -1,5 +1,5 @@
 #     rivets.js
-#     version : 0.4.4
+#     version : 0.4.5
 #     author : Michael Richards
 #     license : MIT
 
@@ -68,7 +68,7 @@ class Rivets.Binding
       Rivets.config.adapter.read @model, @keypath
 
   # Publishes the value currently set on the input element back to the model.
-  publish: => 
+  publish: =>
     value = getInputValue @el
 
     for formatter in @formatters.slice(0).reverse()
@@ -339,17 +339,20 @@ Rivets.binders =
 
       @iterated = []
 
-      for item in collection
-        data = {}
-        data[n] = m for n, m of @view.models
-        data[@args[0]] = item
-        itemEl = el.cloneNode true
-        if @iterated.length > 0
-          previous = @iterated[@iterated.length - 1].els[0]
-        else
-          previous = @marker
-        @marker.parentNode.insertBefore itemEl, previous.nextSibling ? null
-        @iterated.push rivets.bind itemEl, data
+      if collection
+        for item in collection
+          data = {}
+          data[n] = m for n, m of @view.models
+          data[@args[0]] = item
+          itemEl = el.cloneNode true
+          if @iterated.length > 0
+            previous = @iterated[@iterated.length - 1].els[0]
+          else
+            previous = @marker
+          @marker.parentNode.insertBefore itemEl, previous.nextSibling ? null
+          @iterated.push rivets.bind itemEl, data
+
+        binding.sync() for binding in @view.bindings when binding.el is @marker.parentNode if el.nodeName is 'OPTION'
 
   "class-*": (el, value) ->
     elClass = " #{el.className} "
