@@ -15,6 +15,6 @@ class GamesController < InheritedResources::Base
 
   # IR collection definition for actions
   def collection
-    @games||=current_user.games
+    @games||=can?(:manage, Domain.first) && params[:all] ? Game.all : current_user.games
   end
 end
