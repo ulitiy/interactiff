@@ -30,10 +30,10 @@ describe "Play UI" do
 
     before do
       Relation.from_array [
-        [gs, tg1],
-        [ac1, tp1, gp],
-        [al1, tp1, tg2],
-        [al2, tg1]
+        [gs, tg1], #игра начата - первое задание
+        [ac1, tp1, gp], #на выход
+        [al1, tp1, tg2], #на второе
+        [al2, tp2, tg1] #назад
       ]
     end
 
@@ -41,10 +41,9 @@ describe "Play UI" do
       visit play_show_path game_id: game.id, task_id: task1.id
       click_link al1.body #прошли 1
       click_link al2.body #прошли 2
-      # visit play_game_path game_id: game.id # редирект неправильный. Исправить.
+      visit play_game_path game_id: game.id
       click_link al1.body#####
       click_link al2.body
-      # visit play_game_path game_id: game.id # редирект неправильный. Исправить.
       click_link ac1.body
       page.should have_selector(".win")
     end

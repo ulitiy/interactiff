@@ -78,7 +78,7 @@ class PlayController < ApplicationController
     #   flash[:notice]=t("play.notice.fired_events")
     else
       flash[:alert]=t("play.alert.no_events")
-      redirect_to play_game_url(game_id: @game.id)# play_show_url(game_id: @game.id, task_id: @task.id)
+      redirect_to play_show_url(game_id: @game.id, task_id: @task.id)
     end
   end
 end
