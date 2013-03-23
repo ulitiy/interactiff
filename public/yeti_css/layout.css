@@ -1,0 +1,162 @@
+@import url(fonts.css); /*Загружаем локальные шрифты*/
+
+html,body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #222222;
+	background-image: url(../yeti_img/back.jpg);
+	background-repeat: no-repeat;
+	font-family: Calibri, 'Open Sans', sans-serif;
+	padding: 6.25% 6.25% 0 6.25%;
+	color: #FFF;
+	height: 100%;
+}
+
+h1{
+	
+	color:#00dadc;
+	font-size: 30px;
+	font-variant:normal;
+	margin-top: 0;
+}
+
+h1 p {
+	color:#FFF;
+	font-size: 16px;
+	margin-top: 0;
+}
+
+h1 a {
+	position: relative;
+	color:#00dadc;
+}
+
+h1 ol,ul {
+	color:#FFF;
+	font-size: 14px;
+	margin-top: 0;
+	margin-left: 50px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited{
+	color:inherit;
+}
+
+.button {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;	
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: #B0FFF5;
+	font-size: 25px;
+	color: #32353a;
+	font-weight: 300;
+	display: inline-block;	
+	vertical-align: middle;
+	height: 66px;
+	margin-left:-6.25%;
+	margin-right:-6.25%;
+	padding:20px;
+	line-height: 20px;
+	box-shadow: inset 0 0 30px rgba(22,105,105,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,.3);
+	background: -moz-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
+	background: -webkit-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
+	background: -o-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
+	background: radial-gradient(at 50% 50%, #E1FFFC 50%, #B0FFF5 90%);
+	
+}
+
+
+
+
+.button.next:after,
+.getinfo:after {
+	content: "";
+	position: absolute;
+	right:6.25%;
+	top:50%;
+	margin-top: -10px;
+	width: 11px; height: 21px;
+	background-image: url(../yeti_img/rarr.png);
+}
+
+.menu {
+	list-style: none;
+	margin: 0;padding: 0;
+	background:url(../yeti_img/menu_bg.png) repeat;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	position: relative;
+	margin-top: 30px;
+}
+
+.menu small {
+	display: block;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.menu:before{
+	content: "";
+	position: absolute;
+	display: block;
+	width:100%;
+	height: 14px;
+	background: url(../yeti_img/line.png) repeat-x;
+	top:-5px;
+	left:0px;
+}
+
+
+.menu li a {
+	display: block;
+	padding: 10px 30px;
+	color: #d7fff5;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.menu li a:hover {
+	display: block;
+	padding: 10px 31px;
+	color: #00dadc;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.menu li:first-child a {
+	padding-top: 25px;
+}
+
+.menu li:last-child a {
+	padding-bottom: 25px;
+}
+
+.logo {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;	
+	background: url(../yeti_img/logo_yeti.png) no-repeat;
+	height:82px;
+	width:200px;
+	overflow: hidden;
+	display: block;
+	position: absolute;
+	top:50px;
+	right:6.75%;
+	padding-top: 10px;
+	padding-bottom: 42px;
+	padding-left: 20px;
+	
+}
+

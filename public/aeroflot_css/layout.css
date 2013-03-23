@@ -7,7 +7,7 @@ html,body {
 
 body {
 	background-color: #004798;
-	background-image: url(../img/clouds.png);
+	background-image: url(../aeroflot_img/clouds.png);
 	background-repeat: no-repeat;
 	background-position: right 150px;
 	font-family: 'Open Sans', sans-serif;
@@ -34,7 +34,7 @@ h1 a:before {
 	top:50%;
 	margin-top: -9px;
 	width: 11px; height: 21px;
-	background-image: url(../img/larr.png);
+	background-image: url(../aeroflot_img/larr.png);
 }
 
 
@@ -83,7 +83,7 @@ a:visited{
 	top:50%;
 	margin-top: -10px;
 	width: 11px; height: 21px;
-	background-image: url(../img/rarr.png);
+	background-image: url(../aeroflot_img/rarr.png);
 }
 
 .menu {
@@ -106,7 +106,7 @@ a:visited{
 	position: absolute;
 	display: block;
 	width: 18px; height: 20px;
-	background-image: url(../img/tale.png);
+	background-image: url(../aeroflot_img/tale.png);
 	top:-18px;
 	left:21px;
 }
@@ -138,7 +138,7 @@ a:visited{
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;		
 	background-color: #3f4f65;
-	background-image: url(../img/noise.png);
+	background-image: url(../aeroflot_img/noise.png);
 	list-style: none;
 	overflow: hidden;
 	width: 100%;

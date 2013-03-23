@@ -4,10 +4,11 @@
         <meta charset=utf-8>
         <meta name=description content="">
         <meta name=viewport content="width=device-width, initial-scale=1">
-        <link rel=stylesheet href="/aeroflot_css/layout.css">
+        <link rel=stylesheet href="/yeti_css/layout.css">
     </head>
     <body>
       <%= form_tag play_submit_path(task_id: @task.id) do %>
+<a class="logo"></a>
 
         <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
           <% next if hint.body.empty? %>
@@ -26,22 +27,14 @@
             <li>
               <a>
               <%= text_field_tag "input" %>
-              <button class="btn btn-success">Отправить</button>
+              <button class="btn btn-success">ОК</button>
               </a>
             </li>
             <li><a>&nbsp;</a></li>
           <% end %>
           </ul>
         <% end %>
-<!--
-        <ul class="info-panel">
-            <li class="info"><small>За бортом</small>-99 °С</li>
-            <li class="info"><small>В Санкт-Петербурге</small>+26 °С</li>
-            <li class="info"><small>До прилета</small>1 час 15 мин.</li>
-            <li class="getinfo"><a href="">Информация о городе</a></li>
-        </ul>
 
--->
       <% end %>
       <%= link_to "Назад", play_back_path(game_id: @game.id), class: "button" %>
     </body>
