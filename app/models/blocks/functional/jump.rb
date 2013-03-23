@@ -3,6 +3,6 @@ class Jump < Block
   belongs_to :checkpoint, index: true
 
   def blocks_to_hit
-    [checkpoint]
+    [checkpoint].compact
   end
 end
