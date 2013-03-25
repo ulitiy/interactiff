@@ -2,4 +2,4 @@
   %label(for="checkpoint_id")= I18n.t("admin.jump.checkpoint")
   %select(id="checkpoint_id", data-value="model.checkpoint_id")
     %option(value=null)
-    %option{data-each-checkpoint: "model:checkpoints", data-text: "checkpoint.name", data-value: "checkpoint.id"}
+    %option{data-each-checkpoint: "model:checkpoints", data-text: "checkpoint:parent_name", data-value: "checkpoint.id"}

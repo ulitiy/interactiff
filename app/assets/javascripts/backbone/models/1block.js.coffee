@@ -45,6 +45,8 @@ class Joygen.Models.Block extends Backbone.Model
     @collection.children(@id)
   parent: ->
     @collection.parent(this)
+  parent_name: ->
+    @parent().get("name")
 
 
 
