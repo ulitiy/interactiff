@@ -46,7 +46,7 @@ class EventHandler
   def input input
     if current_task?
       task_answers.to_a.find { |answer| @events=answer.hit(options.merge(input: input)) }
-      return @events
+      return @events.compact
     end
   end
 
