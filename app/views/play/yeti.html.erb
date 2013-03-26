@@ -18,13 +18,13 @@
       <%= form_tag play_submit_path(task_id: @task.id) do %>
         <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
           <% next if hint.body.empty? %>
-          <h1><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></h1>
+          <%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %>
         <% end %>
         <% if @handler.task_answers.count>0 %>
+		<span class="que">Ваш ответ:</span>
           <ul class="menu">
           <% if @task.input_type=="link" %>
-		  <span class="que">Ваш ответ:</span>
-            <% for answer in @handler.task_answers %>
+		  <% for answer in @handler.task_answers %>
             <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
               <li><%= link_to raw(bwv),
                                   play_submit_path(task_id:@task.id, input: raw(answer.digest))

@@ -75,7 +75,7 @@ after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
 after "deploy:update", "mongoid:create_indexes"
 after 'deploy:update_code', "deploy:custom_symlink"
-
+after 'deploy:restart', 'unicorn:restart'
 load 'deploy/assets'
 
 require './config/boot'
