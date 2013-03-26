@@ -10,74 +10,97 @@ body {
 	background-image: url(../yeti_img/back.jpg);
 	background-repeat: no-repeat;
 	font-family: Calibri, 'Open Sans', sans-serif;
-	padding: 6.25% 6.25% 0 6.25%;
+	padding: 2.25% 2.25% 0 2.25%;
 	color: #FFF;
 	height: 100%;
 }
 
 h1{
-	
-	color:#00dadc;
+	color:#d7fff5;
 	font-size: 30px;
 	font-variant:normal;
-	margin-top: 0;
+	margin: 0px;
+	padding: 0px;
+	text-align:right;
 }
 
-h1 p {
+.row-fluid-yeti {
+	width:800px;
+	margin:auto;
+}
+
+.window_yeti {
+	border-radius: 20px;
+	background-image:url(../yeti_img/menu_bg.png);
+	display:block;	
+	margin-top: 20px;
+	margin-bottom: 35px;
+	padding: 0px;
+	}
+
+.window_yeti p {
 	color:#FFF;
 	font-size: 16px;
-	margin-top: 0;
+	margin-top: 10px;
+	font-weight:100;
+	font-style:normal;
+	margin: 0px 25px;
+	
 }
 
-h1 a {
+.window_yeti a {
 	position: relative;
 	color:#00dadc;
 }
 
-h1 ol,ul {
+.window_yeti ol,ul {
 	color:#FFF;
 	font-size: 14px;
 	margin-top: 0;
 	margin-left: 50px;
 }
 
-a {
+.window_yeti h3,h4,h6 {
+	margin: 40px 25px 15px 50px; 
+}
+
+.window_yeti h2{
+	text-align:center;
+	color:#00dadc;
+	font-size: 26px;
+	font-variant:normal;
+	margin: 0px;
+	padding: 25px 0 0 0;
+}
+
+.window_yeti h3 {
+	color:#d7fff5;
+	font-size:22px;
+}
+
+.window_yeti h4 {
+	color:#d7fff5;
+}
+ 
+.window_yeti h5 {
+	color:#00dadc;
+	font-size:18px;
+	text-align:center;
+	margin-bottom:5px;
+}
+
+.window_yeti a {
 	text-decoration: none;
+}
+
+.window_yeti img {
+	text-align:center;
+	margin: 5px 25px;
 }
 
 a:visited{
 	color:inherit;
 }
-
-.button {
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;	
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	background: #B0FFF5;
-	font-size: 25px;
-	color: #32353a;
-	font-weight: 300;
-	display: inline-block;	
-	vertical-align: middle;
-	height: 66px;
-	margin-left:-6.25%;
-	margin-right:-6.25%;
-	padding:20px;
-	line-height: 20px;
-	box-shadow: inset 0 0 30px rgba(22,105,105,0.3);
-	text-shadow: 0 1px 0 rgba(0,0,0,.3);
-	background: -moz-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
-	background: -webkit-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
-	background: -o-radial-gradient(50% 50%, #E1FFFC 0%, #B0FFF5 90%);
-	background: radial-gradient(at 50% 50%, #E1FFFC 50%, #B0FFF5 90%);
-	
-}
-
-
-
 
 .button.next:after,
 .getinfo:after {
@@ -93,11 +116,11 @@ a:visited{
 .menu {
 	list-style: none;
 	margin: 0;padding: 0;
-	background:url(../yeti_img/menu_bg.png) repeat;
+	background:url(../yeti_img/menu_bg_l.png) repeat;
 	border-bottom-right-radius: 20px;
 	border-bottom-left-radius: 20px;
 	position: relative;
-	margin-top: 30px;
+	margin-top: 0px;
 }
 
 .menu small {
@@ -142,6 +165,11 @@ a:visited{
 	padding-bottom: 25px;
 }
 
+.menu ul {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
 .logo {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -149,14 +177,14 @@ a:visited{
 	background: url(../yeti_img/logo_yeti.png) no-repeat;
 	height:82px;
 	width:200px;
-	overflow: hidden;
 	display: block;
-	position: absolute;
-	top:50px;
-	right:6.75%;
-	padding-top: 10px;
-	padding-bottom: 42px;
-	padding-left: 20px;
+	float:left;
 	
 }
 
+	
+.que {
+	padding-left:25px;
+	color:#d7fff5;
+	font-style:italic;
+}

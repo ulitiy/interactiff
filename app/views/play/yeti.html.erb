@@ -2,14 +2,20 @@
 <html>
     <head>
         <meta charset=utf-8>
+		<title><%=head_title " | #{@game.name}"%></title>
         <meta name=description content="">
         <meta name=viewport content="width=device-width, initial-scale=1">
         <link rel=stylesheet href="/yeti_css/layout.css">
     </head>
     <body>
+	<% head_title "#{@game.name} | " if @task %> 
+	<div class="row-fluid-yeti">
+	<a class="logo" href="www.arg-yeti.ru"></a>
+         <h1><%= @game.name %></h1>
+	<div class="window_yeti">
+	  <h2><%= @task.name %></h2>
+	  
       <%= form_tag play_submit_path(task_id: @task.id) do %>
-<a class="logo"></a>
-
         <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
           <% next if hint.body.empty? %>
           <h1><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></h1>
@@ -17,6 +23,7 @@
         <% if @handler.task_answers.count>0 %>
           <ul class="menu">
           <% if @task.input_type=="link" %>
+		  <span class="que">Ваш ответ:</span>
             <% for answer in @handler.task_answers %>
             <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
               <li><%= link_to raw(bwv),
@@ -24,6 +31,7 @@
                                   %></li>
             <% end %>
           <% elsif @task.input_type=="text" %>
+		  <span class="que">Ваш ответ:</span>
             <li>
               <a>
               <%= text_field_tag "input" %>
@@ -36,6 +44,5 @@
         <% end %>
 
       <% end %>
-      <%= link_to "Назад", play_back_path(game_id: @game.id), class: "button" %>
     </body>
 </html>

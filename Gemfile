@@ -53,7 +53,7 @@ gem 'sanitize'
 gem "airbrake"
 
 group :development do
-  gem 'capistrano', :github => 'capistrano/capistrano'
+  gem 'capistrano'
   gem 'capistrano-unicorn'
   gem 'quiet_assets'
   gem 'thin'
