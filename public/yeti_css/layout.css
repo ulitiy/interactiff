@@ -9,7 +9,7 @@ body {
 	background-color: #222222;
 	background-image: url(../yeti_img/back.jpg);
 	background-repeat: no-repeat;
-	font-family: Calibri, 'Open Sans', sans-serif;
+	font-family: Tahoma, 'Open Sans', sans-serif;
 	padding: 2.25% 2.25% 0 2.25%;
 	color: #FFF;
 	height: 100%;
@@ -22,6 +22,7 @@ h1{
 	margin: 0px;
 	padding: 0px;
 	text-align:right;
+		font-family: Calibri, 'Open Sans', sans-serif;
 }
 
 .row-fluid-yeti {
@@ -40,7 +41,7 @@ h1{
 
 .window_yeti p {
 	color:#FFF;
-	font-size: 16px;
+	font-size: 12px;
 	margin-top: 10px;
 	font-weight:100;
 	font-style:normal;
@@ -62,6 +63,10 @@ h1{
 
 .window_yeti h3,h4,h6 {
 	margin: 40px 25px 15px 50px; 
+}
+
+.window_yeti h2,h3,h4,h6,h5, ul {
+	font-family: Calibri, 'Open Sans', sans-serif;
 }
 
 .window_yeti h2{
@@ -187,4 +192,6 @@ a:visited{
 	padding-left:25px;
 	color:#d7fff5;
 	font-style:italic;
+	font-family: Calibri, 'Open Sans', sans-serif;
+	font-size:14px;
 }
