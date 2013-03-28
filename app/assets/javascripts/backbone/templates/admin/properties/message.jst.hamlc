@@ -4,6 +4,6 @@
 .property
   %label(for="message_type")= I18n.t("admin.message.message_type.label")
   %select(id="message_type", data-value="model.message_type")
-    %option(value="notice")= I18n.t("admin.message.message_type.notice")
+    %option(value="success")= I18n.t("admin.message.message_type.success")
     %option(value="info")= I18n.t("admin.message.message_type.info")
     %option(value="alert")= I18n.t("admin.message.message_type.alert")

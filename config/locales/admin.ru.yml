@@ -63,7 +63,7 @@ ru:
       message: "Текст сообщения"
       message_type:
         label: "Цвет сообщения"
-        notice: "Зеленый"
+        success: "Зеленый"
         info: "Синий"
         alert: "Красный"
       new: "Текст сообщения"
