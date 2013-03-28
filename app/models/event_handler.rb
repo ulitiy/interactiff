@@ -57,7 +57,7 @@ class EventHandler
 
 
   def hint_events
-    @hint_events||=task.descendant_events_of type: {"$in"=>["TaskGiven", "Hint"]}, user: user, visit_count: task.visit_count
+    @hint_events||=task.descendant_events_of type: {"$in"=>Hint.descendant_types}, user: user, visit_count: task.visit_count
   end
   def hints_given
     @hints_given||=get_blocks hint_events

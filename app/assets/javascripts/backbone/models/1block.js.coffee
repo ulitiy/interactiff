@@ -18,13 +18,16 @@ class Joygen.Models.Block extends Backbone.Model
       @dirty=true
 
   caption: ->
-    n=@get("name")||@get("body")||@get("time")||@get("expression")||""
+    @get("name")||@get("body")
+
+  short_caption: ->
+    n=@caption()||@get("name")||""
     n=n.replace(/(<([^>]+)>)/ig,"") #strip html
     return n if n? && n.length <= 20
     n.substr(0,17)+"..." if n?
 
   endpointCaption: ->
-    @get("title") || @caption()
+    @get("title") || @short_caption()
 
   setPosition: (position)->
     @save

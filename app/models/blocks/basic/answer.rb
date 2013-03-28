@@ -1,5 +1,5 @@
 # Potential input block
-class Answer < Block
+class Answer < Message
   include AttrSanitizer
   include WithVars
   with_vars :body

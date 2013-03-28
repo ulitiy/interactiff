@@ -49,7 +49,7 @@ class PlayController < ApplicationController
     @game=@task.game
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     CriticalSection.synchronize @game.id do
-      @fired_events=@handler.input(params[:input])
+      @fired_events=@handler.input(params[:input]).to_a
       set_flash
     end
   end
@@ -70,12 +70,11 @@ class PlayController < ApplicationController
 
   # Set flash messages due to current changes
   def set_flash
-    if @fired_events.to_a.find { |e| e.block_type=="TaskPassed" }
-      flash[:notice]=t("play.notice.task_passed")
+    flash[:messages]=@fired_events.find_all { |e| e.block_type.in? Message.descendant_types }.map do |e|
+      {message:e.block.message, message_type: e.block.message_type}
+    end.compact
+    if @fired_events.find { |e| e.block_type=="TaskPassed" }
       redirect_to play_game_url(game_id: @game.id)
-      return
-    # elsif @fired_events.present?
-    #   flash[:notice]=t("play.notice.fired_events")
     else
       flash[:alert]=t("play.alert.no_events")
       redirect_to play_show_url(game_id: @game.id, task_id: @task.id)

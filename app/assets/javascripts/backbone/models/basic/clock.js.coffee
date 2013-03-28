@@ -6,3 +6,6 @@ class Joygen.Models.Clock extends Joygen.Models.Block
     )
   icon: "/assets/admin/icons/16/087.png"
   isSource: -> true
+
+  caption: ->
+    @get('time')

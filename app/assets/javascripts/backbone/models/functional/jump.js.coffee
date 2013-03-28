@@ -15,7 +15,4 @@ class Joygen.Models.Jump extends Joygen.Models.Block
     @collection.get(@get("checkpoint_id"))
 
   caption: ->
-    n=if @checkpoint()? then @checkpoint().parent().get("name") else @get("name")
-    n=n.replace(/(<([^>]+)>)/ig,"") #strip html
-    return n if n? && n.length <= 20
-    n.substr(0,17)+"..." if n?
+    if @checkpoint()? then @checkpoint().parent().get("name") else @get("name")

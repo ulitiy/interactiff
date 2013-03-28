@@ -7,3 +7,6 @@ class Joygen.Models.Timer extends Joygen.Models.Block
   icon: "/assets/admin/icons/16/052.png"
   isSource: -> true
   isTarget: -> true
+
+  caption: ->
+    @get('time')

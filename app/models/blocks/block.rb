@@ -44,4 +44,8 @@ class Block
     self.task||=self.parent.parent_task if self.parent
   end
 
+  def self.descendant_types
+    [self.to_s]+self.descendants.map(&:to_s)
+  end
+
 end

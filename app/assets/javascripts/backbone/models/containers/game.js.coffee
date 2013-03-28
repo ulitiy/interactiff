@@ -12,15 +12,3 @@ class Joygen.Models.Game extends Joygen.Models.Block
   checkpoints: =>
     @collection.filter (block)=>
       block.get("type")=="TaskGiven"
-
-  # save: (attributes, options) =>
-  #   if @isNew()
-  #     hash=
-  #       success: =>
-  #         gameStarted=new Joygen.Models.GameStarted({parent_id:@id, x:0, y: 100})
-  #         gameStarted.save()
-  #         gamePassed=new Joygen.Models.GamePassed({parent_id:@id, x:600, y: 100})
-  #         gamePassed.save()
-  #         masterCollection.add([gameStarted,gamePassed])
-  #         fieldView.render() #TODO
-  #   super attributes, $.extend(options, hash)

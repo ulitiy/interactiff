@@ -1,2 +1,2 @@
-class TaskPassed < Block
+class TaskPassed < Message
 end
