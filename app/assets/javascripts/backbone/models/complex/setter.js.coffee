@@ -1,5 +1,6 @@
 class Joygen.Models.Setter extends Joygen.Models.Block
   modelName: "setter"
+  mainField: "expression"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Setter"

@@ -37,6 +37,9 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
       timeFormat: "HH:mm:ss"
       dateFormat: "yy-mm-dd"
 
+  setFocus: =>
+    $("#"+editBlock.mainField).focus().select()
+
   clear: =>
     $(@el).html("")
     @model=null

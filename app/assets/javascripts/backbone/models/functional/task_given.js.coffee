@@ -1,5 +1,6 @@
 class Joygen.Models.TaskGiven extends Joygen.Models.Block
   modelName: "task_given"
+  mainField: "body"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "TaskGiven"

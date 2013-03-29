@@ -1,5 +1,6 @@
 class Joygen.Models.GameStarted extends Joygen.Models.Block
   modelName: "game_started"
+  mainField: "time"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "GameStarted"

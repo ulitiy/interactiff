@@ -1,5 +1,6 @@
 class Joygen.Models.Timer extends Joygen.Models.Block
   modelName: "timer"
+  mainField: "time"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Timer"

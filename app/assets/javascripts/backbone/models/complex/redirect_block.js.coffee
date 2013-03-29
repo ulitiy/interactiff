@@ -1,5 +1,6 @@
 class Joygen.Models.RedirectBlock extends Joygen.Models.Block
   modelName: "redirect_block"
+  mainField: "url"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "RedirectBlock"

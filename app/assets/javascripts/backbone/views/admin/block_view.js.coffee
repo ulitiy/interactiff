@@ -24,6 +24,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       jsPlumb.repaint $(@el)
 
   dblclick: =>
+    propertiesView.setFocus()
     return unless @model.container?
     router.navigate @model.adminPath(),
       trigger:true
@@ -32,7 +33,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     router.navigate "#{parentId}/#{@model.id}",
       trigger:true
       replace:true
-    window.editBlockView=this
+    # window.editBlockView=this
 
 
   mousedown: =>

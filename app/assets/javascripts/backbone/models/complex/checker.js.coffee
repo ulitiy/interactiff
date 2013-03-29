@@ -1,5 +1,6 @@
 class Joygen.Models.Checker extends Joygen.Models.Block
   modelName: "checker"
+  mainField: "expression"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Checker"

@@ -38,13 +38,21 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     if selected.length==1
       selected.trigger("selectedone")
     else
-      window.editBlockView=null
+      # window.editBlockView=null
       router.navigate (parentBlock||rootBlock).adminPath(),
         trigger:true
 
 
   collectionAdd: (block)=>
-    @addBlock(block) if @id==block.get("parent_id") || !block.get("parent_id")?
+    if @id==block.get("parent_id") || !block.get("parent_id")?
+      @addBlock(block)
+      block.on "change:id", ->
+        setTimeout =>
+          router.navigate "#{parentId}/#{@id}",
+            trigger:true
+            replace:true
+          propertiesView.setFocus()
+          fieldView.setSelect $(@view.el)
 
   addBlocks: =>
     _.each(@options.blocks,@addBlock)
@@ -53,6 +61,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     view=new Joygen.Views.Admin.BlockView(model:block)
     #blockViews.push view #добавляем вьюху в массив для последующего связывания
     $(@el).append(view.render().el)
+    block.view=view
     @setSelect($(view.el)) if editId==block.id
     view.makeEndpoints()
 

@@ -1,5 +1,6 @@
 class Joygen.Models.RequestBlock extends Joygen.Models.Block
   modelName: "request_block"
+  mainField: "url"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "RequestBlock"

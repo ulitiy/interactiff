@@ -9,6 +9,7 @@ class Joygen.Models.Block extends Backbone.Model
     container_target: false
 
   modelName: "block"
+  mainField: "name"
 
   deletable: true
   @dirty: false

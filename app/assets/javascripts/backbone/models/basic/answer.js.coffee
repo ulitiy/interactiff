@@ -1,5 +1,6 @@
 class Joygen.Models.Answer extends Joygen.Models.Block
   modelName: "answer"
+  mainField: "body"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Answer"

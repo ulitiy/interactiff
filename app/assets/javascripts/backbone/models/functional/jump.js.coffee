@@ -1,5 +1,6 @@
 class Joygen.Models.Jump extends Joygen.Models.Block
   modelName: "jump"
+  mainField: "checkpoint_id"
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Jump"
