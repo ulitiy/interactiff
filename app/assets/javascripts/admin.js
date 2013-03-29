@@ -8,6 +8,7 @@
 //= require jquery.layout.state
 //= require jquery.jsPlumb-1.3.13-all
 //= require mousetrap
+//= require jquery.kinetic
 //= require jquery-ui-timepicker-addon
 //= require detectmobilebrowser
 

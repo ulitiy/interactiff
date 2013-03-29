@@ -8,6 +8,12 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       filter:'.block'
       cancel:'svg'
 
+  selectableEnable: ->
+    $(@el).selectable "enable"
+
+  selectableDisable: ->
+    $(@el).selectable "disable"
+
   events:
     "selectablestop" : "selectablestop"
   #   "click #refresh" : "refresh"
