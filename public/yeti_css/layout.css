@@ -56,8 +56,9 @@ h1{
 
 .window_yeti ol,ul {
 	color:#FFF;
-	font-size: 14px;
-	margin-top: 0;
+	font-family: Tahoma, 'Open Sans', sans-serif;
+	font-size: 12px;
+	margin-top: 20px;
 	margin-left: 50px;
 }
 
@@ -65,7 +66,7 @@ h1{
 	margin: 40px 25px 15px 50px; 
 }
 
-.window_yeti h2,h3,h4,h6,h5, ul {
+.window_yeti h2,h3,h4,h6,h5 {
 	font-family: Calibri, 'Open Sans', sans-serif;
 }
 
@@ -74,7 +75,7 @@ h1{
 	color:#00dadc;
 	font-size: 26px;
 	font-variant:normal;
-	margin: 0px;
+	margin: 0 0 15px 0;
 	padding: 25px 0 0 0;
 }
 
@@ -194,4 +195,39 @@ a:visited{
 	font-style:italic;
 	font-family: Calibri, 'Open Sans', sans-serif;
 	font-size:14px;
+}
+
+.btn{ 
+	padding: 6px 20px;
+	height: 40px;
+  border-top: 1px solid #98ed7d;
+  border-bottom: 1px solid #568d4d;
+  border-left: 1px solid #619d57;
+  border-right: 1px solid #619d57;
+  border-radius: 5px;
+	color: #FFF;
+  font: 14px Tahoma, sans-serif;
+	box-shadow: inset 0 1px #dbf7d4, 0 1px 2px #B8BEBE;
+	background: -moz-linear-gradient(top,  #7eca73 0%, #5fbe4e 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7eca73), color-stop(100%,#5fbe4e));
+	background: -webkit-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: -o-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: -ms-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background-color: #5fbe4e;
+	cursor: pointer;
+	text-shadow: 0 -1px #51d12d;
+	outline: none;
+}
+input {
+   font: 14px Tahoma, sans-serif;
+	color: #444;
+	width: 300px;
+	margin-top: 20px;
+	margin-left: 20px;
+	padding: 9px 13px;
+  border: 1px solid #D2D9DC;
+	border-radius: 3px;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 1px #B8BEBE;
+	outline: none;
 }
