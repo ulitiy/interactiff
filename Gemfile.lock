@@ -126,6 +126,8 @@ GEM
       multi_json (~> 1.0)
       rack
     ejs (1.0.0)
+    enumerize (0.5.1)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     evalhook (0.5.1)
       partialruby (>= 0.2.0)
@@ -440,6 +442,7 @@ DEPENDENCIES
   delayed_job_mongoid
   delayed_job_web!
   devise
+  enumerize
   execjs
   factory_girl_rails
   growl

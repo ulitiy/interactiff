@@ -32,6 +32,7 @@ gem 'inherited_resources'
 gem 'has_scope'
 gem 'haml'
 gem 'haml-rails'
+gem 'enumerize'
 
 gem 'refinerycms-dashboard', '~> 2.0.0'
 gem 'refinerycms-images', '~> 2.0.0'

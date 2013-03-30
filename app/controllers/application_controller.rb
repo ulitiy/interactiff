@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     redirect_to [request.protocol,cd.main_host.name,request.port_string,request.fullpath].join, :status=>:moved_permanently unless(cd.main_host_id==current_host.id || cd.main_host_id.nil?) #на главный хост
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def current_user
     @current_user ||= warden.authenticate(:scope => :user)
   end
