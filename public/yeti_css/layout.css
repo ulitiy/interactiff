@@ -36,7 +36,7 @@ h1{
 	display:block;	
 	margin-top: 20px;
 	margin-bottom: 35px;
-	padding: 0px;
+	padding: 0 0 1px 0;
 	}
 
 .window_yeti p {
@@ -63,7 +63,7 @@ h1{
 }
 
 .window_yeti h3,h4,h6 {
-	margin: 40px 25px 15px 50px; 
+	margin: 40px 25px 15px 25px; 
 }
 
 .window_yeti h2,h3,h4,h6,h5 {
@@ -89,10 +89,10 @@ h1{
 }
  
 .window_yeti h5 {
+	margin-left: 25px;
 	color:#00dadc;
 	font-size:18px;
-	text-align:center;
-	margin-bottom:5px;
+	margin-bottom:25px;
 }
 
 .window_yeti a {
@@ -122,11 +122,9 @@ a:visited{
 .menu {
 	list-style: none;
 	margin: 0;padding: 0;
-	background:url(../yeti_img/menu_bg_l.png) repeat;
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
 	position: relative;
 	margin-top: 0px;
+	margin-bottom: 10px;
 }
 
 .menu small {
@@ -135,40 +133,31 @@ a:visited{
 	font-weight: 300;
 }
 
-.menu:before{
-	content: "";
-	position: absolute;
-	display: block;
-	width:100%;
-	height: 14px;
-	background: url(../yeti_img/line.png) repeat-x;
-	top:-5px;
-	left:0px;
-}
-
-
 .menu li a {
+	font-family: Calibri, 'Open Sans', sans-serif;
+	background:url(../yeti_img/menu_bg_l.png) repeat;
+	border-radius: 10px;
 	display: block;
 	padding: 10px 30px;
+	margin: 10px 10px;
 	color: #d7fff5;
 	font-size: 20px;
 	font-weight: 500;
 }
 
 .menu li a:hover {
+	color:#003300;
 	display: block;
-	padding: 10px 31px;
-	color: #00dadc;
-	font-size: 20px;
 	font-weight: 500;
-}
-
-.menu li:first-child a {
-	padding-top: 25px;
-}
-
-.menu li:last-child a {
-	padding-bottom: 25px;
+	background: -moz-linear-gradient(top,  #91cd6d 0%, #7ac349 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#91cd6d), color-stop(100%,#7ac349));
+	background: -webkit-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: -o-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: -ms-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background-color: #91cd6d;
+	text-shadow: 0 1px #4a9884;
+	box-shadow: inset 0 1px #dbf7d4, 0 1px 2px #78a65a;
 }
 
 .menu ul {
@@ -223,8 +212,7 @@ input {
    font: 14px Tahoma, sans-serif;
 	color: #444;
 	width: 300px;
-	margin-top: 20px;
-	margin-left: 20px;
+	margin: 10px 20px;
 	padding: 9px 13px;
   border: 1px solid #D2D9DC;
 	border-radius: 3px;
