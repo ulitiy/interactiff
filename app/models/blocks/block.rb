@@ -26,12 +26,12 @@ class Block
 
   attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target
 
-  default_scope order_by(y:1,x:1)
+  default_scope order_by(created_at: 1)
 
   before_create :set_ids
   after_initialize :set_ids
 
-  index y: 1, x: 1
+  index created_at: 1
 
   def personal
     false

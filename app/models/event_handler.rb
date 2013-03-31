@@ -19,6 +19,7 @@ class EventHandler
     # reason
 
   # Sets options
+  # Reliable options are necessary
   def initialize opt
     @options=opt
     @options[:game] ||= @options[:task].parent
