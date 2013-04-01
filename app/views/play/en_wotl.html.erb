@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%=head_title " | #{@current_domain.name}"%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "play" %>
+  <%= javascript_include_tag "play" %>
+  <%= csrf_meta_tags %>
+  <!--[if lte IE 8]>
+  <%= stylesheet_link_tag "play-ie" %>
+  <![endif]-->
+
+</head>
+<body>
+<% head_title "#{@game.name} | " if @task %>
+  <div class="container">
+    <h1><%= @game.name %></h1>
+    <div class="row-fluid">
+      <div class="span2 tasks-column">
+
+      </div>
+
+      <div class="span7">
+        <div class="window">
+          <% if flash[:messages] %>
+            <% for message in flash[:messages] %>
+              <% next if message[:message].empty? %>
+              <div class="alert alert-<%= message[:message_type] %>">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= message[:message] %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if flash[:alert] %>
+            <div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <h2><%= @task.name %></h2>
+
+
+          <%= form_tag play_submit_path(task_id: @task.id) do %>
+            <dl class="row-fluid game-tasks">
+              <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
+                <% next if hint.body.empty? %>
+                <dt class="span2"><%=raw(l(event.time,format: :dmy)+"<br/>") if event.time<Date.today %><%= l event.time, format: :hms %></dt>
+                <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></dd>
+              <% end %>
+
+              <% if @task.input_type=="link" %>
+                <dt class="span2 bolder">Answer</dt>
+                <dd class="span10 answers">
+                  <ul class="unstyled">
+                    <% for answer in @handler.task_answers %>
+                    <% bwv=answer.body_with_vars(game: @game, user: current_user, handler: @handler) %>
+                      <li><%= link_to raw(bwv),
+                                          play_submit_path(task_id:@task.id, input: raw(answer.digest))
+                                          %></li>
+                    <% end %>
+                  </ul>
+                </dd>
+              <% elsif @task.input_type=="text" %>
+                <dt class="span2 bolder">Answer</dt>
+                <dd class="span10 answers">
+                  <%= text_field_tag "input" %>
+                </dd>
+              <% end %>
+            </dl>
+            <% unless @task.input_type=="link" || @task.input_type=="none" %>
+              <div class="align-right"><button class="btn btn-success">Отправить</button></div>
+            <% end %>
+          <% end %>
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+  <div class="footer center-me">
+    Powered by <%= link_to "Interactiff", "https://interactiff.net" %>
+  </div>
+  </div>
+</body>
