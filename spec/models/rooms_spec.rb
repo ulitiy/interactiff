@@ -7,7 +7,7 @@ describe "rooms" do
   let!(:task_given) { create :task_given, parent: task }
   let!(:task_passed) { create :task_passed, parent: task }
   let (:hint) { create :hint, parent: task }
-  let (:options) do {scope: :for_one, game: game, task: task, user: user} end
+  let (:options) do {scope: "for_one", game: game, task: task, user: user} end
   subject { task }
   context "on first visit" do
     before { task_given.fire options; task.load_rooms(options) }

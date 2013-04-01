@@ -6,7 +6,7 @@ class Answer < Message
 
   field :body, type: String, default: ""
   sanitize :body
-  # можешь активировать несколько раз один блок ответа :for_all
+  # можешь активировать несколько раз один блок ответа "for_all"
   # ты не можешь, но другие могут :for_other
   # никто не может использовать один ответ :no
   field :reusable, type: String, default: "for_other"

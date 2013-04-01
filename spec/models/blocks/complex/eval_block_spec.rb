@@ -29,7 +29,7 @@ describe EvalBlock do
 
   describe "#get_vars" do
     before do
-      Event.create user: user, block: answer, scope: :for_all, input: "20", time: Time.now
+      Event.create user: user, block: answer, scope: "for_all", input: "20", time: Time.now
       eb.get_vars "var1+last_answer.to_i", game: game, user: user, handler: handler
     end
     context "var1" do

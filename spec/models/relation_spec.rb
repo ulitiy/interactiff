@@ -36,14 +36,14 @@ describe Relation do
   end
 
   describe "#backtrack" do
-    let(:block1) { create :block, scope: :for_all }
+    let(:block1) { create :block, scope: "for_all" }
     let(:block2) { create :block }
     before { block1.hit }
     it("should create event") { expect { Relation.create from:block1, to:block2 }.to change { Event.count }.by(1) }
     it("should set all correct fields")
     describe "after" do
       before { Relation.create from:block1, to:block2 }
-      it("should set correct scope") { block2.events.last.scope.should eq(:for_all) }
+      it("should set correct scope") { block2.events.last.scope.should eq("for_all") }
     end
   end
 

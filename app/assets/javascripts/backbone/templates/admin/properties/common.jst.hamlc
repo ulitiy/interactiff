@@ -3,6 +3,11 @@
   .property
     %label(for="title")= I18n.t("admin.block.title")
     %input(id="title", type="text", data-value="model.title")
+  .property
+    %label(for="scope")= I18n.t("admin.block.scope.label")
+    %select(id="scope", data-value="model.scope")
+      %option(value="for_one")= I18n.t("admin.block.scope.for_one")
+      %option(value="for_all")= I18n.t("admin.block.scope.for_all")
   -if @parent()?.modelName=="task"
     -if @isSource?() || @isContainerSource?()
       .property

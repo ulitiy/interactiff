@@ -11,8 +11,8 @@ describe Variable do
     end
     context "with events" do
       before do
-        Event.create scope: :for_team, team: team, time: Time.now+1, variable: var1, var_value: 20, block: setter
-        Event.create scope: :for_one, user: user, time: Time.now, variable: var1, var_value: 15, block: setter
+        Event.create scope: "for_team", team: team, time: Time.now+1, variable: var1, var_value: 20, block: setter
+        Event.create scope: "for_one", user: user, time: Time.now, variable: var1, var_value: 15, block: setter
       end
       it { should eq(20) }
     end

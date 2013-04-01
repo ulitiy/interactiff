@@ -19,9 +19,9 @@ describe Setter do
 
   describe "complex behavior" do
     before do
-      Event.create scope: :for_one, user: user, time: Time.now, variable: var1, var_value: 25, block: setter
-      Event.create scope: :for_team, team: team, time: Time.now, variable: var2, var_value: 10, block: setter
-      Event.create scope: :for_all, time: Time.now, variable: var22, var_value: 30, block: setter
+      Event.create scope: "for_one", user: user, time: Time.now, variable: var1, var_value: 25, block: setter
+      Event.create scope: "for_team", team: team, time: Time.now, variable: var2, var_value: 10, block: setter
+      Event.create scope: "for_all", time: Time.now, variable: var22, var_value: 30, block: setter
       setter.hit user: user, time: Time.now+1
     end
     subject { var1.value user: user, game: game }

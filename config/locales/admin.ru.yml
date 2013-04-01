@@ -14,6 +14,11 @@ ru:
       comment: "Комментарий"
       container_source: "Пуговка выход"
       container_target: "Пуговка вход"
+      scope:
+        label: "Область действия"
+        for_one: "На игрока"
+        for_team: "На команду"
+        for_all: "На всех"
     domain:
       new:  "Новый домен"
       tool: "Домен"

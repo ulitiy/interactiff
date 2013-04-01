@@ -38,9 +38,9 @@ module BlockBehavior
   def is_hit? options
     if task
       !task.visit_count && task.load_rooms(options)
-      events.or({scope: :for_one, user_id: options[:user].id, visit_count: task.visit_count}, {scope: :for_team, team_id: options[:user].team_id, visit_count: task.visit_count}, {scope: :for_all, visit_count: task.visit_count}).any?
+      events.or({scope: "for_one", user_id: options[:user].id, visit_count: task.visit_count}, {scope: "for_team", team_id: options[:user].team_id, visit_count: task.visit_count}, {scope: "for_all", visit_count: task.visit_count}).any?
     else
-      events.or({scope: :for_one, user_id: options[:user].id}, {scope: :for_team, team_id: options[:user].team_id}, {scope: :for_all}).any? #moped doesn't understand <model>
+      events.or({scope: "for_one", user_id: options[:user].id}, {scope: "for_team", team_id: options[:user].team_id}, {scope: "for_all"}).any? #moped doesn't understand <model>
     end
   end
 
@@ -54,7 +54,7 @@ module BlockBehavior
   def fire options={}
     check_max_events
     options=prepare_options options
-    return personal_fire(options) if personal && options[:scope]!=:for_one # мне это воспринять на свой счет? (вулкан задел жителя)
+    return personal_fire(options) if personal && options[:scope]!="for_one" # мне это воспринять на свой счет? (вулкан задел жителя)
     event=create_event options
     block_actions options
     [event]+hit_relations(options.merge(
@@ -75,14 +75,14 @@ module BlockBehavior
 
   # fire personal events for scope users
   def personal_fire options
-    scope_users(options).each { |user| fire options.merge(scope: :for_one, user: user, force_scope: true) } ##проблема в том, что, если мы делаем P*, то у нас get_scope возвращается всегда for_all и fire уходит в бесконечную рекурсию
+    scope_users(options).each { |user| fire options.merge(scope: "for_one", user: user, force_scope: true) } ##проблема в том, что, если мы делаем P*, то у нас get_scope возвращается всегда for_all и fire уходит в бесконечную рекурсию
   end
 
   # prepare options for fire
   def prepare_options options
     options.merge! scope: get_scope(options), game: game, task: task, force_scope: nil, mutex: nil
     options[:user]||=User.find options[:user_id] if options[:user_id]
-    options[:team]=options[:user].team if options[:scope]==:for_team
+    options[:team]=options[:user].team if options[:scope]=="for_team"
     options.reverse_merge! time: Time.now
   end
 
@@ -95,7 +95,7 @@ module BlockBehavior
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.
   def get_scope options
     return options[:scope] if options[:force_scope]
-    h={for_one:1, for_team:2, for_all:3}
+    h={"for_one"=>1, "for_team"=>2, "for_all"=>3}
     h.invert[ [h[options[:scope]] || 0, h[scope]].max ] #хитро
   end
 
@@ -119,9 +119,9 @@ module BlockBehavior
   # @return [Array] all users, events should be created for
   def scope_users options
     case options[:scope]
-      when :for_one then [options[:user]]
-      when :for_team then options[:user].team.members
-      when :for_all then game.members
+      when "for_one" then [options[:user]]
+      when "for_team" then options[:user].team.members
+      when "for_all" then game.members
     end
   end
 

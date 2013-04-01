@@ -15,7 +15,7 @@ describe "Play UI" do
   let!(:tg1) { create :task_given, parent: task1 }
   let!(:tp1) { create :task_passed, parent: task1 }
   let!(:ac1) { create :answer, parent: task1 }
-  let!(:al1) { create :answer, parent: task1, reusable: :for_all }
+  let!(:al1) { create :answer, parent: task1, reusable: "for_all" }
   let!(:user) { create :root_user }
 
   before do
@@ -26,7 +26,7 @@ describe "Play UI" do
     let!(:task2) { create :task, name: "task 2", parent: game, input_type: "link" }
     let!(:tg2) { create :task_given, parent: task2 }
     let!(:tp2) { create :task_passed, parent: task2 }
-    let!(:al2) { create :answer, parent: task2, reusable: :for_all }
+    let!(:al2) { create :answer, parent: task2, reusable: "for_all" }
 
     before do
       Relation.from_array [

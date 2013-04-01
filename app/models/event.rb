@@ -1,13 +1,15 @@
 # Event for user/team/all for the block (which is action or potential event)
 class Event
   include Mongoid::Document
+  extend Enumerize
 
   field      :input , type: String
   field      :time  , type: Time
-  field      :scope , type: Symbol, default: :for_one
+  field      :scope , type: String, default: "for_one"
   field      :block_type  , type: String
   field      :visit_count , type: Integer, default: 1
   field      :var_value
+  enumerize :scope, in: ["for_one","for_team","for_all"], default: "for_one"
 
   belongs_to :user, index: true
   belongs_to :team, index: true
@@ -40,9 +42,9 @@ class Event
   index block_id: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
 
   scope :block_type, ->(type) { where(block_type: type) }
-  scope :for_one, ->(user) { where(scope: :for_one, user_id: user.id) }
-  scope :for_team, ->(team) { where(scope: :for_team, team_id: (team.is_a?(Moped::BSON::ObjectId) ? team : team.id)) }
-  scope :for_all, -> { where(scope: :for_all) }
+  scope "for_one", ->(user) { where(scope: "for_one", user_id: user.id) }
+  scope "for_team", ->(team) { where(scope: "for_team", team_id: (team.is_a?(Moped::BSON::ObjectId) ? team : team.id)) }
+  scope "for_all", -> { where(scope: "for_all") }
   scope :var, ->(v) { v ? where(variable_id: v.id) : scoped }
   scope :visit_count, ->(vc) { vc ? where(visit_count: vc) : scoped }
 

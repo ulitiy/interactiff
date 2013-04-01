@@ -106,7 +106,7 @@ describe Block do
       block.fire user: user1
     end
     context "when for_one" do
-      let(:block) { create :block, parent: game, scope: :for_one }
+      let(:block) { create :block, parent: game, scope: "for_one" }
       context "when correct user" do
         let(:user) { user1 }
         it { should eq(true) }
@@ -117,12 +117,12 @@ describe Block do
       end
     end
     context "when for_all" do
-      let(:block) { create :block, parent: game, scope: :for_all }
+      let(:block) { create :block, parent: game, scope: "for_all" }
       let(:user) { user2 }
       it { should eq(true) }
     end
     context "when for_team" do
-      let(:block) { create :block, parent: game, scope: :for_team }
+      let(:block) { create :block, parent: game, scope: "for_team" }
       context "when teammate" do
         let(:user) { user12 }
         it { should eq(true) }
@@ -135,27 +135,27 @@ describe Block do
   end
 
   describe "#scope_users" do
-    let(:block) { create :block, parent: game, scope: :for_one }
+    let(:block) { create :block, parent: game, scope: "for_one" }
     before { [user1,user12,user2].each { |u| u.member_of_games<<game; }; game.reload }
     context "when for_all" do
-      subject { block.scope_users scope: :for_all, user: user1 }
+      subject { block.scope_users scope: "for_all", user: user1 }
       it { should eq([user1,user12,user2])}
     end
     context "when for_team" do
-      subject { block.scope_users scope: :for_team, user: user1 }
+      subject { block.scope_users scope: "for_team", user: user1 }
       it { should eq([user1,user12]) }
     end
   end
 
   describe "#get_scope" do
-    subject { block.get_scope scope: :for_team }
+    subject { block.get_scope scope: "for_team" }
     context "when for_one" do
-      let(:block) { create :block, scope: :for_one}
-      it { should eq(:for_team) }
+      let(:block) { create :block, scope: "for_one"}
+      it { should eq("for_team") }
     end
     context "when for_all" do
-      let(:block) { create :block, scope: :for_all}
-      it { should eq(:for_all) }
+      let(:block) { create :block, scope: "for_all"}
+      it { should eq("for_all") }
     end
   end
 
@@ -203,16 +203,16 @@ describe Block do
         create :relation, from: block1, to: block2
       end
       context "for_team to not personal for_one" do
-        let(:block1) { create :block, parent: game, scope: :for_team }
-        let(:block2) { create :block, parent: game, scope: :for_one }
+        let(:block1) { create :block, parent: game, scope: "for_team" }
+        let(:block2) { create :block, parent: game, scope: "for_one" }
         before { block1.fire user: user }
         it { block2.events.count.should eq(1) } #because isn't personal
-        it { block2.events.first.scope.should eq(:for_team) }
+        it { block2.events.first.scope.should eq("for_team") }
         it { block2.events.first.team.should eq(team) }
       end
       context "for_one to personal for_all" do
-        let(:block1) { create :block, parent: game, scope: :for_one }
-        let(:block2) { create :sms, parent: game, scope: :for_all }
+        let(:block1) { create :block, parent: game, scope: "for_one" }
+        let(:block2) { create :sms, parent: game, scope: "for_all" }
         before do
           [user1,user12,user2].each { |u| u.member_of_games<<game; }
           game.reload
@@ -222,7 +222,7 @@ describe Block do
 
         it { block2.personal.should eq(true) }
         it { block2.events.count.should eq(3) }
-        it { block2.events.first.scope.should eq(:for_one) }
+        it { block2.events.first.scope.should eq("for_one") }
         it { block2.events.last.user.should eq(user2) }
       end
     end

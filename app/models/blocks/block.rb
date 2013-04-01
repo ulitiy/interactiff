@@ -4,13 +4,15 @@ class Block
   include Mongoid::Timestamps
   include BlockBehavior
   include BlockAdmin
+  extend Enumerize
 
   field :x, type: Integer, default: 0
   field :y, type: Integer, default: 0
   field :title, type: String, default: ""
-  field :scope, type: Symbol, default: :for_one
+  field :scope, type: String, default: "for_one"
   field :container_source, type: Boolean, default: false
   field :container_target, type: Boolean, default: false
+  enumerize :scope, in: ["for_one","for_team","for_all"], default: "for_one"
 
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
   belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
@@ -24,9 +26,7 @@ class Block
   has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
   has_many :roles, dependent: :destroy
 
-  attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target
-
-  default_scope order_by(created_at: 1)
+  attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target, :scope
 
   before_create :set_ids
   after_initialize :set_ids
