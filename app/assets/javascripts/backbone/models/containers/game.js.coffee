@@ -6,7 +6,7 @@ class Joygen.Models.Game extends Joygen.Models.Block
       name: I18n.t("admin.game.new")
     )
   container: -> true
-  tools: ["Task", 'Clock', 'Timer', 'AndBlock', 'OrBlock', 'Distributor', 'Jump', "Setter", "Checker", "RequestBlock"]
+  tools: ["Task", 'Clock', 'Timer', 'AndBlock', 'OrBlock', 'Distributor', 'Jump', "Setter", "Condition", "Checker", "RequestBlock"]
   icon: "/assets/admin/icons/16/069.png"
 
   checkpoints: =>
