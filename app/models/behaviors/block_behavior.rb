@@ -111,7 +111,7 @@ module BlockBehavior
   # @return [Array] all blocks, to which relations go from this block (effect blocks)
   def out_blocks
     ids=out_relations.map &:to_id
-    Block.find(*ids).to_a #to array if nil or one
+    Block.find(*ids).to_a.sort_by { |b| [b.y, b.x] } #to array if nil or one
   end
 
   alias blocks_to_hit out_blocks
