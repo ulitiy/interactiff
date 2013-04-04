@@ -10,17 +10,16 @@ module Kernel
 end
 
 require 'rubygems'
-require 'spork'
 
-Spork.prefork do
+prefork = -> {
   ENV["RAILS_ENV"] ||= 'test'
 
   require 'rails/mongoid'
-  Spork.trap_class_method(Rails::Mongoid, :load_models)
-  Spork.trap_method(Rails::Application, :eager_load!)
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+  # Spork.trap_class_method(Rails::Mongoid, :load_models)
+  # Spork.trap_method(Rails::Application, :eager_load!)
+  # Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
   require 'factory_girl_rails'
-  Spork.trap_class_method(FactoryGirl, :find_definitions)
+  # Spork.trap_class_method(FactoryGirl, :find_definitions)
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -55,11 +54,31 @@ Spork.prefork do
     # config.javascript_driver = :poltergeist
   end
 
-end
+}
 
-Spork.each_run do
+each_run = -> {
   # silence_warnings do #reload models
   #   Dir["#{Rails.root}/app/models/**.rb"].each {|f| load f}
   # end
   FactoryGirl.reload
+}
+
+if defined?(Zeus)
+  prefork.call
+  $each_run = each_run
+  class << Zeus.plan
+    def after_fork_with_test
+      after_fork_without_test
+      $each_run.call
+    end
+    alias_method_chain :after_fork, :test
+  end
+elsif ENV['spork'] || $0 =~ /\bspork$/
+  require 'spork'
+  Spork.prefork(&prefork)
+  Spork.each_run(&each_run)
+else
+  prefork.call
+  each_run.call
 end
+

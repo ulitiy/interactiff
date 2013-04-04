@@ -1,0 +1,166 @@
+﻿ru:
+  admin:
+    links:
+      save: "Save"
+      destroy: "Delete"
+      sure: "Are you sure?"
+    path:
+      root: "My quests"
+      level_up: "&larr; Back"
+      reload: '<span class="carrow">&#8635</span> Refresh'
+    block:
+      id: "Number"
+      title: "Comment"
+      comment: "Comment"
+      container_source: "Enter point"
+      container_target: "Exit point"
+      scope:
+        label: "Scope"
+        for_one: "One player"
+        for_team: "Team"
+        for_all: "Everybody"
+    domain:
+      new:  "New domain"
+      tool: "Domain"
+      name: "Name"
+      main_host: "Main host"
+      hint: "Isolated environment for one customer"
+    host:
+      tool: "Host"
+      name: "Name"
+      make_main_host: "Make main host"
+      hint: "Domain name"
+    game:
+      name: "Name"
+      guest_access: "Guest access"
+      tool: "Scenario"
+      new: "New scenario"
+      # hint: "Scenario. Container block. User is able to begin and end it. Enter and exit points are equal to inner enter/exit blocks. Double click to decompose."
+    task:
+      name: "Name"
+      tool: "Task"
+      new: "New task"
+      hint: "Task or location. Container block. May be given to user and finished. Double click to look inside."
+      input_type:
+        label: "Input type"
+        text: "Text"
+        link: "Selection"
+        none: "None"
+    answer:
+      tool: "Answer"
+      new: "Answer"
+      body: "Body"
+      reusable:
+        label: "Reusability"
+        for_all: "For everyone"
+        for_other: "For others"
+        not_reusable: "Not reusable"
+      spelling_matters: "Different spelling is allowed"
+      hint: "Answer. Initiating block. Generates the signal if answer is correct."
+      link: "Link"
+    hint:
+      tool: "Text"
+      body: "Body"
+      new: "Task description"
+      hint: "Task description. Shows text when receives the signal."
+    message:
+      tool: "Message"
+      message: "Message"
+      message_type:
+        label: "Message color"
+        success: "Green"
+        info: "Blue"
+        alert: "Red"
+      new: "Message"
+      hint: "Message. Shows message when receives a signal."
+    timer:
+      tool: "Timer"
+      hint: "Timer. Initiating block. Delays a signal for specified time."
+      time: "Time"
+    clock:
+      tool: "Clock"
+      hint: "Clock. Initiating block. Transmits the signal when specified time comes."
+      time: "Time"
+
+    setter:
+      tool: "Assign"
+      hint: "Assign. Assigns a value to a variable when receives the signal. (i.e. x=rand(12)-y*2)."
+      expression: "Expression"
+    checker:
+      tool: "Trigger"
+      hint: "Trigger. Initiating block. Activates when a variable is changed and transmits the signal if expression is true. (i.e. x>=20)"
+      expression: "Expression"
+    condition:
+      tool: "Condition"
+      hint: "Condition. Transmits the signal if expression is true. (i.e. x>=20)"
+      expression: "Expression"
+    # eval_block:
+    #   tool: "Исполнить код"
+    #   hint: "Исполнить код. При поступлении сигнала на вход данного блока исполняется произвольный код и передается сигнал на выход, если результатом работы кода является неложное значение. Данный блок является основой для построения иных типов блоков. Доступ к созданию данного блока ограничен."
+    distributor:
+      tool: "Distributor"
+      hint: "Distributor. Transmits the signal due to chosen algorythm (random/dynamic)."
+    redirect_block:
+      tool: "Redirect"
+      hint: "Redirects user to specified URL. (i.e http://google.com/)"
+      url: "URL"
+    request_block:
+      tool: "Request"
+      hint: "Makes a server request at specified adress. Variables are allowed. (i.e. http://google.com/?q=&#123;&#123;var&#125;&#125;)"
+      url: "URL"
+
+
+
+    and_block:
+      tool: "AND"
+      new: "AND"
+      hint: "AND block. Transmits the signal if received the signal from all of the arrows."
+    or_block:
+      tool: "OR"
+      new: "OR"
+      hint: "OR block. Transmits the signal if received one. Haha, stupid block! :)"
+    # not_block:
+    #   tool: "NOT"
+    #   new: "NOT"
+    #   hint: "NOT block. Doesn’t transmit any signal. Used for checking if no signal comes from the AND block."
+
+
+    jump:
+      new: "Jump to"
+      tool: "Jump to"
+      hint: "Jump to. Transmits the signal to a checkpoint. See Checkpoint."
+      checkpoint: "Checkpoint"
+    checkpoint:
+      new: "Checkpoint"
+      tool: " Checkpoint"
+      hint: " Checkpoint. Activates if signal jumps to a checkpoint. See Jump to"
+      name: "Name"
+    task_given:
+      new: "Given"
+      tool: "Given"
+      hint: "Task is given. Activates if task is given. Shows task description."
+    task_passed:
+      new: "Accomplished"
+      tool: "Accomplished"
+      hint: "Task is Accomplished. Makes task accomplished when receives the signal."
+      message: "Task is accomplished! Next task:"
+    game_started:
+      new: "Started"
+      tool: "Started"
+      hint: "Scenario is started. Scenario will start at specified time."
+    game_passed:
+      new: "Completed"
+      tool: " Completed "
+      hint: "Scenario is completed. Makes scenario completed when receives the signal."
+    # input:
+    #   new: "Вход"
+    #   tool: "Вход"
+    #   hint: "Вход. Сквозной блок. При поступлении сигнала снаружи на данный вход, сигнал передается на выход внутри блока-контейнера."
+    # output:
+    #   new: "Выход"
+    #   tool: "Выход"
+    #   hint: "Выход. Сквозной блок. При поступлении сигнала внутри блока-контейнера на вход данного блока, сигнал передается на выход снаружи блока-контейнера."
+
+    properties:
+      confirm_exit: "Changes were not saved. Remove the highlighting to save."
+

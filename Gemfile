@@ -64,13 +64,12 @@ group :development do
   gem 'meta_request'
 end
 group :test do
+  gem "zeus"
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
   gem "growl"
   gem 'database_cleaner'
-  gem 'spork'
-  gem 'guard-spork'
   gem 'rb-fsevent'
   gem "selenium-webdriver"
   gem "poltergeist"
