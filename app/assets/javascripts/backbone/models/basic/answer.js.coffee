@@ -11,3 +11,6 @@ class Joygen.Models.Answer extends Joygen.Models.Block
 
   link: ->
     "https://interactiff.net/play/submit?task_id=#{@get('parent_id')}&input=#{@get('digest')}"
+
+  show_spelling_matters: ->
+    @get("reusable")=="no"
