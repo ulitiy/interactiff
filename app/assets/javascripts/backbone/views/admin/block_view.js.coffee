@@ -174,6 +174,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
   render: =>
     $(@el).data("view",this) #круто!
     $(@el).html @template(@model)
+    $(@el).addClass(@model.modelName)
     $(@el).attr("title",I18n.t('admin.'+@model.modelName+'.hint'))
     $(@el).css(left:"#{@model.get("x")}px",top:"#{@model.get("y")}px")
     jsPlumb.draggable $(@el)
