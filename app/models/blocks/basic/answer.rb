@@ -56,4 +56,10 @@ class Answer < Message
   def hot? options
     body_hot?(options) && reusable_hot?(options)
   end
+
+  # sets input to body if it's digest answer
+  def create_event options
+    options[:input]=body if options[:input] == digest
+    super options
+  end
 end

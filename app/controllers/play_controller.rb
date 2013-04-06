@@ -71,7 +71,7 @@ class PlayController < ApplicationController
   # Set flash messages due to current changes
   def set_flash
     flash[:messages]=@fired_events.find_all { |e| e.block_type.in? Message.descendant_types }.map do |e|
-      {message:e.block.message, message_type: e.block.message_type}
+      {message:e.block.message_with_vars(@handler.options), message_type: e.block.message_type}
     end.compact
     if @fired_events.find { |e| e.block_type=="TaskPassed" }
       redirect_to play_game_url(game_id: @game.id)
