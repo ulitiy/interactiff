@@ -11,7 +11,8 @@
 .property.spelling_matters
   %label(for="spelling_matters")= I18n.t("admin.answer.spelling_matters")
   %input#spelling_matters(type="checkbox", data-checked="model.spelling_matters")
+%hr
 !=JST["backbone/templates/admin/properties/message"](this)
-.property
-  %label(for="link")= I18n.t("admin.answer.link")
-  %input#link(type="text", readonly="readonly", data-value="model:link")
+-#.property
+  -#%label(for="link")= I18n.t("admin.answer.link")
+  -#%input#link(type="text", readonly="readonly", data-value="model:link")

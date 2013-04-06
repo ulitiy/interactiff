@@ -1,25 +1,26 @@
 %h3= I18n.t("admin.#{@modelName}.tool")
 #properties
-  .property
-    %label(for="title")= I18n.t("admin.block.title")
-    %input(id="title", type="text", data-value="model.title")
+  -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
+  -if tmp
+    !=tmp(this)
+  %hr
+  -if @parent()?.modelName=="task"
+    -if @isTarget?() || @isContainerTarget?()
+      .property
+        %label(for="container_target")= I18n.t("admin.block.container_target")
+        %input#container_target(type="checkbox", data-checked="model.container_target")
+    -if @isSource?() || @isContainerSource?()
+      .property
+        %label(for="container_source")= I18n.t("admin.block.container_source")
+        %input#container_source(type="checkbox", data-checked="model.container_source")
   -if @modelName!="task" && @modelName!="clock" && @modelName!="game_started"
     .property
       %label(for="scope")= I18n.t("admin.block.scope.label")
       %select(id="scope", data-value="model.scope")
         %option(value="for_one")= I18n.t("admin.block.scope.for_one")
         %option(value="for_all")= I18n.t("admin.block.scope.for_all")
-  -if @parent()?.modelName=="task"
-    -if @isSource?() || @isContainerSource?()
-      .property
-        %label(for="container_source")= I18n.t("admin.block.container_source")
-        %input#container_source(type="checkbox", data-checked="model.container_source")
-    -if @isTarget?() || @isContainerTarget?()
-      .property
-        %label(for="container_target")= I18n.t("admin.block.container_target")
-        %input#container_target(type="checkbox", data-checked="model.container_target")
-  -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
-  -if tmp
-    !=tmp(this)
+  .property
+    %label(for="title")= I18n.t("admin.block.title")
+    %input(id="title", type="text", data-value="model.title")
 #save-properties
   %input.btn{type: "button", value:  "#{I18n.t('admin.links.save')}"}
