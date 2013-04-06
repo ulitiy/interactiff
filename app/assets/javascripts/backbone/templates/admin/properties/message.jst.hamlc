@@ -7,3 +7,4 @@
     %option(value="success")= I18n.t("admin.message.message_type.success")
     %option(value="info")= I18n.t("admin.message.message_type.info")
     %option(value="alert")= I18n.t("admin.message.message_type.alert")
+    %option(value="error")= I18n.t("admin.message.message_type.error")

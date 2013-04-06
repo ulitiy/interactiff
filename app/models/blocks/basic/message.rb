@@ -6,7 +6,7 @@ class Message < Block
 
   field :message, type: String, :default => ""
   field :message_type, type: String
-  enumerize :message_type, in: [:success,:info,:alert], default: :success
+  enumerize :message_type, in: [:success,:info,:alert, :error], default: :success
   attr_accessible :message, :message_type
   sanitize :message
 end

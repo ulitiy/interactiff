@@ -70,7 +70,8 @@
         label: "Message color"
         success: "Green"
         info: "Blue"
-        alert: "Red"
+        alert: "Yellow"
+        error: "Red"
       new: "Message"
       hint: "Message. Shows message when receives a signal."
     timer:
