@@ -12,8 +12,8 @@ ru:
       id: "Номер"
       title: "Комментарий"
       comment: "Комментарий"
-      container_source: "Пуговка выход"
-      container_target: "Пуговка вход"
+      container_source: "Выход из задания"
+      container_target: "Вход в задание"
       scope:
         label: "Область действия"
         for_one: "На игрока"
