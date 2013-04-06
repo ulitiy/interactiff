@@ -15,7 +15,8 @@
 
 </head>
 <body>
-<% head_title "#{@game.name} | " if @task %>
+<input type="hidden" id="refreshed" value="no">
+</script><% head_title "#{@game.name} | " if @task %>
   <div class="container">
     <h1><%= @game.name %></h1>
     <div class="row-fluid">
@@ -64,8 +65,9 @@
                 <dt class="span2"><%=raw(l(event.time,format: :dmy)+"<br/>") if event.time<Date.today %><%= l event.time, format: :hms %></dt>
                 <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></dd>
               <% end %>
-
-              <% if @task.input_type=="link" %>
+              <% if @task.passed %>
+                <p>Вы уже прошли это задание</p>
+              <% elsif @task.input_type=="link" %>
                 <dt class="span2 bolder">Ответ</dt>
                 <dd class="span10 answers">
                   <ul class="unstyled">
