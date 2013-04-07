@@ -1,3 +1,6 @@
 .property
   %label(for="name")= I18n.t("admin.game.name")
   %input(id="name", type="text", data-value="model.name")
+.property
+  %label(for="guest_access")= I18n.t("admin.game.guest_access")
+  %input#guest_access(type="checkbox", data-checked="model.guest_access")

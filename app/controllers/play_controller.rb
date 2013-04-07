@@ -1,7 +1,12 @@
 # Controller for playing the quest
 class PlayController < ApplicationController
   layout false
-  # load_and_authorize_resource #TODO:!!!!!!!!!!!!!!!!!!!!!           СМОТРИ СЮДА БЛЕАТЬ              !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  load_resource :game, except: :submit
+  before_filter :auth, except: :submit
+
+  def auth
+    authorize! :play, @game
+  end
 
   # TODO: сделать отслеживание возникающих событий. Например, писать в браузер айдишник последнего ивента или его время
   # ОБЯЗАТЕЛЬНО ПОСТАВИТЬ ИНФА НА САЙТ!!!
@@ -9,7 +14,6 @@ class PlayController < ApplicationController
 
   # Display current state of player in game/task
   def show
-    @game=Game.find(params[:game_id])
     @task=Task.where(id: params[:task_id]).first #not to return nil
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if @task.nil? || @task.game_id!=@game.id || !@handler.task_given? #если нельзя показать запрошенное задание
@@ -25,7 +29,6 @@ class PlayController < ApplicationController
 
   def game
     flash.keep
-    @game=Game.find(params[:game_id])
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if !@handler.game_started?
       @start_time=@game.children.where(_type: "GameStarted").first.time
@@ -47,6 +50,7 @@ class PlayController < ApplicationController
   def submit
     @task=Task.find(params[:task_id])
     @game=@task.game
+    authorize! :play, @game
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     CriticalSection.synchronize @game.id do
       @fired_events=@handler.input(params[:input]).to_a
@@ -55,7 +59,6 @@ class PlayController < ApplicationController
   end
 
   def back
-    @game=Game.find(params[:game_id])
     tgs=@game.descendant_events_of(type: "TaskGiven", user: current_user)
     ltg=tgs.sort { |tg1,tg2| tg1.time<=>tg2.time }.last
     events=@game.descendant_events.where(user: current_user).where(time: { "$gt"=> ltg.time })

@@ -17,9 +17,9 @@ class Ability
 
     unless user.is_a? Guest
       can [:join,:create,:index], Game
-      #can :play, Game unless user.is_a Guest
+      can :play, Game unless user.is_a? Guest
     end
-    can :play, Game #, guest_access: true
+    can :play, Game, guest_access: true
 
     #later - better
     user.engine_roles.each { |role| apply_role role }

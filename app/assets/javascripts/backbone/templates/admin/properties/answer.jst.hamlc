@@ -8,7 +8,7 @@
     %option(value="for_all")= I18n.t("admin.answer.reusable.for_all")
     %option(value="for_other")= I18n.t("admin.answer.reusable.for_other")
     %option(value="no")= I18n.t("admin.answer.reusable.not_reusable")
-.property.spelling_matters(data-show="model:show_spelling_matters < .reusable")
+.property(data-show="model:show_spelling_matters < .reusable")
   %label(for="spelling_matters")= I18n.t("admin.answer.spelling_matters")
   %input#spelling_matters(type="checkbox", data-checked="model.spelling_matters")
 %hr
