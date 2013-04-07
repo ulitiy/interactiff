@@ -13,6 +13,18 @@ Mousetrap.bind 'left', ->
 Mousetrap.bind 'right', ->
   Joygen.Views.Admin.BlockView.prototype.move(gridStep,0)
   false
+Mousetrap.bind 'shift+up', ->
+  Joygen.Views.Admin.BlockView.prototype.move(0,-10*gridStep)
+  false
+Mousetrap.bind 'shift+down', ->
+  Joygen.Views.Admin.BlockView.prototype.move(0,10*gridStep)
+  false
+Mousetrap.bind 'shift+left', ->
+  Joygen.Views.Admin.BlockView.prototype.move(-10*gridStep,0)
+  false
+Mousetrap.bind 'shift+right', ->
+  Joygen.Views.Admin.BlockView.prototype.move(10*gridStep,0)
+  false
 Mousetrap.bind 'enter', ->
   if $("*:focus").length==0
     propertiesView.setFocus()
