@@ -1,7 +1,7 @@
 Interactiff::Application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 
-  devise_for :users
+  devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
   root :to => 'refinery/pages#home'
 
   # root to: "games#index"

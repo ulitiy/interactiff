@@ -14,9 +14,9 @@ class User
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  #  and :omniauthable, :rememberable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :trackable, :validatable, :timeoutable#, :lockable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -28,6 +28,11 @@ class User
 
   ## Rememberable
   field :remember_created_at, :type => Time
+
+  ## Lockable
+  # field :locked_at, :type => Time
+  # field :failed_attempts, :type => Integer
+  # field :unlock_token, type: String
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0

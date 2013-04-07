@@ -1,6 +1,6 @@
 $ ->
   e=$("#refreshed")
-  unless $("body").hasClass("not-started")
+  if $("body").hasClass("show")
     if(e.val()=="no")
       e.val("yes")
     else
