@@ -1,5 +1,5 @@
 <header class="row-fluid">
-  <div class="span3 logo"><a href="/"><img src="/assets/logo.png"></a></div>
+  <div class="span3 logo"><%= link_to root_path(locale: ::I18n.locale) do %><img src="/assets/logo.png"><% end %></a></div>
   <div class="span6 center-me">
     <div class="navbar">
       <div class="navbar-inner">

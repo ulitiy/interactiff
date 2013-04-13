@@ -1,9 +1,8 @@
 Interactiff::Application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 
-  root :to => 'refinery/pages#home', defaults: { locale: "ru" }
-
   scope "(:locale)", :locale => /ru|en/ do
+    root :to => 'refinery/pages#home', defaults: { locale: "ru" }
     devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
     resources :games, path: "/quests"
     resources :relations

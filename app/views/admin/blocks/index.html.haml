@@ -1,6 +1,6 @@
 #header
   #logo
-    =link_to image_tag("logo.png", height: "40", width: "130"), root_path
+    =link_to image_tag("logo.png", height: "40", width: "130"), root_path(locale: ::I18n.locale)
   %a#lvl-up.btn(href="")
     =raw(t "admin.path.level_up")
   #path
@@ -10,4 +10,4 @@
   #field.ui-layout-center
   #properties-container.ui-layout-east.panel
   #toolbar.ui-layout-west.panel
-%script(type="text/javascript")="locale='#{params[:locale]}';"
+%script(type="text/javascript")="locale='#{::I18n.locale}';"
