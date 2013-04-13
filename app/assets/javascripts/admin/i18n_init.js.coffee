@@ -1,2 +1,3 @@
-I18n.defaultLocale = "en";
-I18n.locale = locale;
+$ ->
+  I18n.defaultLocale = "en";
+  I18n.locale = locale;

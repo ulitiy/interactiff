@@ -3,7 +3,7 @@ Interactiff::Application.routes.draw do
 
   root :to => 'refinery/pages#home', defaults: { locale: "ru" }
 
-  scope "/:locale", :locale => /ru|en/ do
+  scope "(:locale)", :locale => /ru|en/ do
     devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
     resources :games, path: "/quests"
     resources :relations
