@@ -58,9 +58,6 @@ module Interactiff
 
     config.to_prepare do |app| #fucking refinery override
       ::ApplicationController.module_eval do
-        def default_url_options(options={})
-          ::I18n.locale != ::Refinery::I18n.default_frontend_locale ? { :locale => ::I18n.locale } : {}
-        end
         alias_method_chain :current_user, :guest
       end
     end
@@ -68,6 +65,9 @@ module Interactiff
     include Refinery::Engine
     after_inclusion do
       [::ApplicationController, ::ApplicationHelper, ::Refinery::AdminController].each do |c|
+        def default_url_options(options={})
+          options[:skip_locale] ? { :locale => ::I18n.locale } : {}
+        end
         c.send :include, ::RefineryPatch
       end
 

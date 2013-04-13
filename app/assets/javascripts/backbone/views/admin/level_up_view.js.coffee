@@ -14,4 +14,4 @@ class Joygen.Views.Admin.LevelUpView extends Backbone.View
   setModel: ->
     @model=pathCollection[pathCollection.length-2]||rootBlock
     @path=@model.adminPath()
-    $(@el).attr("href",if @model.id==0 then "/quests" else "/admin/"+@path)
+    $(@el).attr("href",if @model.id==0 then "/#{locale}/quests" else "/#{locale}/admin/"+@path)

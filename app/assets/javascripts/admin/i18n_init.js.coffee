@@ -1,2 +1,2 @@
 I18n.defaultLocale = "en";
-I18n.locale = "ru";
+I18n.locale = locale;

@@ -10,6 +10,7 @@ class User
   has_many :events, dependent: :destroy
   has_and_belongs_to_many :member_of_games, class_name: "Game", inverse_of: "members", index: true
   belongs_to :team, index: true
+  field :locale, type: String, default: "ru"
   #TODO: множественное присваивание
 
   # Include default devise modules. Others available are:

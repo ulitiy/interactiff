@@ -38,10 +38,10 @@ describe "Play UI" do
     end
 
     it do
-      visit play_show_path game_id: game.id, task_id: task1.id
+      visit play_show_path game_id: game.id, task_id: task1.id, locale: :ru
       click_link al1.body #прошли 1
       click_link al2.body #прошли 2
-      visit play_game_path game_id: game.id
+      visit play_game_path game_id: game.id, locale: :ru
       click_link al1.body#####
       click_link al2.body
       click_link ac1.body
