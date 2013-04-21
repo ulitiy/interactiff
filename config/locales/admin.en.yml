@@ -8,6 +8,8 @@
       root: "My quests"
       level_up: "&larr; Back"
       reload: '<span class="carrow">&#8635</span> Refresh'
+    help:
+      link: "Help"
     block:
       id: "Number"
       title: "Comment"

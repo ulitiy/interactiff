@@ -13,7 +13,7 @@
 // require jquery.ui.button
 //= require jquery.ui.datepicker
 //= require jquery.ui.dialog
-// require jquery.ui.menu
+//= require jquery.ui.menu
 // require jquery.ui.progressbar
 //= require jquery.ui.slider
 // require jquery.ui.spinner

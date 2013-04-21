@@ -8,6 +8,16 @@ ru:
       root: "Мои квесты"
       level_up: "&larr; Назад"
       reload: '<span class="carrow">&#8635</span> Обновить'
+    help:
+      link: "Помощь"
+      options:
+        overview: "Обзор"
+        basic: "Базовое использование"
+        nl_quests: "Нелинейные квесты"
+        variables: "Переменные"
+        hot_keys: "Горячие клавиши"
+        documentation: "Документация"
+        examples: "Примеры"
     block:
       id: "Номер"
       title: "Комментарий"

@@ -1,4 +1,3 @@
 .icon
-  %img(src="...")
-.name
-  ...
+  %img(src="/assets/admin/icons/16/043.png")
+.name=I18n.t("admin.help.link")

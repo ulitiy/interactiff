@@ -1,5 +1,6 @@
 $(window).unload ->
-  layoutState.save 'adminLayout', null
+  layoutState.save 'adminLayout', null,
+    path: "/"
 
 layoutSettings=
   useStateCookie: true

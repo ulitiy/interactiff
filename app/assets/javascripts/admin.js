@@ -11,6 +11,7 @@
 //= require jquery.kinetic
 //= require jquery-ui-timepicker-addon
 //= require detectmobilebrowser
+//= require guiders-1.3.0
 
 //= require underscore-edge
 //= require backbone-edge
@@ -31,3 +32,4 @@
 
 //= require backbone/joygen
 //= require admin/backbone_init
+//= require_tree ./admin/guides

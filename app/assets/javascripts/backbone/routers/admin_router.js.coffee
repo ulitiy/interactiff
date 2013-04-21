@@ -23,6 +23,9 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
       el: $("#lvl-up")
     window.reloadView=new Joygen.Views.Admin.ReloadView
       el: $("#reload")
+    window.helpMenuView=new Joygen.Views.Admin.HelpMenuView
+      el: $("#helpMenu")
+    helpMenuView.render()
 
   index: (pid,eid) ->
     window.loading=true

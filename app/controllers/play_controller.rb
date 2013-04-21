@@ -3,6 +3,7 @@ class PlayController < ApplicationController
   layout false
   load_resource :game, except: :submit
   before_filter :auth, except: :submit
+  before_filter :set_cache_buster, only: :show
 
   def auth
     authorize! :play, @game

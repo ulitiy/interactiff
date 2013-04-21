@@ -1,0 +1,14 @@
+%li
+  %a.menuEl(href="", data-guide="overview")=I18n.t("admin.help.options.overview")
+%li
+  %a.menuEl(href="", data-guide="basic")=I18n.t("admin.help.options.basic")
+%li
+  %a.menuEl(href="", data-guide="nl_quests")=I18n.t("admin.help.options.nl_quests")
+%li
+  %a.menuEl(href="", data-guide="variables")=I18n.t("admin.help.options.variables")
+%li
+  %a.menuEl(href="", data-guide="hot_keys")=I18n.t("admin.help.options.hot_keys")
+%li
+  %a.menuEl(href="/#{locale}/documentation")=I18n.t("admin.help.options.documentation")
+%li
+  %a.menuEl(href="/#{locale}/examples")=I18n.t("admin.help.options.examples")

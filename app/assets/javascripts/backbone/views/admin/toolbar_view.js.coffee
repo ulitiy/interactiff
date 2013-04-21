@@ -17,4 +17,4 @@ class Joygen.Views.Admin.ToolbarView extends Backbone.View
   render: =>
     $(@el).html('')
     @addAll()
-    # @addHelp()
+    @addHelp()
