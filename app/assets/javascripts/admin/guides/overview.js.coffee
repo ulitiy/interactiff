@@ -14,18 +14,22 @@ guiders.optionsFrom= (arr)->
     attachTo: arr[5]
     position: arr[6]
     overlay: arr[7]
+    highlight: arr[8] || arr[5]
   }
 guiders.guiderFrom= (arr)->
   guiders.createGuider guiders.optionsFrom(arr)
 
+#СДЕЛАТЬ ЧТОБЫ нельзя было несколько раз запустить
 guides["overview"]= ->
-  guiders.guiderFrom(["overview", "welcome", [nb],      "o-1", "o-2", null,null,true]).show()
-  guiders.guiderFrom(["overview", "header",  [pb, nb],  "o-2", "o-3", "#header",6])
-  guiders.guiderFrom(["overview", "reload",  [pb, nb],  "o-3", "o-4", "#reload",5])
-  guiders.guiderFrom(["overview", "toolbar", [pb, nb],  "o-4", "o-5", "#toolbar",3])
-  guiders.guiderFrom(["overview", "tool",    [pb, nb],  "o-5", "o-6", "#toolbar .tool:first",2])
-  guiders.guiderFrom(["overview", "field",   [pb, nb],  "o-6", "o-7", null,null])
-  guiders.guiderFrom(["overview", "block",   [cb, ngb], "o-7", "b-1", "#field .block:first",4])
+  guides.overviewId="o-1"
+  guiders.guiderFrom(["overview", "welcome", [nb],      "o-1", "o-2", null,null,true])
+  guiders.guiderFrom(["overview", "header",  [pb, nb],  "o-2", "o-3", "#header",6,true])
+  guiders.guiderFrom(["overview", "reload",  [pb, nb],  "o-3", "o-4", "#reload",5,true,"#header"])
+  guiders.guiderFrom(["overview", "toolbar", [pb, nb],  "o-4", "o-5", "#toolbar",2,true])
+  guiders.guiderFrom(["overview", "tool",    [pb, nb],  "o-5", "o-6", "#toolbar .tool:first",2,true,"#toolbar"])
+  guiders.guiderFrom(["overview", "field",   [pb, nb],  "o-6", "o-7", null,null,true,"#field"])
+  guiders.guiderFrom(["overview", "block",   [pb, nb], "o-7", "o-8", "#field .block:first",6,true,"#field"])
+  guiders.guiderFrom(["overview", "properties",   [cb, ngb], "o-8", "b-1", "#properties-container",10,true])
 guides["basic"]= ->
 guides["nl_quests"]= ->
 guides["variables"]= ->

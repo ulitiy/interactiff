@@ -112,7 +112,7 @@
 
 .guiders_highlight {
   position: relative;
-  z-index: 101;
+  z-index: 101 !important;
 }
 
 #guiders_overlay {

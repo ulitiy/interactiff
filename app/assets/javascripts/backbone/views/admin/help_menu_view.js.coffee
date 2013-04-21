@@ -11,7 +11,8 @@ class Joygen.Views.Admin.HelpMenuView extends Backbone.View
     guide=$(e.target).data("guide")
     @hide()
     if guide?
-      guides[guide]()
+      guides[guide]() unless guides["#{guide}Id"]
+      guiders.show(guides["#{guide}Id"])
       false
 
   show: =>
