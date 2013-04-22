@@ -4,3 +4,6 @@
 .property
   %label(for="guest_access")= I18n.t("admin.game.guest_access")
   %input#guest_access(type="checkbox", data-checked="model.guest_access")
+.property
+  %label(for="example")= I18n.t("admin.game.example")
+  %input#example(type="checkbox", data-checked="model.example")

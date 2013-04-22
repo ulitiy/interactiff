@@ -20,9 +20,33 @@ class Ability
       can :play, Game unless user.is_a? Guest
     end
     can :play, Game, guest_access: true
+    can :read, Game, example: true
 
     #later - better
     user.engine_roles.each { |role| apply_role role }
+
+    #independent of current role
+    #доступ внутрь игры для овнера домена (плюс дублирует game descendants чуть медленнее)
+    can :read, Block do |block|
+      block.game.present? and
+      can?(:read, block.game)
+    end
+    #independent of current role
+    can :read, Relation do |rel|
+      can?(:read, rel.game) ||
+      can?(:read, rel.from) &&
+      can?(:read, rel.to)
+    end
+
+    can :manage, Block do |block|
+      block.game.present? and
+      can?(:manage, block.game)
+    end
+    can :manage, Relation do |rel|
+      can?(:manage, rel.game) ||
+      can?(:manage, rel.from) &&
+      can?(:manage, rel.to)
+    end
   end
 
   def get_resource_access role
@@ -37,13 +61,6 @@ class Ability
     #ГОЛАКТЕКО ОПАСНОСТЕ!!! Если делаешь can :manage, block то после can :manage, Block для КЛАССА становится истиной!!! Но при этом наоборот работает норм.
     return if role.access==:none
     access=get_resource_access role
-
-    #independent of current role
-    can access, Relation do |rel|
-      can?(access, rel.game) ||
-      can?(access, rel.from) &&
-      can?(access, rel.to)
-    end
 
     #root
     if role.block.nil?
@@ -70,13 +87,6 @@ class Ability
     can access, Block, task_id: role.block_id
     #children
     can access, Block, parent_id: role.block_id
-
-    #independent of current role
-    #доступ внутрь игры для овнера домена (плюс дублирует game descendants чуть медленнее)
-    can access, Block do |block|
-      block.game.present? and
-      can?(access, block.game)
-    end
   end
 
 end

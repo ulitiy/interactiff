@@ -4,24 +4,32 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
 
   initialize: ->
     masterCollection.on 'add', @collectionAdd
+    return unless manage
     $(@el).selectable
       filter:'.block'
       cancel:'svg'
+      # distance: 1
 
   selectableEnable: ->
-    $(@el).selectable "enable"
+    $(@el).selectable "enable" if manage
 
   selectableDisable: ->
-    $(@el).selectable "disable"
+    $(@el).selectable "disable" if manage
 
   events:
     "selectablestop" : "selectablestop"
-  #   "click #refresh" : "refresh"
+    "click" : "click"
+
+  click: (e)=>
+    return if e.target!=@el || manage
+    @blurSelect()
+
 
   refresh: =>
     masterView.loadCollection(@id)
 
   deleteKey: =>
+    return false unless manage
     sel=$(".ui-selected") #TODO
     sel=_.filter sel, (domEl)->
       $(domEl).data("view").model.deletable
@@ -29,9 +37,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     return false unless sel.length
     if  confirm(I18n.t("admin.links.sure"))
       sel.trigger "destroy"
-      router.navigate (parentBlock||rootBlock).adminPath(),
-        trigger:true
-      @setSelect()
+      @blurSelect()
     return false
 
 
@@ -72,8 +78,13 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     view.makeEndpoints()
 
   setSelect: (arr)->
-    $(".ui-selected").removeClass("ui-selected")
+    @blurSelect()
     arr.addClass("ui-selected") if arr?
+
+  blurSelect: ->
+    router.navigate (parentBlock||rootBlock).adminPath(),
+      trigger:true
+    $(".ui-selected").removeClass("ui-selected")
 
   addRelations: =>
     _.each sourceEndpoints, @addEndpointsRelations #берем все исходящие ep

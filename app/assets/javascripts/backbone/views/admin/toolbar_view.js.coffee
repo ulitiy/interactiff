@@ -11,6 +11,7 @@ class Joygen.Views.Admin.ToolbarView extends Backbone.View
     $(@el).append(view.render().el)
 
   addHelp: =>
+    return unless manage
     view=new Joygen.Views.Admin.HelpView()
     $(@el).append(view.render().el)
 

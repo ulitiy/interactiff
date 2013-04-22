@@ -70,13 +70,14 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     jsPlumb.repaint selected
 
   move: (l,t)=>
+    return false unless manage
     Joygen.Views.Admin.BlockView.prototype.dragstart()
     Joygen.Views.Admin.BlockView.prototype.drag(null,null,l,t)
     Joygen.Views.Admin.BlockView.prototype.dragstop()
 
 
   destroyConfirm: =>
-    return unless confirm(I18n.t("admin.links.sure"))
+    return if !manage || !confirm(I18n.t("admin.links.sure"))
     router.navigate parentBlock.adminPath(),
       trigger:true
     @destroy()
@@ -177,10 +178,11 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     $(@el).addClass(@model.modelName)
     $(@el).attr("title",I18n.t('admin.'+@model.modelName+'.hint'))
     $(@el).css(left:"#{@model.get("x")}px",top:"#{@model.get("y")}px")
-    jsPlumb.draggable $(@el)
-    $(@el).draggable("option","containment","parent")
-    $(@el).draggable("option","delay",200)
-    $(@el).draggable("option","distance",gridStep)
-    $(@el).draggable("option","grid",[gridStep,gridStep])
+    if manage
+      jsPlumb.draggable $(@el)
+      $(@el).draggable("option","containment","parent")
+      $(@el).draggable("option","delay",200)
+      $(@el).draggable("option","distance",gridStep)
+      $(@el).draggable("option","grid",[gridStep,gridStep])
     @rivestView=rivets.bind $(@el), {model: @model}
     this

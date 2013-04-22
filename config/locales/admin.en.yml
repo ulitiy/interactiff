@@ -35,6 +35,7 @@
     game:
       name: "Name"
       guest_access: "Guest access"
+      example: "Open scenario"
       tool: "Scenario"
       new: "New scenario"
       # hint: "Scenario. Container block. User is able to begin and end it. Enter and exit points are equal to inner enter/exit blocks. Double click to decompose."

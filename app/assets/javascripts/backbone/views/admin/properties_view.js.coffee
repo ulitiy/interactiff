@@ -52,3 +52,4 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
       @draw(editBlock)
     else
       @clear()
+    $(":input", $(@el)).attr("disabled", true) unless manage
