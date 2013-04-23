@@ -19,4 +19,4 @@ layoutSettings=
   closable: !$.browser.mobile
 
 $ ->
-  window.adminLayout=$('#content').layout layoutSettings#,layoutState.load('adminLayout')
+  window.adminLayout=$('#content').layout layoutSettings

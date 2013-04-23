@@ -31,9 +31,14 @@ class Joygen.Models.Block extends Backbone.Model
     @get("title") || @short_caption()
 
   setPosition: (position)->
-    @save
-      "x": Math.round(position.left/gridStep)*gridStep #патчим глюки с массовым дрэгом
-      "y": Math.round(position.top/gridStep)*gridStep
+    sp= =>
+      @save
+        "x": Math.round(position.left/gridStep)*gridStep
+        "y": Math.round(position.top/gridStep)*gridStep
+    @lastSP=sp
+    setTimeout =>
+      sp() if @lastSP==sp
+    , 1000
   url: ->
     return "/blocks" if @isNew()
     "/blocks/#{@id}"
