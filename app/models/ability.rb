@@ -20,28 +20,28 @@ class Ability
       can :play, Game unless user.is_a? Guest
     end
     can :play, Game, guest_access: true
-    can :read, Game, example: true
+    can :show, Game, example: true
 
     #later - better
     user.engine_roles.each { |role| apply_role role }
 
     #independent of current role
-    #доступ внутрь игры для овнера домена (плюс дублирует game descendants чуть медленнее)
-    can :read, Block do |block|
+    #доступ внутрь игры для овнера домена (плюс дублирует game descendants чуть медленнее). Нужно для примеров.
+    can :show, Block do |block|
       block.game.present? and
-      can?(:read, block.game)
+      can?(:show, block.game)
     end
     #independent of current role
-    can :read, Relation do |rel|
-      can?(:read, rel.game) ||
-      can?(:read, rel.from) &&
-      can?(:read, rel.to)
+    can :show, Relation do |rel|
+      can?(:show, rel.game) ||
+      can?(:show, rel.from) &&
+      can?(:show, rel.to)
     end
 
-    can :manage, Block do |block|
-      block.game.present? and
-      can?(:manage, block.game)
-    end
+    # can :manage, Block do |block|
+    #   block.game.present? and
+    #   can?(:manage, block.game)
+    # end
     can :manage, Relation do |rel|
       can?(:manage, rel.game) ||
       can?(:manage, rel.from) &&

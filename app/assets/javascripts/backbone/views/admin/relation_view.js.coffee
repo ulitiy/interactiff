@@ -2,6 +2,8 @@ Joygen.Views.Admin ||= {}
 
 jsPlumb.bind "beforeDetach", ->
   jsPlumb.allowDetach
+jsPlumb.bind "beforeDrop", ->
+  manage
 
 jsPlumb.bind "jsPlumbConnection", (e)->
   return if jsPlumb.silent

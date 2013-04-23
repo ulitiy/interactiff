@@ -8,8 +8,8 @@ class BlocksController < InheritedResources::Base
 
   # Renders json (blocks and relations) for one admin page
   def master #TODO: rewrite in other action
-    @blocks=Block.master_collection(params[:id]).find_all{ |block| can? :read, block }.to_a
-    @relations=Relation.relations_collection(params[:id],@blocks).find_all{ |rel| can? :read, rel }.to_a
+    @blocks=Block.master_collection(params[:id]).find_all{ |block| can? :show, block }.to_a
+    @relations=Relation.relations_collection(params[:id],@blocks).find_all{ |rel| can? :show, rel }.to_a
     fresh_when etag: [@blocks,@relations]
   end
 
@@ -21,7 +21,7 @@ class BlocksController < InheritedResources::Base
       @block.parent=current_domain
       current_user.engine_roles.create! access: :manage_roles, block: @block
     end
-    authorize!(params[:action],@block)
+    authorize!(:create,@block)
     @block.save!
     respond_with(@block, skip_locale: true)
   end
