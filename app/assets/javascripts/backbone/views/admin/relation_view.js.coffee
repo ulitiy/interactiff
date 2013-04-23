@@ -22,7 +22,7 @@ class Joygen.Views.Admin.RelationView extends Backbone.View
 
   prepare: =>
     @connection.bind "click", =>
-      return unless confirm(I18n.t("admin.links.sure"))
+      return unless manage && confirm(I18n.t("admin.links.sure"))
       @model.destroy()
       jsPlumb.allowDetach=true
       jsPlumb.detach @connection

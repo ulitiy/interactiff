@@ -96,6 +96,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         hoverPaintStyle:{ fillStyle:"#89C27F" }
         anchor: "LeftMiddle"
         isTarget: true
+        # endpoint: [ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ]
       @targetEndpoint.model=@model
       @targetEndpoint.blockView=this
       @bindTarget(@targetEndpoint)
