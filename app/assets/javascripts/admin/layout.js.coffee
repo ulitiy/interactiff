@@ -1,7 +1,6 @@
-$(window).unload ->
-  layoutState.save 'adminLayout', null,
-    path: "/"
-
+$.layout.defaults.stateManagement.cookie.path="/"
+$.layout.defaults.stateManagement.cookie.expires="90"
+$.layout.defaults.stateManagement.name="adminLayout"
 layoutSettings=
   useStateCookie: true
   minSize: 150
@@ -11,7 +10,7 @@ layoutSettings=
   west__minSize: 33
   west__maxSize: 200
   west__size: 165
-  east__size: 165
+  east__size: 250
   spacing_open: 5
   togglerLength_open: 35
   togglerLength_closed: 35
@@ -20,4 +19,4 @@ layoutSettings=
   closable: !$.browser.mobile
 
 $ ->
-  window.adminLayout=$('#content').layout $.extend(layoutSettings,layoutState.load('adminLayout'))
+  window.adminLayout=$('#content').layout layoutSettings#,layoutState.load('adminLayout')
