@@ -23,7 +23,7 @@ class BlocksController < InheritedResources::Base
     end
     authorize!(:create,@block)
     @block.save!
-    respond_with(@block, skip_locale: true)
+    respond_with(@block)
   end
 
 end

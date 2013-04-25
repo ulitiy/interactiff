@@ -10,6 +10,7 @@ class Joygen.Views.Admin.HelpMenuView extends Backbone.View
   click: (e)=>
     guide=$(e.target).data("guide")
     @hide()
+    guiders.hideAll()
     if guide?
       guides.overview()
       guides.basic()

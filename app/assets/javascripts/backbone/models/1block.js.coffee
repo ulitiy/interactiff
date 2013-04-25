@@ -2,7 +2,7 @@ class Joygen.Models.Block extends Backbone.Model
   paramRoot: 'block' #это нужно, чтобы параметры, передаваемые на сервер оборачивались рут-элементом с этим именем
   defaults: ->
     type: "Block"
-    x: parseInt(($("#field").scrollLeft()+$("#field").width()/2-80+Math.round(Math.random()*80))/10)*10
+    x: parseInt(($("#field").scrollLeft()+$("#field").width()/2-140+Math.round(Math.random()*140))/10)*10
     y: parseInt(($("#field").scrollTop()+$("#field").height()/2-80+Math.round(Math.random()*80))/10)*10
     parent_id: null
     container_source: false
