@@ -53,6 +53,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       # window.editBlockView=null
       router.navigate (parentBlock||rootBlock).adminPath(),
         trigger:true
+        replace:true
 
 
   collectionAdd: (block)=>
@@ -78,12 +79,13 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     view.makeEndpoints()
 
   setSelect: (arr)->
-    @blurSelect()
+    $(".ui-selected").removeClass("ui-selected")
     arr.addClass("ui-selected") if arr?
 
   blurSelect: ->
     router.navigate (parentBlock||rootBlock).adminPath(),
       trigger:true
+      replace:true
     $(".ui-selected").removeClass("ui-selected")
 
   addRelations: =>

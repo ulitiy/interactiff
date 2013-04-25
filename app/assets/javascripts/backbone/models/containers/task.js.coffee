@@ -12,8 +12,8 @@ class Joygen.Models.Task extends Joygen.Models.Block
     if @isNew()
       hash=
         success: =>
-          taskGiven=new Joygen.Models.TaskGiven({parent_id:@id, x:0, y: 100})
-          taskPassed=new Joygen.Models.TaskPassed({parent_id:@id, x:600, y: 100})
+          taskGiven=new Joygen.Models.TaskGiven({parent_id:@id, x:50, y: 50})
+          taskPassed=new Joygen.Models.TaskPassed({parent_id:@id, x:800, y: 500})
           masterCollection.create(taskGiven)
           masterCollection.create(taskPassed)
           fieldView.render() #TODO
