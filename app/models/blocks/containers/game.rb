@@ -19,6 +19,7 @@ class Game < Block
   before_validation :new_game, on: :create
 
   def new_game
+    self.name=I18n.t("admin.game.new") if name.blank?
     gs=GameStarted.create! parent: self, x: 50, y: 50#, title: "Начало игры"
     # t1=Task.create! parent: self, x: 530, y: 170, name: "Задание 1", title: "с выбором ответа", input_type: "link"
     # tg1=TaskGiven.create! parent: t1, x: 100, y: 100, container_target: true,
