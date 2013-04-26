@@ -68,7 +68,7 @@ guides["basic"]= ->
     $("#toolbar .tool.task").one "click", guiders.next
   ]
   guiders.guiderFrom ["basic", "start_task", null, "b-3", "b-4", ".block.game_started", 6, true, "#field", waitForConnection]
-  guiders.guiderFrom ["basic", "finish_task", null, "b-4", "b-5", ".block.task", 6, true, "#field", waitForConnection]
+  guiders.guiderFrom ["basic", "finish_task", null, "b-4", "b-5", ".block.task", 12, true, "#field", waitForConnection]
   guiders.guiderFrom ["basic", "select_task", null, "b-5", "b-6", ".block.task:first", 6, true, "#field", ->
     if $(".block.task:first").hasClass("ui-selected")
       setTimeout guiders.next
