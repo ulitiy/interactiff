@@ -14,8 +14,8 @@
       id: "Number"
       title: "Comment"
       comment: "Comment"
-      container_source: "Enter point"
-      container_target: "Exit point"
+      container_source: "Exit point"
+      container_target: "Enter point"
       scope:
         label: "Scope"
         for_one: "One player"

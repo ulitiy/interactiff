@@ -9,6 +9,23 @@
 %li
   %a.menuEl(href="", data-guide="hot_keys")=I18n.t("admin.help.options.hot_keys")
 %li
-  %a.menuEl(href="/#{locale}/documentation")=I18n.t("admin.help.options.documentation")
+  %a.menuEl(href="")=I18n.t("admin.help.options.examples")
+  %ul
+    %li
+      %a.menuEl(href="/#{locale}/admin/5153203974233807f000002d/0")=I18n.t("admin.help.options.examples_menu.variables")
+    %li
+      %a.menuEl(href="/#{locale}/admin/517a7271742338e76f000005/0")=I18n.t("admin.help.options.examples_menu.nl_quests")
+    %li
+      %a.menuEl(href="/#{locale}/admin/512cbdf17423384b06000019/0")=I18n.t("admin.help.options.examples_menu.aeroflot")
+    %li
+      %a.menuEl(href="/#{locale}/admin/517ada75742338b979000075/0")=I18n.t("admin.help.options.examples_menu.rooms_arrows")
+    %li
+      %a.menuEl(href="/#{locale}/admin/514180b07423388452000002/0")=I18n.t("admin.help.options.examples_menu.rooms_jumps")
+    %li
+      %a.menuEl(href="/#{locale}/admin/514c5402742338529c000002/0")=I18n.t("admin.help.options.examples_menu.rr_distributor")
+    %li
+      %a.menuEl(href="/#{locale}/admin/514d910e7423389c8d000051/0")=I18n.t("admin.help.options.examples_menu.rr_vars")
+    %li
+      %a.menuEl(href="/#{locale}/admin/514601347423381833000019/0")=I18n.t("admin.help.options.examples_menu.math_problem")
 %li
-  %a.menuEl(href="/#{locale}/examples")=I18n.t("admin.help.options.examples")
+  %a.menuEl(href="/#{locale}/documentation")=I18n.t("admin.help.options.documentation")

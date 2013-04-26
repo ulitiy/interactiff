@@ -18,6 +18,15 @@ ru:
         hot_keys: "Горячие клавиши"
         documentation: "Документация"
         examples: "Примеры"
+        examples_menu:
+          variables: "Переменные"
+          nl_quests: "Нелинейные квесты"
+          aeroflot: "Аэрофлот"
+          rooms_arrows: "Комнаты стрелками"
+          rooms_jumps: "Комнаты прыжками"
+          rr_distributor: "Русская рулетка с распределителем"
+          rr_vars: "Русская рулетка с прыжками"
+          math_problem: "Генератор задач"
     block:
       id: "Номер"
       title: "Комментарий"
