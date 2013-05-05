@@ -119,6 +119,8 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @addTargets()
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length
       $(@el).css("min-height",m*14)
+      jsPlumb.repaint $(@el)
+
 
   bindSource: (s)=>
     s.bind 'click', =>
