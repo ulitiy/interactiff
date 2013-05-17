@@ -12,7 +12,7 @@ module RoutingFilter
           end
           path.sub!(%r{^$}) { '/' }
         # else
-        #   ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+        #   ::I18n.locale = ::Refinery::I18n.default_frontend_locale #сюда дефолт (аксепт)
         end
       end
 
@@ -27,7 +27,7 @@ module RoutingFilter
       yield.tap do |result|
         result = result.is_a?(Array) ? result.first : result
         if ::Refinery::I18n.enabled? and
-           # locale != ::Refinery::I18n.default_frontend_locale and
+           # locale != ::Refinery::I18n.default_frontend_locale and #сюда дефолт (аксепт)
            result !~ %r{^/(refinery|wymiframe)}
           result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
         end
