@@ -1,10 +1,10 @@
 # encoding: utf-8
 
 module RoutingFilter
-  class RefineryLocales < Filter
+  class RefineryLocales
 
     def around_recognize(path, env, &block)
-      if ::Refinery::I18n.url_filter_enabled?
+      if ::Refinery::I18n.enabled?
         if path =~ %r{^/(#{::Refinery::I18n.locales.keys.join('|')})(/|$)}
           path.sub! %r(^/(([a-zA-Z\-_])*)(?=/|$)) do
             ::I18n.locale = $1
@@ -12,7 +12,7 @@ module RoutingFilter
           end
           path.sub!(%r{^$}) { '/' }
         # else
-          # ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+        #   ::I18n.locale = ::Refinery::I18n.default_frontend_locale
         end
       end
 
@@ -26,9 +26,9 @@ module RoutingFilter
 
       yield.tap do |result|
         result = result.is_a?(Array) ? result.first : result
-        if ::Refinery::I18n.url_filter_enabled? and
+        if ::Refinery::I18n.enabled? and
            # locale != ::Refinery::I18n.default_frontend_locale and
-           result !~ %r{^/(#{Refinery::Core.backend_route}|wymiframe)}
+           result !~ %r{^/(refinery|wymiframe)}
           result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
         end
       end
