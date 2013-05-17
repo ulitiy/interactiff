@@ -22,10 +22,7 @@
           <%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %>
         <% end %>
         
-        
-
-      <% end %>
-	  <% if @handler.task_answers.count>0 %>
+        <% if @handler.task_answers.count>0 %>
           <ul class="menu">
           <% if @task.input_type=="link" %>
 		  <% for answer in @handler.task_answers %>
@@ -45,5 +42,8 @@
           <% end %>
           </ul>
         <% end %>
+
+      <% end %>
+	  
     </body>
 </html>

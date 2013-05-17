@@ -32,7 +32,7 @@ h1{
 
 .window_yeti {
 	border-radius: 10px;
-	background-image:url(../yeti_grom_img/bodyBG.jpg);
+	background-image:url(../yeti_grom_img/bodybg.jpg);
 	display:block;	
 	margin-top: 20px;
 	margin-bottom: 35px;
@@ -142,10 +142,11 @@ a:visited{
 	font-family: "Courier New", Courier, Georgia;
 	background:url(../yeti_grom_img/menu_bg_l.png) repeat;
 	border-radius: 10px;
+	border: 2px dotted #7cc44c;
 	display: block;
 	padding: 10px 30px;
 	margin: 10px 10px;
-	color: #fff;
+	color: #35581d;
 	font-size: 14px;
 	font-weight: 300;
 	text-decoration:none;
