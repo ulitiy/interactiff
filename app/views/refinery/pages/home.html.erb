@@ -48,7 +48,7 @@
         <div class="mini-wrap">
           <h2>Обратная связь</h2>
           <div style="margin:4px;">
-            <a href="" class="btn">Задать вопрос</a> или <a href="">перейти в раздел помощи</a>
+            <a href="http://idea.interactiff.net" class="btn">Задать вопрос</a> или <a href="mailto:coo@interactiff.net?subject=Feedback&cc=1@interactiff.net">написать нам письмо</a>
           </div>
         </div>
 
@@ -62,23 +62,20 @@
       <div class="row-fluid">
         <div class="span6">
           <ul class="footer-menu">
-            <li><a href="">Главная</a>
+            <li><%= link_to "Главная", root_path %>
               <ul>
-                <li><a href="">Игровые квесты</a></li>
-                <li><a href="">Обучающие квесты</a></li>
-                <li><a href="">Гуру для сайта</a></li>
+                <li><%= link_to "Игровые квесты", marketable_page_path(path: "games") %></li>
+                <li><%= link_to "Обучающие квесты", marketable_page_path(path: "education") %></li>
+                <li><%= link_to "Гуру для сайта", marketable_page_path(path: "guru") %></li>
               </ul>
             </li>
-
-            <li><a href="">Тарифы</a></li>
-
-            <li><a href="">Помощь</a></li>
-            <li><a href="">Новости</a></li>
-            <li><a href="">Отзывы</a></li>
+            <li><%= link_to "О нас", marketable_page_path(path: "about_us") %></li>
+            <li><%= link_to "Новости", news_root_path %></li>
+            <li><%= link_to "Отзывы", "http://idea.interactiff.net" %></li>
 
           </ul>
         </div>
-        <div class="span6"><span class="pull-right">© 2012 ООО «Интерактифф»</span></div>
+        <div class="span6"><span class="pull-right">© 2012-2013 ООО «Интерактифф»</span></div>
 
       </div>
     </div>

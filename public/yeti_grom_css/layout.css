@@ -1,0 +1,227 @@
+@import url(fonts.css); /*Загружаем локальные шрифты*/
+
+html,body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #222222;
+	background-image: url(../yeti_grom_img/back.jpg);
+	background-repeat: no-repeat;
+	font-family: "Courier New", Courier, Georgia;
+	padding: 2.25% 2.25% 0 2.25%;
+	color: #333;
+	height: 100%;
+}
+
+h1{
+	color:#fff;
+	font-size: 30px;
+	font-variant:normal;
+	margin: 0px;
+	padding: 0px;
+	text-align:right;
+		font-family: "Courier New", Courier, Georgia;
+}
+
+.row-fluid-yeti {
+	width:800px;
+	margin:auto;
+}
+
+.window_yeti {
+	border-radius: 10px;
+	background-image:url(../yeti_grom_img/bodybg.jpg);
+	display:block;	
+	margin-top: 20px;
+	margin-bottom: 35px;
+	padding: 0 0 1px 0;
+	}
+
+.window_yeti p {
+	color:#333;
+	font-size: 12px;
+	margin-top: 10px;
+	font-weight:100;
+	font-style:normal;
+	margin: 0px 25px;
+	
+}
+
+.window_yeti a {
+	position: relative;
+	color:#00dadc;
+}
+
+.window_yeti ol,ul {
+	color:#333;
+	font-family: "Courier New", Courier, Georgia;
+	font-size: 12px;
+	margin-top: 20px;
+	margin-left: 50px;
+}
+
+.window_yeti h3,h4,h6 {
+	margin: 40px 25px 15px 25px; 
+}
+
+.window_yeti h2,h3,h4,h6,h5 {
+	font-family: "Courier New", Courier, Georgia;
+}
+
+.window_yeti h2{
+	text-align:center;
+	color:#5f3700;
+	font-size: 26px;
+	font-variant:normal;
+	margin: 0 0 15px 0;
+	padding: 25px 0 0 0;
+}
+
+.window_yeti h3 {
+	color:#5f3700;
+	font-size:22px;
+}
+
+.window_yeti h4 {
+	color:#5f3700;
+}
+ 
+.window_yeti h5 {
+	font-weight:100;
+	background:  url(../yeti_grom_img/bg_mission.png) left top no-repeat;
+	margin-left: 30px;
+	margin-right: 30px;
+	color:#333;
+	font-size:14px;
+	margin-bottom:25px;
+	padding:43px 17px 17px 50px;
+	border-radius: 8px;
+}
+
+.window_yeti a {
+	text-decoration: none;
+}
+
+.window_yeti img {
+	text-align:center;
+	margin: 5px 25px;
+}
+
+a:visited{
+	color:inherit;
+}
+
+.button.next:after,
+.getinfo:after {
+	content: "";
+	position: absolute;
+	right:6.25%;
+	top:50%;
+	margin-top: -10px;
+	width: 11px; height: 21px;
+	background-image: url(../yeti_grom_img/rarr.png);
+}
+
+.menu {
+	list-style: none;
+	margin: 0;padding: 0;
+	position: relative;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.menu small {
+	display: block;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.menu li a {
+	font-family: "Courier New", Courier, Georgia;
+	background:url(../yeti_grom_img/menu_bg_l.png) repeat;
+	border-radius: 10px;
+	display: block;
+	padding: 10px 30px;
+	margin: 10px 10px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+	text-decoration:none;
+}
+
+.menu li a:hover {
+	color:#000;
+	display: block;
+	font-weight: 300;
+	background: -moz-linear-gradient(top,  #91cd6d 0%, #7ac349 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#91cd6d), color-stop(100%,#7ac349));
+	background: -webkit-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: -o-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: -ms-linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background: linear-gradient(top,  #91cd6d 0%,#7ac349 100%);
+	background-color: #91cd6d;
+	text-shadow: 0 1px #4a9884;
+	box-shadow: inset 0 1px #dbf7d4, 0 1px 2px #78a65a;
+}
+
+.menu ul {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.logo {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;	
+	background: url(../yeti_grom_img/star.png) no-repeat;
+	height:100px;
+	width:105px;
+	display: block;
+	float:left;
+	
+}
+
+	
+.que {
+	padding-left:25px;
+	color:#fff;
+	font-style:italic;
+	font-family: Calibri, 'Open Sans', sans-serif;
+	font-size:14px;
+}
+
+.btn{ 
+	padding: 6px 20px;
+	height: 40px;
+  border-top: 1px solid #98ed7d;
+  border-bottom: 1px solid #568d4d;
+  border-left: 1px solid #619d57;
+  border-right: 1px solid #619d57;
+  border-radius: 5px;
+	color: #FFF;
+  font: 14px Tahoma, sans-serif;
+	box-shadow: inset 0 1px #dbf7d4, 0 1px 2px #B8BEBE;
+	background: -moz-linear-gradient(top,  #7eca73 0%, #5fbe4e 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7eca73), color-stop(100%,#5fbe4e));
+	background: -webkit-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: -o-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: -ms-linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background: linear-gradient(top,  #7eca73 0%,#5fbe4e 100%);
+	background-color: #5fbe4e;
+	cursor: pointer;
+	text-shadow: 0 -1px #51d12d;
+	outline: none;
+}
+input {
+   font: 14px "Courier New", Courier, Georgia;
+	color: #444;
+	width: 300px;
+	margin: 10px 20px;
+	padding: 9px 13px;
+  border: 1px solid #D2D9DC;
+	border-radius: 3px;
+	box-shadow: inset 2px 2px 6px #EBEBEB, 0 0 0 1px #B8BEBE;
+	outline: none;
+}

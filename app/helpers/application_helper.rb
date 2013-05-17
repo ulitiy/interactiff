@@ -13,4 +13,8 @@ module ApplicationHelper
     content_for :body_title, str
   end
 
+  def rlink
+    controller.class.name=~/Refinery/ ? refinery : self
+  end
+
 end

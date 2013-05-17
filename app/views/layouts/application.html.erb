@@ -12,21 +12,20 @@
         </div>
       </div>
 
-      <section class="container <%= yield :container_class %>">
         <% if  notice %>
-          <div class="alert alert-success">
+          <div class="container alert alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <%= notice %>
           </div>
         <% end %>
         <% if  alert %>
-          <div class="alert alert-error">
+          <div class="container alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <%= alert %>
           </div>
         <% end %>
-        <%= yield %>
-      </section>
+
+      <%= yield %>
       <div class="push"></div>
     </div>
     <%= render '/refinery/footer' -%>

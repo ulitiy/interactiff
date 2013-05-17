@@ -66,7 +66,7 @@ module Interactiff
     after_inclusion do
       [::ApplicationController, ::ApplicationHelper, ::Refinery::AdminController].each do |c|
         def default_url_options(options={})
-          options[:skip_locale] ? { :locale => ::I18n.locale } : {}
+          { :locale => ::I18n.locale || :ru }
         end
         c.send :include, ::RefineryPatch
       end
