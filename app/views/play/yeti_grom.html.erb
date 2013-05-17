@@ -15,26 +15,17 @@
 	<div class="window_yeti">
 	
 	  <h2><%= @task.name %></h2>
-	  <div class="window"> ***************************************************************************сообщение о коде
-          <% if flash[:notice] %>
-            <div class="alert alert-success">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <%= flash[:notice] %>
-            </div>
-          <% end %>
-          <% if flash[:alert] %>
-            <div class="alert alert-error">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <%= flash[:alert] %>
-            </div>
-          <% end %>
+	  
       <%= form_tag play_submit_path(task_id: @task.id) do %>
         <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
           <% next if hint.body.empty? %>
           <%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %>
         <% end %>
-        </div>
-        <% if @handler.task_answers.count>0 %>
+        
+        
+
+      <% end %>
+	  <% if @handler.task_answers.count>0 %>
           <ul class="menu">
           <% if @task.input_type=="link" %>
 		  <% for answer in @handler.task_answers %>
@@ -54,7 +45,5 @@
           <% end %>
           </ul>
         <% end %>
-
-      <% end %>
     </body>
 </html>
