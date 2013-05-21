@@ -54,20 +54,23 @@ module Interactiff
 
     config.active_record.whitelist_attributes = true
 
+    config.middleware.use Rack::Locale #ХЗ как оно работает, НО РАБОТАЕТ! (редиректы)
+
     #ActiveRecord::Base.include_root_in_json = false
 
     config.to_prepare do |app| #fucking refinery override
       ::ApplicationController.module_eval do
         alias_method_chain :current_user, :guest
+        def default_url_options(options={})
+          # ::Refinery::I18n.enabled? ? { locale: ::I18n.locale } : {}
+          {}
+        end
       end
     end
 
     include Refinery::Engine
     after_inclusion do
       [::ApplicationController, ::ApplicationHelper, ::Refinery::AdminController].each do |c|
-        def default_url_options(options={})
-          { :locale => ::I18n.locale || :ru }
-        end
         c.send :include, ::RefineryPatch
       end
 

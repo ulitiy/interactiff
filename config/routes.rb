@@ -1,19 +1,17 @@
 Interactiff::Application.routes.draw do
+  filter :refinery_like_locales
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 
-  scope "(:locale)", :locale => /ru|en/ do
-    root :to => 'refinery/pages#home', defaults: { locale: "ru" }
-    devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
-    resources :games, path: "/quests"
-    resources :relations
-    match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", as: :admin,
-      :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get
-    #здесь разные форматы format: :json
-    get "/play/:game_id/:task_id" => "play#show", as: :play_show, :constraints => { game_id: /[0-9a-f]{24}/,task_id: /[0-9a-f]{24}/ }
-    get "/play/:game_id" => "play#game", as: :play_game, :constraints => { game_id: /[0-9a-f]{24}/ }
-    match "/play/submit" => "play#submit", as: :play_submit, via: [:get, :post]
-    get "/play/back" => "play#back", as: :play_back
-  end
+  devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
+  resources :games, path: "/quests"
+  resources :relations
+  match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", as: :admin,
+    :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get
+  #здесь разные форматы format: :json
+  get "/play/:game_id/:task_id" => "play#show", as: :play_show, :constraints => { game_id: /[0-9a-f]{24}/,task_id: /[0-9a-f]{24}/ }
+  get "/play/:game_id" => "play#game", as: :play_game, :constraints => { game_id: /[0-9a-f]{24}/ }
+  match "/play/submit" => "play#submit", as: :play_submit, via: [:get, :post]
+  get "/play/back" => "play#back", as: :play_back
 
   resources :blocks, :domains, :games, :tasks,
     :answers, :hints, :messages, :timers, :clocks,

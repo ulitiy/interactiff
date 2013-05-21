@@ -59,7 +59,7 @@ class Answer < Message
 
   # sets input to body if it's digest answer
   def create_event options
-    options[:input]=body if options[:input] == digest
+    options[:input]=body if task.input_type=="link"
     super options
   end
 end

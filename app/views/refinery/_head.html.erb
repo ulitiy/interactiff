@@ -8,6 +8,7 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags if Refinery::Core.authenticity_token_on_frontend -%>
   <%= yield :meta %>
+  <link rel="alternate" hreflang="x-default" href="<%=rlink.url_for skip_locale: true, locale: nil%>" />
   <link rel="alternate" hreflang="ru" href="<%=rlink.url_for locale: :ru%>" />
   <link rel="alternate" hreflang="en" href="<%=rlink.url_for locale: :en%>" />
 

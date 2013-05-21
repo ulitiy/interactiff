@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     @current_host||=Host.where(:name=>request.host).first
   end
 
-  before_filter :check_current_domain
+  prepend_before_filter :check_current_domain
 
   # Checks if current host is main_host of Domain, redirect otherwise
   # first domain should have main_host

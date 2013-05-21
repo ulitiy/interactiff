@@ -33,6 +33,7 @@ gem 'has_scope'
 gem 'haml'
 gem 'haml-rails'
 gem 'enumerize'
+gem 'rack-contrib', require: 'rack/contrib'
 
 gem 'refinerycms-dashboard', '~> 2.0.0'
 gem 'refinerycms-images', '~> 2.0.0'

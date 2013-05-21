@@ -468,6 +468,7 @@ DEPENDENCIES
   poltergeist
   pry-rails
   quiet_assets
+  rack-contrib
   rails (= 3.2.13)
   rails-backbone
   rb-fsevent

@@ -1,39 +1,56 @@
 # encoding: utf-8
 
 module RoutingFilter
-  class RefineryLocales
+  class RefineryLocales #переопределение из-за дефолтной локали
 
     def around_recognize(path, env, &block)
-      if ::Refinery::I18n.enabled?
-        if path =~ %r{^/(#{::Refinery::I18n.locales.keys.join('|')})(/|$)}
-          path.sub! %r(^/(([a-zA-Z\-_])*)(?=/|$)) do
-            ::I18n.locale = $1
-            ''
-          end
-          path.sub!(%r{^$}) { '/' }
-        # else
-        #   ::I18n.locale = ::Refinery::I18n.default_frontend_locale #сюда дефолт (аксепт)
+      if path =~ %r{^/(#{::Refinery::I18n.locales.keys.join('|')})(/|$)}
+        path.sub! %r(^/(([a-zA-Z\-_])*)(?=/|$)) do
+          ::I18n.locale = $1
+          ''
         end
+        path.sub!(%r{^$}) { '/' }
       end
 
       yield.tap do |params|
-        params[:locale] = ::I18n.locale if ::Refinery::I18n.enabled?
+        params[:locale] = ::I18n.locale
       end
     end
 
     def around_generate(params, &block)
       locale = params.delete(:locale) || ::I18n.locale
+      skip_locale = params.delete(:skip_locale)
 
       yield.tap do |result|
         result = result.is_a?(Array) ? result.first : result
-        if ::Refinery::I18n.enabled? and
-           # locale != ::Refinery::I18n.default_frontend_locale and #сюда дефолт (аксепт)
-           result !~ %r{^/(refinery|wymiframe)}
+        if !skip_locale
           result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
         end
       end
     end
 
+  end
+
+  class RefineryLikeLocales < RefineryLocales
+    def native_path? p
+      begin
+        Rails.application.routes.recognize_path p
+      rescue Exception
+      end
+    end
+
+    def around_generate(params, &block)
+      locale = params.delete(:locale) || ::I18n.locale
+      skip_locale = params[:skip_locale]#.delete(:skip_locale)
+
+      yield.tap do |result|
+        result = result.is_a?(Array) ? result.first : result
+        if !skip_locale and
+          native_path? result
+          result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
+        end
+      end
+    end
   end
 end
 
