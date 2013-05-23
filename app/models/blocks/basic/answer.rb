@@ -49,7 +49,7 @@ class Answer < Message
 
   # checks if the answer text itself is correct
   def body_hot? options
-    options[:input] =~ Regexp.new(body, "i") || options[:input] == digest
+    (task.input_type=="text" && options[:input] =~ Regexp.new(body, "i")) || (task.input_type!="text" && options[:input] == digest)
   end
 
   # override
@@ -59,7 +59,7 @@ class Answer < Message
 
   # sets input to body if it's digest answer
   def create_event options
-    options[:input]=body if task && task.input_type=="link"
+    options[:input]=body if task.input_type=="link"
     super options
   end
 end
