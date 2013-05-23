@@ -89,7 +89,7 @@ module BlockBehavior
   # @returns event created
   def create_event options
     task && !task.visit_count && task.load_rooms(options)
-    Event.create options.merge block_id: id, visit_count: task && task.visit_count
+    Event.with(safe: true).create options.merge block_id: id, visit_count: task && task.visit_count
   end
 
   # @return [Symbol] scope to fire this and descendant blocks. It should be the max scope available.

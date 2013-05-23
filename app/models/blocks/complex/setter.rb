@@ -14,7 +14,7 @@ class Setter < EvalBlock
 
   # creates an event with variable value
   def create_event options
-    Event.create options.merge block: self, variable: variable, var_value: calculate_value(right_part,options)
+    super options.merge variable: variable, var_value: calculate_value(right_part,options)
   end
 
   def right_part
