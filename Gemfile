@@ -41,6 +41,7 @@ gem 'refinerycms-pages', '~> 2.0.0'
 gem 'refinerycms-resources', '~> 2.0.0'
 gem 'refinerycms-i18n', '~> 2.0.0'
 gem "refinerycms-news", '~> 2.0.0'
+gem 'refinerycms-page-images', '~> 2.0.0'
 gem 'refinerycms-copywriting'
 
 gem 'i18n-js', github: "fnando/i18n-js"

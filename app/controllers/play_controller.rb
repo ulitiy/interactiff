@@ -32,7 +32,7 @@ class PlayController < ApplicationController
     flash.keep
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     if !@handler.game_started?
-      @start_time=@game.children.where(_type: "GameStarted").first.time
+      @start_time=@game.game_started_block.time
       render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join #не кэшируем из-за синхронизации времени
       # fresh_when etag: [@start_time,"play/not_started"].join, public: true
     elsif @handler.game_passed?

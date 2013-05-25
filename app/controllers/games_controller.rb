@@ -17,4 +17,9 @@ class GamesController < InheritedResources::Base
   def collection
     @games||=can?(:manage, Domain.first) && params[:all] ? Game.all : current_user.games
   end
+
+  def reset
+    @game.reset
+    redirect_to games_url
+  end
 end

@@ -42,4 +42,13 @@ class Game < Block
   def authors
     roles.map { |role| role.user if role.access.in? [:manage,:manage_roles] }
   end
+
+  def reset
+    descendant_events.delete_all
+    game_started_block.save
+  end
+
+  def game_started_block
+    children.where(_type: "GameStarted").first
+  end
 end

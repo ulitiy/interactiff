@@ -14,6 +14,7 @@ class BlocksController < InheritedResources::Base
   end
 
   # Creates a model of the specified type
+  # TODO: Перенести логику с ролями в модель
   def create
     not_found unless params[:block][:type].in? Block.descendants.map &:to_s
     @block=params[:block][:type].constantize.new params[:block]
