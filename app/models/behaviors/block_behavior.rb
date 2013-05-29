@@ -37,7 +37,7 @@ module BlockBehavior
   # @return [Boolean] if there are any events, related to current user and this block
   def is_hit? options
     if task
-      !task.visit_count && task.load_rooms(options)
+      task.load_rooms(options) unless task.rooms_loaded?
       events.or({scope: "for_one", user_id: options[:user].id, visit_count: task.visit_count}, {scope: "for_team", team_id: options[:user].team_id, visit_count: task.visit_count}, {scope: "for_all", visit_count: task.visit_count}).any?
     else
       events.or({scope: "for_one", user_id: options[:user].id}, {scope: "for_team", team_id: options[:user].team_id}, {scope: "for_all"}).any? #moped doesn't understand <model>
@@ -88,7 +88,7 @@ module BlockBehavior
 
   # @returns event created
   def create_event options
-    task && !task.visit_count && task.load_rooms(options)
+    task.load_rooms(options) if task && !task.rooms_loaded?
     Event.with(safe: true).create options.merge block_id: id, visit_count: task && task.visit_count
   end
 
@@ -111,7 +111,7 @@ module BlockBehavior
   # @return [Array] all blocks, to which relations go from this block (effect blocks)
   def out_blocks
     ids=out_relations.map &:to_id
-    Block.find(*ids).to_a.sort_by { |b| [b.y, b.x] } #to array if nil or one
+    Block.find(*ids).to_a.sort_by { |b| [b.task_id==task_id ? 0 : 1, b.y, b.x] } #to array if nil or one
   end
 
   alias blocks_to_hit out_blocks

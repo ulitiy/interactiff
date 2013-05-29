@@ -15,6 +15,10 @@ class Task < Block
     @passed=(tpe && visit_count==tpe.visit_count)
   end
 
+  def rooms_loaded?
+    visit_count.present?
+  end
+
   def get_redirect_event options
     descendant_events.of(options.merge(type: "RedirectBlock")).sort_by { |e| [e.time,e.id] }.last
   end
