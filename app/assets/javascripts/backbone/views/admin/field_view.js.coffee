@@ -5,6 +5,11 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   initialize: ->
     masterCollection.on 'add', @collectionAdd
     return unless manage
+    $(@el).mousedown (event) ->
+        t = event.target
+        if (event.pageX > t.clientWidth + t.offsetLeft || event.pageY > t.clientHeight + $("#content").offset().top)
+            event.stopImmediatePropagation()
+            return false
     $(@el).selectable
       filter:'.block'
       cancel:'svg'
