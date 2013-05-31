@@ -22,17 +22,17 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   draw: (newmodel)=>
     @model=newmodel
-    $(@el).html(@template(@model))
-    @rivetsView=rivets.bind $(@el), model: @model
+    @$el.html(@template(@model))
+    @rivetsView=rivets.bind @$el, model: @model
     @setTimePicker()
 
   setTimePicker: =>
-    $(".timer",$(@el)).datetimepicker
+    $(".timer",@$el).datetimepicker
       showSecond: true
       timeOnly: true
       hourMax: 120
       timeFormat: "H:mm:ss"
-    $(".datetime",$(@el)).datetimepicker
+    $(".datetime",@$el).datetimepicker
       showSecond: true
       timeFormat: "HH:mm:ss"
       dateFormat: "yy-mm-dd"
@@ -41,7 +41,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     $("#"+editBlock.mainField).focus().select()
 
   clear: =>
-    $(@el).html("")
+    @$el.html("")
     @model=null
 
   render: =>
@@ -52,4 +52,4 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
       @draw(editBlock)
     else
       @clear()
-    $(":input", $(@el)).attr("disabled", true) unless manage
+    $(":input", @$el).attr("disabled", true) unless manage

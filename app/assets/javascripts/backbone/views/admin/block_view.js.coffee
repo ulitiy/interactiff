@@ -21,7 +21,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 
   initialize: ->
     @model.on "change", =>
-      jsPlumb.repaint $(@el)
+      jsPlumb.repaint @$el
 
   dblclick: =>
     propertiesView.setFocus()
@@ -37,13 +37,13 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 
 
   mousedown: =>
-    return if $(@el).hasClass("ui-selected")
-    fieldView.setSelect($(@el))
+    return if @$el.hasClass("ui-selected")
+    fieldView.setSelect(@$el)
     $("#field").trigger('selectablestop')
   dragstop: =>
     selected.trigger("dragstopchild")
   dragstopchild: =>
-    @model.setPosition $(@el).css_position()
+    @model.setPosition @$el.css_position()
   dragstart: =>
     window.selected=$('.ui-selected')# unless selected? #т.к. при релоаде остается
     selected.each ->
@@ -118,8 +118,8 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @addSources()
       @addTargets()
       m=Math.max @sourceEndpoints.length, @targetEndpoints.length
-      $(@el).css("min-height",m*14)
-      jsPlumb.repaint $(@el)
+      @$el.css("min-height",m*14)
+      jsPlumb.repaint @$el
 
 
   bindSource: (s)=>
@@ -176,16 +176,16 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 
 
   render: =>
-    $(@el).data("view",this) #круто!
-    $(@el).html @template(@model)
-    $(@el).addClass(@model.modelName)
-    $(@el).attr("title",I18n.t('admin.'+@model.modelName+'.hint'))
-    $(@el).css(left:"#{@model.get("x")}px",top:"#{@model.get("y")}px")
+    @$el.data("view",this) #круто!
+    @$el.html @template(@model)
+    @$el.addClass(@model.modelName)
+    @$el.attr("title",I18n.t('admin.'+@model.modelName+'.hint'))
+    @$el.css(left:"#{@model.get("x")}px",top:"#{@model.get("y")}px")
     if manage
-      jsPlumb.draggable $(@el)
-      $(@el).draggable("option","containment","parent")
-      $(@el).draggable("option","delay",200)
-      $(@el).draggable("option","distance",gridStep)
-      $(@el).draggable("option","grid",[gridStep,gridStep])
-    @rivestView=rivets.bind $(@el), {model: @model}
+      jsPlumb.draggable @$el
+      @$el.draggable("option","containment","parent")
+      @$el.draggable("option","delay",200)
+      @$el.draggable("option","distance",gridStep)
+      @$el.draggable("option","grid",[gridStep,gridStep])
+    @rivestView=rivets.bind @$el, {model: @model}
     this

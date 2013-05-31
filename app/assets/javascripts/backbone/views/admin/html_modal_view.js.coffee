@@ -19,11 +19,11 @@ class Joygen.Views.Admin.HtmlModalView extends Backbone.View
     forInput=$(event.currentTarget).data("for")
     @bindInput=$ "#properties ##{forInput}"
     @editor.html(@bindInput.val())
-    $(@el).dialog "open"
+    @$el.dialog "open"
     @shown=true
 
   hide: =>
-    $(@el).dialog "close"
+    @$el.dialog "close"
     @bindInput.val(@editor.html())
     @bindInput.trigger("change")
     @bindInput.focus()

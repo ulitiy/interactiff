@@ -16,6 +16,6 @@ class Joygen.Views.Admin.PathElementView extends Backbone.View
     false
 
   render: =>
-    $(@el).html(@template(@model))
-    rivets.bind $(@el), model: @model
+    @$el.html(@template(@model))
+    rivets.bind @$el, model: @model
     this

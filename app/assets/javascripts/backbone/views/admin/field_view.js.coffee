@@ -5,21 +5,21 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   initialize: ->
     masterCollection.on 'add', @collectionAdd
     return unless manage
-    $(@el).mousedown (event) ->
+    @$el.mousedown (event) ->
         t = event.target
         if (event.pageX > t.clientWidth + t.offsetLeft || event.pageY > t.clientHeight + $("#content").offset().top)
             event.stopImmediatePropagation()
             return false
-    $(@el).selectable
+    @$el.selectable
       filter:'.block'
       cancel:'svg'
       # distance: 1
 
   selectableEnable: ->
-    $(@el).selectable "enable" if manage
+    @$el.selectable "enable" if manage
 
   selectableDisable: ->
-    $(@el).selectable "disable" if manage
+    @$el.selectable "disable" if manage
 
   events:
     "selectablestop" : "selectablestop"
@@ -78,7 +78,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   addBlock: (block)=>
     view=new Joygen.Views.Admin.BlockView(model:block)
     #blockViews.push view #добавляем вьюху в массив для последующего связывания
-    $(@el).append(view.render().el)
+    @$el.append(view.render().el)
     block.view=view
     @setSelect($(view.el)) if editId==block.id
     view.makeEndpoints()
@@ -108,12 +108,12 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
         relView.render()
 
   addElements: =>
-    $(@el).append('<div id="stretcher"></div>')
-    $(@el).append('<div id="floating-toolbar"></div>')
+    @$el.append('<div id="stretcher"></div>')
+    @$el.append('<div id="floating-toolbar"></div>')
 
   render: =>
     @options.blocks=masterCollection.children(@id)
-    $(@el).html('')
+    @$el.html('')
     #window.blockViews=[]
     window.targetEndpoints=[]
     window.sourceEndpoints=[]

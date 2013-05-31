@@ -18,14 +18,14 @@ class Joygen.Views.Admin.HelpMenuView extends Backbone.View
       false
 
   show: =>
-    $(@el).show()
+    @$el.show()
   hide: =>
-    $(@el).hide()
+    @$el.hide()
 
   render: =>
-    $(@el).html @template()
+    @$el.html @template()
     $('body').mousedown (e)=>
       if !$(e.target).hasClass('menuEl')
-        $(@el).hide()
-    $(@el).menu()
+        @$el.hide()
+    @$el.menu()
     this

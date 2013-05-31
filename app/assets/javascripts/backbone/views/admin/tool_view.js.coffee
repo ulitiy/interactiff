@@ -18,7 +18,7 @@ class Joygen.Views.Admin.ToolView extends Backbone.View
 
   render: =>
     proto=Joygen.Models[@options.tool].prototype
-    $(@el).html @template(proto)
-    $(@el).attr("title",I18n.t('admin.'+proto.modelName+'.hint'))
-    $(@el).addClass(proto.modelName)
+    @$el.html @template(proto)
+    @$el.attr("title",I18n.t('admin.'+proto.modelName+'.hint'))
+    @$el.addClass(proto.modelName)
     this

@@ -17,6 +17,6 @@ class Joygen.Views.Admin.FloatingToolView extends Backbone.View
 
   render: (num)=>
     proto=Joygen.Models[@options.tool].prototype
-    $(@el).html @template({model:proto,num:@options.num})
-    $(@el).attr("title",I18n.t('admin.'+proto.modelName+'.hint'))
+    @$el.html @template({model:proto,num:@options.num})
+    @$el.attr("title",I18n.t('admin.'+proto.modelName+'.hint'))
     this

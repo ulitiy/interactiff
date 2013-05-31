@@ -8,13 +8,13 @@ class Joygen.Views.Admin.ToolbarView extends Backbone.View
 
   addOne: (tool)=>
     view=new Joygen.Views.Admin.ToolView(tool:tool)
-    $(@el).append(view.render().el)
+    @$el.append(view.render().el)
 
   addHelp: =>
     view=new Joygen.Views.Admin.HelpView()
-    $(@el).append(view.render().el)
+    @$el.append(view.render().el)
 
   render: =>
-    $(@el).html('')
+    @$el.html('')
     @addAll()
     @addHelp()
