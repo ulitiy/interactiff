@@ -1,0 +1,50 @@
+<html>
+ <head>
+
+	<meta charset="utf-8">
+
+	<title></title>
+
+	<link rel="stylesheet" href="/sg_css/style.css">
+
+ </head>
+ <body class="page_quest">
+
+
+ 	<div class="container-main p-r">
+
+ 		<div class="line line__top"></div>
+ 		<div class="line line__btm"></div>
+
+ 		<div class="container h100prc">
+
+ 			<div class="content p-r">
+
+ 				<img src="/sg_img/logo__quest.png" class="logo">
+
+ 				<h1><%= @task.name %></h1>
+
+ 				<div class="question">
+					<p><%= raw @handler.hints_given.first.body %> </p>
+ 				</div>
+      <%= form_tag play_submit_path(task_id: @task.id) do %>
+
+ 				<div class="answer">
+ 					<label>Введите ответ:</label>
+ 					<textarea name="input"></textarea>
+ 				</div>
+
+ 				<div class="row ta-r">
+ 					<input type="submit" value="">
+ 				</div>
+      <% end %>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+
+ </body>
+</html>

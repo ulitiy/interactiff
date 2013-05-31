@@ -21,6 +21,8 @@ class PlayController < ApplicationController
       redirect_to play_game_url(game_id: @game.id)
     elsif r=@task.get_redirect_event(user: current_user)
       redirect_to r.block.url_with_vars game: @game, task: @task, user: current_user, handler: @handler
+    elsif File.exists?(Rails.root.join("app", "views", params[:controller],"#{@task.title}.html.erb"))
+      render "play/#{@task.title}"
     elsif File.exists?(Rails.root.join("app", "views", params[:controller],"#{@game.title}.html.erb"))
       render "play/#{@game.title}"
     else
