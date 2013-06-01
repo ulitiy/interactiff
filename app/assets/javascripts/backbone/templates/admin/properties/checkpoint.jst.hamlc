@@ -1,3 +1,0 @@
-.property
-  %label(for="name")= I18n.t("admin.checkpoint.name")
-  %input(id="name", type="text", data-value="model.name")

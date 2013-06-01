@@ -98,6 +98,9 @@
       tool: "Condition"
       hint: "Condition. Transmits the signal if expression is true. (i.e. x>=20)"
       expression: "Expression"
+    else_block:
+      tool: "Else"
+      hint: "Else. Transmits the signal if none of conditions nearby are fired."
     # eval_block:
     #   tool: "Исполнить код"
     #   hint: "Исполнить код. При поступлении сигнала на вход данного блока исполняется произвольный код и передается сигнал на выход, если результатом работы кода является неложное значение. Данный блок является основой для построения иных типов блоков. Доступ к созданию данного блока ограничен."

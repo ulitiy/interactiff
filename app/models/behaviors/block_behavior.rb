@@ -58,7 +58,7 @@ module BlockBehavior
     event=create_event options
     block_actions options
     [event]+hit_relations(options.merge(
-      parent_id: event.id,
+      parent: event,
       source_id: options[:source_id] || (options[:source]||event).id,
       responsible_user: nil,
       reason: nil,
