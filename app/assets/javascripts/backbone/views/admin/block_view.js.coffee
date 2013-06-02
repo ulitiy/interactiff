@@ -100,6 +100,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @targetEndpoint.model=@model
       @targetEndpoint.blockView=this
       @bindTarget(@targetEndpoint)
+      @bindCT(@targetEndpoint) if @model.get("task_id")?
       # @targetEndpoint.bind 'click', ()=>
 
       targetEndpoints.push @targetEndpoint
@@ -111,6 +112,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @sourceEndpoint.model=@model
       @sourceEndpoint.blockView=this
       @bindSource(@sourceEndpoint)
+      @bindCS(@sourceEndpoint) if @model.get("task_id")?
       # @sourceEndpoint.bind 'click', (e1)=>
       #   floatingToolbarView.show(e1)
       sourceEndpoints.push @sourceEndpoint
@@ -137,6 +139,22 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       relView.render()
       $(dragConnectionFrom.canvas).removeClass "dcf"
       window.dragConnectionFrom=null
+
+  #простановка контейнерных пуговок двойным кликом
+  bindCS: (s)=>
+    $(s.canvas).attr("data-class-containersource","model.container_source")
+    rivets.bind $(s.canvas), { model: @model }
+    s.bind 'dblclick', =>
+      $(dragConnectionFrom.canvas).removeClass "dcf"
+      window.dragConnectionFrom=null
+      @model.set("container_source", !@model.get("container_source"))
+      @model.save()
+  bindCT: (t)=>
+    $(t.canvas).attr("data-class-containertarget","model.container_target")
+    rivets.bind $(t.canvas), { model: @model }
+    t.bind 'dblclick', =>
+      @model.set("container_target", !@model.get("container_target"))
+      @model.save()
 
 
 #простановка дочерних
