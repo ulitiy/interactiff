@@ -47,11 +47,10 @@ class ApplicationController < ActionController::Base
 
   # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
-  # TODO: TEST ME, update_attributes
+  # TODO: TEST ME
   def logging_in
     guest_user.events.each do |event|
-      event.user_id=current_user_without_guest.id
-      event.save
+      event.update_attribute :user_id, current_user_without_guest.id
     end
   end
 

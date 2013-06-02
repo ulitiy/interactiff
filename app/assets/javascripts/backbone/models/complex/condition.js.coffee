@@ -12,3 +12,7 @@ class Joygen.Models.Condition extends Joygen.Models.Block
 
   caption: ->
     @get('expression')
+
+  save: (attributes, options) =>
+    @set("exception",null)
+    super attributes, options

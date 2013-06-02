@@ -56,7 +56,12 @@ class PlayController < ApplicationController
     authorize! :play, @game
     @handler=EventHandler.new(user: current_user, game: @game, task: @task)
     CriticalSection.synchronize @game.id do
-      @fired_events=@handler.input(params[:input]).to_a
+      begin
+        @fired_events=@handler.input(params[:input]).to_a
+      rescue Exception => e
+        render :nothing => true, :status => 500
+        return
+      end
       set_flash
     end
   end

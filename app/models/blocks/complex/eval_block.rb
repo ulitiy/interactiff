@@ -1,16 +1,24 @@
 # encoding: UTF-8
 class EvalBlock < Block
 
+  field :exception, type: String, default: nil
+
   ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand]
   EVAL_TIMEOUT=0.5
 
   attr_accessor :vars
+  attr_accessible :exception
 
   # calculates value from the expression
   # game, user, handler (for last input)
   def calculate_value expr,options
-    get_vars expr, options
-    execute expr
+    begin
+      get_vars expr, options
+      execute expr
+    rescue Exception => e
+      update_attribute :exception, e.message
+      raise e
+    end
   end
 
   # gets var values from the DB
@@ -29,16 +37,11 @@ class EvalBlock < Block
   # 9**999999, @t=''
   # Executes unsafe ruby code in safe env
   def execute str
-    begin
-      @t=Thread.start do
-        sandbox str
-      end
-      @t.kill unless @t.join(EVAL_TIMEOUT)
-      @t.value
-    rescue Exception => e
-      raise e
-      #TODO: log exception here
+    @t=Thread.start do
+      sandbox str
     end
+    @t.kill unless @t.join(EVAL_TIMEOUT)
+    @t.value
   end
 
   def sandbox str

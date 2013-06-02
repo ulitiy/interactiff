@@ -180,6 +180,8 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     @$el.html @template(@model)
     @$el.addClass(@model.modelName)
     @$el.attr("title",I18n.t('admin.'+@model.modelName+'.hint'))
+    @$el.attr("data-class-exception","model.exception")
+    @$el.attr("data-title","model.exception")
     @$el.css(left:"#{@model.get("x")}px",top:"#{@model.get("y")}px")
     if manage
       jsPlumb.draggable @$el

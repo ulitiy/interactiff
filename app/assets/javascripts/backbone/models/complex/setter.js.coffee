@@ -11,3 +11,7 @@ class Joygen.Models.Setter extends Joygen.Models.Block
 
   caption: ->
     @get('expression')
+
+  save: (attributes, options) =>
+    @set("exception",null)
+    super attributes, options
