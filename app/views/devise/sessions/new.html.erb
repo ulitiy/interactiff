@@ -26,10 +26,15 @@
       </div>
       <div class="span4">
         <h3>Быстрый вход через:</h3>
-        <a href="" class="social-button sb-g"><span>Google</span></a>
-        <a href="" class="social-button sb-vk"><span>ВКонтакте</span></a>
-        <a href="" class="social-button sb-t"><span>Twitter</span></a>
-        <a href="" class="social-button sb-fb"><span>Facebook</span></a>
+        <%= link_to user_omniauth_authorize_url(:google_oauth2, skip_locale: true), class: "social-button sb-g" do %>
+            <span>Google</span>
+        <% end %>
+        <%= link_to user_omniauth_authorize_url(:vkontakte, skip_locale: true), class: "social-button sb-vk" do %>
+            <span>ВКонтакте</span>
+        <% end %>
+        <%= link_to user_omniauth_authorize_url(:facebook, skip_locale: true), class: "social-button sb-fb" do %>
+            <span>Facebook</span>
+        <% end %>
       </div>
     </div>
   <div>
