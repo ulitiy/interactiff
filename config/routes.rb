@@ -2,7 +2,8 @@ Interactiff::Application.routes.draw do
   filter :refinery_like_locales
   match "/delayed_job" => DelayedJobWeb, :anchor => false
 
-  devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {:registrations => "registrations"}
+  devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {registrations: "registrations", omniauth_callbacks: "omniauth_callbacks"}
+
   resources :games, path: "/quests" do
     get "reset", on: :member
   end

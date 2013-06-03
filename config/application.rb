@@ -14,6 +14,9 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+# подключаем конфиги
+ENV.update YAML.load(File.read(File.expand_path('../settings.yml', __FILE__)))
+
 module Interactiff
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
