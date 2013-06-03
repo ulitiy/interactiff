@@ -41,7 +41,7 @@ module RoutingFilter
 
     def around_generate(params, &block)
       locale = params.delete(:locale) || ::I18n.locale
-      skip_locale = params[:skip_locale]#.delete(:skip_locale)
+      skip_locale = params.delete(:skip_locale)
 
       yield.tap do |result|
         result = result.is_a?(Array) ? result.first : result
