@@ -115,10 +115,11 @@ class User
 
   # omniauth
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    where(auth.slice(:provider, :uid)).first_or_initialize do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.username = auth.info.nickname
+      user.save(:validate => false)
     end
   end
   def self.new_with_session(params, session)
