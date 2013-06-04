@@ -50,7 +50,7 @@ class User
 
   field :provider,  type: String
   field :username,  type: String
-  field :uid,       type: Integer, default: 0
+  field :uid,       type: String
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
