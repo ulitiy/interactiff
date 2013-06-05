@@ -5,7 +5,7 @@ Interactiff::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {registrations: "registrations", omniauth_callbacks: "omniauth_callbacks"}
 
   resources :games, path: "/quests" do
-    get "reset", on: :member
+    post "reset", on: :member
   end
   resources :relations
   match "/admin/:parent_id/:select_id" => "Admin::Blocks#index", as: :admin, :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get

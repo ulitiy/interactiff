@@ -16,5 +16,4 @@ module ApplicationHelper
   def rlink
     controller.class.name=~/Refinery/ ? refinery : self
   end
-
 end
