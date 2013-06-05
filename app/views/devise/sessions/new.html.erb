@@ -11,6 +11,7 @@
 <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
             <%= f.email_field :email, placeholder: "Электронная почта" %>
             <%= f.password_field :password, placeholder: "Пароль" %>
+            <%= f.hidden_field :remember_me, value: "1"%>
             <%= link_to "Забыли пароль?", new_user_password_path, style: "line-height: 30px;" %>
             <button class="btn btn-green pull-right">Войти</button>
 <% end %>
