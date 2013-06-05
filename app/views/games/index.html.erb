@@ -19,7 +19,7 @@
             &nbsp;
             <%= link_to "Изменить", main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
             &nbsp;
-            <%= link_to "Сброс", main_app.reset_game_path(id: game.id), class: "btn" %>
+            <%= link_to "Сброс", main_app.reset_game_path(id: game.id), class: "btn", method: "post" %>
             <br/>&nbsp;
             <div>
               <%= link_to "Удалить", game_path(id: game.id), method: :delete, confirm: "Вы уверены?" %>

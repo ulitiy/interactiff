@@ -109,8 +109,8 @@ class User
       self.has_role?(:superuser)
     )
   end
-  
+
   def password_required?
-    super && provider.blank?
+    super && self.accounts.blank?
   end
 end
