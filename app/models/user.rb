@@ -49,8 +49,6 @@ class User
   # field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   embeds_many :accounts
-  index "accounts.uid" => 1
-  index "accounts.provider" => 1
 
   validates_presence_of :email
   validates_presence_of :encrypted_password

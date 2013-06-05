@@ -7,7 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # The user have already used this external account
       flash.notice = 'Successfuly authenticated'
       sign_in_and_redirect(:user, account.user)
-    elsif current_user
+    elsif user_signed_in?
       # Add account to signed in user
       # User is logged in
       current_user.accounts.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
