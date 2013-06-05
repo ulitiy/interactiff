@@ -48,9 +48,9 @@ class User
   # field :confirmation_sent_at, :type => Time
   # field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
-  field :provider,  type: String
-  field :username,  type: String
-  field :uid,       type: String
+  embeds_many :accounts
+  index "accounts.uid" => 1
+  index "accounts.provider" => 1
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
@@ -59,9 +59,6 @@ class User
   def games
     engine_roles.map { |role| role.block if role.block.is_a?(Game) && role.access.in?([:manage,:manage_roles]) }.compact
   end
-
-
-
 
   # refinery
 
@@ -112,44 +109,8 @@ class User
       self.has_role?(:superuser)
     )
   end
-
-  # omniauth
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.username = auth.info.nickname
-      user.save(:validate => false)
-    end
-  end
-  def self.new_with_session(params, session)
-    if session["devise.user_attributes"]
-      new(session["devise.user_attributes"], without_protection: true) do |user|
-        user.attributes = params
-        user.valid?
-      end
-    else
-      super
-    end
-  end
   
   def password_required?
     super && provider.blank?
-  end
-  
-  def email_required?
-    super && provider.blank?
-  end
-
-  def encrypted_password_required?
-    super && provider.blank?
-  end
-
-  def update_with_password(params, *options)
-    if encrypted_password.blank?
-      update_attributes(params, *options)
-    else
-      super
-    end
   end
 end
