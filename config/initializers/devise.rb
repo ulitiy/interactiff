@@ -206,7 +206,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :vkontakte, ENV["VKONTAKTE_API_ID"], ENV["VKONTAKTE_SECRET"], scope: "offline"
   config.omniauth :facebook, ENV["FACEBOOK_API_ID"], ENV["FACEBOOK_SECRET"], scope: 'email, offline_access'
-  config.omniauth :google_oauth2, ENV["GOOGLE_API_ID"], ENV["GOOGLE_SECRET"]
+  config.omniauth :google_oauth2, ENV["GOOGLE_API_ID"], ENV["GOOGLE_SECRET"], scope: "userinfo.email,userinfo.profile"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
