@@ -32,6 +32,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.email = user_info['email']
       user.save(validate: false)
     end
+    user
   end
   alias_method :facebook, :all
   alias_method :vkontakte, :all
