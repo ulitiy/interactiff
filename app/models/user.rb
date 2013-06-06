@@ -101,14 +101,17 @@ class User
     user_to_edit.persisted? && (user_to_edit == self || self.has_role?(:superuser))
   end
 
-  def can_edit?(user_to_edit = self)
-    user_to_edit.persisted? && (
-      user_to_edit == self ||
-      self.has_role?(:superuser)
-    )
-  end
-
   def password_required?
     super && self.accounts.blank?
+  end
+
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        user.attributes = params
+      end
+    else
+      super
+    end
   end
 end
