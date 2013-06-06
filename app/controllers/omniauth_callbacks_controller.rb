@@ -13,9 +13,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to games_url, notice: "#{omniauth[:provider]} successfuly added to your account"
     elsif user = create_or_get_user(omniauth)
       user.accounts.create!(omniauth.slice(:provider, :uid))
-      flash[:notice] = 'Welcome to interactiff'
-      user.remember_me = true
-      sign_in_and_redirect user
+      if user.persisted?
+        flash[:notice] = 'Welcome to interactiff'
+        user.remember_me = true
+        sign_in_and_redirect user
+      else
+        flash[:alert] = "Fail auth"
+        redirect_to new_user_registration_url
+      end
     else
       # New user data not valid, try again
       flash[:alert] = "Fail auth"
@@ -24,14 +29,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   def create_or_get_user(omniauth)
     user_info = omniauth['user_info']
-    if omniauth['extra'] && omniauth['extra']['user_hash']
+    if omniauth['extra'].present? && omniauth['extra']['user_hash'].present?
       user_info.merge!(omniauth['extra']['user_hash'])
     end
-    user = User.where(email: user_info['email']).first || User.new
-    if user.new_record?
-      user.email = user_info['email']
-      user.save(validate: false)
-    end
+    user = User.new #User.where(email: user_info['email']).first || 
+    # if user.new_record?
+    user.email = (user_info['email'].present?) ? user_info['email'] : "#{omniauth[:provider]}_#{omniauth[:uid]}@interactiff.net"
+    user.save(validate: false)
+    # end
     user
   end
   alias_method :facebook, :all
