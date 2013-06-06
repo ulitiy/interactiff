@@ -17,7 +17,7 @@ class User
   # :token_authenticatable, :confirmable,
   #  and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :trackable, :timeoutable, :rememberable#, :lockable, :validatable, 
+         :recoverable, :trackable, :timeoutable, :rememberable, :validatable#, :lockable, 
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -99,10 +99,6 @@ class User
 
   def can_edit?(user_to_edit = self)
     user_to_edit.persisted? && (user_to_edit == self || self.has_role?(:superuser))
-  end
-
-  def password_required?
-    super && self.accounts.blank?
   end
 
   def self.new_with_session(params, session)
