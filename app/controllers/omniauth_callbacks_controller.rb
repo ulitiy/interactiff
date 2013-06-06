@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     omniauth = request.env["omniauth.auth"]  
-    user = User.where(:"account.provider" => omniauth[:provider], :"account.uid" => omniauth[:uid]).first
+    user = User.where("accounts.provider" => omniauth[:provider], "accounts.uid" => omniauth[:uid]).first
     if user 
       # The user have already used this external account
       flash[:notice] = 'Successfuly authenticated'
