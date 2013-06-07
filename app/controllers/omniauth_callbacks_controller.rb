@@ -7,13 +7,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = 'Successfuly authenticated'
       user.remember_me = true
       sign_in_and_redirect user
-    elsif user_signed_in?
+    elsif user_signed_in? && !user.is_a? Guest
       # Add account to signed in user
       current_user.accounts.create!(omniauth.slice(:provider, :uid))
       redirect_to games_url, notice: "#{omniauth[:provider]} successfuly added to your account"
     elsif user = create_or_get_user(omniauth)
-      user.accounts.create!(omniauth.slice(:provider, :uid))
       if user.persisted?
+        user.accounts.create!(omniauth.slice(:provider, :uid))
         flash[:notice] = 'Welcome to interactiff'
         user.remember_me = true
         sign_in_and_redirect user
@@ -32,11 +32,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if omniauth['extra'].present? && omniauth['extra']['user_hash'].present?
       user_info.merge!(omniauth['extra']['user_hash'])
     end
-    user = User.new #User.where(email: user_info['email']).first || 
-    # if user.new_record?
-    user.email = (user_info['email'].present?) ? user_info['email'] : "#{omniauth[:provider]}_#{omniauth[:uid]}@interactiff.net"
-    user.save(validate: false)
-    # end
+    user = User.where(email: user_info['email']).first || User.new
+    if user.new_record?
+      user.email = (user_info['email'].present?) ? user_info['email'] : "#{omniauth[:provider]}_#{omniauth[:uid]}@interactiff.net"
+      user.save(validate: false)
+      logging_in
+    end
     user
   end
   alias_method :facebook, :all
