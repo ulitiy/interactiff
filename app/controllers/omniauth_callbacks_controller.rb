@@ -12,8 +12,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       current_user.accounts.create!(omniauth.slice(:provider, :uid))
       redirect_to games_url, notice: "#{omniauth[:provider]} successfuly added to your account"
     elsif user = create_or_get_user(omniauth)
+      user.accounts.create!(omniauth.slice(:provider, :uid))
       if user.persisted?
-        user.accounts.create!(omniauth.slice(:provider, :uid))
         flash[:notice] = 'Welcome to interactiff'
         user.remember_me = true
         sign_in_and_redirect user
