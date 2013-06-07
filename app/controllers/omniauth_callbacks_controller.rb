@@ -28,13 +28,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
   def create_or_get_user(omniauth)
-    user_info = omniauth['user_info']
-    if omniauth['extra'].present? && omniauth['extra']['user_hash'].present?
-      user_info.merge!(omniauth['extra']['user_hash'])
+    user_info = omniauth['info']
+    if omniauth['extra'].present? && omniauth['extra']['raw_info'].present?
+      user_info.merge!(omniauth['extra']['raw_info'])
     end
-    user = User.where(email: user_info['email']).first || User.new
+    mail = (user_info['email'].present?) ? user_info['email'] : "#{omniauth[:provider]}_#{omniauth[:uid]}@interactiff.net"
+    user = User.where(email: mail).first || User.new
     if user.new_record?
-      user.email = (user_info['email'].present?) ? user_info['email'] : "#{omniauth[:provider]}_#{omniauth[:uid]}@interactiff.net"
+      user.email = mail
+      user.confirm_user!
       user.save(validate: false)
       logging_in
     end
