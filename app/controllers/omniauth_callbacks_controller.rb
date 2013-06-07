@@ -1,13 +1,13 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
-    omniauth = request.env["omniauth.auth"]  
+    omniauth = request.env["omniauth.auth"]
     user = User.where("accounts.provider" => omniauth[:provider], "accounts.uid" => omniauth[:uid]).first
-    if user 
+    if user
       # The user have already used this external account
       flash[:notice] = 'Successfuly authenticated'
       user.remember_me = true
       sign_in_and_redirect user
-    elsif user_signed_in? and !user.is_a? Guest
+    elsif user_signed_in? && !user.is_a?(Guest)
       # Add account to signed in user
       current_user.accounts.create!(omniauth.slice(:provider, :uid))
       redirect_to games_url, notice: "#{omniauth[:provider]} successfuly added to your account"
@@ -25,7 +25,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # New user data not valid, try again
       flash[:alert] = "Fail auth"
       redirect_to new_user_registration_url
-    end  
+    end
   end
   def create_or_get_user(omniauth)
     user_info = omniauth['user_info']
