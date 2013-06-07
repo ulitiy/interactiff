@@ -7,7 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = 'Successfuly authenticated'
       user.remember_me = true
       sign_in_and_redirect user
-    elsif user_signed_in? && !user.is_a?(Guest)
+    elsif user_signed_in? && !current_user.is_a?(Guest)
       # Add account to signed in user
       current_user.accounts.create!(omniauth.slice(:provider, :uid))
       redirect_to games_url, notice: "#{omniauth[:provider]} successfuly added to your account"
