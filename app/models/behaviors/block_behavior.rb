@@ -80,6 +80,7 @@ module BlockBehavior
 
   # prepare options for fire
   def prepare_options options
+    options=options.clone
     options.merge! scope: get_scope(options), game: game, task: task, force_scope: nil, mutex: nil
     options[:user]||=User.find options[:user_id] if options[:user_id]
     options[:team]=options[:user].team if options[:scope]=="for_team"
