@@ -1,10 +1,11 @@
 class Task < Block
   field :name, type: String, :default => ""
   field :input_type, type: String, :default => "text"
+  field :show_wrong_answer, type: Boolean, default: true
 
   has_many :descendants, class_name: 'Block', inverse_of: :task
   has_many :descendant_events, class_name: 'Event', inverse_of: :task
-  attr_accessible :name, :input_type
+  attr_accessible :name, :input_type, :show_wrong_answer
   attr_accessor :passed #event_handler.rb #88
   attr_accessor :visit_count, :tge, :tpe
 

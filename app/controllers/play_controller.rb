@@ -86,7 +86,7 @@ class PlayController < ApplicationController
     end.compact
     if @fired_events.find { |e| e.block_type=="TaskPassed" }
       redirect_to play_game_url(game_id: @game.id)
-    else
+    elsif @task.show_wrong_answer
       flash[:alert]=t("play.alert.no_events")
       redirect_to play_show_url(game_id: @game.id, task_id: @task.id)
     end

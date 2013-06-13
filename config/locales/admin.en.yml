@@ -44,6 +44,7 @@
       tool: "Task"
       new: "New task"
       hint: "Task or location. Container block. May be given to user and finished. Double click to look inside."
+      show_wrong_answer: "Show 'Answer is incorrect'"
       input_type:
         label: "Input type"
         text: "Text"
