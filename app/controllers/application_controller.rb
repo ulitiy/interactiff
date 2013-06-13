@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     if user_signed_in? && !current_user.is_a?(Guest)
       flash[:notice] = t("cancan.exceptions.denied")
-      redirect_to root_url
+      redirect_to refinery.root_url
     else
       authenticate_user!
     end
