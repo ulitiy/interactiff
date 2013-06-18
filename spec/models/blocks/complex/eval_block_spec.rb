@@ -1,3 +1,4 @@
+# encoding: UTF-8
 describe EvalBlock do
 
   let!(:user) { create :user }
@@ -50,6 +51,10 @@ describe EvalBlock do
       before { Event.create user: user, block: answer, variable: var1, input: "ans" }
       subject { eb.calculate_value("last_answer==\"ans\"", user: user, game: game, handler: handler) }
       it { should be_true }
+    end
+    context "cyrillic var" do
+      subject { eb.calculate_value "'кириллица'", user: user, game: game }
+      it { should eq("кириллица") }
     end
   end
 

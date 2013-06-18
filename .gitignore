@@ -8,3 +8,5 @@ config/database.yml
 config/settings.yml
 .ruby-version
 public/system
+.dropbox
+Icon

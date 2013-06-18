@@ -52,7 +52,7 @@ class EvalBlock < Block
     p.allow_global_write :$SAFE
     p.allow_global_read :$SANDBOX_VARS
     $SANDBOX_VARS=@vars
-    s.run p, sandbox_string(str)
+    s.run p, sandbox_string(str), :encoding => "utf-8"
   end
 
   def sandbox_string str
