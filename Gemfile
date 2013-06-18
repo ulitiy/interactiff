@@ -13,7 +13,7 @@ group :assets do
   gem 'mousetrap-rails'
   gem "therubyracer"
   gem "less-rails"
-  gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails', '2.2.6'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'rails-backbone', :require=> "backbone-rails" #, github: "codebrew/backbone-rails"

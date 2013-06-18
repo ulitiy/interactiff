@@ -6,16 +6,6 @@ GIT
       i18n
 
 GIT
-  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: dbbdee23b9ac809ffbd9d73a87d1293c1f8f2e54
-  specs:
-    twitter-bootstrap-rails (2.2.7)
-      actionpack (>= 3.1)
-      execjs
-      rails (>= 3.1)
-      railties (>= 3.1)
-
-GIT
   remote: https://github.com/izzm/delayed_job_web.git
   revision: bd62cc5d0f775faffdbb8106c6e095e959256e75
   specs:
@@ -435,6 +425,10 @@ GEM
       sprockets (>= 2.0.0)
     turn (0.9.6)
       ansi
+    twitter-bootstrap-rails (2.2.6)
+      actionpack (>= 3.1)
+      execjs
+      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -527,7 +521,7 @@ DEPENDENCIES
   thin
   turbo-sprockets-rails3
   turn
-  twitter-bootstrap-rails!
+  twitter-bootstrap-rails (= 2.2.6)
   uglifier (>= 1.2.7)
   unicorn
   unicorn-worker-killer
