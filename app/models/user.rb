@@ -17,7 +17,7 @@ class User
   # :token_authenticatable,
   #  and
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :trackable, :timeoutable, :rememberable, :validatable#, :confirmable#, :lockable,
+         :recoverable, :trackable, :timeoutable, :rememberable, :validatable, :confirmable#, :lockable,
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -42,11 +42,11 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
-  ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  # Confirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   embeds_many :accounts
 
@@ -100,11 +100,6 @@ class User
   def can_edit?(user_to_edit = self)
     user_to_edit.persisted? && (user_to_edit == self || self.has_role?(:superuser))
   end
-
-  # oauth
-  # def confirm_user!
-  #   self.confirmed_at = Time.now
-  # end
 
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
