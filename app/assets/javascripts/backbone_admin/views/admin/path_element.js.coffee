@@ -2,7 +2,7 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.PathElementView extends Backbone.View
 
-  template: JST["backbone/templates/admin/path_element"]
+  template: JST["backbone_admin/templates/admin/path_element"]
   tagName: "span"
   className: "path-element"
 

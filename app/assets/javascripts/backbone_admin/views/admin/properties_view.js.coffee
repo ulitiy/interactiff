@@ -12,7 +12,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     @model=null #предварительно чистим модель, чтобы при рефреше не было сохранения//не трогать
     @render()
 
-  template: JST["backbone/templates/admin/properties/common"]
+  template: JST["backbone_admin/templates/admin/properties/common"]
 
   htmlModal: (event)=>
     htmlModalView.show(event)

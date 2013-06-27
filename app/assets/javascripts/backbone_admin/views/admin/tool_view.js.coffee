@@ -2,7 +2,7 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.ToolView extends Backbone.View
 
-  template: JST["backbone/templates/admin/tool"]
+  template: JST["backbone_admin/templates/admin/tool"]
 
   events:
     click:"createBlock"

@@ -2,7 +2,7 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.BlockView extends Backbone.View
 
-  template: JST["backbone/templates/admin/block"]
+  template: JST["backbone_admin/templates/admin/block"]
 
   events:
     "mousedown": "mousedown"

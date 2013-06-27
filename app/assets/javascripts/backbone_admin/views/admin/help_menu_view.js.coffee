@@ -2,7 +2,7 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.HelpMenuView extends Backbone.View
 
-  template: JST["backbone/templates/admin/help_menu"]
+  template: JST["backbone_admin/templates/admin/help_menu"]
 
   events:
     "click .menuEl": "click"

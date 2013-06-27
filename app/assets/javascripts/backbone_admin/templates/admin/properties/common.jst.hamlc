@@ -1,6 +1,6 @@
 %h3= I18n.t("admin.#{@modelName}.tool")
 #properties
-  -tmp=JST["backbone/templates/admin/properties/#{@modelName}"]
+  -tmp=JST["backbone_admin/templates/admin/properties/#{@modelName}"]
   -if tmp
     !=tmp(this)
   %hr

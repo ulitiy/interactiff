@@ -2,7 +2,7 @@ Joygen.Views.Admin ||= {}
 
 class Joygen.Views.Admin.FloatingToolView extends Backbone.View
 
-  template: JST["backbone/templates/admin/floating_tool"]
+  template: JST["backbone_admin/templates/admin/floating_tool"]
 
   events:
     click:"createBlock"

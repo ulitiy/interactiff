@@ -29,6 +29,6 @@
 //= require admin/key_input
 //= require admin/rivest_init
 
-//= require backbone/joygen
+//= require backbone_admin/joygen
 //= require admin/backbone_init
 //= require_tree ./admin/guides
