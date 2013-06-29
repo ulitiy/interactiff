@@ -1,37 +1,37 @@
 <section class="container w">
-    <h1>Вход или регистрация</h1>
+    <h1><%=t('devise.sessions.new.sign_in_or_sign_up')%></h1>
     <%= devise_error_messages! %>
     <div class="row-fluid reg-page">
       <div class="span3">
         <input class="hidden" type="radio" name="sign" id="cb-enter" <%= "checked" unless controller.controller_name=="registrations" %>/>
         <input class="hidden" type="radio" name="sign" id="cb-registration" <%= "checked" if controller.controller_name=="registrations" %>/>
-        <label class="switcher" for="cb-enter">Вход</label>
-        <label class="switcher" for="cb-registration">Регистрация</label>
+        <label class="switcher" for="cb-enter"><%=t('devise.sessions.new.sign_in')%></label>
+        <label class="switcher" for="cb-registration"><%=t('devise.sessions.new.sign_up')%></label>
         <div class="panel signinform">
 <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
-            <%= f.email_field :email, placeholder: "Электронная почта" %>
-            <%= f.password_field :password, placeholder: "Пароль" %>
+            <%= f.email_field :email, placeholder: t('devise.sessions.new.email') %>
+            <%= f.password_field :password, placeholder: t('devise.sessions.new.password') %>
             <%= f.hidden_field :remember_me, value: "1"%>
-            <%= link_to "Забыли пароль?", new_user_password_path, style: "line-height: 30px;" %>
-            <button class="btn btn-green pull-right">Войти</button>
+            <%= link_to t('devise.sessions.new.forgot_password'), new_user_password_path, style: "line-height: 30px;" %>
+            <button class="btn btn-green pull-right"><%=t('devise.sessions.new.login')%></button>
 <% end %>
         </div>
         <div class="panel regform">
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
-            <%= f.email_field :email, placeholder: "Электронная почта" %>
-            <%= f.password_field :password, placeholder: "Придумайте пароль" %>
+            <%= f.email_field :email, placeholder: t('devise.sessions.new.choose_email') %>
+            <%= f.password_field :password, placeholder: t('devise.sessions.new.choose_password') %>
             <!-- <p>Продолжая, вы соглашаетесь с&nbsp;<a href="">Пользовательским соглашением</a></p> -->
-            <button class="btn btn-green">Зарегистрироваться</button>
+            <button class="btn btn-green"><%=t('devise.sessions.new.join')%></button>
 <% end %>
         </div>
       </div>
       <div class="span4">
-        <h3>Быстрый вход через:</h3>
+        <h3><%=t('devise.sessions.new.join_using')%></h3>
         <%= link_to user_omniauth_authorize_url(:google_oauth2, skip_locale: true), class: "social-button sb-g" do %>
             <span>Google</span>
         <% end %>
         <%= link_to user_omniauth_authorize_url(:vkontakte, skip_locale: true), class: "social-button sb-vk" do %>
-            <span>ВКонтакте</span>
+            <span><%=t('devise.sessions.new.vk')%></span>
         <% end %>
         <%= link_to user_omniauth_authorize_url(:facebook, skip_locale: true), class: "social-button sb-fb" do %>
             <span>Facebook</span>
