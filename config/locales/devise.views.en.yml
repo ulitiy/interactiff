@@ -25,7 +25,8 @@ en:
     passwords:
       new:
         forgot_your_password: Forgot your password?
-        send_me_reset_password_instructions: Send me reset password instructions
+        email: Email
+        submit: Submit
       edit:
         change_your_password: Change your password
         new_password: New password
@@ -42,7 +43,18 @@ en:
         sign_up: Sign up
     sessions:
       new:
-        sign_in: Sign in
+        sign_in: Sign In
+        sign_up: Sign Up
+        sign_in_or_sign_up: Sign In or Sign Out
+        login: Login
+        forgot_password: Forgot Password?
+        email: Your email
+        choose_email: Your email
+        password: Your password
+        choose_password: Choose a password
+        join: Join
+        join_using: "Join using:"
+        vk: VKontakte
     shared:
       links:
         didn_t_receive_confirmation_instructions: Didn't receive confirmation instructions?
