@@ -25,7 +25,8 @@ en:
     passwords:
       new:
         forgot_your_password: Forgot your password?
-        send_me_reset_password_instructions: Send me reset password instructions
+        email: Email
+        submit: Submit
       edit:
         change_your_password: Change your password
         new_password: New password

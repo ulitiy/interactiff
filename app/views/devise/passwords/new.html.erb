@@ -1,11 +1,11 @@
 <section class="container w">
-    <h1>Забыли пароль?</h1>
+    <h1><%=t('.forgot_your_password')%></h1>
     <%= devise_error_messages! %>
     <div class="row-fluid reg-page">
       <div class="span3">
         <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :post }) do |f| %>
-          <%= f.email_field :email, placeholder: "Электронная почта" %>
-          <button class="btn btn-green pull-right">Напомнить</button>
+          <%= f.email_field :email, placeholder: t('.email') %>
+          <button class="btn btn-green pull-right"><%=t('.submit')%></button>
         <% end %>
       </div>
     </div>

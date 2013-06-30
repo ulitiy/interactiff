@@ -1,13 +1,13 @@
 <section class="container w">
-    <h1>Смена пароля</h1>
+    <h1><%=t('.change_your_password')%></h1>
     <%= devise_error_messages! %>
     <div class="row-fluid reg-page">
       <div class="span3">
         <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :put }) do |f| %>
           <%= f.hidden_field :reset_password_token %>
-          <%= f.password_field :password, placeholder: "Новый пароль" %>
-          <%= f.password_field :password_confirmation, placeholder: "Повторите" %>
-          <button class="btn btn-green pull-right">Сменить</button>
+          <%= f.password_field :password, placeholder: t('.new_password') %>
+          <%= f.password_field :password_confirmation, placeholder: t('.confirm_new_password') %>
+          <button class="btn btn-green pull-right"><%=t('.change_my_password')%></button>
         <% end %>
       </div>
     </div>

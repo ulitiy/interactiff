@@ -31,6 +31,15 @@ ru:
       send_paranoid_instructions: "Если ваш адрес email есть в нашей базе данных, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
       updated: "Ваш пароль изменён. Теперь вы вошли в систему."
       updated_not_active: "Пароль успешно изменён."
+      edit:
+        change_your_password: "Смена пароля"
+        new_password: "Новый пароль"
+        confirm_new_password: "Повторите"
+        change_my_password: "Сменить"
+      new:
+        forgot_your_password: "Забыли пароль?"
+        email: Email
+        submit: "Напомнить"
     registrations:
       destroyed: "До свидания! Ваша учётная запись удалена. Надеемся снова увидеть вас."
       signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
