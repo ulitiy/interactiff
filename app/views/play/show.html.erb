@@ -20,15 +20,15 @@
     <h1><%= @game.name %></h1>
     <div class="row-fluid">
       <div class="span2 tasks-column">
-        <h2><%=t('games.tasks_list')%></h2>
+        <h2><%=t('play.tasks_list')%></h2>
 
         <input type="radio" class="task-type-switch" name="tasks-filter" id="all-tasks">
         <input type="radio" class="task-type-switch" name="tasks-filter" id="current-tasks" checked>
         <input type="radio" class="task-type-switch" name="tasks-filter" id="completed-tasks">
 
-          <label class="tab first-tab" for="all-tasks"><%=t('games.all')%></label>
-          <label class="tab second-tab" for="current-tasks"><%=t('games.current')%></label>
-          <label class="tab third-tab" for="completed-tasks"><%=t('games.completed')%></label>
+          <label class="tab first-tab" for="all-tasks"><%=t('play.all')%></label>
+          <label class="tab second-tab" for="current-tasks"><%=t('play.current')%></label>
+          <label class="tab third-tab" for="completed-tasks"><%=t('play.completed')%></label>
 
         <ul class="tasks-list">
           <% for task in @handler.play_tasks %>
@@ -67,7 +67,7 @@
               <% if @task.passed %>
                 <p>Вы уже прошли это задание</p>
               <% elsif @task.input_type=="link" %>
-                <dt class="span2 bolder"><%=t('games.answer')%></dt>
+                <dt class="span2 bolder"><%=t('play.answer')%></dt>
                 <dd class="span10 answers">
                   <ul class="unstyled">
                     <% for answer in @handler.task_answers %>
@@ -79,14 +79,14 @@
                   </ul>
                 </dd>
               <% elsif @task.input_type=="text" %>
-                <dt class="span2 bolder"><%=t('games.answer')%></dt>
+                <dt class="span2 bolder"><%=t('play.answer')%></dt>
                 <dd class="span10 answers">
                   <%= text_field_tag "input" %>
                 </dd>
               <% end %>
             </dl>
             <% unless @task.input_type=="link" || @task.input_type=="none" %>
-              <div class="align-right"><button class="btn btn-success"><%=t('games.submit')%></button></div>
+              <div class="align-right"><button class="btn btn-success"><%=t('play.submit')%></button></div>
             <% end %>
           <% end %>
 
