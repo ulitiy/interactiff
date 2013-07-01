@@ -6,4 +6,9 @@ ru:
       game_passed: "Сценарий пройден!"
     alert:
       no_events: "Ответ неверен."
-    submit: "Ввод"
+    tasks_list: Список заданий
+    all: Все
+    current: Текущие
+    completed: Выполненные
+    answer: Ответ
+    submit: Ввод

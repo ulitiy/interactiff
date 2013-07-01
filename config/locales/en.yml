@@ -1,0 +1,31 @@
+en:
+  links:
+    show: "Show"
+    edit: "Edit"
+    destroy: "Delete"
+    back: "Back"
+    new: "Create"
+    sure: "Are you sure?"
+  views:
+    pagination:
+      previous: "← previous"
+      next: "next →"
+      truncate: '...'
+  cancan:
+    exceptions:
+      denied: "You are not allowed to access this page."
+  mongoid:
+    errors:
+      messages:
+        mixed_relations: "Referencing a(n) %{embedded} document from the %{root} document via a relational association is not allowed since the %{embedded} is embedded."
+  games:
+    joined: "You signed up for the quest!"
+    index: "My quests"
+    quests: Quests
+    create_quest: Create a quest
+    play: Play
+    edit: Edit
+    reset: Reset
+    delete: Delete
+    reset_confirm: Are you sure you want to reset the game?
+    delete_confirm: Are you sure?
