@@ -6,7 +6,7 @@ ru:
   header:
     about: О нас
     news: Новости
-    sign_in_or_out: Вход или регистрация
+    sign_in_or_up: Вход или регистрация
     sign_out: Выйти
   footer:
     feedback: Обратная связь
