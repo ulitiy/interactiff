@@ -3,3 +3,24 @@ en:
     language:
       name: "English"
       short_name: "En"
+  header:
+    about: About
+    news: News
+    sign_in_or_out: Sign In or Sign Out
+    sign_out: Sign Out
+  footer:
+    feedback: Feedback
+    create_own_quest: Create own quest!
+    question: Ask question
+    or: or
+    email_us: send email us
+    home: Home
+    about: About
+    news: News
+    testimonials: Testimonials
+    company_name: Interactiff LLC
+    recent_news: Recent news
+    all_news_html: "More &rsaquo;"
+    game_quests: Game quests
+    learning_quests: Learning quests
+    guru_site: Site guru
