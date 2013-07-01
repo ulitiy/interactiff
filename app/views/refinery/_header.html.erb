@@ -22,7 +22,7 @@
   <div class="span3">
     <%=
       if !current_user || current_user.is_a?(Guest)
-        link_to t('header.sign_in_or_out'), main_app.new_user_session_path, class: "btn pull-right"
+        link_to t('header.sign_in_or_up'), main_app.new_user_session_path, class: "btn pull-right"
       else
         link_to t('header.sign_out'), main_app.destroy_user_session_path, :method => :delete, class: "btn pull-right"
       end
