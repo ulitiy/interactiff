@@ -3,6 +3,24 @@ ru:
     language:
       name: "Русский"
       short_name: "Рус"
-  news:
-    recent_posts: "Новости"
-    all_html: "Далее &rsaquo;"
+  header:
+    about: О нас
+    news: Новости
+    sign_in_or_out: Вход или регистрация
+    sign_out: Выйти
+  footer:
+    feedback: Обратная связь
+    create_own_quest: Создай свой квест!
+    question: Задай вопрос
+    or: или
+    email_us: написать нам письмо
+    home: Главная
+    about: О нас
+    news: Новости
+    testimonials: Отзывы
+    company_name: ООО «Интерактифф»
+    recent_news: Новости
+    all_news_html: "Далее &rsaquo;"
+    game_quests: Игровые квесты
+    learning_quests: Обучающие квесты
+    guru_site: Гуру для сайта
