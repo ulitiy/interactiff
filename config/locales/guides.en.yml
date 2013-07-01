@@ -1,0 +1,101 @@
+ru:
+  admin:
+    guides:
+      buttons:
+        prev: "Back"
+        next: "Next"
+        close: "Close"
+        next_guide: "Next guide"
+        try: "Try"
+      overview:
+        welcome:
+          title: "Welcome!"
+          description: This is Interactiff construction tool. This quide is designed to teach you the basics of quests creating. Click “Next” to continue.'
+        header:
+          title: "Upper pannel"
+          description: "This panel lets you proceed to the quest management screen or to close current task to quit to the common view"
+        reload:
+          title: '“Refresh” button'
+          description: "Use this button to refresh your quest to the latest version."
+        toolbar:
+          title: "toolbar"
+          description: "Here is the toolbar. You can see construction blocks for creating your quest."
+        tool:
+          title: 'Create a block'
+          description: "Click any tool to create a block. Mouse over an instrument to display a tip."
+        field:
+          title: "Workspace"
+          description: "This is a workspace. It is a place for your blocks and connections, which will define your quest progress."
+        block:
+          title: "Block in the workspace"
+          description: "Left-click to select a block for editing."
+        properties:
+          title: "Properties"
+          description: "Here are the properties of the block you’ve selected. You can edit the title of a task, type your text, set your quest starting time and edit other properties."
+      basic:
+        welcome:
+          title: Creating a quest
+          description: Let’s try to create a simple linear quest with one task
+        create_task:
+          title: New task
+          description: Click the “New Task” button on the toolbar.
+        start_task:
+          title: First connection
+          description: Perfect! Let’s tie the “Started” with our new task. Just drag that black dot to the task block.
+        finish_task:
+          title: Finish
+          description: 'Now let’s tie our task with “Completed”. Yes, there is just one task. We are still learning!'
+        select_task:
+          title: Select a task
+          description: Great! Let’s select our task for editing. Just click it.
+        task_name:
+          title: Task title
+          description: 'We can see properties of the selected task. Let’s name it! Try "Mathematical problem" or anything you want. Your player will see it as a task title during playing the quest. Click "Save" button.'
+        enter_task:
+          title: Enter the task
+          description: Good. Now let’s enter the text. Just double-click the block.
+        toolbar:
+          title: Events
+          description: 'As you see, toolbar looks different inside the task. Every block here is an event which can occur during your quest.'
+        select_tg:
+          title: Select the “Given”
+          description: 'Set the text that will be displayed in the beginning - select "Given" block.'
+        tg_body:
+          title: Edit the text
+          description: 'Edit the text of our task(try, "What is 5+12?" or anything you want). Save changes to continue.'
+        select_field:
+          title: Select your task
+          description: 'Let’s make it with several choices. Click in the background to select the current task.'
+        set_choice:
+          title: Input type - Selection
+          description: 'Change "Input type" property to "Selection". Save your task.'
+        create_answers:
+          title: Creating answer options
+          description: You are doing great! Create 3 answers.
+        right_answer:
+          title: Right answer
+          description: 'Set the body of the answers, and tie the correct one with "Accomplished"'
+        get_back:
+          title: Proceed to the common view
+          description: Let’s quit the task and proceed to our quest’s common view.
+        delete_block:
+          title: Delete the block
+          description: "Oops, I’ve created the “AND” block… We don’t need it, let’s delete it. Mouse over the block and click at the x in the upper right corner."
+        delete_relation:
+          title: Delete the connection
+          description: 'Just click on the connection to delete it. Now click "Next"'
+        select_gs:
+          title: Launching the quest
+          description: Let’s launch our quest. Select the “Started” block.
+        launch_quest:
+          title: Launching the quest
+          description: Set yesterday as starting time and save the changes.
+        try_quest:
+          title: Let’s give it a try?
+          description: 'You’ve just created your first quest! Let’s play it!'
+
+      nl_quests:
+      variables:
+      requests:
+      hot_keys:
+
