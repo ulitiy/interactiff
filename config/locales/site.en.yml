@@ -6,7 +6,7 @@ en:
   header:
     about: About
     news: News
-    sign_in_or_out: Sign In or Sign Out
+    sign_in_or_up: Sign In or Sign Up
     sign_out: Sign Out
   footer:
     feedback: Feedback
