@@ -1,0 +1,14 @@
+en:
+  play:
+    notice:
+      task_passed: "Task completed! The following task:"
+      fired_events: "The answer is accepted."
+      game_passed: "Game passed!"
+    alert:
+      no_events: "The answer is wrong."
+    tasks_list: Tasks list
+    all: All
+    current: Current
+    completed: Finished
+    answer: Answer
+    submit: Submit

@@ -1,11 +1,11 @@
   <div class="container">
     <div class="std-wrap-2">
 
-    <h2>Квесты</h2>
+    <h2><%=t('games.quests')%></h2>
 
     </div>
     <div>
-      <input id="new-game" type="button" class="btn" style="margin-bottom: 20px" value="Создать квест"/>
+      <input id="new-game" type="button" class="btn" style="margin-bottom: 20px" value="<%=t('games.create_quest')%>"/>
     </div>
     <div class="row-fluid">
       <% for game in @games %>
@@ -15,14 +15,14 @@
             <h3><a href=""><%= game.name %></a></h3>
             <p class="category">beta testing</p>
             <div class="stars"></div>
-            <%= link_to "Играть", play_game_path(game_id: game.id), class: "btn", target: "_blank" %>
+            <%= link_to t('games.play'), play_game_path(game_id: game.id), class: "btn", target: "_blank" %>
             &nbsp;
-            <%= link_to "Изменить", main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
+            <%= link_to t('games.edit'), main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
             &nbsp;
-            <%= link_to "Сброс", main_app.reset_game_path(id: game.id), class: "btn", method: "post", confirm: 'Вы уверены, что хотите сбросить игру?' %>
+            <%= link_to t('games.reset'), main_app.reset_game_path(id: game.id), class: "btn", method: "post", confirm: t('games.reset_confirm') %>
             <br/>&nbsp;
             <div>
-              <%= link_to "Удалить", game_path(id: game.id), method: :delete, confirm: "Вы уверены?" %>
+              <%= link_to t('games.delete'), game_path(id: game.id), method: :delete, confirm: t('games.delete_confirm') %>
             </div>
           </div>
         </div>
