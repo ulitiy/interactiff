@@ -65,7 +65,7 @@
                 <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></dd>
               <% end %>
               <% if @task.passed %>
-                <p>Вы уже прошли это задание</p>
+                <p><%=t('play.already_passed_task')%></p>
               <% elsif @task.input_type=="link" %>
                 <dt class="span2 bolder"><%=t('play.answer')%></dt>
                 <dd class="span10 answers">
