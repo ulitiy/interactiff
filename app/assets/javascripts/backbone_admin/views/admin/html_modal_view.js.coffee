@@ -4,7 +4,7 @@ class Joygen.Views.Admin.HtmlModalView extends Backbone.View
 
   render: =>
       @el=$('<div class="html-modal"></div>').appendTo("body").html("<textarea id=\"editor\"></textarea>")
-      @el=@el.dialog
+      @dialog=@el.dialog
         modal: true,
         buttons:
           Ok: =>
@@ -19,11 +19,11 @@ class Joygen.Views.Admin.HtmlModalView extends Backbone.View
     forInput=$(event.currentTarget).data("for")
     @bindInput=$ "#properties ##{forInput}"
     @editor.html(@bindInput.val())
-    @$el.dialog "open"
+    @dialog.dialog "open"
     @shown=true
 
   hide: =>
-    @$el.dialog "close"
+    @dialog.dialog "close"
     @bindInput.val(@editor.html())
     @bindInput.trigger("change")
     @bindInput.focus()
