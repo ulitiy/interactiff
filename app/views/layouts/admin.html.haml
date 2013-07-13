@@ -2,8 +2,9 @@
 %html
   %head
     %title= "Конструктор Interactiff"
+    = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "admin"
     = javascript_include_tag "admin", "/wymeditor/jquery.wymeditor.min.js"
     = csrf_meta_tags unless response.cache_control[:public]
-  %body
+  %body.admin.designer
     =yield

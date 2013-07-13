@@ -4,15 +4,15 @@ class Joygen.Collections.BlocksCollection extends Backbone.Collection
   parse: (resp)->
     _(resp).map (attrs) ->
       new Joygen.Models[attrs.type](attrs)
-  path: (id)=>
-    b=@get(id)
-    return [] unless b?
+  # path: (id)=>
+  #   b=@get(id)
+  #   return [] unless b?
 
-    window.parentTask=b if b.get('type')=="Task"
-    window.parentGame=b if b.get('type')=="Game"
+  #   window.parentTask=b if b.get('type')=="Task"
+  #   window.parentGame=b if b.get('type')=="Game"
 
-    return [b] unless b.get("parent_id")?
-    @path(b.get("parent_id")).concat([b])
+  #   return [b] unless b.get("parent_id")?
+  #   @path(b.get("parent_id")).concat([b])
 
   parent: (model)=>
     @get(model.get("parent_id"))

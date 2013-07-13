@@ -4,12 +4,30 @@
       save: "Save"
       destroy: "Delete"
       sure: "Are you sure?"
+      reset: "Reset events before testing?"
     path:
       root: "My quests"
-      level_up: "&larr; Back"
+      level_up: "&larr;&nbsp;&nbsp;General view"
       reload: '<span class="carrow">&#8635</span> Refresh'
     help:
       link: "Help"
+      options:
+        overview: "Overview"
+        basic: "Basic usage"
+        nl_quests: "Nonlinear scenarios"
+        variables: "Variables"
+        hot_keys: "Hot keys"
+        documentation: "Documentation"
+        examples: "Examples"
+        examples_menu:
+          variables: "Variables"
+          nl_quests: "Nonlinear scenarios"
+          aeroflot: "Aeroflot"
+          rooms_arrows: "Rooms with arrows"
+          rooms_jumps: "Rooms with jumps"
+          rr_distributor: "Russian roulette with distributor"
+          rr_vars: "Russian roulette with jumps"
+          math_problem: "Math problem generator"
     block:
       id: "Number"
       title: "Comment"

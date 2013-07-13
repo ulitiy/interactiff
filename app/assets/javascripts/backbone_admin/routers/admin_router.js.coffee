@@ -9,22 +9,20 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
     window.relationsCollection=new Joygen.Collections.RelationsCollection()
     window.htmlModalView=new Joygen.Views.Admin.HtmlModalView()
     window.masterView=new Joygen.Views.Admin.MasterView
-    window.pathView=new Joygen.Views.Admin.PathView
-      el:$("#path")
     window.fieldView=new Joygen.Views.Admin.FieldView
       el:$("#field")
     window.toolbarView=new Joygen.Views.Admin.ToolbarView
       el:$("#toolbar")
     window.propertiesView=new Joygen.Views.Admin.PropertiesView
       el: $("#properties-container")
-    window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
-      el: $("#floating-toolbar")
-    window.levelUpView=new Joygen.Views.Admin.LevelUpView
-      el: $("#lvl-up")
+    # window.floatingToolbarView=new Joygen.Views.Admin.FloatingToolbarView
+    #   el: $("#floating-toolbar")
     window.reloadView=new Joygen.Views.Admin.ReloadView
       el: $("#reload")
+    window.testingView=new Joygen.Views.Admin.TestingView
+      el: $("#test-link")
     window.helpMenuView=new Joygen.Views.Admin.HelpMenuView
-      el: $("#helpMenu")
+      el: $("#help-menu")
     helpMenuView.render()
 
   index: (pid,eid) ->
@@ -33,7 +31,6 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
     window.parentId=pid
     masterView.loadProperties()
     if @oldId!=parentId
-      pathView.id=parentId
       fieldView.id=parentId
       if masterView.needLoad(parentId)
         masterView.loadCollection(parentId)

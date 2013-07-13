@@ -59,14 +59,14 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       pos=$(this).data "originalPosition"
       newtop=pos.top+dt
       newleft=pos.left+dl
-      if newtop>0
+      if newtop>5
         $(this).css top:newtop
       else
-        $(this).css top:0
-      if newleft>0
+        $(this).css top:5
+      if newleft>5
         $(this).css left:newleft
       else
-        $(this).css left:0
+        $(this).css left:5
     jsPlumb.repaint selected
 
   move: (l,t)=>
@@ -84,7 +84,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
   destroy: =>
     @model.destroy()
     @remove()
-    @rivestView.unbind()
+    @rivetsView.unbind()
     jsPlumb.removeAllEndpoints @el
 
 
@@ -207,5 +207,5 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @$el.draggable("option","delay",200)
       @$el.draggable("option","distance",gridStep)
       @$el.draggable("option","grid",[gridStep,gridStep])
-    @rivestView=rivets.bind @$el, {model: @model}
+    @rivetsView=rivets.bind @$el, {model: @model}
     this

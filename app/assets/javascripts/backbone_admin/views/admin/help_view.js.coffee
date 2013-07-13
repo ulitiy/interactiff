@@ -13,9 +13,9 @@ class Joygen.Views.Admin.HelpView extends Backbone.View
   showMenu: =>
     helpMenuView.show()
     o=@$el.offset()
-    $(helpMenuView.el).offset
+    helpMenuView.$el.offset
       left: o.left+@$el.width(),
-      top: o.top
+      top: o.top-helpMenuView.$el.height()
 
   render: =>
     @$el.html @template()

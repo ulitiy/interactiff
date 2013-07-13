@@ -21,7 +21,7 @@ en:
         greeting: Hello %{recipient}!
         instruction: ! 'Click the link below to unlock your account:'
         message: Your account has been locked due to an excessive amount of unsuccessful sign in attempts.
-        subject: Unlock Instructions
+        subject: Unlock instructions
     passwords:
       new:
         forgot_your_password: Forgot your password?
@@ -43,11 +43,11 @@ en:
         sign_up: Sign up
     sessions:
       new:
-        sign_in: Sign In
-        sign_up: Sign Up
-        sign_in_or_sign_up: Sign In or Sign Up
+        sign_in: Login
+        sign_up: Register
+        sign_in_or_sign_up: Login or register
         login: Login
-        forgot_password: Forgot Password?
+        forgot_password: Forgot password?
         email: Your email
         choose_email: Your email
         password: Your password
@@ -60,9 +60,9 @@ en:
         didn_t_receive_confirmation_instructions: Didn't receive confirmation instructions?
         didn_t_receive_unlock_instructions: Didn't receive unlock instructions?
         forgot_your_password: Forgot your password?
-        sign_in: Sign in
-        sign_in_with_provider: Sign in with %{provider}
-        sign_up: Sign up
+        sign_in: Login
+        sign_in_with_provider: Login with %{provider}
+        sign_up: Register
     unlocks:
       new:
         resend_unlock_instructions: Resend unlock instructions

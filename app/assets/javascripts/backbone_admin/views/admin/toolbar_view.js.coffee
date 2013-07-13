@@ -11,10 +11,15 @@ class Joygen.Views.Admin.ToolbarView extends Backbone.View
     @$el.append(view.render().el)
 
   addHelp: =>
-    view=new Joygen.Views.Admin.HelpView()
-    @$el.append(view.render().el)
+    window.helpView=new Joygen.Views.Admin.HelpView()
+    @$el.append(helpView.render().el)
+
+  addUp: =>
+    window.upView=new Joygen.Views.Admin.UpView()
+    @$el.append(upView.render().el)
 
   render: =>
     @$el.html('')
+    @addUp() if parentTask?
     @addAll()
     @addHelp()

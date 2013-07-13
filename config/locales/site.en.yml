@@ -6,8 +6,8 @@ en:
   header:
     about: About us
     news: News
-    sign_in_or_up: Sign In or Sign Up
-    sign_out: Sign Out
+    sign_in_or_up: Login or register
+    sign_out: Sign out
   footer:
     feedback: Feedback
     create_own_quest: Create your quest!

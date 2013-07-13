@@ -1,0 +1,8 @@
+=render 'admin/header'
+#content
+  #field-container.ui-layout-center
+    #field
+  #properties-container.ui-layout-east.panel
+  #toolbar.ui-layout-west.panel
+%ul#help-menu
+%script(type="text/javascript")="locale='#{::I18n.locale}'; manage=#{can? :manage, @parent};"

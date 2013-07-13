@@ -1,9 +1,10 @@
 # Admin constructor no-responsibility controller
-class Admin::BlocksController < ApplicationController
+class AdminController < ApplicationController
   layout "admin"
 
   def index
     @parent=Block.find params[:parent_id]
-    authorize! :show, @parent.parent_game
+    @game=@parent.parent_game
+    authorize! :show, @game
   end
 end

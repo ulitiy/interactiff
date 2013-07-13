@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-// require jquery.ui.all
+//= require twitter/bootstrap
 //= require admin/jquery.ui
 //= require jquery.ui.touch-punch
 //= require jquery.mobile-events

@@ -5,21 +5,39 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
     masterCollection.on 'reset', @reset
     htmlModalView.render()
 
-  reset: =>
+  reload: ->
+    @loadCollection(parentBlock.id)
+    @setLoadOverlay()
+
+
+  reset: => #двойная стрелочка во вьюхах нужна если стоит хук на модель/коллекцию
     @renderViews()
     @unsetLoadOverlay()
 
   renderViews: ->
-    window.parentBlock=masterCollection.get(parentId) || rootBlock
-    window.editBlock=masterCollection.get(editId)
+    @setParentModels()
+    #исправляет косяк с полями внутри таска
+    adminLayout.resizeAll()
     fieldView.render()
     propertiesView.render()
-    pathView.render()
     toolbarView.render()
-    floatingToolbarView.render()
+    # floatingToolbarView.render()
     fieldView.selectablestop()
-    levelUpView.setModel()
 
+  setParentModels: ->
+    window.parentBlock=masterCollection.get(parentId) || rootBlock
+    window.editBlock=masterCollection.get(editId)
+    if parentBlock.get("type")=="Task"
+      $("body").addClass("in-task")
+      window.parentTask=parentBlock
+      window.parentGame=parentTask.parent()
+    else
+      if parentBlock.get("type")=="Game"
+        $("body").removeClass("in-task")
+        window.parentGame=parentBlock
+        window.parentTask=null
+    @gameNameRivetsView.unbind() if @gameNameRivetsView? #ПЕРЕНЕСТИ В ОТДЕЛЬНУЮ ВЬЮХУ
+    @gameNameRivetsView=rivets.bind $("#game-name"), { model: parentGame }
 
   loadProperties: ->
     propertiesView.render() if masterCollection.length || parentId? && editId==parentId
@@ -38,13 +56,12 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
         relationsCollection.reset data.relations
         masterCollection.reset masterCollection.parse(data.blocks)
 
-  load_timeout: 300
-
   setLoadOverlay: ->
     setTimeout ->
-        loadingOverlay.show() if loading
-      ,@load_timeout
+        loadingOverlay.show()
+        reloadView.$el.addClass("thinking")
+      , 0
 
   unsetLoadOverlay: ->
-    window.loading=false
     loadingOverlay.hide()
+    reloadView.$el.removeClass("thinking")

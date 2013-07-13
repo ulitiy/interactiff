@@ -1,0 +1,32 @@
+<!-- NAVIGATION-BAR -->
+<div class="navigation-bar">
+  <ul class="navigation-list">
+    <li><%= link_to "Главная", refinery.root_path %></li>
+    <li><%= link_to t("games.index"), games_path %></li>
+  </ul>
+
+  <ul class="navigation-list nl-right">
+    <li class="premium-btn"><%= link_to refinery.marketable_page_path(path: "premium") do image_tag "btn_premium.png" end %></li>
+    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags  <%= ::I18n.locale %>"></i></a>
+      <ul class="dropdown-menu t2dd">
+        <li><%= link_to url_for locale: :ru do %><i class="flags ru"></i><%= t("i18n.language.name", locale: :ru) %><% end %></li>
+        <li><%= link_to url_for locale: :en do %><i class="flags en"></i><%= t("i18n.language.name", locale: :en) %><% end %></li>
+      </ul>
+    </li>
+    <li><%= link_to t('header.sign_out'), destroy_user_session_path, :method => :delete %></li>
+  </ul>
+</div>
+
+<!-- HEADER2 -->
+<div class="header2" id="header" >
+  <div class="row-fluid">
+    <div class="span4"><a href=""><img class="hlogo" src="/assets/logo_sign.png" alt=""></a><h1 class="elipsis"><a id="game-name" data-text="model.name" data-title="model.name" href="" title=""></a></h1></div>
+    <div class="span8 nest">
+      <ul class="header-navigation">
+        <li class="active"><%= link_to "Конструктор", admin_path(parent_id: @game.id, select_id: 0), id: "designer-link" %><div class="palka"></div></li>
+        <li><%= link_to "Тестирование", play_game_path(game_id: @game.id), target: "_blank", id: "test-link" %><div class="palka"></div></li>
+      </ul>
+      <a id="reload" href="" class="refresh pull-right pull-lower10"></a>
+    </div>
+  </div>
+</div>

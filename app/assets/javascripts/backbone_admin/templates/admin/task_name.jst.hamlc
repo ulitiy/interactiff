@@ -1,0 +1,3 @@
+.icon
+  %img(src="/assets/task-icon-blue.png")
+.name(data-text="model.name")

@@ -6,5 +6,5 @@ class Joygen.Views.Admin.ReloadView extends Backbone.View
     "click" : "click"
 
   click: ->
-    masterView.loadCollection(parentBlock.id)
+    masterView.reload()
     false

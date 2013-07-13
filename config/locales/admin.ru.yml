@@ -4,9 +4,10 @@ ru:
       save: "Сохранить"
       destroy: "Удалить"
       sure: "Вы уверены?"
+      reset: "Сбросить события перед тестированием?"
     path:
       root: "Мои квесты"
-      level_up: "&larr; Назад"
+      level_up: "&larr;&nbsp;&nbsp;Общий вид"
       reload: '<span class="carrow">&#8635</span> Обновить'
     help:
       link: "Помощь"

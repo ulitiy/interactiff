@@ -13,6 +13,10 @@ html, body
   font-family: 'Open Sans','Trebuchet MS',sans-serif
   font-size: 12px
 
+body.designer
+  line-height: 22px
+  color: black
+
 .btn
   display: inline-block
   font-size: 12px
@@ -99,7 +103,7 @@ html, body
 
 #content
   position: absolute
-  top: 57px
+  top: 100px
   left: 0
   bottom: 0
   right: 0
@@ -107,10 +111,6 @@ html, body
   border: 1px dotted black
   // position: absolute
   // z-index: 100
-#loading-overlay.overlay
-  z-index: 1001
-  background: #FFF
-  opacity: 0.6
 .overlay
   background: transparent
   position: absolute
@@ -133,6 +133,8 @@ html, body
   vertical-align: middle
   display: inline
   padding: 3px
+  img
+    margin-top: -5px
 input:not([type="button"])
   user-select: normal
   -webkit-user-select: normal

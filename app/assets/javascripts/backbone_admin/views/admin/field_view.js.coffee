@@ -107,9 +107,16 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
           targetEndpoint:tep
         relView.render()
 
-  addElements: =>
+  addElements: ->
     @$el.append('<div id="stretcher"></div>')
     @$el.append('<div id="floating-toolbar"></div>')
+
+  addTaskName: ->
+    @taskNameView=new Joygen.Views.Admin.TaskNameView()
+    @$el.parent().append @taskNameView.render().el
+
+  removeTaskName: ->
+    @taskNameView.remove() if @taskNameView?
 
   render: =>
     @options.blocks=masterCollection.children(@id)
@@ -117,6 +124,8 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     #window.blockViews=[]
     window.targetEndpoints=[]
     window.sourceEndpoints=[]
+    @removeTaskName()
+    @addTaskName() if parentTask?
     @addBlocks()
     @addRelations()
     @addElements()

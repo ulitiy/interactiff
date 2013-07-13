@@ -1,1 +1,0 @@
-%a{href: if this.id==0 then "/#{locale}/quests" else "/#{locale}/admin/#{@adminPath()}", data-text: "model:caption < .name"}
