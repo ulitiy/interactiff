@@ -1,0 +1,18 @@
+<!-- NAVIGATION-BAR -->
+<div class="navigation-bar">
+  <ul class="navigation-list">
+    <li><%= link_to "Главная", refinery.root_path %></li>
+    <li><%= link_to t("games.index"), games_path %></li>
+  </ul>
+
+  <ul class="navigation-list nl-right">
+    <li class="premium-btn"><%= link_to refinery.marketable_page_path(path: "premium") do image_tag "btn_premium.png" end %></li>
+    <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags  <%= ::I18n.locale %>"></i></a>
+      <ul class="dropdown-menu t2dd">
+        <li><%= link_to url_for locale: :ru do %><i class="flags ru"></i><%= t("i18n.language.name", locale: :ru) %><% end %></li>
+        <li><%= link_to url_for locale: :en do %><i class="flags en"></i><%= t("i18n.language.name", locale: :en) %><% end %></li>
+      </ul>
+    </li>
+    <li><%= link_to t('header.sign_out'), destroy_user_session_path, :method => :delete %></li>
+  </ul>
+</div>
