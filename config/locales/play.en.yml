@@ -9,7 +9,7 @@ en:
     tasks_list: Tasks list
     all: All
     current: Current
-    completed: Finished
+    completed: Completed
     answer: Answer
     submit: Submit
     already_passed_task: You have already passed this task

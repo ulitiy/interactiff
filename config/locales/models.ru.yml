@@ -19,6 +19,7 @@ ru:
       game:
         name: 'Название'
         description: 'Описание'
+        category: 'Категория'
       hint:
         body: 'Текст'
       sector:

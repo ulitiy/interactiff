@@ -1,10 +1,12 @@
 # encoding: UTF-8
 class Game < Block
+  extend Enumerize
   field :name, type: String, default: ""
   field :description, type: String, default: ""
+  field :category, type: String, default: "widgets"
   field :guest_access, type: Boolean, default: true
   field :example, type: Boolean, default: false
-
+  enumerize :category, in: ["widgets", "education", "games", "other", ], default: "widgets"
   has_many :descendants, class_name: 'Block', inverse_of: :game
   has_many :game_relations, class_name: 'Relation', inverse_of: :game
   has_many :descendant_events, class_name: 'Event', inverse_of: :game

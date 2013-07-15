@@ -9,7 +9,7 @@ Interactiff::Application.routes.draw do
   end
   resources :relations
   match "/admin/:parent_id/:select_id" => "admin#index", as: :admin, :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get
-  #здесь разные форматы format: :json
+  # здесь разные форматы format: :json
   get "/play/:game_id/:task_id" => "play#show", as: :play_show, :constraints => { game_id: /[0-9a-f]{24}/,task_id: /[0-9a-f]{24}/ }
   get "/play/:game_id" => "play#game", as: :play_game, :constraints => { game_id: /[0-9a-f]{24}/ }
   match "/play/submit" => "play#submit", as: :play_submit, via: [:get, :post]
@@ -25,5 +25,4 @@ Interactiff::Application.routes.draw do
 
   match "/aeroflot" => redirect("/ru/play/512cbdf17423384b06000019")
   mount Refinery::Core::Engine, :at => '/'
-
 end

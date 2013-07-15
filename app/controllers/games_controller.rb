@@ -3,6 +3,7 @@ class GamesController < InheritedResources::Base
   actions :index, :show, :create, :destroy
   load_resource except: :index
   authorize_resource
+  layout "admin", :only => [ :index ]
 
   # makes the user member of the game
   def join
