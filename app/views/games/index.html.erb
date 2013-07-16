@@ -1,58 +1,64 @@
+<%- title t('games.index') %>
 <div class="allwrap">
-  <%=render 'admin/header'%>
+  <!-- NAVIGATION-BAR -->
+  <div class="navigation-bar">
+    <ul class="navigation-list">
+      <li><%= link_to t('header.home'), refinery.root_path %></li>
+      <li><%= link_to t("games.index"), games_path %></li>
+    </ul>
+
+    <ul class="navigation-list nl-right">
+      <li class="premium-btn"><%= link_to refinery.marketable_page_path(path: "premium") do image_tag "btn_premium.png" end %></li>
+      <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="flags  <%= ::I18n.locale %>"></i></a>
+        <ul class="dropdown-menu t2dd">
+          <li><%= link_to url_for locale: :ru do %><i class="flags ru"></i><%= t("i18n.language.name", locale: :ru) %><% end %></li>
+          <li><%= link_to url_for locale: :en do %><i class="flags en"></i><%= t("i18n.language.name", locale: :en) %><% end %></li>
+        </ul>
+      </li>
+      <li><%= link_to t('header.sign_out'), destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </div>
+  <!-- HEADER2 -->
+  <div class="header2" id="header" >
+    <div class="row-fluid">
+      <div class="span4">
+        <a href=""><img class="hlogo" src="/assets/logo_sign.png" alt=""></a>
+        <h1 class="elipsis">
+          <a id="game-name" data-text="model.name" data-title="model.name" href="" title=""><%=t('games.index')%></a>
+        </h1>
+      </div>
+    </div>
+  </div>
   <div class="editor-content editor">
     <div class="editor">
-      <input type="checkbox" id="toggle-new-quest-panel" class="hidden-cb">
-      <label for="toggle-new-quest-panel" class="btn-toggle movetoheader">
-        <span class="i">+</span> Создать квест
-      </label>
-
-      <div id="nq" class="white-panel">
-        <form action="" class="new-quest">
-          <label for="ph"></label>
-          <input type="file" id="ph" placeholder="Введите название">
-          <input type="text" placeholder="Введите название">
-          <select placeholder="Выберите категорию" class="m240">
-            <option>Название категории</option>
-            <option>Категория 2</option>
-            <option>Категория 3</option>
-          </select>
-          <button class="btn btn-green">Создать</button>
-        </form>
-      </div>
-
+      <% active = @games.blank? ? 'active' : '' %>
+      <%=link_to new_game_path, remote: true, class: "btn-toggle movetoheader #{active}" do%>
+        <i class="icon-plus"></i> <%=t('games.create_quest')%>
+      <%end%>
+      <% if @games.blank? %>
+        <div id="add-quest-form">
+          <% @game = Game.new %>
+          <%= render 'form' %>
+        </div>
+      <% else %>
+        <div id="add-quest-form" class="hide">
+        </div>
+      <% end %>
       <ul class="quest-list">
         <% for game in @games %>
-<!--           <div class="span4 game-card">
-            <img class="game-pic" width="100" height="100" src="/assets/logo-snake.png">
-            <div class="game-data">
-              <h3><a href=""><%= game.name %></a></h3>
-              <p class="category">beta testing</p>
-              <div class="stars"></div>
-              <%= link_to t('games.play'), play_game_path(game_id: game.id), class: "btn", target: "_blank" %>
-              &nbsp;
-              <%= link_to t('games.edit'), main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
-              &nbsp;
-              <%= link_to t('games.reset'), main_app.reset_game_path(id: game.id), class: "btn", method: "post", confirm: t('games.reset_confirm') %>
-              <br/>&nbsp;
-              <div>
-                <%= link_to t('games.delete'), game_path(id: game.id), method: :delete, confirm: t('games.delete_confirm') %>
-              </div>
-            </div>
-          </div> -->
           <li>
-            <div class="pic" style=""></div>
+            <div class="pic" style="">
+              <%=image_tag game.cover_url(:thumb)%>
+            </div>
             <div class="desc">
-              <h3><a href=""><%= game.name %></a></h3>
-              <p class="category"><%= game.category %></p>
+              <h3><%=link_to game.name, main_app.admin_path(parent_id: game.id, select_id: 0)%></h3>
+              <p class="category"><%=t("enumerize.game.category.#{game.category}")%></p>
               <div class="stars r4-5"></div>
-              <p class="last-edit">Последнее редактирование: <%= game.updated_at.strftime("%d.%m.%Y") %></p>
+              <p class="last-edit"><%=t('games.last_update')%> <%= game.updated_at.strftime("%d.%m.%Y") %></p>
             </div>
             <div class="button-panel">
-              <!--<a href="" class="btn">Мониторинг</a>
-              <a href="" class="btn">Статистика</a>-->
-              <%= link_to "Конструктор", main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
-              <%= link_to "Тестирование", play_game_path(game_id: game.id), class: "btn"%>
+              <%= link_to t('games.builder'), main_app.admin_path(parent_id: game.id, select_id: 0), class: "btn" %>
+              <%= link_to t('games.testing'), play_game_path(game_id: game.id), class: "btn"%>
               <%= link_to t('games.delete'), game_path(id: game.id), method: :delete, confirm: t('games.delete_confirm'), class: 'btn-super-flat' %>
             </div>
           </li>
@@ -62,15 +68,6 @@
   </div>
   <div class="push"></div>
 </div>
-
-<div class="footer2">
-  <ul>
-    <li><a href="">Главная</a></li>
-    <li><a href="">Магазин</a></li>
-    <li><a href="">Мои квесты</a></li>
-    <li><a href="">Документация</a></li>
-    <li><a href="">Новости</a></li>
-  </ul>
-</div>
+<%=render 'admin/footer'%>
 </body>
 </html>

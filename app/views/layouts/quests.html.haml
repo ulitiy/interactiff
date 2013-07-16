@@ -1,10 +1,10 @@
 !!! 5
 %html
   %head
-    %title=browser_title(yield(:head_title))
+    %title= browser_title(yield(:head_title))
     = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "admin"
-    = javascript_include_tag "admin", "/wymeditor/jquery.wymeditor.min.js"
+    = javascript_include_tag "application", "/wymeditor/jquery.wymeditor.min.js"
     = csrf_meta_tags unless response.cache_control[:public]
     %script
       locale = "#{params[:locale]}";

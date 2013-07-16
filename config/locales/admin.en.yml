@@ -1,5 +1,6 @@
 ﻿en:
   admin:
+    title: Builder
     links:
       save: "Save"
       destroy: "Delete"

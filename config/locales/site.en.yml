@@ -8,6 +8,7 @@ en:
     news: News
     sign_in_or_up: Login or register
     sign_out: Sign out
+    home: Home
   footer:
     feedback: Feedback
     create_own_quest: Create your quest!

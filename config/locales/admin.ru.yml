@@ -1,5 +1,6 @@
 ru:
   admin:
+    title: Конструктор
     links:
       save: "Сохранить"
       destroy: "Удалить"

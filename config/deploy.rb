@@ -11,6 +11,7 @@ set :scm, "git"
 set :branch, "master"
 set :use_sudo, false
 set :deploy_via, :remote_cache #уменьшает количество телодвижений на сервере при деплое
+set :shared_children, shared_children + %w{public/uploads}
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH",
   'LANG' => 'ru_RU.UTF-8'

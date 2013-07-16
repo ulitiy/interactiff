@@ -1,12 +1,15 @@
 # encoding: UTF-8
 class Game < Block
   extend Enumerize
+  field :cover, type: String, default: ""
   field :name, type: String, default: ""
   field :description, type: String, default: ""
-  field :category, type: String, default: "widgets"
+  field :category, type: String, default: "other"
   field :guest_access, type: Boolean, default: true
   field :example, type: Boolean, default: false
-  enumerize :category, in: ["widgets", "education", "games", "other", ], default: "widgets"
+  enumerize :category, in: ["widgets", "education", "games", "other" ], default: "other"
+  mount_uploader :cover, QuestCoverUploader
+
   has_many :descendants, class_name: 'Block', inverse_of: :game
   has_many :game_relations, class_name: 'Relation', inverse_of: :game
   has_many :descendant_events, class_name: 'Event', inverse_of: :game
@@ -14,7 +17,7 @@ class Game < Block
 
   has_and_belongs_to_many :members, class_name: "User", inverse_of: "member_of_games", index: true
 
-  attr_accessible :name, :description, :guest_access, :example
+  attr_accessible :name, :description, :guest_access, :example, :category, :cover
 
   alias domain parent
 

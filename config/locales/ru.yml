@@ -28,9 +28,18 @@ ru:
     index: "Мои квесты"
     quests: Квесты
     create_quest: Создать квест
-    play: Играть
-    edit: Изменить
-    reset: Сброс
+    last_update: "Последнее обновление:"
+    testing: Тестирование
+    builder: Конструктор
     delete: Удалить
     reset_confirm: "Вы уверены, что хотите сбросить игру?"
     delete_confirm: Вы уверены?
+    name_placeholder: Введите название
+    submit: Создать
+  enumerize:
+    game:
+      category:
+        widgets: Виджеты
+        education: Образование
+        games: Игры
+        other: Другое

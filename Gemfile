@@ -38,6 +38,9 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem 'simple_form'
+gem "rmagick"
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'refinerycms-dashboard', '~> 2.0.0'
 gem 'refinerycms-images', '~> 2.0.0'

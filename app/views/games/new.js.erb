@@ -1,0 +1,6 @@
+$('.btn-toggle').toggleClass('active');
+if ($('#add-quest-form').is(':hidden')) {
+  $('#add-quest-form').html('<%=j render('form')%>').slideDown();
+} else {
+  $('#add-quest-form').html('').hide();
+}
