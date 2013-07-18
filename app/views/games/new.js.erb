@@ -1,6 +1,8 @@
 $('.btn-toggle').toggleClass('active');
-if ($('#add-quest-form').is(':hidden')) {
-  $('#add-quest-form').html('<%=j render('form')%>').slideDown();
+if ($('#nq').hasClass('active')) {
+  $('#nq').removeClass('active');
+  $('#nq').html('');
 } else {
-  $('#add-quest-form').html('').hide();
+  $('#nq').addClass('active');
+  $('#nq').html('<%=j render('form')%>');
 }

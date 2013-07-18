@@ -18,10 +18,6 @@ class BlocksController < InheritedResources::Base
   def create
     not_found unless params[:block][:type].in? Block.descendants.map &:to_s
     @block=params[:block][:type].constantize.new params[:block]
-    if @block.is_a? Game
-      @block.parent=current_domain
-      current_user.engine_roles.create! access: :manage_roles, block: @block
-    end
     authorize!(:create,@block)
     @block.save!
     respond_with(@block)

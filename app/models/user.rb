@@ -55,7 +55,7 @@ class User
 
   # @return [Array] games, where the user is an author
   def games
-    engine_roles.map { |role| role.block if role.block.is_a?(Game) && role.access.in?([:manage,:manage_roles]) }.compact
+    engine_roles.map { |role| role.block if role.block.is_a?(Game) && role.access.in?([:manage,:manage_roles]) }.compact.sort_by { |a| a.updated_at }.reverse!
   end
 
   # refinery

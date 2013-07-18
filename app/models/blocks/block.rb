@@ -30,6 +30,7 @@ class Block
 
   before_create :set_ids
   after_initialize :set_ids
+  after_update :update_game
 
   index created_at: 1
 
@@ -46,6 +47,12 @@ class Block
 
   def self.descendant_types
     [self.to_s]+self.descendants.map(&:to_s)
+  end
+
+  def update_game
+    if self.game_id
+      self.game.touch
+    end
   end
 
 end

@@ -1,4 +1,4 @@
-# CRUD gmain_app.admin_path(parent_id: game.id, select_id: 0)ame controller for an author interface
+# CRUD game controller for an author interface
 class GamesController < InheritedResources::Base
   actions :index, :show, :create, :destroy
   load_resource except: :index
@@ -16,7 +16,7 @@ class GamesController < InheritedResources::Base
 
   # IR collection definition for actions
   def collection
-    @games||=can?(:manage, Domain.first) && params[:all] ? Game.all : current_user.games
+    @games||=can?(:manage, Domain.first) && params[:all] ? Game.desc(:updated_at) : current_user.games
   end
 
   def reset
