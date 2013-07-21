@@ -1,20 +1,21 @@
 <% content_for :body_content_title, @item.title %>
 <% content_for :body_content_left do %>
-  <article class="news_item">
-    <p>
-      <small><%= t('.published') %> <%= l(@item.publish_date, :format => :long) %></small>
-    </p>
-    <% if @item.source.present? %>
-      <p>
-        <small><%= t('.source') %> <%= @item.source %></small>
-      </p>
-    <% end %>
-    <%= @item.body.html_safe %>
-    <p>
-      <%= link_to t('.back_to_index'), refinery.news_items_path %>
-    </p>
-  </article>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12 news-details">
+          <a href="">&larr; Игры</a>
+          <p class="date"><%= l(@item.publish_date, :format => :long) %></p>
+          <h1>Заголовок новости</h1>
+          <p class="link"><%= @item.source %></p>
+          <div class="content">
+            <%= @item.body.html_safe %>
+          </div>
+
+          <h3>Комментарии</h3>
+          <!-- Тут вконтактовские комментарии -->
+      </div>
+    </div>
+  </div>
 <% end %>
-<% content_for :body_content_right, render(:partial => 'recent_posts') %>
 
 <%= render :partial => "/refinery/content_page" %>
