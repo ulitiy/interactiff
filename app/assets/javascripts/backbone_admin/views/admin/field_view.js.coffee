@@ -5,14 +5,15 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   initialize: ->
     masterCollection.on 'add', @collectionAdd
     return unless manage
-    @$el.mousedown (event) ->
-        t = event.target
-        if (event.pageX > t.clientWidth + t.offsetLeft || event.pageY > t.clientHeight + $("#content").offset().top)
-            event.stopImmediatePropagation()
-            return false
+    @$el.mousedown (event) -> #для того чтобы скроллбары работали
+      $t = $(event.target)
+      if (event.pageX > $t.width() + $t.offset().left || event.pageY > $t.height() + $t.offset().top)
+          event.stopImmediatePropagation()
+          return false
     @$el.selectable
       filter:'.block'
       cancel:'svg'
+      # appendTo: '#field' #http://bugs.jqueryui.com/ticket/4377
       # distance: 1
 
   selectableEnable: ->

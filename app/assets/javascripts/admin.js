@@ -1,4 +1,4 @@
-//= require jquery
+//= require jquery-2.0.3
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require admin/jquery.ui
