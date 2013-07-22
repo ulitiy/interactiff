@@ -2,5 +2,5 @@
   <%=f.input :cover %>
   <%=f.input :name, label: false, placeholder: t('games.name_placeholder'), input_html: {autofocus: true} %>
   <%=f.input :category, label:false, required: true %>
-  <%=f.button :submit, t('games.submit'), class: "btn-green" %>
+  <button class="btn btn-green"><%=t('games.submit')%></button>
 <%end%>

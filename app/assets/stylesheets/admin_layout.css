@@ -1117,6 +1117,9 @@ margin-right:16px;
  .new-quest select{
   height:33px;
   margin-right: 20px;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
  }
 
  .new-quest input[type="file"] {
@@ -1156,11 +1159,13 @@ margin-right:16px;
   opacity:1;
   max-height:100px;
   padding-top:10px;
-  padding-bottom:10px;
+  /*padding-bottom:10px;*/
   margin-bottom:10px;
   z-index: 999;
  }
-
+#nq .btn-green {
+  padding:3px 30px;
+}
  .hidden-cb {
   display: none;
  }
