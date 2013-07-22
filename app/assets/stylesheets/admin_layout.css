@@ -1198,6 +1198,7 @@ margin-right:16px;
     background: -ms-linear-gradient(top, #13abec 0%,#0092d0 100%); /* IE10+ */
     background: linear-gradient(to bottom, #13abec 0%,#0092d0 100%); /* W3C */
     cursor: pointer;
+    border:0;
   }
   .btn-toggle:hover {
     color:#fff;

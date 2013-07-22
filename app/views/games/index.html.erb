@@ -32,14 +32,12 @@
   <div class="editor-content editor">
     <div class="editor">
       <% active = @games.blank? ? 'active' : '' %>
-      <%=link_to new_game_path, remote: true, class: "btn-toggle movetoheader #{active}" do%>
+      <button class="btn-toggle movetoheader <%=active%>" data-toggle="new-quest">
         <i class="icon-plus"></i> <%=t('games.create_quest')%>
-      <%end%>
+      </button>
       <div id="nq" class="white-panel <%=active%>">
-        <% if @games.blank? %>
-          <% @game = Game.new %>
-          <%= render 'form' %>
-        <% end %>
+        <% @game = Game.new %>
+        <%= render 'form' %>
       </div>
       <ul class="quest-list">
         <% for game in @games %>

@@ -21,3 +21,6 @@ $ ->
     , "json"
   $('#game_cover').live 'change', ->
     load_preview this
+  $('[data-toggle="new-quest"]').live 'click', ->
+    $(this).toggleClass 'active'
+    $('#nq').toggleClass 'active'
