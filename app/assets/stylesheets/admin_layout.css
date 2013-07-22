@@ -1137,20 +1137,29 @@ margin-right:16px;
  }
 
 #nq {
+  opacity:0;
   -webkit-transition: all .2s ease-out;
   -moz-transition: all .2s ease-out;
   -ms-transition: all .2s ease-out;
   -o-transition: all .2s ease-out;
   transition: all .2s ease-out;
+  max-height: 0;
+  padding-top:0;
+  padding-bottom:0;
+  margin-bottom:0;
   position: relative;
+  z-index: -999;
   overflow: hidden;
-  opacity: 1;
-  max-height: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  z-index: 999;
 }
+
+#nq.active {
+  opacity:1;
+  max-height:100px;
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-bottom:10px;
+  z-index: 999;
+ }
 
  .hidden-cb {
   display: none;
