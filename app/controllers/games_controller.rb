@@ -23,6 +23,7 @@ class GamesController < InheritedResources::Base
     @game.reset
     redirect_to games_url
   end
+
   def create
     @game = Game.new
     @game.name = params[:game][:name]
