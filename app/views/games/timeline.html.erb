@@ -1,0 +1,44 @@
+<% content_for :js do javascript_include_tag "application", "timeline" end %>
+<%- title t('games.timeline') %>
+<div class="allwrap">
+<%= render "admin/navigation_bar" %>
+<%= render "admin/header" %>
+<div class="editor-content viewport-parent">
+  <div class="editor">
+    <div class="viewport">
+      <div class="timeline">
+        <% if (Time.now-@last_time)*@scale<400 %>
+          <i class="tick now" style="left:<%= (Time.now-@first_time)*@scale+15 %>px;"><small>Сейчас</small></i>
+        <% end %>
+        <% (@timeline_width/@tick_px).floor.times do |i| %>
+          <i class="tick" style="left:<%= i*@tick_px+15 %>px"><small><%= l @first_time+i*@tick, format: (@tick<60 ? :ms : :hm) %></small></i>
+        <% end %>
+      </div>
+      <div class="timeline-bar" style="width:<%= @timeline_width+150 %>px;"></div>
+      <div class="zakrivashka"></div>
+      <ul class="teamnames">
+        <% for obj in @timeline %>
+          <li><%= obj[:user].email %></li>
+        <% end %>
+      </ul>
+      <!-- одинаковые задания - одинаковый цвет. Проще через код, чем через стили -->
+      <% first=" first" %>
+      <% for obj in @timeline %>
+        <ul class="line<%= first %>" style="width:<%= @timeline_width+15 %>px;">
+          <% for event in obj[:events] %>
+            <li style="left: <%= (event.time-@first_time)*@scale+15 %>px;"><div class="name elipsis"><%= event.task.name %></div><small><%= l event.time, format: :hms %></small></li>
+          <% end %>
+        </ul>
+        <% first=nil %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!--
+   <div class="slider-wrap">
+    <div class="slider"></div>
+  </div>
+ -->
+<div class="push"></div>
+</div>
+<%=render 'admin/footer'%>

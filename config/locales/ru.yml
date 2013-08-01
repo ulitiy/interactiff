@@ -4,6 +4,8 @@ ru:
       short: "%d.%m.%Y %H:%M"
       dmy: "%d.%m.%Y"
       hms: "%H:%M:%S"
+      ms: "%M:%S"
+      hm: "%H:%M"
   links:
     show: "Показать"
     edit: "Изменить"
@@ -25,12 +27,13 @@ ru:
         mixed_relations: "Referencing a(n) %{embedded} document from the %{root} document via a relational association is not allowed since the %{embedded} is embedded."
   games:
     joined: "Вы зарегистрировались в квесте!"
-    index: "Мои квесты"
+    index: "Мои сценарии"
     quests: Квесты
-    create_quest: Создать квест
+    create_quest: Создать сценарий
     last_update: "Последнее обновление:"
     testing: Тестирование
     builder: Конструктор
+    timeline: Timeline
     delete: Удалить
     reset_confirm: "Вы уверены, что хотите сбросить игру?"
     delete_confirm: Вы уверены?

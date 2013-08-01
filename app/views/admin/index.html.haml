@@ -1,6 +1,8 @@
+-content_for :body_class do "admin designer background" end
 -title t('admin.title')
 =render 'admin/navigation_bar'
 =render 'admin/header'
+=content_for :js do javascript_include_tag "admin", "/wymeditor/jquery.wymeditor.min.js" end
 #content
   #field-container.ui-layout-center
     #field

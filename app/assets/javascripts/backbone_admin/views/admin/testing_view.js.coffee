@@ -9,7 +9,7 @@ class Joygen.Views.Admin.TestingView extends Backbone.View
     if confirm(I18n.t("admin.links.reset"))
       $.ajax
         type: "POST"
-        url: "/quests/#{parentGame.id}/reset"
+        url: "/scripts/#{parentGame.id}/reset"
         async: false
         success: =>
           window.open(@$el.attr("href"), "_blank").focus()

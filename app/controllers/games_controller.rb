@@ -3,16 +3,16 @@ class GamesController < InheritedResources::Base
   actions :index, :show, :create, :destroy
   load_resource except: :index
   authorize_resource
-  layout "quests", only: [ :index ]
+  layout "admin", only: [ :index,:timeline ]
 
   # makes the user member of the game
-  def join
-    @game||=Game.find(params[:id])
-    authorize! :join, @game
-    current_user.member_of_games << @game
-    #flash[:notify]=t "game.joined"
-    redirect_to play_show_url(game_id: @game.id)
-  end
+  # def join
+  #   @game||=Game.find(params[:id])
+  #   authorize! :join, @game
+  #   current_user.member_of_games << @game
+  #   #flash[:notify]=t "game.joined"
+  #   redirect_to play_show_url(game_id: @game.id)
+  # end
 
   # IR collection definition for actions
   def collection
@@ -35,4 +35,16 @@ class GamesController < InheritedResources::Base
     @game.save!
     redirect_to main_app.admin_path(parent_id: @game.id, select_id: 0)
   end
+
+  def timeline
+    @scale=(params[:scale] || 0.05).to_f
+    @timeline = @game.timeline_sorted
+    @first_time = @game.timeline_events.last.time
+    @last_time = @game.timeline_events.first.time
+    @timeline_width = (@last_time-@first_time)*@scale+200 #1 час - 100 пикселей
+    @tick=[15,30,60,120,300,600,900,1800,3600,3600*2,3600*6,3600*12,3600*24,3600*24*2,3600*24*7].find { |i| i*@scale>=100 && i*@scale<=400 }
+    @tick_px=(@tick*@scale).round
+  end
+
+  #ПЕРЕНЕСТИ СЮДА ADMIN, сменить урл на builder, м.б. сделать дочерний id и т.п.?
 end

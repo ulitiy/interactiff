@@ -26,6 +26,7 @@ en:
     last_update: "Last update:"
     testing: Testing
     builder: Builder
+    timeline: Timeline
     delete: Delete
     reset_confirm: Are you sure you want to reset the game?
     delete_confirm: Are you sure?

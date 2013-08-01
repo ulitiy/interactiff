@@ -1,11 +1,11 @@
 Interactiff::Application.routes.draw do
   filter :refinery_like_locales
-  match "/delayed_job" => DelayedJobWeb, :anchor => false
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {registrations: "registrations", omniauth_callbacks: "omniauth_callbacks"}
 
-  resources :games, path: "/quests" do
+  resources :games, path: "/scripts" do
     post "reset", on: :member
+    get "timeline", on: :member
   end
   resources :relations
   match "/admin/:parent_id/:select_id" => "admin#index", as: :admin, :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get
@@ -24,5 +24,6 @@ Interactiff::Application.routes.draw do
   match "/blocks/:id/master" => "blocks#master"
 
   match "/aeroflot" => redirect("/ru/play/512cbdf17423384b06000019")
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
   mount Refinery::Core::Engine, :at => '/'
 end

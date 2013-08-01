@@ -56,4 +56,12 @@ class Game < Block
   def game_started_block
     children.where(_type: "GameStarted").first
   end
+
+  def timeline_events
+    @te||=descendant_events.block_type("TaskPassed").order_by(time: -1)
+  end
+
+  def timeline_sorted
+    timeline_events.to_a.group_by(&:user_id).map { |k,v| {user: User.find(k), events: v} }
+  end
 end

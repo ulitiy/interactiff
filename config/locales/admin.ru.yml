@@ -7,7 +7,7 @@ ru:
       sure: "Вы уверены?"
       reset: "Сбросить события перед тестированием?"
     path:
-      root: "Мои квесты"
+      root: "Мои сценарии"
       level_up: "&larr;&nbsp;&nbsp;Общий вид"
       reload: '<span class="carrow">&#8635</span> Обновить'
     help:
@@ -15,14 +15,14 @@ ru:
       options:
         overview: "Обзор"
         basic: "Базовое использование"
-        nl_quests: "Нелинейные квесты"
+        nl_quests: "Нелинейные сценарии"
         variables: "Переменные"
         hot_keys: "Горячие клавиши"
         documentation: "Документация"
         examples: "Примеры"
         examples_menu:
           variables: "Переменные"
-          nl_quests: "Нелинейные квесты"
+          nl_quests: "Нелинейные сценарии"
           aeroflot: "Аэрофлот"
           rooms_arrows: "Комнаты стрелками"
           rooms_jumps: "Комнаты прыжками"
