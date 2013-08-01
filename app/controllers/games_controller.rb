@@ -39,8 +39,9 @@ class GamesController < InheritedResources::Base
   def timeline
     @scale=(params[:scale] || 0.05).to_f
     @timeline = @game.timeline_sorted
-    @first_time = @game.timeline_events.last.time
-    @last_time = @game.timeline_events.first.time
+    @first_time = @game.timeline_events.last.try :time
+    render nothing: true, status: 404 and return if @first_time.nil?
+    @last_time = @game.timeline_events.first.try :time
     @timeline_width = (@last_time-@first_time)*@scale+200 #1 час - 100 пикселей
     @tick=[15,30,60,120,300,600,900,1800,3600,3600*2,3600*6,3600*12,3600*24,3600*24*2,3600*24*7].find { |i| i*@scale>=100 && i*@scale<=400 }
     @tick_px=(@tick*@scale).round
