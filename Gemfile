@@ -17,6 +17,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'rails-backbone', :require=> "backbone-rails" #, github: "codebrew/backbone-rails"
+  gem 'bootstrap-wysihtml5-rails'
 end
 
 gem 'libv8', '~> 3.11.8'

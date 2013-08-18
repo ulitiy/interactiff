@@ -110,4 +110,5 @@ class User
       super
     end
   end
+
 end

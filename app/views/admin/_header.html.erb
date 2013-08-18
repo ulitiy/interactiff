@@ -11,16 +11,16 @@
     </div>
     <div class="span8 nest">
       <ul class="header-navigation">
-        <%= content_tag :li, class: current_page?(link_path=admin_path(parent_id: @game.id, select_id: 0)) ? 'active' : nil do %>
+        <%= content_tag :li, class: current_page?(link_path=admin_path(parent_id: @parent.try(:id) || @game.id, select_id: @select_id || 0)) ? 'active' : nil do %>
           <%= link_to t('games.builder'), link_path, id: "designer-link" %>
-          <div class="palka"></div>
-        <% end %>
-        <%= content_tag :li, class: current_page?(link_path=timeline_game_path(@game.id)) ? 'active' : nil do %>
-          <%= link_to t('games.timeline'), link_path, id: "designer-link" %>
           <div class="palka"></div>
         <% end %>
         <%= content_tag :li, class: current_page?(link_path=play_game_path(game_id: @game.id)) ? 'active' : nil do %>
           <%= link_to t('games.testing'), link_path, target: "_blank", id: "test-link" %>
+          <div class="palka"></div>
+        <% end %>
+        <%= content_tag :li, class: current_page?(link_path=embed_game_path(@game.id)) ? 'active' : nil do %>
+          <%= link_to t('games.embed'), link_path, id: "embed-link" %>
           <div class="palka"></div>
         <% end %>
       </ul>

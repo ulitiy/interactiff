@@ -63,7 +63,6 @@ module Interactiff
 
     config.to_prepare do |app| #fucking refinery override
       ::ApplicationController.module_eval do
-        alias_method_chain :current_user, :guest
         def default_url_options(options={})
           # ::Refinery::I18n.enabled? ? { locale: ::I18n.locale } : {}
           {}

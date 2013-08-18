@@ -17,7 +17,7 @@ class Ability
 
     unless user.is_a? Guest
       can [:join,:create,:index], Game
-      can :play, Game unless user.is_a? Guest
+      can :play, Game
     end
     can :play, Game, guest_access: true
     can :show, Game, example: true
@@ -47,6 +47,7 @@ class Ability
       can?(:manage, rel.from) &&
       can?(:manage, rel.to)
     end
+
   end
 
   def get_resource_access role

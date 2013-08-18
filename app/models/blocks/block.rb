@@ -15,7 +15,7 @@ class Block
   enumerize :scope, in: ["for_one","for_team","for_all"], default: "for_one"
 
   belongs_to :parent, class_name: "Block", inverse_of: :children, index: true #TODO validate
-  belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true
+  belongs_to :game, class_name: "Game", inverse_of: :descendants, index: true, touch: true
   belongs_to :task, class_name: "Task", inverse_of: :descendants, index: true
   has_many :children, class_name: "Block", inverse_of: :parent, dependent: :destroy
   has_many :in_relations, class_name: "Relation", inverse_of: :to, dependent: :destroy # НЕ ТРОГАЙ, висячая связь валит out_blocks при удалении
@@ -30,7 +30,7 @@ class Block
 
   before_create :set_ids
   after_initialize :set_ids
-  after_update :update_game
+  # after_update :update_game
 
   index created_at: 1
 
@@ -49,10 +49,10 @@ class Block
     [self.to_s]+self.descendants.map(&:to_s)
   end
 
-  def update_game
-    if self.game_id
-      self.game.touch
-    end
-  end
+  # def update_game
+  #   if self.game_id
+  #     self.game.touch
+  #   end
+  # end
 
 end

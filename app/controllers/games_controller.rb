@@ -3,7 +3,7 @@ class GamesController < InheritedResources::Base
   actions :index, :show, :create, :destroy
   load_resource except: :index
   authorize_resource
-  layout "admin", only: [ :index,:timeline ]
+  layout "admin", only: [ :index,:timeline,:embed ]
 
   # makes the user member of the game
   # def join
@@ -19,6 +19,16 @@ class GamesController < InheritedResources::Base
     @games||=can?(:manage, Domain.first) && params[:all] ? Game.desc(:updated_at) : current_user.games
   end
 
+  # Page for testing IFrame
+  def iframe
+    render layout: false
+  end
+
+  # Page with embedding code
+  def embed
+  end
+
+  # Delete all events and start game
   def reset
     @game.reset
     redirect_to games_url

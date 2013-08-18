@@ -1,0 +1,17 @@
+<% content_for :js do javascript_include_tag "application", "timeline" end %>
+<%- title t('games.embed') %>
+<%- content_for :body_class do "white-border" end %>
+<div class="allwrap">
+  <%= render "admin/navigation_bar" %>
+  <%= render "admin/header" %>
+  <div class="editor-content">
+    <div class="editor">
+      <div class="row-fluid"><h1>Встроить</h1></div>
+      <p>Код для встраивания:</p>
+      <textarea style="width: 600px; height:180px"><%= embed_code @game.id %></textarea>
+    </div>
+  </div>
+  <div class="fill"></div>
+  <div class="push"></div>
+</div>
+<%=render 'admin/footer'%>

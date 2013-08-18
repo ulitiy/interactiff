@@ -1,3 +1,5 @@
+/* изменено */
+
 body {
   background: #FFF;
   min-width:980px;
@@ -56,6 +58,25 @@ body {
   float: left;
   position: relative;
   top:-3px;
+  width:83px;
+  height: 32px;
+}
+
+.premium-btn img {
+  position: absolute;
+  z-index: 0;
+}
+
+.premium-btn .premium-label {
+  position: absolute;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,.3);
+  text-align: center;
+  width: 100%;
+  top:2px;
+  left: -1px;
 }
 
 
@@ -677,10 +698,14 @@ li b:first-child {
 
 .refresh {
   color:#fff;
-  display: block;
+  display: none;
   width: 31px;
   height: 31px;
   background-image: url(refresh.png);
+}
+
+.designer .refresh {
+  display: block;
 }
 
 .refresh:hover {
@@ -1271,6 +1296,10 @@ margin-right:16px;
 }
 
 .bottomborder {
+  display: none;
+}
+
+.white-border .bottomborder {
   display: block;
   position: absolute;
   height:20px;

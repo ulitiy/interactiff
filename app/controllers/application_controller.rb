@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   # check_authorization :unless => :devise_controller?
 
+  helper_method :current_host
+
   # @return [Domain] domain-parent of requested host
   def current_domain
     @current_domain||=current_host.parent if current_host
@@ -37,7 +39,7 @@ class ApplicationController < ActionController::Base
     request.session_options[:expire_after] = 1.month
     g=User.where(id: session[:guest_user_id]).first
     if g.nil?
-      g=create_guest_user
+      g=create_guest
       session[:guest_user_id]=g.id
     end
     g
@@ -54,7 +56,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def create_guest_user
+  def create_guest
     u = Guest.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
     u.skip_confirmation!
     u.save(:validate => false)
@@ -78,8 +80,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_or_guest_signed_in?
+    user_signed_in? || session[:guest_user_id]
+  end
+
+  alias current_user_or_guest current_user_with_guest
+  helper_method :current_user_or_guest
+
   rescue_from CanCan::AccessDenied do |exception|
-    if user_signed_in? && !current_user.is_a?(Guest)
+    if user_signed_in?# && !current_user.is_a?(Guest)
       flash[:notice] = t("cancan.exceptions.denied")
       redirect_to refinery.root_url
     else

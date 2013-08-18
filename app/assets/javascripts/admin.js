@@ -11,6 +11,9 @@
 //= require jquery-ui-timepicker-addon
 //= require detectmobilebrowser
 //= require guiders-1.3.0
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales/ru-RU
+
 
 //= require underscore-edge
 //= require backbone-edge
