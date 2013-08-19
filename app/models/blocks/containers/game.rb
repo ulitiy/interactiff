@@ -36,7 +36,7 @@ class Game < Block
     # tp1=TaskPassed.create! parent: t1, x: 800, y: 100, container_source: true
     # Relation.create! from: a1, to: tp1
     # Answer.create! parent: t1, x: 550, y: 180, body: "Неверный ответ"
-    gp=GamePassed.create! parent: self, x: 800, y: 500#, title: "Игра пройдена, Ура!"
+    # gp=GamePassed.create! parent: self, x: 800, y: 500#, title: "Игра пройдена, Ура!"
     # Relation.create from: tp1, to: gp
   end
 
