@@ -23,12 +23,12 @@ class PlayController < ApplicationController
 
   # get play user
   def user
-    @user||=use_url_session? ? url_session_user : current_user
+    @user||=use_url_session? ? url_session_user : current_user_or_guest
   end
 
   # get play user or set if necessary
   def set_user
-    @user||=(use_url_session? ? url_session_user : current_user) || create_guest
+    @user||=use_url_session? ? url_session_user : current_user_with_guest
   end
 
   def url_session_user

@@ -36,13 +36,7 @@ class ApplicationController < ActionController::Base
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user
-    request.session_options[:expire_after] = 1.month
-    g=User.where(id: session[:guest_user_id]).first
-    if g.nil?
-      g=create_guest
-      session[:guest_user_id]=g.id
-    end
-    g
+    User.where(id: session[:guest_user_id]).first
   end
 
   private
@@ -57,9 +51,11 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest
+    request.session_options[:expire_after] = 1.month
     u = Guest.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
     u.skip_confirmation!
     u.save(:validate => false)
+    session[:guest_user_id]=u.id
     u
   end
 
@@ -68,6 +64,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_with_guest
+    current_user_or_guest || create_guest
+  end
+
+  def user_or_guest_signed_in?
+    user_signed_in? || session[:guest_user_id]
+  end
+
+  def current_user_or_guest
     if current_user_without_guest
       if session[:guest_user_id]
         logging_in
@@ -80,11 +84,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def user_or_guest_signed_in?
-    user_signed_in? || session[:guest_user_id]
-  end
-
-  alias current_user_or_guest current_user_with_guest
   helper_method :current_user_or_guest
 
   rescue_from CanCan::AccessDenied do |exception|
