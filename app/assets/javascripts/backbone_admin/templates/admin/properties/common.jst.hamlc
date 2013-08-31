@@ -4,7 +4,7 @@
   -if tmp
     !=tmp(this)
   %hr
-  -if @parent()?.modelName=="task"
+  -if @parent()?.task?()
     -if @isTarget?() || @isContainerTarget?()
       .property
         %label(for="container_target")= I18n.t("admin.block.container_target")
@@ -13,7 +13,7 @@
       .property
         %label(for="container_source")= I18n.t("admin.block.container_source")
         %input#container_source(type="checkbox", data-checked="model.container_source")
-  -if @modelName!="task" && @modelName!="clock" && @modelName!="game_started" && @modelName!="message"
+  -if !@task?() && @modelName!="clock" && @modelName!="game_started" && @modelName!="message"
     .property
       %label(for="scope")= I18n.t("admin.block.scope.label")
       %select(id="scope", data-value="model.scope")

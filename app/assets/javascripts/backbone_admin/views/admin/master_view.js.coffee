@@ -27,7 +27,7 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
   setParentModels: ->
     window.parentBlock=masterCollection.get(parentId) || rootBlock
     window.editBlock=masterCollection.get(editId)
-    if parentBlock.get("type")=="Task"
+    if parentBlock.task?
       $("body").addClass("in-task")
       window.parentTask=parentBlock
       window.parentGame=parentTask.parent()

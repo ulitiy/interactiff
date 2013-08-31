@@ -23,21 +23,13 @@ class Game < Block
   alias domain parent
 
   before_validation :new_game, on: :create
+  after_create :start
 
   def new_game
     self.name=I18n.t("admin.game.new") if name.blank?
-    gs=GameStarted.create! parent: self, x: 50, y: 50#, title: "Начало игры"
-    # t1=Task.create! parent: self, x: 530, y: 170, name: "Задание 1", title: "с выбором ответа", input_type: "link"
-    # tg1=TaskGiven.create! parent: t1, x: 100, y: 100, container_target: true,
-                          # body: "Это текст первого задания. Вы можете его редактировать в панели свойств справа, а также использовать html редактор.",
-                          # title: "Дано"
-    # Relation.create! from: gs, to: tg1
-    # a1=Answer.create! parent: t1, x: 550, y: 100, body: "Верный ответ"
-    # tp1=TaskPassed.create! parent: t1, x: 800, y: 100, container_source: true
-    # Relation.create! from: a1, to: tp1
-    # Answer.create! parent: t1, x: 550, y: 180, body: "Неверный ответ"
-    # gp=GamePassed.create! parent: self, x: 800, y: 500#, title: "Игра пройдена, Ура!"
-    # Relation.create from: tp1, to: gp
+    ft=Task.create! parent: self, x:50, y: 50, name: I18n.t("admin.first_task.new"), first: true
+    gs=TaskGiven.create! parent: ft, x: 50, y: 50, container_target: true, body: I18n.t("admin.task_given.new"), title: I18n.t("admin.task_given.new")
+    tp1=TaskPassed.create! parent: ft, x: 800, y: 600
   end
 
   def path
@@ -51,11 +43,20 @@ class Game < Block
 
   def reset
     descendant_events.delete_all
-    game_started_block.save
+    start()
   end
 
-  def game_started_block
-    children.where(_type: "GameStarted").first
+  def start
+    first_task.given_block.fire(scope: "for_all",mutex: true)
+    # game_started_block.save
+  end
+
+  # def game_started_block
+  #   children.where(_type: "GameStarted").first
+  # end
+
+  def first_task
+    children.where(_type: "Task",first: true).first
   end
 
   def timeline_events

@@ -1,2 +1,2 @@
-class GameStarted < Clock
+class GameStarted < TaskGiven
 end

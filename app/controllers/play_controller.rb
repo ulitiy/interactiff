@@ -61,20 +61,20 @@ class PlayController < ApplicationController
   def game
     flash.keep
     @handler=EventHandler.new(user: user, game: @game, task: @task)
-    if !@handler.game_started?
-      @start_time=@game.game_started_block.time
-      render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join #не кэшируем из-за синхронизации времени
-      # fresh_when etag: [@start_time,"play/not_started"].join, public: true
-    elsif @handler.game_passed?
-      render "play/win"
-    else
+    # if !@handler.game_started?
+    #   @start_time=@game.game_started_block.time
+    #   render "play/not_started" # if stale? etag: [@start_time,"play/not_started"].join #не кэшируем из-за синхронизации времени
+    #   # fresh_when etag: [@start_time,"play/not_started"].join, public: true
+    # elsif @handler.game_passed?
+    #   render "play/win"
+    # else
       @task=@handler.current_tasks.first
       if @task #если есть первое не пройденное
         redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return #то перенаправить туда
       else
         render "play/no_tasks"
       end
-    end
+    # end
   end
 
   # Submit input from player

@@ -92,7 +92,7 @@
     &.ui-draggable-dragging
       opacity: 0.8
       z-index: 100
-    &.task:before
+    &.task:before, &.first_task:before
       content: ""
       position: absolute
       width: 90%
@@ -105,7 +105,7 @@
       border-bottom: none
       border-radius: 4px 4px 0 0
       box-shadow: inset 0 1px 1px white
-    &.task:after
+    &.task:after, &.first_task:after
       content: ""
       position: absolute
       width: 78%
@@ -117,11 +117,11 @@
       border: 2px solid #cde1ed
       border-bottom: none
       border-radius: 4px 4px 0 0
-    &.task.ui-selecting:before,&.task.ui-selected:before
+    &.task.ui-selecting:before,&.task.ui-selected:before, &.first_task.ui-selecting:before, &.first_task.ui-selected:before
       border-color: #bae5b3
       background: #bae5b3
       box-shadow: none
-    &.task.ui-selecting:after,&.task.ui-selected:after
+    &.task.ui-selecting:after,&.task.ui-selected:after, &.first_task.ui-selecting:after, &.first_task.ui-selected:after
       border-color: #d1f2cb
       background: #d1f2cb
     &.exception

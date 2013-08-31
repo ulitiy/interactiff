@@ -58,10 +58,12 @@
       tool: "Scenario"
       new: "New scenario"
       # hint: "Scenario. Container block. User is able to begin and end it. Enter and exit points are equal to inner enter/exit blocks. Double click to decompose."
+    first_task:
+      name: "First page"
     task:
       name: "Name"
-      tool: "Task"
-      new: "New task"
+      tool: "Page"
+      new: "New page"
       hint: "Task or location. Container block. May be given to user and finished. Double click to look inside."
       show_wrong_answer: "Show 'Answer is incorrect'"
       input_type:
