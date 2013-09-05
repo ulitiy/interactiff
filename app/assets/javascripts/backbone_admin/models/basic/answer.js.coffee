@@ -14,3 +14,15 @@ class Joygen.Models.Answer extends Joygen.Models.Block
 
   show_spelling_matters: ->
     @get("reusable")=="no"
+
+  save: (attributes, options) =>
+    if @isNew()
+      hash=
+        success: =>
+          relationsCollection.create
+            from_id: @id
+            to_id: masterCollection.findWhere
+              parent_id: @parent().id
+              type: "TaskPassed"
+            .id
+    super attributes, $.extend(options, hash)

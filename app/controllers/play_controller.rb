@@ -68,8 +68,8 @@ class PlayController < ApplicationController
     # elsif @handler.game_passed?
     #   render "play/win"
     # else
-      @task=@handler.current_tasks.first
-      if @task #если есть первое не пройденное
+      @task=@handler.current_tasks.last
+      if @task #если есть первое (нет, последнее) не пройденное
         redirect_to play_show_url(game_id: @game.id, task_id: @task.id) and return #то перенаправить туда
       else
         render "play/no_tasks"

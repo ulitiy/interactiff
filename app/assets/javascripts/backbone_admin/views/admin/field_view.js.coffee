@@ -77,6 +77,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     _.each(@options.blocks,@addBlock)
 
   addBlock: (block)=>
+    return if block.get("type")=="TaskPassed"
     view=new Joygen.Views.Admin.BlockView(model:block)
     #blockViews.push view #добавляем вьюху в массив для последующего связывания
     @$el.append(view.render().el)
