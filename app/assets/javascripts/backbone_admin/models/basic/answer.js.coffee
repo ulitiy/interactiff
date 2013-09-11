@@ -5,6 +5,7 @@ class Joygen.Models.Answer extends Joygen.Models.Block
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Answer"
       message_type: "success"
+      container_source: true
     )
   icon: "/assets/admin/icons/16/102.png"
   isSource: -> true

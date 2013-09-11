@@ -13,7 +13,7 @@ class Joygen.Views.Admin.ToolView extends Backbone.View
   createBlock: =>
     return unless manage
     block=new Joygen.Models[@options.tool]()
-    block.set "parent_id":parentId if @options.tool!="Domain"
+    block.set "parent_id":parentId# if @options.tool!="Domain"
     masterCollection.create(block)
 
   render: =>

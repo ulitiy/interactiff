@@ -48,7 +48,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
 
 
   selectablestop: =>
-    $(dragConnectionFrom.canvas).removeClass "dcf" if dragConnectionFrom?
+    $(dragConnectionFrom.endpoint.canvas).removeClass "dcf" if dragConnectionFrom?
     window.dragConnectionFrom=null
     $("*:focus").blur()
     # floatingToolbarView.hide()
@@ -77,7 +77,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     _.each(@options.blocks,@addBlock)
 
   addBlock: (block)=>
-    return if block.get("type")=="TaskPassed"
+    # return if block.get("type")=="TaskPassed" #!!!
     view=new Joygen.Views.Admin.BlockView(model:block)
     #blockViews.push view #добавляем вьюху в массив для последующего связывания
     @$el.append(view.render().el)
@@ -96,18 +96,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     $(".ui-selected").removeClass("ui-selected")
 
   addRelations: =>
-    _.each sourceEndpoints, @addEndpointsRelations #берем все исходящие ep
-
-  addEndpointsRelations: (sep)=>
-    _.each sep.model.outRelations(), (relation)-> #берем все исходящие стрелки из ep
-      tep=_.find targetEndpoints, (e)-> #ищем среди текущих tep
-        e.model.id==relation.get("to_id") #ту, в которую приходит стрелка
-      if tep
-        relView=new Joygen.Views.Admin.RelationView
-          model:relation
-          sourceEndpoint:sep
-          targetEndpoint:tep
-        relView.render()
+    _.each sourceViews, (view)-> view.addRelations()
 
   addElements: ->
     @$el.append('<div id="stretcher"></div>')
@@ -121,13 +110,14 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     @taskNameView.remove() if @taskNameView?
 
   render: =>
-    @options.blocks=masterCollection.children(@id)
-    @$el.html('')
-    #window.blockViews=[]
-    window.targetEndpoints=[]
-    window.sourceEndpoints=[]
-    @removeTaskName()
-    @addTaskName() if parentTask?
-    @addBlocks()
-    @addRelations()
-    @addElements()
+    # jsPlumb.doWhileSuspended =>
+      @options.blocks=masterCollection.children(@id)
+      @$el.html('')
+      #window.blockViews=[]
+      window.targetViews=[]
+      window.sourceViews=[]
+      @removeTaskName()
+      @addTaskName() if parentTask?
+      @addBlocks()
+      @addRelations()
+      @addElements()

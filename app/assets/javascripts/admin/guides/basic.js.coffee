@@ -1,6 +1,6 @@
 guides["basic"]= ->
   waitForConnection=->
-    jsPlumb.bind "jsPlumbConnection", ->
+    jsPlumb.bind "jsPlumbConnection", -> #КОСЯК
       return if jsPlumb.silent || !connectionCallback
       window.connectionCallback=false
       setTimeout guiders.next

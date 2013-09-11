@@ -87,111 +87,55 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
     @rivetsView.unbind()
     jsPlumb.removeAllEndpoints @el
 
-
-#TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #простановка всех эндпоинтов блока, сначала родных, потом дочерних
   makeEndpoints: ()=>
     if @model.isTarget?()
-      @targetEndpoint=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#89C27F" }
+      @targetView=new Joygen.Views.Admin.TargetView
+        blockView: this
+        model: @model
         anchor: "LeftMiddle"
-        isTarget: true
-        # endpoint: [ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ]
-      @targetEndpoint.model=@model
-      @targetEndpoint.blockView=this
-      @bindTarget(@targetEndpoint)
-      @bindCT(@targetEndpoint) if @model.get("task_id")?
-      # @targetEndpoint.bind 'click', ()=>
+      @targetView.render()
 
-      targetEndpoints.push @targetEndpoint
+      targetViews.push @targetView
     if @model.isSource?()
-      @sourceEndpoint=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#89C27F" }
+      @sourceView=new Joygen.Views.Admin.SourceView
+        blockView: this
+        model: @model
         anchor: "RightMiddle"
-        isSource: true
-      @sourceEndpoint.model=@model
-      @sourceEndpoint.blockView=this
-      @bindSource(@sourceEndpoint)
-      @bindCS(@sourceEndpoint) if @model.get("task_id")?
-      # @sourceEndpoint.bind 'click', (e1)=>
-      #   floatingToolbarView.show(e1)
-      sourceEndpoints.push @sourceEndpoint
+      @sourceView.render()
+      sourceViews.push @sourceView
     if @model.container?()
       @addSources()
       @addTargets()
-      m=Math.max @sourceEndpoints.length, @targetEndpoints.length
+      m=Math.max @sourceViews.length, @targetViews.length
       @$el.css("min-height",m*14)
       jsPlumb.repaint @$el
-
-
-  bindSource: (s)=>
-    s.bind 'click', =>
-      $(dragConnectionFrom.canvas).removeClass "dcf" if dragConnectionFrom?
-      window.dragConnectionFrom=s
-      $(s.canvas).addClass "dcf"
-  bindTarget: (t)=>
-    t.bind 'click', =>
-      return unless dragConnectionFrom?
-      relView=new Joygen.Views.Admin.RelationView
-        sourceEndpoint:dragConnectionFrom
-        targetEndpoint:t
-      relView.createModel()
-      relView.render()
-      $(dragConnectionFrom.canvas).removeClass "dcf"
-      window.dragConnectionFrom=null
-
-  #простановка контейнерных пуговок двойным кликом
-  bindCS: (s)=>
-    $(s.canvas).attr("data-class-containersource","model.container_source")
-    rivets.bind $(s.canvas), { model: @model }
-    s.bind 'dblclick', =>
-      $(dragConnectionFrom.canvas).removeClass "dcf"
-      window.dragConnectionFrom=null
-      @model.set("container_source", !@model.get("container_source"))
-      @model.save()
-  bindCT: (t)=>
-    $(t.canvas).attr("data-class-containertarget","model.container_target")
-    rivets.bind $(t.canvas), { model: @model }
-    t.bind 'dblclick', =>
-      @model.set("container_target", !@model.get("container_target"))
-      @model.save()
-
 
 #простановка дочерних
   addSources: ()=>
     arr=@model.getContainerSources()
     i=0
-    @sourceEndpoints=_.map arr, (block)=>
-      e=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#89C27F" }
-        anchor:[1,(++i)/(arr.length+1),1,0]
-        isSource: true
-      e.model=block
-      e.blockView=this
-      @bindSource(e)
-      # e.bind 'click', (e1)=>
-      #   floatingToolbarView.show(e1)
-      $(e.canvas).append "<div class=\"sourceTitle\">#{block.endpointCaption()}</div>"
-      sourceEndpoints.push e #window
-      e
+    @sourceViews=_.map arr, (block)=>
+      v=new Joygen.Views.Admin.SourceView
+        blockView: this
+        model: block
+        anchor: [1,(++i)/(arr.length+1),1,0]
+      v.render()
+      sourceViews.push v
+      v
 
 #то же
   addTargets: ()=>
     arr=@model.getContainerTargets()
     i=0
-    @targetEndpoints=_.map arr, (block)=>
-      e=jsPlumb.addEndpoint @el,
-        hoverPaintStyle:{ fillStyle:"#89C27F" }
-        anchor:[0,(++i)/(arr.length+1),-1,0]
-        isTarget: true
-      e.model=block
-      e.blockView=this
-      @bindTarget(e)
-      $(e.canvas).append "<div class=\"targetTitle\">#{block.endpointCaption()}</div>"
-      targetEndpoints.push e #window
-      e
-
-
+    @targetViews=_.map arr, (block)=>
+      v=new Joygen.Views.Admin.TargetView
+        blockView: this
+        model: block
+        anchor: [0,(++i)/(arr.length+1),-1,0]
+      v.render()
+      targetViews.push v
+      v
 
   render: =>
     @$el.data("view",this) #круто!
