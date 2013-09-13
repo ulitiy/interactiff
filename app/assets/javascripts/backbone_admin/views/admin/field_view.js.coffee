@@ -12,7 +12,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
           return false
     @$el.selectable
       filter:'.block'
-      cancel:'svg'
+      cancel:'svg,.editForm'
       # appendTo: '#field' #http://bugs.jqueryui.com/ticket/4377
       # distance: 1
 
@@ -51,6 +51,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     $(dragConnectionFrom.endpoint.canvas).removeClass "dcf" if dragConnectionFrom?
     window.dragConnectionFrom=null
     $("*:focus").blur()
+    selectedSourceView.hideForm() if selectedSourceView?
     # floatingToolbarView.hide()
     window.selected=$('.ui-selected') #нужно для массового дрэга
     if selected.length==1
@@ -94,6 +95,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       trigger:true
       replace:true
     $(".ui-selected").removeClass("ui-selected")
+    selectedSourceView.hideForm() if selectedSourceView?
 
   addRelations: =>
     _.each sourceViews, (view)-> view.addRelations()
@@ -121,3 +123,6 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       @addBlocks()
       @addRelations()
       @addElements()
+
+$("html").click ->
+  selectedSourceView.hideForm() if selectedSourceView?

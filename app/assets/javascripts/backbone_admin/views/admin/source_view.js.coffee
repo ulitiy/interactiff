@@ -4,6 +4,33 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
 
   template: JST["backbone_admin/templates/admin/source"]
 
+    # "click .sourceTitle":"showForm"
+
+  # events:
+  #   "click":"a"
+
+  # a: ->
+  #   alert("")
+
+  #Как-нибудь сделать @el и нормальные events???
+  #Закэшировать внутренние элементы!!!
+
+  showForm: ->
+    # selectedSourceView.hideForm()
+    window.selectedSourceView=this
+    @$el.find(".sourceTitle").hide()
+    @$el.find('.editForm').show()
+    @$el.addClass "selected"
+    @$el.find(".editForm input.answer").focus().select()
+  hideForm: ->
+    @$el.find("*:focus").blur()
+    window.selectedSourceView=undefined
+    @$el.find(".sourceTitle").show()
+    @$el.find('.editForm').hide()
+    @$el.removeClass "selected"
+    @model.save()
+
+
   # endpoint===el
 
   render: ->
@@ -12,11 +39,17 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
       anchor: @options.anchor
       isSource: true
     @endpoint.view=this
-    @bindCS() if parentTask?
-    @bindDragConnection()
+    @el=@endpoint.canvas
+    @$el=$(@endpoint.canvas)
     if @options.blockView.model.modelName=="task"
-      $(@endpoint.canvas).append @template(@model)
-      rivets.bind $(@endpoint.canvas), { model: @model }
+      @$el.append @template(@model)
+    if parentTask?
+      @bindCS()
+    else
+      if @model.modelName=="answer"
+        @bindForm()
+    @bindDragConnection()
+    rivets.bind $(@endpoint.canvas), { model: @model }
 
   addRelations: ->
     _.each @model.outRelations(), (relation)=> #берем все исходящие стрелки из ep
@@ -29,8 +62,8 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
           targetView:targetView
         relView.render()
 
-  bindCS: =>
-    $(@endpoint.canvas).attr("data-class-containersource","model.container_source")
+  bindCS: ->
+    @$el.attr("data-class-containersource","model.container_source")
     @endpoint.bind 'dblclick', =>
       # return unless @model.get("task_id")?
       $(dragConnectionFrom.endpoint.canvas).removeClass "dcf" if dragConnectionFrom?
@@ -38,11 +71,27 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
       @model.set("container_source", !@model.get("container_source"))
       @model.save()
 
-  bindDragConnection: =>
+  bindForm: ->
+    @$el.find(".sourceTitle").click (e)=>
+      selectedSourceView.hideForm() if selectedSourceView?
+      @showForm()
+      e.stopPropagation()
+    @$el.find(".editForm").click (e)->
+      e.stopPropagation()
+    @$el.find(".editForm .submit").click (e)=>
+      @hideForm()
+    @$el.find(".editForm .delete").click (e)=>
+      return unless confirm(I18n.t("admin.links.sure"))
+      jsPlumb.deleteEndpoint(@endpoint)
+      @model.destroy()
+      window.selectedSourceView=undefined
+      jsPlumb.repaint
+
+  bindDragConnection: ->
     @endpoint.bind 'click', =>
       $(dragConnectionFrom.endpoint.canvas).removeClass "dcf" if dragConnectionFrom?
       window.dragConnectionFrom=this
-      $(@endpoint.canvas).addClass "dcf"
+      @$el.addClass "dcf"
 
 # @endpoint.bind 'click', (e1)=>
 #   floatingToolbarView.show(e1)

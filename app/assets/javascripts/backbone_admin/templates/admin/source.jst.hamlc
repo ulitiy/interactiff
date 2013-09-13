@@ -1,1 +1,5 @@
-.sourceTitle(data-text="model:endpointCaption")
+%div(class="sourceTitle #{@modelName}", data-text="model:endpointCaption < .body")
+.editForm
+  %input.mousetrap.answer(type="text", data-value="model.body")
+  %input.delete.btn(type="button", value="X")
+  %input.submit.btn(type="button", value="Ok")

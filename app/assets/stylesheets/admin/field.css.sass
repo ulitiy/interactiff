@@ -130,18 +130,45 @@
     z-index: 1
   ._jsPlumb_endpoint
     z-index: 101
+    &.selected
+      z-index: 1000
     .sourceTitle, .targetTitle
       position: absolute
       font-size: xx-small
       color: #444
       white-space: nowrap
       text-shadow: 1px 1px 1px white, -1px -1px 1px white, 1px 1px 1px white
+    .editForm
+      display: none
+      width: 207px
+      height: 30px
+      margin: -4px 0 0 11px
+      background: #d2e0e7
+      box-sizing: border-box
+      border-radius: 5px
+      padding: 3px
+      input
+        border-radius: 3px
+        box-shadow: none
+        box-sizing: border-box
+        display: inline-block
+        margin: 0
+        width: 22px
+        height: 22px
+        padding: 2px
+      .answer
+        width: 150px
+      .delete
+      .submit
+      .file
     .sourceTitle
-      top: -7px
-      left: 10px
+      top: -6px
+      left: 11px
+      &.answer:hover
+        text-shadow: 1px 1px 1px #CFC, -1px -1px 1px #CFC, 1px 1px 1px #CFC
     .targetTitle
-      top: -7px
-      right: 10px
+      top: -6px
+      right: 11px
     &.containersource circle, &.containertarget circle
       fill: #08b !important
     &.dcf circle

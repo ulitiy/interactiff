@@ -35,7 +35,3 @@ class Joygen.Views.Admin.TargetView extends Backbone.View
       relView.render()
       $(dragConnectionFrom.endpoint.canvas).removeClass "dcf"
       window.dragConnectionFrom=null
-
-
-# $(e.canvas).append "<div class=\"sourceTitle\">#{block.endpointCaption()}</div>"
-

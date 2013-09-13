@@ -28,21 +28,23 @@ Mousetrap.bind 'shift+right', ->
 Mousetrap.bind 'enter', ->
   if $("*:focus").length==0
     propertiesView.setFocus()
-    false
+    return false
+  else
+    if selectedSourceView?
+      selectedSourceView.hideForm()
+      return false
 Mousetrap.bind ['ctrl+s', 'command+s'], (e)->
   $("*:focus").blur()
+  selectedSourceView.hideForm() if selectedSourceView?
   propertiesView.save()
   false
 Mousetrap.bind 'esc', ->
   if $("*:focus").length==0
-    router.navigate (parentBlock||rootBlock).adminPath(),
-      trigger:true
-      replace:true
-    $(".ui-selected").removeClass("ui-selected")
+    fieldView.blurSelect()
   else
     $("*:focus").blur()
 Mousetrap.stopCallback=(e, element, combo) ->
-    if combo=="ctrl+s" || combo=="command+s" || combo=="esc"
+    if combo=="ctrl+s" || combo=="command+s" || combo=="esc" || combo=="enter"
       return false;
     return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || (element.contentEditable && element.contentEditable == 'true');
 
