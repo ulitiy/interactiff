@@ -66,6 +66,7 @@
       new: "New page"
       hint: "Task or location. Container block. May be given to user and finished. Double click to look inside."
       show_wrong_answer: "Show 'Answer is incorrect'"
+      new_answer: "Add"
       input_type:
         label: "Input type"
         text: "Text"
@@ -73,7 +74,7 @@
         none: "None"
     answer:
       tool: "Answer"
-      new: "Answer"
+      new: "New answer"
       body: "Body"
       reusable:
         label: "Reusability"

@@ -19,6 +19,8 @@ class Answer < Message
   # set the digest for link access to the answer
   def set_digest
     self.body=digest if self.body.empty?
+    self.x=350
+    self.y=brothers.where(_type: "Answer").order_by(y: 1).last.try(:y).to_i + 80
   end
 
   # the digest of id, that can be checked instead of input (fully replaceable)

@@ -129,10 +129,13 @@
   ._jsPlumb_connector
     z-index: 1
   ._jsPlumb_endpoint
+    font-weight: 600
     z-index: 101
+    cursor: default
     &.selected
       z-index: 1000
     .sourceTitle, .targetTitle
+      line-height: 0
       position: absolute
       font-size: xx-small
       color: #444
@@ -162,13 +165,33 @@
       .submit
       .file
     .sourceTitle
-      top: -6px
+      top: 5px
       left: 11px
-      &.answer:hover
-        text-shadow: 1px 1px 1px #CFC, -1px -1px 1px #CFC, 1px 1px 1px #CFC
+      &.answer
+        cursor: pointer
     .targetTitle
-      top: -6px
+      top: 5px
       right: 11px
+    .newAnswer
+      cursor: pointer
+      line-height: 0
+      *
+        position: absolute
+      .plus
+        font-size: 11px
+        color: white
+        left: 2px
+        top: 5px
+      .add
+        font-size: xx-small
+        left: 10px
+        top: -3px
+        background: rgba(130, 180, 200, 0.3)
+        border-radius: 3px
+        line-height: 10px
+        padding: 3px 5px
+        &:hover
+          background: #dfebf3
     &.containersource circle, &.containertarget circle
       fill: #08b !important
     &.dcf circle

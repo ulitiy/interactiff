@@ -49,6 +49,13 @@ class Block
     [self.to_s]+self.descendants.map(&:to_s)
   end
 
+  def siblings
+    parent.children
+  end
+
+  alias brothers siblings
+  alias sisters siblings
+
   # def update_game
   #   if self.game_id
   #     self.game.touch

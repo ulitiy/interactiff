@@ -16,7 +16,7 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
   #Закэшировать внутренние элементы!!!
 
   showForm: ->
-    # selectedSourceView.hideForm()
+    selectedSourceView?.hideForm()
     window.selectedSourceView=this
     @$el.find(".sourceTitle").hide()
     @$el.find('.editForm').show()
@@ -73,7 +73,6 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
 
   bindForm: ->
     @$el.find(".sourceTitle").click (e)=>
-      selectedSourceView.hideForm() if selectedSourceView?
       @showForm()
       e.stopPropagation()
     @$el.find(".editForm").click (e)->

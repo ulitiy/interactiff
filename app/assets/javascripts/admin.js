@@ -5,7 +5,8 @@
 //= require jquery.ui.touch-punch
 //= require jquery.mobile-events
 //= require jquery.layout-latest
-//= require jquery.jsPlumb-1.3.13-all
+// require jquery.jsPlumb-1.3.13-all
+//= require jquery.jsPlumb-1.5.2
 //= require mousetrap
 //= require jquery.kinetic
 //= require jquery-ui-timepicker-addon

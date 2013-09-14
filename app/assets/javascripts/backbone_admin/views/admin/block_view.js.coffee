@@ -106,9 +106,9 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       sourceViews.push @sourceView
     if @model.container?()
       @addSources()
+      @addNewAnswer()
       @addTargets()
-      m=Math.max @sourceViews.length, @targetViews.length
-      @$el.css("min-height",m*14)
+      @setMinHeight()
       jsPlumb.repaint @$el
 
 #простановка дочерних
@@ -119,7 +119,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       v=new Joygen.Views.Admin.SourceView
         blockView: this
         model: block
-        anchor: [1,(++i)/(arr.length+1),1,0]
+        anchor: [1,(++i)/(arr.length+2),1,0]
       v.render()
       sourceViews.push v
       v
@@ -127,15 +127,45 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
 #то же
   addTargets: ()=>
     arr=@model.getContainerTargets()
-    i=0
-    @targetViews=_.map arr, (block)=>
+    @targetViews=_.map arr, (block,i)=>
       v=new Joygen.Views.Admin.TargetView
         blockView: this
         model: block
-        anchor: [0,(++i)/(arr.length+1),-1,0]
+        anchor: [0,(i+1)/(arr.length+1),-1,0]
       v.render()
       targetViews.push v
       v
+
+  addNewAnswer: ()=>
+    cnt=@sourceViews.length
+    @nae=jsPlumb.addEndpoint @el,
+      anchor: [1,(cnt+1)/(cnt+2),1,0]
+    $(@nae.canvas).append JST["backbone_admin/templates/admin/new_answer"]()
+    $(@nae.canvas).click (e)=>
+      block=new Joygen.Models.Answer()
+      block.set "parent_id": @model.id
+      masterCollection.create(block)
+      v=new Joygen.Views.Admin.SourceView
+        blockView: this
+        model: block
+        anchor: [1,1,1,0]
+      v.render()
+      @sourceViews.push v
+      sourceViews.push v
+      @redraw()
+      v.showForm()
+      e.stopPropagation()
+
+  redraw: ()=>
+    @setMinHeight()
+    total=@sourceViews.length+2
+    _.each @sourceViews, (view,i)->
+      view.endpoint.setAnchor [1,(i+1)/total,1,0]
+    @nae.setAnchor [1,(total-1)/total,1,0]
+
+  setMinHeight: ()=>
+    m=Math.max @sourceViews.length, @targetViews.length
+    @$el.css("min-height",(m+1)*15)
 
   render: =>
     @$el.data("view",this) #круто!

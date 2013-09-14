@@ -6,7 +6,6 @@ class Joygen.Views.Admin.TargetView extends Backbone.View
 
   render: ->
     @endpoint=jsPlumb.addEndpoint @options.blockView.el,
-      hoverPaintStyle:{ fillStyle:"#89C27F" }
       anchor: @options.anchor
       isTarget: true
       # endpoint: [ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ]

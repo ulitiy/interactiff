@@ -1,0 +1,3 @@
+.newAnswer
+  .plus +
+  .add= I18n.t("admin.task.new_answer")

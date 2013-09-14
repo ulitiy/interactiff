@@ -35,7 +35,7 @@ Mousetrap.bind 'enter', ->
       return false
 Mousetrap.bind ['ctrl+s', 'command+s'], (e)->
   $("*:focus").blur()
-  selectedSourceView.hideForm() if selectedSourceView?
+  selectedSourceView?.hideForm()
   propertiesView.save()
   false
 Mousetrap.bind 'esc', ->

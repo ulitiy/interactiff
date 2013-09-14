@@ -4,6 +4,7 @@ class Joygen.Models.Answer extends Joygen.Models.Block
   defaults: ->
     _.extend({}, Joygen.Models.Block.prototype.defaults(),
       type: "Answer"
+      body: I18n.t("admin.answer.new")
       message_type: "success"
       container_source: true
     )

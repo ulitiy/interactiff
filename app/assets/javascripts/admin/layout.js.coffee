@@ -7,7 +7,7 @@ layoutSettings=
   maxSize: 400
   east__resizerCursor: "col-resize"
   west__resizerCursor: "col-resize"
-  west__minSize: 35
+  west__minSize: 40
   west__maxSize: 200
   west__size: 165
   east__size: 250
