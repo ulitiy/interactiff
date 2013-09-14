@@ -1,6 +1,4 @@
 window.gridStep=5
-$(window).unload ->
-  jsPlumb.unload()
 $ ->
   jsPlumb.silent=false
   jsPlumb.allowDetach=false

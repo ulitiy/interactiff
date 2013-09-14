@@ -112,7 +112,8 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
     @taskNameView.remove() if @taskNameView?
 
   render: =>
-    # jsPlumb.doWhileSuspended =>
+    jsPlumb.reset()
+    jsPlumb.doWhileSuspended =>
       @options.blocks=masterCollection.children(@id)
       @$el.html('')
       #window.blockViews=[]
