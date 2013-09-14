@@ -84,7 +84,8 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
       jsPlumb.deleteEndpoint(@endpoint)
       @model.destroy()
       window.selectedSourceView=undefined
-      jsPlumb.repaint
+      @options.blockView.sourceViews=_.without(@options.blockView.sourceViews, this)
+      @options.blockView.redraw()
 
   bindDragConnection: ->
     @endpoint.bind 'click', =>
