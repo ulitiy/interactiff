@@ -114,6 +114,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   render: =>
     jsPlumb.reset()
     jsPlumb.doWhileSuspended =>
+      @$el.hide()
       @options.blocks=masterCollection.children(@id)
       @$el.html('')
       #window.blockViews=[]
@@ -124,6 +125,7 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       @addBlocks()
       @addRelations()
       @addElements()
+      @$el.show()
 
 $("html").click ->
   selectedSourceView?.hideForm()
