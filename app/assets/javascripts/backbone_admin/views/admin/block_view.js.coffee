@@ -109,7 +109,11 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       @addNewAnswer()
       @addTargets()
       @setMinHeight()
-      jsPlumb.repaint @$el
+      # jsPlumb.repaint @$el # ЭТО СНОВА ЧЁ ЗА ХУЕТА?
+
+  refreshEndpoints: ()=>
+    jsPlumb.deleteEndpoint(@nae)
+    @makeEndpoints()
 
 #простановка дочерних
   addSources: ()=>

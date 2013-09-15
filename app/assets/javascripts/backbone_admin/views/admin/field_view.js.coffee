@@ -111,8 +111,24 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
   removeTaskName: ->
     @taskNameView.remove() if @taskNameView?
 
+  setConnectionBindings: ->
+    jsPlumb.bind "beforeDetach", ->
+      jsPlumb.allowDetach
+    jsPlumb.bind "beforeDrop", ->
+      manage
+
+    jsPlumb.bind "connection", (e)->
+      return if jsPlumb.silent
+      view=new Joygen.Views.Admin.RelationView
+        sourceView: e.sourceEndpoint.view
+        targetView: e.targetEndpoint.view
+      view.connection=e.connection
+      view.render()
+      view.createModel()
+
   render: =>
     jsPlumb.reset()
+    @setConnectionBindings()
     jsPlumb.doWhileSuspended =>
       @$el.hide()
       @options.blocks=masterCollection.children(@id)

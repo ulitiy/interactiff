@@ -1,19 +1,5 @@
 Joygen.Views.Admin ||= {}
 
-jsPlumb.bind "beforeDetach", ->
-  jsPlumb.allowDetach
-jsPlumb.bind "beforeDrop", ->
-  manage
-
-jsPlumb.bind "connection", (e)->
-  return if jsPlumb.silent
-  view=new Joygen.Views.Admin.RelationView
-    sourceView: e.sourceEndpoint.view
-    targetView: e.targetEndpoint.view
-  view.connection=e.connection
-  view.render()
-  view.createModel()
-
 class Joygen.Views.Admin.RelationView extends Backbone.View
   createModel: =>
     @model=relationsCollection.create

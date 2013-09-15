@@ -17,5 +17,5 @@ class Joygen.Models.Task extends Joygen.Models.Block
           taskPassed=new Joygen.Models.TaskPassed({parent_id:@id, x:800, y: 500})
           masterCollection.create(taskGiven)
           masterCollection.create(taskPassed)
-          fieldView.render() #TODO
+          @view.refreshEndpoints()
     super attributes, $.extend(options, hash)
