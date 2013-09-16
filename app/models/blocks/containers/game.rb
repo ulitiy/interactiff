@@ -24,6 +24,27 @@ class Game < Block
 
   before_validation :new_game, on: :create
   after_create :start
+  skip_callback :create, :after, :start, if: -> { @cloning }
+
+  def deep_clone options={}
+    c=self.clone
+    c.cloning=true
+    self.copy=c
+    c.updated_at=c.created_at=Time.now
+    c.save validate: false
+
+    children.each do |child|
+      child.deep_clone(parent_id: c.id)
+    end
+
+    game_relations.each do |rel|
+      Relation.create from_id: rel.from.copy, to_id: rel.to.copy
+    end
+
+    c.cloning=false
+    c
+  end
+
 
   def new_game
     self.name=I18n.t("admin.game.new") if name.blank?

@@ -5,7 +5,7 @@ class Clock < Block
 
   before_save :set_time
   after_save :set_job
-  skip_callback :save, :after, :set_job, if: -> { @skip_set_job || job && job.run_at==time }
+  skip_callback :save, :after, :set_job, if: -> { @skip_set_job || job && job.run_at==time && !@cloning }
 
   def set_time
     self.time=1.month.from_now if time.blank?

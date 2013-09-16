@@ -4,6 +4,7 @@ class Block
   include Mongoid::Timestamps
   include BlockBehavior
   include BlockAdmin
+  include DeepCloning
   extend Enumerize
 
   field :x, type: Integer, default: 0
@@ -27,10 +28,10 @@ class Block
   has_many :roles, dependent: :destroy
 
   attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target, :scope
+  attr_accessor :cloning, :copy
 
   before_create :set_ids
   after_initialize :set_ids
-  # after_update :update_game
 
   index created_at: 1
 
@@ -55,11 +56,5 @@ class Block
 
   alias brothers siblings
   alias sisters siblings
-
-  # def update_game
-  #   if self.game_id
-  #     self.game.touch
-  #   end
-  # end
 
 end

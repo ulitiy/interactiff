@@ -57,7 +57,7 @@ module Interactiff
 
     config.active_record.whitelist_attributes = true
 
-    config.middleware.use Rack::Locale #ХЗ как оно работает, НО РАБОТАЕТ! (редиректы)
+    config.middleware.use Rack::Locale
 
     #ActiveRecord::Base.include_root_in_json = false
 
