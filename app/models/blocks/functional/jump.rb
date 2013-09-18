@@ -3,7 +3,7 @@ class Jump < Block
   belongs_to :checkpoint, class_name: "Block", inverse_of: nil, index: true
 
   def before_clone_save
-    copy.checkpoint=checkpoint.copy @mapping
+    copy.checkpoint=checkpoint.copy @mapping if checkpoint
   end
 
   def blocks_to_hit
