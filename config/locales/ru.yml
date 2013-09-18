@@ -41,6 +41,7 @@ ru:
     name_placeholder: Введите название
     submit: Создать
     clone: Копировать
+    copy: " (копия)"
   enumerize:
     game:
       category:

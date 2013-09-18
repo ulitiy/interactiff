@@ -31,6 +31,8 @@ class Game < Block
     c=copy
     c.cloning=true
     c.updated_at=c.created_at=Time.now
+    c.name+=I18n.t("games.copy")
+    c.example=false
     c.save validate: false
 
     children.each do |child|

@@ -34,6 +34,7 @@ en:
     name_placeholder: Quest name
     submit: Create
     clone: Copy
+    copy: " (copy)"
   enumerize:
     game:
       category:
