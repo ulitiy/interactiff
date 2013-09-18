@@ -4,10 +4,13 @@ Interactiff::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {registrations: "registrations", omniauth_callbacks: "omniauth_callbacks"}
 
   resources :games, path: "/scripts" do
-    post "reset", on: :member
-    get "timeline", on: :member
-    get "iframe", on: :member
-    get "embed", on: :member
+    member do
+      post "reset"
+      get "timeline"
+      get "iframe"
+      get "embed"
+      post "clone"
+    end
   end
   resources :relations
   match "/admin/:parent_id/:select_id" => "admin#index", as: :admin, :constraints => { parent_id: /0|[0-9a-f]{24}/,select_id: /0|[0-9a-f]{24}/ }, via: :get

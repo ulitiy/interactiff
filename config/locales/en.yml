@@ -33,6 +33,7 @@ en:
     delete_confirm: Are you sure?
     name_placeholder: Quest name
     submit: Create
+    clone: Copy
   enumerize:
     game:
       category:

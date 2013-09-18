@@ -23,6 +23,10 @@
           <%= link_to t('games.embed'), link_path, id: "embed-link" %>
           <div class="palka"></div>
         <% end %>
+        <%= content_tag :li do %>
+          <%= link_to t('games.clone'), clone_game_path(@game.id), id: "clone-link", method: :post %>
+          <div class="palka"></div>
+        <% end %>
       </ul>
       <a id="reload" href="" class="refresh pull-right pull-lower10"></a>
     </div>

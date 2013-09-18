@@ -27,24 +27,27 @@ class Game < Block
   skip_callback :create, :after, :start, if: -> { @cloning }
 
   def deep_clone options={}
-    c=self.clone
+    @mapping=options[:mapping] || {}
+    c=copy
     c.cloning=true
-    self.copy=c
     c.updated_at=c.created_at=Time.now
     c.save validate: false
 
     children.each do |child|
-      child.deep_clone(parent_id: c.id)
+      child.deep_clone(parent_id: c.id, mapping: @mapping)
     end
 
     game_relations.each do |rel|
-      Relation.create from_id: rel.from.copy, to_id: rel.to.copy
+      Relation.create from: rel.from.copy, to: rel.to.copy
     end
 
     c.cloning=false
     c
   end
 
+  def assign_to user
+    user.engine_roles.create! access: :manage_roles, block: self
+  end
 
   def new_game
     self.name=I18n.t("admin.game.new") if name.blank?

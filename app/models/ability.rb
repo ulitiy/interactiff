@@ -18,6 +18,7 @@ class Ability
     unless user.is_a? Guest
       can [:join,:create,:index], Game
       can :play, Game
+      can :clone, Game, example: true
     end
     can :play, Game, guest_access: true
     can :show, Game, example: true

@@ -40,6 +40,7 @@ ru:
     delete_confirm: Вы уверены?
     name_placeholder: Введите название
     submit: Создать
+    clone: Копировать
   enumerize:
     game:
       category:

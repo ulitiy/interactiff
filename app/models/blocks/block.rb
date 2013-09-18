@@ -28,7 +28,7 @@ class Block
   has_many :roles, dependent: :destroy
 
   attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target, :scope
-  attr_accessor :cloning, :copy
+  attr_accessor :cloning
 
   before_create :set_ids
   after_initialize :set_ids

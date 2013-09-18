@@ -28,6 +28,13 @@ class GamesController < InheritedResources::Base
   def embed
   end
 
+  # Request cloning script
+  def clone
+    @game=@game.deep_clone
+    @game.assign_to current_user
+    redirect_to main_app.admin_path(parent_id: @game.id, select_id: 0)
+  end
+
   # Delete all events and start game
   def reset
     @game.reset
@@ -40,8 +47,8 @@ class GamesController < InheritedResources::Base
     @game.category = params[:game][:category]
     @game.cover = params[:game][:cover]
     @game.parent = current_domain
-    current_user.engine_roles.create! access: :manage_roles, block: @game
-    authorize!(:create,@game)
+    @game.assign_to current_user
+    # authorize!(:create,@game) нахуй второй раз?
     @game.save!
     redirect_to main_app.admin_path(parent_id: @game.id, select_id: 0)
   end
