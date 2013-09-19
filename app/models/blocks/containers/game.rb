@@ -53,7 +53,7 @@ class Game < Block
 
   def new_game
     self.name=I18n.t("admin.game.new") if name.blank?
-    ft=Task.create! parent: self, x:50, y: 50, name: I18n.t("admin.first_task.new"), first: true
+    ft=Task.create! parent: self, x:50, y: 50, name: I18n.t("admin.first_task.new"), order: 0
     gs=TaskGiven.create! parent: ft, x: 50, y: 50, container_target: true, body: I18n.t("admin.task_given.new"), title: I18n.t("admin.task_given.new")
     tp1=TaskPassed.create! parent: ft, x: 800, y: 600
   end
@@ -74,7 +74,6 @@ class Game < Block
 
   def start
     first_task.given_block.fire(scope: "for_all",mutex: true)
-    # game_started_block.save
   end
 
   # def game_started_block
@@ -82,7 +81,7 @@ class Game < Block
   # end
 
   def first_task
-    children.where(_type: "Task",first: true).first
+    children.where(_type: "Task").order_by(order: 1).first
   end
 
   def timeline_events

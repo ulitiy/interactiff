@@ -7,31 +7,32 @@ describe "Play UI" do
   let!(:domain) { create :domain }
   let!(:game) do
     Game.skip_callback(:validation, :before, :new_game)
+    Game.skip_callback(:create, :after, :start)
     create :game
   end
-  let!(:gs) { create :game_started, parent: game, time: 1.day.ago }
-  let!(:gp) { create :game_passed, parent: game }
-  let!(:task1) { create :task, name: "task 1", parent: game, input_type: "link" }
+  let!(:task1) { create :task, name: "task 1", parent: game, input_type: "link", order: 0 }
   let!(:tg1) { create :task_given, parent: task1 }
   let!(:tp1) { create :task_passed, parent: task1 }
   let!(:ac1) { create :answer, parent: task1 }
-  let!(:al1) { create :answer, parent: task1, reusable: "for_all" }
-  let!(:user) { create :root_user }
+  let!(:al1) { create :answer, parent: task1 }
+  let!(:user) { create :root_user, confirmed_at: Time.now }
 
   before do
     login_as(user, scope: :user)
+    game.start
   end
 
   context "using rooms" do
     let!(:task2) { create :task, name: "task 2", parent: game, input_type: "link" }
     let!(:tg2) { create :task_given, parent: task2 }
+    let!(:task3) { create :task, name: "task 3", parent: game, input_type: "link" }
+    let!(:tg3) { create :task_given, parent: task3 }
     let!(:tp2) { create :task_passed, parent: task2 }
-    let!(:al2) { create :answer, parent: task2, reusable: "for_all" }
+    let!(:al2) { create :answer, parent: task2 }
 
     before do
       Relation.from_array [
-        [gs, tg1], #игра начата - первое задание
-        [ac1, tp1, gp], #на выход
+        [ac1, tp1, tg3], #на выход
         [al1, tp1, tg2], #на второе
         [al2, tp2, tg1] #назад
       ]
@@ -41,11 +42,10 @@ describe "Play UI" do
       visit play_show_path game_id: game.id, task_id: task1.id, locale: :ru
       click_link al1.body #прошли 1
       click_link al2.body #прошли 2
-      visit play_game_path game_id: game.id, locale: :ru
-      click_link al1.body#####
-      click_link al2.body
-      click_link ac1.body
-      page.should have_selector(".win")
+      click_link al1.body #1
+      click_link al2.body #2
+      click_link ac1.body #1->3
+      find(".span7 h2").should have_content("task 3")
     end
   end
 

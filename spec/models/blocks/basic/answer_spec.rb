@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Answer do
   let(:user1) { create :user }
   let(:user2) { create :user }
-  let(:task) { create :task }
+  let(:task) { create :task, input_type: :text }
   before do
     BlockBehavior.reset_events_count
     answer.hit input: "hello", user: user1

@@ -20,7 +20,7 @@ class Answer < Message
   def set_digest
     self.body=digest if self.body.empty?
     self.x=350
-    self.y=brothers.where(_type: "Answer").order_by(y: 1).last.try(:y).to_i + 80
+    self.y=brothers.where(_type: "Answer").order_by(y: 1).last.try(:y).to_i + 80 if parent_id
   end
 
   # the digest of id, that can be checked instead of input (fully replaceable)

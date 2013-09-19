@@ -40,8 +40,9 @@ class Event
   index game_id: 1, block_type: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
   index task_id: 1, block_type: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
   index block_id: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
+  index game_id: 1, scope: 1, team_id: 1, user_id: 1, visit_count: 1, variable: 1, time: 1
 
-  scope :block_type, ->(type) { where(block_type: type) }
+  scope :block_type, ->(type) { type ? where(block_type: type) : scoped }
   scope "for_one", ->(user) { where(scope: "for_one", user_id: user.id) }
   scope "for_team", ->(team) { where(scope: "for_team", team_id: (team.is_a?(Moped::BSON::ObjectId) ? team : team.id)) }
   scope "for_all", -> { where(scope: "for_all") }

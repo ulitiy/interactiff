@@ -59,6 +59,7 @@ FactoryGirl.define do
   factory :user do
     sequence(:email,1000) { |n| "#{n}user@example.com" }
     password "secret"
+    before(:create) { |user| user.confirm! }
     factory :user_with_role, aliases: [:root_user] do
       ignore do
         block nil

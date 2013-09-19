@@ -22,7 +22,7 @@ describe User do
       let(:user) { create :user }
       it { should_not be_able_to(:read, Block) }
       it { should_not be_able_to(:read, Role) }
-      it { should_not be_able_to(:read, Relation) }
+      it { should_not be_able_to(:read, Relation.new(from:answer,to:hint)) }
       it { should be_able_to(:create, Game) }
     end
     context "when is a root user" do
@@ -30,7 +30,7 @@ describe User do
       it { should be_able_to(:manage, domain) }
       it { should be_able_to(:manage, domain2) }
       it { should be_able_to(:manage, answer) }
-      it { should be_able_to(:manage, Relation.new(from:answer,to:hint)) }
+      it { should be_able_to(:manage, Relation.create(from:answer,to:hint)) }
       it { should be_able_to(:manage, Role.new(block:domain2)) }
       it { should be_able_to(:manage, Role.new(block:task)) }
     end
@@ -38,8 +38,8 @@ describe User do
       let(:user) { create :user_with_role, block: domain }
       it { should be_able_to(:manage, domain) }
       it { should_not be_able_to(:manage, domain2) }
-      it { should be_able_to(:manage, Relation.new(from:answer,to:hint)) }
-      it { should_not be_able_to(:manage, Relation.new(from:answer2,to:hint2)) }
+      it { should be_able_to(:manage, Relation.create(from:answer,to:hint)) } #
+      it { should_not be_able_to(:manage, Relation.create(from:answer2,to:hint2)) }
       # it { should_not be_able_to(:create, Block) } #почему так??? ну вот так...
     end
     context "when is a game author" do
@@ -71,7 +71,7 @@ describe User do
     context "when is :manage" do
       let(:user) { create :user_with_role, block: domain, access: :manage }
       it { should_not be_able_to(:manage, Role) } #а в контексте should_not такое допустимо
-      it { should be_able_to(:manage, Relation.new(from:answer,to:hint)) }
+      it { should be_able_to(:manage, Relation.create(from:answer,to:hint)) }
     end
 
     context "when is read" do
@@ -79,7 +79,7 @@ describe User do
       it { should be_able_to(:read, domain) }
       it { should_not be_able_to(:manage, Role) }
       it { should_not be_able_to(:manage, Block) }
-      it { should_not be_able_to(:manage, Relation) }
+      it { should_not be_able_to(:manage, Relation.create(from:answer,to:hint)) }
     end
 
     context "membership" do
@@ -114,6 +114,6 @@ describe User do
       user.engine_roles.create block: game3, access: :read
     end
     subject { user.games }
-    it { should eq [game1,game2] }
+    it { should eq [game2,game1] }
   end
 end

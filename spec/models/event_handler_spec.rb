@@ -4,24 +4,25 @@ describe EventHandler do
   let(:user) { create :user }
   let(:game) do
     Game.skip_callback(:validation, :before, :new_game)
+    Game.skip_callback(:create, :after, :start)
     create :game
   end
-  let(:task) { create :task, parent: game }
-  let!(:answer3) { create :answer, parent: task, body: "ehlo", y: 15 }
-  let!(:answer2) { create :answer, parent: task, body: ".*", y: 20 }
-  let!(:answer) { create :answer, parent: task, body: "he(l)*o", y: 10 }
+  let(:task) { create :task, parent: game, input_type: "text" }
+  let!(:answer) { create :answer, parent: task, body: "he(l)*o" }
+  let!(:answer2) { create :answer, parent: task, body: ".*" }
+  let!(:answer3) { create :answer, parent: task, body: "ehlo" }
   let(:tg) { create :task_given, parent: task }
   let(:tp) { create :task_passed, parent: task }
   let(:handler) { EventHandler.new(user: user,task: task) }
-  let(:task1) { create :task, parent: game }
+  let(:task1) { create :task, parent: game, input_type: "text" }
   let(:tg1) { create :task_given, parent: task1 }
   let(:tp1) { create :task_passed, parent: task1 }
-  let(:task2) { create :task, parent: game }
+  let(:task2) { create :task, parent: game, input_type: "text" }
   let(:tg2) { create :task_given, parent: task2 }
   let(:tp2) { create :task_passed, parent: task2 }
-  let(:task3) { create :task, parent: game }
+  let(:task3) { create :task, parent: game, input_type: "text" }
   let(:tg3) { create :task_given, parent: task3 }
-  let(:task4) { create :task, parent: game }
+  let(:task4) { create :task, parent: game, input_type: "text" }
   let(:tg4) { create :task_given, parent: task4 }
   let(:team1) { create :team }
   let(:team2) { create :team }
@@ -30,7 +31,7 @@ describe EventHandler do
   let(:user2) { create :user, team: team2 }
 
   describe "#task_answers" do
-    it { handler.task_answers.to_a.should eq([answer,answer3,answer2]) }
+    it { handler.task_answers.to_a.should eq([answer,answer2,answer3]) }
   end
 
   describe "#input" do

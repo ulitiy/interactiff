@@ -44,7 +44,6 @@ prefork = -> {
     config.before(:each, :type=>:request) { create_domain }
     config.after(:each, :type=>:request) { destroy_domain }
     config.after { DatabaseCleaner.clean }
-
   end
 
   Capybara.configure do |config|
@@ -81,4 +80,3 @@ else
   prefork.call
   each_run.call
 end
-

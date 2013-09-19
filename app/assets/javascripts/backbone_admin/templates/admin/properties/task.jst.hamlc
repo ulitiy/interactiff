@@ -8,5 +8,9 @@
     %option(value="link")= I18n.t("admin.task.input_type.link")
     %option(value="none")= I18n.t("admin.task.input_type.none")
 .property
+  %label(for="variable")= I18n.t("admin.task.variable")
+  %input.html(type="button", value="html", data-for="variable")
+  %input#variable(type="text", data-value="model.variable")
+.property
   %label(for="show_wrong_answer")= I18n.t("admin.task.show_wrong_answer")
   %input#show_wrong_answer(type="checkbox", data-checked="model.show_wrong_answer")
