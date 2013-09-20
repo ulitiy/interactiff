@@ -98,7 +98,7 @@ class EventHandler
 
   # @return String last answer
   def last_answer
-    game.descendant_events.block_type("Answer").where(user_id: user.id).order_by(time: -1).first.input
+    game.descendant_events.block_type("Answer").where(user_id: user.id).order_by(time: -1).first.try(:input)
   end
 
   # @return [Array] tasks given, but not passed

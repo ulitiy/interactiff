@@ -16,7 +16,7 @@ class Task < Block
 
   # sets variable from the expression
   def set_variable
-    self.variable=Variable.find_or_create_by game: game, name: expression if expression.present?
+    self.variable=expression.present? ? Variable.find_or_create_by(game: game, name: expression) : nil
   end
 
   def load_rooms options

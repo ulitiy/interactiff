@@ -13,7 +13,7 @@
       .property
         %label(for="container_source")= I18n.t("admin.block.container_source")
         %input#container_source(type="checkbox", data-checked="model.container_source")
-  -if !@task?() && @modelName!="clock" && @modelName!="game_started" && @modelName!="message"
+  -if !@task?() && @modelName!="clock" && @modelName!="game_started" && @modelName!="message" && @modelName!="game"
     .property
       %label(for="scope")= I18n.t("admin.block.scope.label")
       %select(id="scope", data-value="model.scope")

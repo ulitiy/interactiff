@@ -67,7 +67,7 @@
       hint: "Task or location. Container block. May be given to user and finished. Double click to look inside."
       show_wrong_answer: "Show 'Answer is incorrect'"
       new_answer: "Add"
-      variable: "Assign"
+      expression: "Assign to var"
       input_type:
         label: "Input type"
         text: "Text"
