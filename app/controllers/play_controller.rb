@@ -17,22 +17,28 @@ class PlayController < ApplicationController
 # В сабмите если нет - гость (+урл)
 # В гейме и шоу – не создавать, выдавать 4all
 
+
+#TODO: ПЕРЕПИСАТЬ!!!
   def use_url_session?
     params[:ust].present?
   end
 
   # get play user
   def user
-    @user||=use_url_session? ? url_session_user : current_user_or_guest
+    @user||=use_url_session? ? get_url_session_user : current_user_or_guest
   end
 
   # get play user or set if necessary
-  def set_user
-    @user||=use_url_session? ? url_session_user : current_user_with_guest
+  def get_or_create_user
+    @user||=use_url_session? ? get_or_create_url_session_user : current_user_with_guest
   end
 
-  def url_session_user
+  def get_url_session_user
     Guest.get_by_token(params[:ust])
+  end
+
+  def get_or_create_url_session_user
+    Guest.get_or_create_by_token(params[:ust])
   end
 
   def url_options
@@ -82,7 +88,7 @@ class PlayController < ApplicationController
     @task=Task.find(params[:task_id])
     @game=@task.game
     authorize! :play, @game
-    @handler=EventHandler.new(user: set_user, game: @game, task: @task)
+    @handler=EventHandler.new(user: get_or_create_user, game: @game, task: @task)
     @user.save!(:validate => false) if use_url_session?
     CriticalSection.synchronize @game.id do
       begin

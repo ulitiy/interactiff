@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user
-    User.where(id: session[:guest_user_id]).first
+    @guest_user||=User.where(id: session[:guest_user_id]).first
   end
 
   private
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   def create_guest
     request.session_options[:expire_after] = 1.month
     u = Guest.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-    u.skip_confirmation!
+    # u.skip_confirmation! # перенес в фильтр
     u.save(:validate => false)
     session[:guest_user_id]=u.id
     u
@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_or_guest
     if current_user_without_guest
-      if session[:guest_user_id]
+      if guest_user
         logging_in
         guest_user.destroy
         session[:guest_user_id] = nil

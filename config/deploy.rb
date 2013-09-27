@@ -72,6 +72,8 @@ require 'bundler/capistrano'
 require 'capistrano-unicorn'
 require "whenever/capistrano"
 
+set :keep_releases, 3
+# after "deploy:update", "deploy:cleanup"
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
