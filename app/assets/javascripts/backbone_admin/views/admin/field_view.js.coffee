@@ -142,6 +142,8 @@ class Joygen.Views.Admin.FieldView extends Backbone.View
       @addRelations()
       @addElements()
       @$el.show()
+    @$el.scrollTop(0)
+    @$el.scrollLeft(0)
 
 $("html").click ->
   selectedSourceView?.hideForm()
