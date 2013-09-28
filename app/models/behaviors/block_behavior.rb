@@ -62,7 +62,7 @@ module BlockBehavior
       source_id: options[:source_id] || (options[:source]||event).id,
       responsible_user: nil,
       reason: nil,
-      input: nil
+      # input: nil
     ))
   end
 

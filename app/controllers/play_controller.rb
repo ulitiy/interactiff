@@ -94,8 +94,12 @@ class PlayController < ApplicationController
       begin
         @fired_events=@handler.input(params[:input]).to_a
       rescue Exception => e
-        render :nothing => true, :status => 500
-        return
+        if Rails.env.development?
+          raise e
+        else
+          render :nothing => true, :status => 500
+          return
+        end
       end
       set_flash
     end

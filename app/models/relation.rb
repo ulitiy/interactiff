@@ -38,7 +38,7 @@ class Relation
   def backtrack
     from.events.each do |event|
       attrs=event.attributes.symbolize_keys
-      to.hit attrs.merge(user: User.where(id: attrs[:user_id]).first,parent: event,source_id: event.source_id||event.id, input: nil, reason: nil)
+      to.hit attrs.merge(user: User.where(id: attrs[:user_id]).first,parent: event,source_id: event.source_id||event.id, reason: nil) #, input: nil
     end
   end
 

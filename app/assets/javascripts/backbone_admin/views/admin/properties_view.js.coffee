@@ -26,7 +26,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
         @model.view.addSource @tp
         @model.view.tpSourceView.addRelations()
       else
-        @model.view.tpSourceView.delete()
+        @model.view.tpSourceView?.delete()
 
   draw: (newmodel)=>
     @model=newmodel
