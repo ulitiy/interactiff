@@ -6,7 +6,7 @@ module WithVars
       class_eval <<-METHODS
         def #{attribute}_with_vars options
           eb=EvalBlock.new
-          #{attribute}.gsub /{{.*?}}/ do |part|
+          trusted_#{attribute}.gsub /{{.*?}}/ do |part|
             part=part.scan(/{{(.*?)}}/)[0][0]
             eb.calculate_value(part,options).to_s
           end

@@ -7,6 +7,7 @@ class Game < Block
   field :category, type: String, default: "other"
   field :guest_access, type: Boolean, default: true
   field :example, type: Boolean, default: false
+  field :trusted, type: Boolean, default: false
   # field :use_url_session, type: Boolean, default: true
   enumerize :category, in: ["widgets", "education", "games", "other" ], default: "other"
   mount_uploader :cover, QuestCoverUploader

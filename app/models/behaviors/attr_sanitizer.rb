@@ -5,9 +5,15 @@ module AttrSanitizer
     def sanitize attribute
       class_eval <<-METHODS
         def #{attribute}_with_sanitize
-          Sanitize.clean(#{attribute}_without_sanitize, Sanitize::Config::RELAXED.merge(transformers: Sanitize::youtube_transformer))
+          Sanitize.clean(#{attribute}, Sanitize::Config::RELAXED.merge(transformers: Sanitize::youtube_transformer))
         end
-        alias_method_chain attribute.to_sym, :sanitize
+        #_without_sanitize
+        def trusted_#{attribute}
+          return #{attribute} if game.trusted
+          #{attribute}_with_sanitize
+        end
+
+        #alias_method_chain attribute.to_sym, :sanitize
       METHODS
     end
   end
