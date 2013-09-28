@@ -19,11 +19,15 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   save: =>
     @model.save({},{ success: (model)-> model.dirty=false }) if @model? && @model.dirty
+    if @hint?
+      @hint.save({},{ success: (model)-> model.dirty=false }) if @hint? && @hint.dirty
 
   draw: (newmodel)=>
     @model=newmodel
+    @hint=@model.taskGiven() if @model.taskGiven?
     @$el.html(@template(@model))
     @rivetsView=rivets.bind @$el, model: @model
+    rivets.bind $(".hint", @$el), model: @hint if @hint?
     @setTimePicker()
 
   setTimePicker: =>

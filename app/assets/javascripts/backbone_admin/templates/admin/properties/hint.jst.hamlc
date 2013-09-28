@@ -1,4 +1,4 @@
-.property
+.property.hint
   %label(for="body")= I18n.t("admin.hint.body")
   %input.html(type="button", value="html", data-for="body")
   %textarea(id="body", rows="10", data-value="model.body")

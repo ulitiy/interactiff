@@ -1,6 +1,7 @@
 .property
   %label(for="name")= I18n.t("admin.task.name")
   %input(id="name", type="text", data-value="model.name")
+!=JST["backbone_admin/templates/admin/properties/hint"](@taskGiven())
 .property
   %label(for="input_type")= I18n.t("admin.task.input_type.label")
   %select(id="input_type", data-value="model.input_type")

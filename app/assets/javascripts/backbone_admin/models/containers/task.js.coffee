@@ -9,6 +9,11 @@ class Joygen.Models.Task extends Joygen.Models.Block
   task: -> true
   tools: ['Hint', 'Answer', 'Message', 'Clock', 'Timer', 'AndBlock', 'OrBlock', "Setter", "Condition", "ElseBlock", "Checker", "RequestBlock", "RedirectBlock"]
   icon: "/assets/admin/icons/16/023.png"
+
+  taskGiven: ->
+    @tg||=_.find @children(), (child)=>
+      child.get("type")=="TaskGiven"
+
   save: (attributes, options) =>
     if @isNew()
       hash=

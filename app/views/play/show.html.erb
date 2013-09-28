@@ -62,7 +62,7 @@
               <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
                 <% next if hint.body.empty? %>
                 <dt class="span2"><%=raw(l(event.time,format: :dmy)+"<br/>") if event.time<Date.today %><%= l event.time, format: :hms %></dt>
-                <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: @user, handler: @handler).html_safe %></dd>
+                <dd class="span10"><%= raw hint.body_with_vars(game: @game, user: @user, handler: @handler) %></dd>
               <% end %>
               <% if @task.passed %>
                 <p><%=t('play.already_passed_task')%></p>
