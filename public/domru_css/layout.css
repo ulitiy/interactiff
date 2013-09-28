@@ -1,0 +1,6 @@
+@import url(fonts.css); /*Загружаем локальные шрифты*/
+
+h1 {color:#000000; text-align:right;}
+.window{position:relative;background-color:#fcdb00;background-image:url(noize.png);padding:30px;border-radius:0px;border:0px; background-image:url(../domru_img/bg_bottom.jpg); background-position:bottom right; background-repeat:no-repeat;}
+.window h2 {color:#000000}
+.container img {float:left; }
