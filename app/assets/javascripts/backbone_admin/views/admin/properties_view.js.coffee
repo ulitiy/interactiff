@@ -19,15 +19,23 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
 
   save: =>
     @model.save({},{ success: (model)-> model.dirty=false }) if @model? && @model.dirty
-    if @hint?
-      @hint.save({},{ success: (model)-> model.dirty=false }) if @hint? && @hint.dirty
+    @tg.save({},{ success: (model)-> model.dirty=false }) if @tg? && @tg.dirty
+    if @tp? && @tp.dirty
+      @tp.save({},{ success: (model)-> model.dirty=false })
+      if @tp.get("container_source")
+        @model.view.addSource @tp
+        @model.view.tpSourceView.addRelations()
+      else
+        @model.view.tpSourceView.delete()
 
   draw: (newmodel)=>
     @model=newmodel
-    @hint=@model.taskGiven() if @model.taskGiven?
+    @tg=@model.taskGiven() if @model.task?()
+    @tp=@model.taskPassed() if @model.task?()
     @$el.html(@template(@model))
     @rivetsView=rivets.bind @$el, model: @model
-    rivets.bind $(".hint", @$el), model: @hint if @hint?
+    rivets.bind $(".hint", @$el), model: @tg if @tg?
+    rivets.bind $(".tpSource", @$el), model: @tp if @tp?
     @setTimePicker()
 
   setTimePicker: =>
@@ -49,10 +57,11 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     @model=null
 
   render: =>
-    @hint=null
     @rivetsView?.unbind()
     window.editBlock=masterCollection.get(editId)
     @save() if @model!=editBlock || !editBlock?
+    @tg=null
+    @tp=null
     if editBlock? && editBlock!=rootBlock
       @draw(editBlock)
     else

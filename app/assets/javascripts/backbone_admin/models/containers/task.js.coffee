@@ -14,6 +14,10 @@ class Joygen.Models.Task extends Joygen.Models.Block
     @tg||=_.find @children(), (child)=>
       child.get("type")=="TaskGiven"
 
+  taskPassed: ->
+    @tp||=_.find @children(), (child)=>
+      child.get("type")=="TaskPassed"
+
   save: (attributes, options) =>
     if @isNew()
       hash=

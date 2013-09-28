@@ -125,6 +125,7 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
         model: block
         anchor: [1,(++i)/(arr.length+2),1,0]
       v.render()
+      @tpSourceView=v if block.modelName=="task_passed"
       sourceViews.push v
       v
 
@@ -149,16 +150,21 @@ class Joygen.Views.Admin.BlockView extends Backbone.View
       block=new Joygen.Models.Answer()
       block.set "parent_id": @model.id
       masterCollection.create(block)
-      v=new Joygen.Views.Admin.SourceView
-        blockView: this
-        model: block
-        anchor: [1,1,1,0]
-      v.render()
-      @sourceViews.push v
-      sourceViews.push v
-      @redraw()
+      v=@addSource(block)
       v.showForm()
       e.stopPropagation()
+
+  addSource: (block) =>
+    v=new Joygen.Views.Admin.SourceView
+      blockView: this
+      model: block
+      anchor: [1,1,1,0]
+    v.render()
+    @tpSourceView=v if block.modelName=="task_passed"
+    @sourceViews.push v
+    sourceViews.push v
+    @redraw()
+    v
 
   redraw: ()=>
     @setMinHeight()

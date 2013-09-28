@@ -68,6 +68,7 @@
       show_wrong_answer: "Show 'Answer is incorrect'"
       new_answer: "Add"
       expression: "Assign to var"
+      tp_source: "Page leave point"
       input_type:
         label: "Input type"
         text: "Text"
@@ -88,8 +89,8 @@
     hint:
       tool: "Text"
       body: "Body"
-      new: "Task description"
-      hint: "Task description. Shows text when receives the signal."
+      new: "Page content"
+      hint: "Page content. Shows text when receives the signal."
     message:
       tool: "Message"
       message: "Message"
@@ -167,13 +168,13 @@
       hint: " Checkpoint. Activates if signal jumps to a checkpoint. See Jump to"
       name: "Name"
     task_given:
-      new: "Given"
-      tool: "Given"
-      hint: "Task is given. Activates if task is given. Shows task description."
+      new: "Show"
+      tool: "Show"
+      hint: "Page is shown. Activates if page is shown. Shows page description."
     task_passed:
-      new: "Accomplished"
-      tool: "Accomplished"
-      hint: "Task is Accomplished. Makes task accomplished when receives the signal."
+      new: "Exit"
+      tool: "Exit"
+      hint: "Page is closed. Makes page closed when receives the signal."
       message: "Task is accomplished! Next task:"
     game_started:
       new: "Started"

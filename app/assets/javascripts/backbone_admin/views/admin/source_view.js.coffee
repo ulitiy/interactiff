@@ -81,11 +81,14 @@ class Joygen.Views.Admin.SourceView extends Backbone.View
       @hideForm()
     @$el.find(".editForm .delete").click (e)=>
       return unless confirm(I18n.t("admin.links.sure"))
-      jsPlumb.deleteEndpoint(@endpoint)
       @model.destroy()
       window.selectedSourceView=undefined
-      @options.blockView.sourceViews=_.without(@options.blockView.sourceViews, this)
-      @options.blockView.redraw()
+      @delete()
+
+  delete: ->
+    jsPlumb.deleteEndpoint(@endpoint)
+    @options.blockView.sourceViews=_.without(@options.blockView.sourceViews, this)
+    @options.blockView.redraw()
 
   bindDragConnection: ->
     @endpoint.bind 'click', =>

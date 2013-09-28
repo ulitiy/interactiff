@@ -11,6 +11,9 @@
 .property
   %label(for="expression")= I18n.t("admin.task.expression")
   %input#expression(type="text", data-value="model.expression")
+.property.tpSource
+  %label(for="container_source")= I18n.t("admin.task.tp_source")
+  %input#container_source(type="checkbox", data-checked="model.container_source")
 .property
   %label(for="show_wrong_answer")= I18n.t("admin.task.show_wrong_answer")
   %input#show_wrong_answer(type="checkbox", data-checked="model.show_wrong_answer")
