@@ -49,6 +49,7 @@ class Joygen.Views.Admin.PropertiesView extends Backbone.View
     @model=null
 
   render: =>
+    @hint=null
     @rivetsView?.unbind()
     window.editBlock=masterCollection.get(editId)
     @save() if @model!=editBlock || !editBlock?
