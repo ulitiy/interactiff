@@ -4,6 +4,7 @@ class Task < Block
   field :show_wrong_answer, type: Boolean, default: true
   field :order, type: Integer, default: 1000
   field :expression, type: String, default: ""
+  field :pass_default, type: Boolean, default: true
 
   belongs_to :variable, class_name: "Variable", inverse_of: nil, index: true
 
@@ -34,7 +35,20 @@ class Task < Block
     children.where(_type: "TaskGiven").first
   end
 
+  def passed_block
+    children.where(_type: "TaskPassed").first
+  end
+
+  def answers
+    children.where(_type:"Answer").order_by(y:1,x:1)
+  end
+
   def get_redirect_event options
     descendant_events.of(options.merge(type: "RedirectBlock")).sort_by { |e| [e.time,e.id] }.last
   end
+
+  def input_default options
+    passed_block.hit(options).compact
+  end
+
 end

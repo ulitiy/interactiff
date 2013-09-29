@@ -18,6 +18,9 @@ class Joygen.Models.Task extends Joygen.Models.Block
     @tp||=_.find @children(), (child)=>
       child.get("type")=="TaskPassed"
 
+  showPassDefault: ->
+    @get("input_type")=="text"
+
   save: (attributes, options) =>
     if @isNew()
       hash=

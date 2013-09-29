@@ -69,6 +69,7 @@
       new_answer: "Add"
       expression: "Assign to var"
       tp_source: "Page leave point"
+      pass_default: "Finalize default"
       input_type:
         label: "Input type"
         text: "Text"

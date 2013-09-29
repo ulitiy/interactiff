@@ -8,6 +8,9 @@
     %option(value="text")= I18n.t("admin.task.input_type.text")
     %option(value="link")= I18n.t("admin.task.input_type.link")
     %option(value="none")= I18n.t("admin.task.input_type.none")
+.property(data-show="model:showPassDefault < .input_type")
+  %label(for="pass_default")= I18n.t("admin.task.pass_default")
+  %input#pass_default(type="checkbox", data-checked="model.pass_default")
 .property
   %label(for="expression")= I18n.t("admin.task.expression")
   %input#expression(type="text", data-value="model.expression")

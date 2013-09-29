@@ -41,18 +41,18 @@ class EventHandler
 
   # @return [Array] all task's answers ordered by y
   def task_answers
-    @task_answers||=task.children.where(_type:"Answer").order_by(y:1,x:1)
+    @task_answers||=task.answers
   end
 
   # hits the task's first by y right answer
   def input input
     if current_task?
-      task_answers.to_a.find { |answer| @events=answer.hit(options.merge(input: input)) }
+      options.merge!(input: input)
+      task_answers.to_a.find { |answer| @events=answer.hit(options) }
       return @events.compact if @events
+      @task.input_default(options) if @task.input_type=="text" && @task.pass_default
     end
   end
-
-
 
 
 

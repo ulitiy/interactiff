@@ -69,6 +69,7 @@ ru:
       new_answer: "Добавить"
       expression: "Присвоить переменной"
       tp_source: "Точка выхода из страницы"
+      pass_default: "Завершать по любому ответу"
       input_type:
         label: "Тип ввода"
         text: "Текст"
