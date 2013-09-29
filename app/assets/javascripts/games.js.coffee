@@ -24,3 +24,6 @@ $ ->
   $('[data-toggle="new-quest"]').live 'click', ->
     $(this).toggleClass 'active'
     $('#nq').toggleClass 'active'
+
+  #embed
+  $('textarea#embed').select()

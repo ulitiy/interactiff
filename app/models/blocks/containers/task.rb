@@ -10,7 +10,7 @@ class Task < Block
 
   has_many :descendants, class_name: 'Block', inverse_of: :task
   has_many :descendant_events, class_name: 'Event', inverse_of: :task
-  attr_accessible :name, :input_type, :show_wrong_answer, :order, :expression
+  attr_accessible :name, :input_type, :show_wrong_answer, :order, :expression, :pass_default
   attr_accessor :passed #event_handler.rb #88
   attr_accessor :visit_count, :tge, :tpe
   before_save :set_variable
