@@ -44,16 +44,20 @@ class ApplicationController < ActionController::Base
   # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
   # TODO: TEST ME
-  def logging_in
-    guest_user.events.each do |event|
-      event.update_attribute :user_id, current_user_without_guest.id
+  def logging_in u=nil
+    if guest_user
+      guest_user.events.each do |event|
+        event.update_attribute :user_id, (current_user_without_guest || u).id
+      end
+      guest_user.destroy
+      @guest_user=nil
+      session[:guest_user_id] = nil
     end
   end
 
   def create_guest
     request.session_options[:expire_after] = 1.month
     u = Guest.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-    # u.skip_confirmation! # перенес в фильтр
     u.save(:validate => false)
     session[:guest_user_id]=u.id
     u
@@ -73,11 +77,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_or_guest
     if current_user_without_guest
-      if guest_user
-        logging_in
-        guest_user.destroy
-        session[:guest_user_id] = nil
-      end
+      logging_in
       current_user_without_guest
     else
       guest_user

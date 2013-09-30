@@ -38,7 +38,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.email = mail
       user.skip_confirmation!
       user.save(validate: false)
-      logging_in
+      logging_in user
     else
       if !user.confirmed?
         user.encrypted_password = ''
