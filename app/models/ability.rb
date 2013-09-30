@@ -22,6 +22,7 @@ class Ability
     end
     can :play, Game, guest_access: true
     can :show, Game, example: true
+    can :timeline, Game, example: true
 
     #later - better
     user.engine_roles.each { |role| apply_role role }
