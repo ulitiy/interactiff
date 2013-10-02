@@ -58,10 +58,12 @@ class Joygen.Views.Admin.MasterView extends Backbone.View
 
   setLoadOverlay: ->
     setTimeout ->
-        loadingOverlay.show()
-        reloadView.$el.addClass("thinking")
-      , 0
+      loadingOverlay.show()
+      reloadView.$el.addClass("thinking")
+    , 0
 
   unsetLoadOverlay: ->
-    loadingOverlay.hide()
-    reloadView.$el.removeClass("thinking")
+    setTimeout ->
+      loadingOverlay.hide()
+      reloadView.$el.removeClass("thinking")
+    , 1

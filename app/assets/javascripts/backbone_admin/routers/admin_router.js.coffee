@@ -33,8 +33,8 @@ class Joygen.Routers.AdminRouter extends Backbone.Router
     if @oldId!=parentId
       fieldView.id=parentId
       if masterView.needLoad(parentId)
-        masterView.loadCollection(parentId)
         masterView.setLoadOverlay()
+        masterView.loadCollection(parentId)
       else
         masterView.renderViews()
       @oldId=parentId
