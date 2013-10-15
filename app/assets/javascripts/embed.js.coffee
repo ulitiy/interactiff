@@ -1,2 +1,2 @@
-document.write "<iframe src=\"https://#{window.interactiff_domain}/play/#{window.interactiff_id}?ust=embed\" height=\"#{window.interactiff_width}\" width=\"#{window.interactiff_width}\" frameBorder=\"0\" allowtransparency=\"true\"></iframe>"
+document.write "<iframe src=\"https://#{window.interactiff_domain}/play/#{window.interactiff_id}?ust=embed\" height=\"#{window.interactiff_height}\" width=\"#{window.interactiff_width}\" frameBorder=\"0\" allowtransparency=\"true\"></iframe>"
 # м.б. расцветка пусть будет здесь?
