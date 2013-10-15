@@ -2,15 +2,15 @@
   %label(for="body")= I18n.t("admin.answer.body")
   %input.html(type="button", value="html", data-for="body")
   %input#body(type="text", data-value="model.body")
-/ .property
-/   %label(for="reusable")= I18n.t("admin.answer.reusable.label")
-/   %select(id="reusable", data-value="model.reusable")
-/     %option(value="for_all")= I18n.t("admin.answer.reusable.for_all")
-/     %option(value="for_other")= I18n.t("admin.answer.reusable.for_other")
-/     %option(value="no")= I18n.t("admin.answer.reusable.not_reusable")
-/ .property(data-show="model:show_spelling_matters < .reusable")
-/   %label(for="spelling_matters")= I18n.t("admin.answer.spelling_matters")
-/   %input#spelling_matters(type="checkbox", data-checked="model.spelling_matters")
+.property
+  %label(for="reusable")= I18n.t("admin.answer.reusable.label")
+  %select(id="reusable", data-value="model.reusable")
+    %option(value="for_all")= I18n.t("admin.answer.reusable.for_all")
+    %option(value="for_other")= I18n.t("admin.answer.reusable.for_other")
+    %option(value="no")= I18n.t("admin.answer.reusable.not_reusable")
+.property(data-show="model:show_spelling_matters < .reusable")
+  %label(for="spelling_matters")= I18n.t("admin.answer.spelling_matters")
+  %input#spelling_matters(type="checkbox", data-checked="model.spelling_matters")
 %hr
 !=JST["backbone_admin/templates/admin/properties/message"](this)
 .property

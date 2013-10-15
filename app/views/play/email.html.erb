@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <% if flash[:messages] %>
+    <% for message in flash[:messages] %>
+      <% next if message[:message].empty? %>
+      <div class="alert alert-danger %>">
+        <%= message[:message] %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= form_tag play_submit_path(task_id: @task.id) do %>
+      <% @handler.hints_given.zip(@handler.hint_events).each do |hint,event| %>
+        <% next if hint.body.empty? %>
+        <div><%= raw hint.body_with_vars(game: @game, user: current_user, handler: @handler) %></div>
+      <% end %>
+      <div style="margin:10px">
+        <% if @task.input_type=="text" %>
+            <%= email_field_tag "input" %>
+        <% end %>
+      <% unless @task.input_type=="link" || @task.input_type=="none" %>
+        <button class="btn btn-success">Отправить</button>
+      </div>
+    <% end %>
+  <% end %>
+</body>
