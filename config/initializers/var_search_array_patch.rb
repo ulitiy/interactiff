@@ -1,6 +1,6 @@
 class Array
   def var?
-    self.count==3 && self[0]==:call && self[1]==nil
+    self.count==4 && self[0]==:call && self[1]==nil
   end
   def var_search
     return [self[2].to_s] if var?

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe "Admin module", :js=>true do
-
+  # include Warden::Test::Helpers
+  # Warden.test_mode!
   sleep_time=1
   let(:domain) { create :domain, name: "test domain"}
   let(:game) { create :game, name: "test game", parent: domain }
@@ -9,7 +10,7 @@ describe "Admin module", :js=>true do
   let(:answer) { create :answer, parent: task, body: "answer", x: 100, y: 0 }
   let(:hint) { create :hint, parent: task, x: 0, y: 0 }
 
-  before { login(create(:root_user)) }
+  # before { login_as(create(:root_user),scope: :user) }
 
   describe "router" do
 

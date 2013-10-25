@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Game < Block
   extend Enumerize
   field :cover, type: String, default: ""

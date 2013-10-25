@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '3.2.13'
 gem 'mysql2'
 group :assets do
@@ -12,7 +12,7 @@ group :assets do
   gem 'turbo-sprockets-rails3'
   gem 'mousetrap-rails'
   gem "therubyracer"
-  gem "less-rails"
+  gem "less-rails", '2.3.3'
   gem 'twitter-bootstrap-rails', '2.2.6'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
@@ -77,7 +77,6 @@ group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
-  gem "growl"
   gem 'database_cleaner'
   gem 'rb-fsevent'
   gem "selenium-webdriver"

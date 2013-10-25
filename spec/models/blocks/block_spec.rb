@@ -92,9 +92,9 @@ describe Block do
 
 
 
-  let(:team1) { create :team }
-  let(:user1) { create :user, team: team1, member_of_games: [game] }
-  let(:user12) { create :user, team: team1, member_of_games: [game] }
+  let!(:team1) { create :team }
+  let!(:user1) { create :user, team: team1, member_of_games: [game] }
+  let!(:user12) { create :user, team: team1, member_of_games: [game] }
   let(:team2) { create :team }
   let(:user2) { create :user, team: team2, member_of_games: [game] }
   let(:user) { user1 }
@@ -136,14 +136,14 @@ describe Block do
 
   describe "#scope_users" do
     let(:block) { create :block, parent: game, scope: "for_one" }
-    before { [user1,user12,user2].each { |u| u.member_of_games<<game; }; game.reload }
+    before { [user1,user12,user2].each { |u| u.member_of_games<<game; }; game.reload;user1.reload;user12.reload }
     context "when for_all" do
       subject { block.scope_users scope: "for_all", user: user1 }
-      it { should eq([user1,user12,user2])}
+      it { should match_array [user1,user12,user2] }
     end
     context "when for_team" do
       subject { block.scope_users scope: "for_team", user: user1 }
-      it { should eq([user1,user12]) }
+      it { should match_array [user12,user1] }
     end
   end
 
@@ -216,7 +216,7 @@ describe Block do
         before do
           [user1,user12,user2].each { |u| u.member_of_games<<game; }
           game.reload
-          block2.stub!(:personal).and_return(true)
+          block2.stub(:personal).and_return(true)
           block1.fire(user: user)
         end
 

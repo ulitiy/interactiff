@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class EvalBlock < Block
 
   field :exception, type: String, default: nil

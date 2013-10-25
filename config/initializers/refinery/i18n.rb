@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module RoutingFilter
   class RefineryLocales #переопределение из-за дефолтной локали
 

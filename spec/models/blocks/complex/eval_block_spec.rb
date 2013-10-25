@@ -1,4 +1,3 @@
-# encoding: UTF-8
 describe EvalBlock do
 
   let!(:user) { create :user }

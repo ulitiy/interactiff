@@ -1,4 +1,3 @@
-# encoding: utf-8
 class QuestCoverUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
