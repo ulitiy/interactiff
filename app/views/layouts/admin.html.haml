@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title=browser_title(yield(:head_title))
+    %title=yield(:head_title)
     = stylesheet_link_tag    "application"
     = stylesheet_link_tag    "admin"
     = yield :js

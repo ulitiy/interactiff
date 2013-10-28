@@ -1,12 +1,10 @@
 <head>
   <meta charset='<%= Rails.application.config.encoding %>' />
-  <title><%= browser_title(yield(:title)) %></title>
+  <title><%= yield(:title) %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= raw %(<meta name="description" content="#{@meta.meta_description}" />) if @meta.meta_description.present? -%>
-  <%= raw %(<meta name="keywords" content="#{@meta.meta_keywords}">) if @meta.meta_keywords.present? -%>
   <%= raw %(<link rel="canonical" content="#{@canonical}" />) if @canonical.present? -%>
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= csrf_meta_tags if Refinery::Core.authenticity_token_on_frontend -%>
+  <%= csrf_meta_tags -%>
   <%= yield :meta %>
   <link rel="alternate" hreflang="x-default" href="<%=rlink.url_for skip_locale: true, locale: nil%>" />
   <link rel="alternate" hreflang="ru" href="<%=rlink.url_for locale: :ru%>" />
@@ -14,8 +12,6 @@
 
   <%= stylesheet_link_tag "application" %>
   <%= yield :stylesheets %>
-  <%= render '/refinery/javascripts' %>
 
-  <%= render '/refinery/google_analytics' %>
   <script type="text/javascript">locale="<%= params[:locale] %>";</script>
 </head>

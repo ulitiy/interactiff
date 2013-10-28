@@ -1,7 +1,9 @@
 source 'http://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.15'
 gem 'mysql2'
+gem 'locomotive_cms', :require => 'locomotive/engine', github: "ulitiy/engine"
+gem 'custom_fields', github: "ulitiy/custom_fields"
 group :assets do
   gem 'sass-rails', ">= 3.2.5"
   gem 'coffee-rails', ">= 3.2.2"
@@ -9,7 +11,7 @@ group :assets do
   gem 'haml_coffee_assets'
   gem 'execjs'
   gem 'compass-rails'
-  gem 'turbo-sprockets-rails3'
+  # gem 'turbo-sprockets-rails3'
   gem 'mousetrap-rails'
   gem "therubyracer"
   gem "less-rails", '2.3.3'
@@ -25,7 +27,7 @@ gem 'sprockets', '>= 2.0'
 gem "mongoid"
 gem 'delayed_job_mongoid'
 gem 'daemons' #dj
-gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
+# gem "delayed_job_web", git: "https://github.com/izzm/delayed_job_web.git"
 gem 'devise'
 gem 'cancan'
 gem 'russian'
@@ -43,20 +45,12 @@ gem 'simple_form'
 gem "rmagick"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
-gem 'refinerycms-dashboard', '~> 2.0.0'
-gem 'refinerycms-images', '~> 2.0.0'
-gem 'refinerycms-pages', '~> 2.0.0'
-gem 'refinerycms-resources', '~> 2.0.0'
-gem 'refinerycms-i18n', '~> 2.0.0'
-gem "refinerycms-news", '~> 2.0.0'
-gem 'refinerycms-page-images', '~> 2.0.0'
-gem 'refinerycms-copywriting'
-
 gem 'i18n-js', github: "fnando/i18n-js"
 gem 'jbuilder'
 gem "rspec-rails", :group=> [:test, :development]
 gem 'yard'
 gem 'whenever', :require => false
+gem 'routing-filter'
 
 gem 'shikashi'
 gem 'sanitize'

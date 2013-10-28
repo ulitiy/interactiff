@@ -1,4 +1,6 @@
 Interactiff::Application.routes.draw do
+  mount Locomotive::Engine => '/locomotive', as: 'locomotive' # you can change the value of the path, by default set to "/locomotive"
+
   filter :refinery_like_locales
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "login" }, :controllers => {registrations: "registrations", omniauth_callbacks: "omniauth_callbacks"}
@@ -29,6 +31,4 @@ Interactiff::Application.routes.draw do
   match "/blocks/:id/master" => "blocks#master"
 
   match "/aeroflot" => redirect("/ru/play/512cbdf17423384b06000019")
-  match "/delayed_job" => DelayedJobWeb, :anchor => false
-  mount Refinery::Core::Engine, :at => '/'
 end

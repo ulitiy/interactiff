@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= ::I18n.locale %>">
-  <% site_bar = render('/refinery/site_bar', :head => true) -%>
   <%= render '/refinery/head' %>
   <body class="<%= yield :body_class %>">
-    <%= site_bar -%>
     <div class="allwrap">
       <div class="blue-wrap header">
         <div class="container">

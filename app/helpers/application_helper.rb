@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def rlink
-    controller.class.name=~/Refinery/ ? refinery : self
+    controller.class.name=~/Locomotive/ ? locomotive : self
   end
 
   def nav_link(link_text, link_path)
@@ -44,6 +44,10 @@ module ApplicationHelper
     else
       url_string == "/#{I18n.locale}#{request_uri}"
     end
+  end
+
+  def locomotive_page_path path
+    "#{I18n.locale}/#{path}"
   end
 
 end

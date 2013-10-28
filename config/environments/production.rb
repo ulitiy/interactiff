@@ -1,3 +1,4 @@
+require "uglifier"
 Interactiff::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -13,6 +14,8 @@ Interactiff::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
+
+  config.assets.js_compressor = Uglifier.new(output: {ascii_only: true})
 
   #config.assets.js_compressor  = :uglifier
 

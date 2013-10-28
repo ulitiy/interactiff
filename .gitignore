@@ -9,5 +9,6 @@ config/settings.yml
 .ruby-version
 public/uploads
 public/system
+public/sites
 .dropbox
 Icon

@@ -1,12 +1,12 @@
 <!-- NAVIGATION-BAR -->
 <div class="navigation-bar">
   <ul class="navigation-list">
-    <li><%= link_to t('header.home'), refinery.root_path %></li>
+    <li><%= link_to t('header.home'), root_path %></li>
     <li><%= link_to t("games.index"), games_path %></li>
   </ul>
 
   <ul class="navigation-list nl-right">
-    <li class="premium-btn"><%= link_to refinery.marketable_page_path(path: "premium") do %>
+    <li class="premium-btn"><%= link_to locomotive_page_path "premium" do %>
     <%= image_tag "btn_premium.png" %>
     <span class="premium-label"><%= t('header.premium') %></span>
     <% end %>

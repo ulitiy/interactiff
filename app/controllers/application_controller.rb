@@ -87,17 +87,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_or_guest
 
   rescue_from CanCan::AccessDenied do |exception|
-    if user_signed_in?# && !current_user.is_a?(Guest)
+    if user_signed_in?
       flash[:notice] = t("cancan.exceptions.denied")
-      redirect_to refinery.root_url
+      redirect_to root_url
     else
       authenticate_user!
     end
-  end
-
-
-  def refinery_user_required?
-    false
   end
 
   def after_sign_in_path_for(resource)
