@@ -3,7 +3,6 @@ log/*.log
 tmp/
 .sass-cache/
 *.DS_Store
-config/initializers/secret_token.rb
 config/database.yml
 config/settings.yml
 .ruby-version

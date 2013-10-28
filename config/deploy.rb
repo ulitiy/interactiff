@@ -11,7 +11,7 @@ set :scm, "git"
 set :branch, "master"
 set :use_sudo, false
 set :deploy_via, :remote_cache #уменьшает количество телодвижений на сервере при деплое
-set :shared_children, shared_children + %w{public/uploads}
+set :shared_children, shared_children + %w{public/uploads public/sites}
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH",
   'LANG' => 'ru_RU.UTF-8'
@@ -61,7 +61,6 @@ end
 
 namespace :deploy do
   task :custom_symlink, roles: :app do
-    run "ln -fs #{shared_path}/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
     run "ln -fs #{shared_path}/database.yml #{release_path}/config/database.yml"
     run "ln -fs #{shared_path}/settings.yml #{release_path}/config/settings.yml"
     # run "cd #{release_path} && ln -fs `bundle show delayed_job_web`/lib/delayed_job_web/application/public public/delayed_job"
