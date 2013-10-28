@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '3.2.15'
 gem 'mysql2'
-gem 'locomotive_cms', :require => 'locomotive/engine', github: "ulitiy/engine"
+gem 'locomotive_cms', :require => 'locomotive/engine', github: "locomotivecms/engine"
 gem 'custom_fields', github: "ulitiy/custom_fields"
 group :assets do
   gem 'sass-rails', ">= 3.2.5"
