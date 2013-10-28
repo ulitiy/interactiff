@@ -31,7 +31,7 @@ class Game < Block
     c=copy
     c.cloning=true
     c.updated_at=c.created_at=Time.now
-    c.name+=I18n.t("games.copy")
+    c.name+=::I18n.t("games.copy")
     c.example=false
     c.save validate: false
 
@@ -52,9 +52,9 @@ class Game < Block
   end
 
   def new_game
-    self.name=I18n.t("admin.game.new") if name.blank?
-    ft=Task.create! parent: self, x:50, y: 50, name: I18n.t("admin.first_task.new"), order: 0
-    gs=TaskGiven.create! parent: ft, x: 50, y: 50, container_target: true, body: I18n.t("admin.task_given.new"), title: I18n.t("admin.task_given.new")
+    self.name=::I18n.t("admin.game.new") if name.blank?
+    ft=Task.create! parent: self, x:50, y: 50, name: ::I18n.t("admin.first_task.new"), order: 0
+    gs=TaskGiven.create! parent: ft, x: 50, y: 50, container_target: true, body: ::I18n.t("admin.task_given.new"), title: ::I18n.t("admin.task_given.new")
     tp1=TaskPassed.create! parent: ft, x: 800, y: 600
   end
 
