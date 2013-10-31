@@ -3,7 +3,7 @@ module EmbedHelper
   def embed_code game_id
 <<STR
 <script type="text/javascript">
-interactiff_domain = "interactiff.net"
+interactiff_domain = "interactiff.net";
 interactiff_id = "#{game_id}";
 interactiff_width = 600;
 interactiff_height = 600;

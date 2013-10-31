@@ -18,7 +18,9 @@
       <div class="zakrivashka"></div>
       <ul class="teamnames">
         <% for obj in @timeline %>
-          <li><%= obj[:user].email %></li>
+          <li><%= var=Variable.where(game: @game.id, name: "phone").first
+
+          var ? var.value(user: obj[:user]) : obj[:user].email %></li>
         <% end %>
       </ul>
       <!-- одинаковые задания - одинаковый цвет. Проще через код, чем через стили -->
