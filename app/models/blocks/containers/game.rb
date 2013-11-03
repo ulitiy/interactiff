@@ -11,6 +11,7 @@ class Game < Block
   enumerize :category, in: ["widgets", "education", "games", "other" ], default: "other"
   mount_uploader :cover, QuestCoverUploader
 
+  has_many :tables, dependent: :destroy
   has_many :descendants, class_name: 'Block', inverse_of: :game
   has_many :game_relations, class_name: 'Relation', inverse_of: :game
   has_many :descendant_events, class_name: 'Event', inverse_of: :game
@@ -25,6 +26,10 @@ class Game < Block
   before_validation :new_game, on: :create
   after_create :start
   skip_callback :create, :after, :start, if: -> { @cloning }
+
+  def table table_name
+    tables.find_or_create_by name: table_name
+  end
 
   def deep_clone options={}
     @mapping=options[:mapping] || {}

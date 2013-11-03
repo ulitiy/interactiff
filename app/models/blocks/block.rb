@@ -24,7 +24,7 @@ class Block
 
   # has_many :inputs, class_name: "Input", inverse_of: :parent
   # has_many :outputs, class_name: "Output", inverse_of: :parent
-  has_many :events, class_name: 'Event', inverse_of: :block, dependent: :destroy
+  has_many :events, class_name: 'Event', inverse_of: :block#, dependent: :destroy # because of vars
   has_many :roles, dependent: :destroy
 
   attr_accessible :x,:y,:title,:parent,:parent_id,:container_source, :container_target, :scope

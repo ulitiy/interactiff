@@ -26,9 +26,10 @@ Interactiff::Application.routes.draw do
     :answers, :hints, :messages, :timers, :clocks,
     :task_givens, :task_passeds, :game_starteds, :game_passeds, :checkpoints, :jumps,
     :and_blocks, :or_blocks,
-    :conditions, :checkers, :setters, :else_blocks, :distributors, :request_blocks, :redirect_blocks,
+    :conditions, :checkers, :setters, :else_blocks, :add_row_blocks,
+    :distributors, :request_blocks, :redirect_blocks,
     :path=>"/blocks"
   match "/blocks/:id/master" => "blocks#master"
 
-  match "/aeroflot" => redirect("/ru/play/512cbdf17423384b06000019")
+  match "/aeroflot" => redirect("/ru/play/512cbdf17423384b06000019?ust=embed")
 end

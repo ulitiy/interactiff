@@ -15,6 +15,7 @@ class Event
   belongs_to :team, index: true
 
   belongs_to :variable, index: true
+  belongs_to :row, index: true
   belongs_to :block , class_name: "Block", inverse_of: :events
   belongs_to :game  , class_name: "Game" , inverse_of: :descendant_events
   belongs_to :task  , class_name: "Task" , inverse_of: :descendant_events
@@ -25,7 +26,7 @@ class Event
   belongs_to :responsible_user, class_name: "User", inverse_of: nil
   field      :reason, type: String
 
-  attr_accessible :input, :time, :user, :block, :parent, :source, :block_id, :source_id, :parent_id, :user_id, :responsible_user, :reason,
+  attr_accessible :input, :time, :user, :block, :parent, :source, :block_id, :source_id, :parent_id, :user_id, :row, :row_id, :responsible_user, :reason,
                   :scope, :team, :variable, :variable_id, :var_value, :visit_count
 
   has_many :children, class_name: "Event", inverse_of: :parent

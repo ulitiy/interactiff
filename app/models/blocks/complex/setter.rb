@@ -9,7 +9,7 @@ class Setter < EvalBlock
   # sets variable from the expression
   def set_variable
     var_name=EvalBlock.lasgn(expression)
-    self.variable=var_name ? Variable.find_or_create_by(game: game, name: var_name) : nil
+    self.variable=var_name.present? ? Variable.find_or_create_by(game: game, name: var_name) : nil
   end
 
   # creates an event with variable value

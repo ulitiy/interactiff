@@ -7,7 +7,7 @@ class Joygen.Models.Task extends Joygen.Models.Block
     )
   container: -> true
   task: -> true
-  tools: ['Hint', 'Answer', 'Message', 'Clock', 'Timer', 'AndBlock', 'OrBlock', "Setter", "Condition", "ElseBlock", "Checker", "RequestBlock", "RedirectBlock"]
+  tools: ['Hint', 'Answer', 'Message', 'Clock', 'Timer', 'AndBlock', 'OrBlock', "Setter", "Condition", "ElseBlock", "Checker", "AddRowBlock", "RequestBlock", "RedirectBlock"]
   icon: "/assets/admin/icons/16/023.png"
 
   taskGiven: ->

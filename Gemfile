@@ -54,6 +54,7 @@ gem 'routing-filter'
 
 gem 'shikashi'
 gem 'sanitize'
+gem 'google_drive'
 gem "airbrake"
 
 group :development do

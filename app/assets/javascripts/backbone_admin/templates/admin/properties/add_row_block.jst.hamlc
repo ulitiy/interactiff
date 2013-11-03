@@ -1,0 +1,9 @@
+.property
+  %label(for="table_name")= I18n.t("admin.add_row_block.table_name")
+  %input(id="table_name", type="text", data-value="model.table_name")
+.property
+  %label(for="expression")= I18n.t("admin.add_row_block.expression")
+  %input(id="expression", type="text", data-value="model.expression")
+.property
+  %label(for="url")= I18n.t("admin.add_row_block.url")
+  %input(id="url", type="text", data-value="model.url")

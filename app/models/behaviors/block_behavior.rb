@@ -112,7 +112,7 @@ module BlockBehavior
   # @return [Array] all blocks, to which relations go from this block (effect blocks)
   def out_blocks
     ids=out_relations.map &:to_id
-    Block.find(*ids).to_a.sort_by { |b| [b.task_id==task_id ? 0 : 1, b.y, b.x] } #to array if nil or one
+    Block.find(*ids).to_a.sort_by { |b| [(b.task_id==task_id && !b.is_a?(TaskGiven)) ? 0 : 1, b.y, b.x] } #beware of task-room loops
   end
 
   alias blocks_to_hit out_blocks

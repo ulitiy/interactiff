@@ -2,8 +2,8 @@ class EvalBlock < Block
 
   field :exception, type: String, default: nil
 
-  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand]
-  EVAL_TIMEOUT=0.5
+  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand,:now]
+  EVAL_TIMEOUT=1
 
   attr_accessor :vars
   attr_accessible :exception
@@ -48,6 +48,7 @@ class EvalBlock < Block
     p=Shikashi::Privileges.new
     p.allow_methods *ALLOWED_METHODS
     p.allow_const_read :Math
+    p.allow_const_read :Time
     p.allow_global_write :$SAFE
     p.allow_global_read :$SANDBOX_VARS
     $SANDBOX_VARS=@vars

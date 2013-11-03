@@ -116,6 +116,12 @@
       tool: "Assign"
       hint: "Assign. Assigns a value to a variable when receives the signal. (i.e. x=rand(12)-y*2)."
       expression: "Expression"
+    add_row_block:
+      tool: "Add to collection"
+      hint: "Add to collection. Adds the set of values to the collection when recieves the signal (i.e. {name: 'Vasya', age: age})."
+      expression: "Set of values"
+      table_name: "Collection name"
+      url: "Google spreadsheet URL"
     checker:
       tool: "Trigger"
       hint: "Trigger. Initiating block. Activates when a variable is changed and transmits the signal if expression is true. (i.e. x>=20)"

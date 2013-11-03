@@ -1,0 +1,85 @@
+* {
+margin:0;
+padding:0;
+}
+table {
+border-collapse:collapse;
+border-spacing:0;
+}
+
+html,body { height: 100%; }
+* html .main { height: 100%; }
+
+a img {
+border:0 none;
+}
+body {
+font: 100% Georgia, "Times New Roman", Times, serif; color: #b75743;
+background: #fff;
+}
+.clear {
+clear:both;
+font-size:0;
+height:0;
+overflow:hidden;
+}
+
+a { color: #b75743; text-decoration: underline; }
+a:hover { color: #2c2c2c; text-decoration: none; }
+p { font: 1em/1.2em Georgia, "Times New Roman", Times, serif; color: #b75743; margin-bottom: 10px; }
+
+#container { border: 4px solid #cc8866; border-radius: 12px; text-align: center; position: relative; width: 100%; background: #ffdcaf;
+    background: -moz-radial-gradient(center, cover, #ffdaab 60%, #ffedd5 100%);
+    background: -webkit-radial-gradient(center, cover, #ffdaab 60%, #ffedd5 100%);
+    background: -o-radial-gradient(center, cover, #ffdaab 60%, #ffedd5 100%);
+    background: -ms-radial-gradient(center, cover, #ffdaab 60%, #ffedd5 100%);
+    background: radial-gradient(center, cover, #ffdaab 60%, #ffedd5 100%);
+ }
+#container>div { padding: 10px 20px; }
+
+h1 { font: bold italic 1.6em/1.6em 'Open Sans', sans-serif; margin-bottom: 0px;  }
+.step { font: 0.9em/1.3em 'Open Sans', sans-serif; color: #b75743; }
+
+.choice { margin-bottom: 10px; }
+.choice li { list-style-type: none; float: left; width: 50%; text-align: center; margin-bottom: 10px; }
+.choice li a { display: block; border: 2px solid transparent; padding: 5px 10px; position: relative; }
+.choice li a span { font: 1em/1.2em Georgia, "Times New Roman", Times, serif; white-space: nowrap; }
+.choice li a .price { display: none; }
+.choice li a:hover { background: #cda57e; opacity: 0.9; border: 2px solid #fff; border-radius: 5px; }
+.choice li a:hover .price { display: block; color: #fff; position: absolute; top: 20px; left: 0px; font: bold italic 2em/1.2em Georgia, "Times New Roman", Times, serif; z-index: 1000; width: 100%; text-align: center; text-shadow: 2px 2px 1px #000; }
+.choice li img { width: 100%; }
+
+.pages { width: 100%; position: absolute; bottom: 15px; left: 0px; }
+.pages>div { width: 40%; margin: 0 auto; }
+.pages a { display: block; float: left; background: url(../images/icons.png) -23px -2px no-repeat; height: 18px; width: 18px; margin: 0px 2px; }
+.pages a.active { background: url(../images/icons.png) 0px -2px no-repeat; }
+
+.sizes { padding: 50px 0px 20px 0px; }
+.sizes a:hover { background: #fff; }
+.sizes a { text-decoration: none; font: 1em/1.2em Georgia, "Times New Roman", Times, serif; vertical-align: middle; }
+.small, .middle, .big { margin: 0px 5px; display: block; float: left;  }
+.sizes .small { width: 45px; height: 33px; border: 3px solid #fff; border-radius: 35px; margin-top: 13px; padding-top: 12px; }
+.sizes .middle { width: 65px; height: 46px; border: 3px solid #fff; border-radius: 42px; margin-top: 5px; padding-top: 19px; }
+.sizes .big { width: 80px; height: 55px; border: 3px solid #fff; border-radius: 50px; padding-top: 25px; }
+
+.price-sizes { font: italic 1.4em/1.6 Georgia, "Times New Roman", Times, serif; }
+.price-sizes span { font: bold italic 1.8em/1.2em Georgia, "Times New Roman", Times, serif; }
+
+form.adress { padding-top: 50px; }
+form.adress input[type=text] { border: 1px solid #cc8866; border-radius: 4px; height: 30px; display: block; width: 100%; margin-bottom: 10px; }
+.adress p { text-align: left; margin-bottom: 5px; }
+input[type=submit] { background: #d28d6b; color: #fff; border: 1px solid #ba7655; border-radius: 4px; padding: 5px 15px; font: bold 1em/1em Georgia, "Times New Roman", Times, serif; text-shadow: 1px 1px 1px #8a4726; }
+
+.dop { padding-top: 20px; }
+.dop li { list-style-type: none; padding-bottom: 13px; font: 1em/1.2em Georgia, "Times New Roman", Times, serif; }
+
+.dop li:last-child { margin-top: 20px; }
+
+.text { margin-top: 25px; }
+.text p span { display: block; font: 0.8em/1.2em Georgia, "Times New Roman", Times, serif;  }
+.text p { font: bold 1em/1.2em Georgia, "Times New Roman", Times, serif; margin-bottom: 15px; }
+
+
+.end { margin-top: 20px; }
+.end p { font: 1.2em/1em Georgia, "Times New Roman", Times, serif; margin: 10px 0px; }
+.end .again { position: absolute; bottom: 15px; width: 100%; text-align: center; left: 0px; }
