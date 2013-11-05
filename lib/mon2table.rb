@@ -1,6 +1,6 @@
 require "google_drive"
 class Mon2table
-  TYPE_CONVERSION=Hash.new("to_s").merge h={"Integer" => "to_i", "Float" => "to_f", "Boolean" => "to_bool"}
+  TYPE_CONVERSION=Hash.new("to_s").merge h={"Integer" => "to_i", "Float" => "to_f", "Boolean" => "to_bool", "Time" => "to_time", "String" => "to_s"}
 
   def initialize url: nil
     @url=url
@@ -49,6 +49,7 @@ class Mon2table
 
   def get_row_by_id id
     if @truncate
+      get_col name: "row_id"
       row=@worksheet.num_rows+1
     else
       id=id.to_s
@@ -66,8 +67,9 @@ class Mon2table
   end
 
   def get_value row: nil, name: nil
-    get_col name: name
-    @worksheet[row,col]
+    col=get_col name: name
+    return nil if @worksheet[row,col].empty?
+    @worksheet[row,col].send(@schema[name][:conv])
   end
 
   def get_col name: nil, value: nil
@@ -92,22 +94,23 @@ class Mon2table
     end
   end
 
-  def get_row_hash row: nil
+  def get_row_hash row
     h={}
-    @schema.each do |name|
-      h[:name]=get_value name: name, row: row
+    @schema.each do |name, _|
+      h[name]=get_value name: name, row: row
     end
     h
   end
 
-  def import_row key: [], row: nil
+  def import_row key: [:table_id,:row_id], row: nil
     hash=get_row_hash row
-    hash.merge @overwrite
+    hash.symbolize_keys!.merge! @overwrite
     keypairs=key.map do |k|
       [k,hash[k]]
     end
     m=@model.where(Hash[keypairs]).first || @model.new
     m.from_hash hash
+    m.import = true ##############
     m.save!
   end
 

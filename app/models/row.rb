@@ -6,12 +6,18 @@ class Row
   index table_id: 1, row_id: 1
 
   before_create :set_ids
-  after_create :add_to_gs_delayed
+  after_create :export_delayed
+  skip_callback :create, :after, :export_delayed, if: -> { @import }
+
+  attr_accessor :import
 
   def from_hash hash
-    hash.symbolize_keys!.except!(:_id, :id, :table_id, :game_id)
     hash.each do |key, value|
-      self[key]=value
+      if value
+        self[key]=value
+      else
+        remove_attribute key
+      end
     end
   end
 
@@ -19,11 +25,11 @@ class Row
     self.row_id||=Moped::BSON::ObjectId.new
   end
 
-  def add_to_gs_delayed
-    self.delay(queue: "gs").add_to_gs
+  def export_delayed
+    self.delay(queue: "gs").export
   end
 
-  def add_to_gs
+  def export
     m=Mon2table.new url: table.url
     m.export [self]
   end
