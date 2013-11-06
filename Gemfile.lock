@@ -6,8 +6,18 @@ GIT
       i18n
 
 GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 235021d4be1b792c09e91aefdc59aefd14986e09
+  specs:
+    custom_fields (2.3.1)
+      activesupport (~> 3.2.13)
+      carrierwave-mongoid (~> 0.6.0)
+      money (~> 5.0)
+      mongoid (~> 3.1.5)
+
+GIT
   remote: git://github.com/locomotivecms/engine.git
-  revision: b7d0524c2df09a33f0860b034ec4804a6abbf14e
+  revision: 954b473c80b0fad3382791b1c758d4331807fe9a
   specs:
     locomotive_cms (2.3.0)
       RedCloth (~> 4.2.8)
@@ -45,16 +55,6 @@ GIT
       responders (~> 0.9.2)
       sanitize (= 2.0.3)
       stringex (~> 2.0.3)
-
-GIT
-  remote: git://github.com/ulitiy/custom_fields.git
-  revision: 8d803eec6cf7239bbc3603fd8b71e9d77196175e
-  specs:
-    custom_fields (2.3.1)
-      activesupport (~> 3.2.13)
-      carrierwave-mongoid (~> 0.6.0)
-      money (~> 5.0)
-      mongoid (~> 3.1.5)
 
 GEM
   remote: http://rubygems.org/
@@ -184,14 +184,14 @@ GEM
     eventmachine (1.0.3)
     excon (0.23.0)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.3.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    ffi (1.9.1)
+    ffi (1.9.3)
     flash_cookie_session (1.1.5)
       rails (>= 3.0)
     fog (1.12.1)
@@ -213,7 +213,7 @@ GEM
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
-    guard (2.2.2)
+    guard (2.2.3)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
@@ -222,7 +222,7 @@ GEM
     guard-rspec (4.0.3)
       guard (>= 2.1.1)
       rspec (~> 2.14)
-    haml (4.0.3)
+    haml (4.0.4)
       tilt
     haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
@@ -269,7 +269,7 @@ GEM
       actionpack (>= 3.1)
       less (~> 2.3.1)
     libv8 (3.11.8.17)
-    listen (2.1.1)
+    listen (2.2.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -409,7 +409,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.6)
+    rspec-core (2.14.7)
     rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
@@ -458,9 +458,9 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
-    thin (1.5.1)
+    thin (1.6.1)
       daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
+      eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
@@ -478,7 +478,7 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.6.3)
+    unicorn (4.7.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -493,7 +493,7 @@ GEM
       chronic (>= 0.6.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yard (0.8.7.2)
+    yard (0.8.7.3)
     zeus (0.13.3)
       method_source (>= 0.6.7)
 
