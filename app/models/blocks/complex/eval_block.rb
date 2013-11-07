@@ -2,7 +2,8 @@ class EvalBlock < Block
 
   field :exception, type: String, default: nil
 
-  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand,:now,:=~,:!~]
+  ALLOWED_METHODS=[:[],:+,:-,:*,:/,:%,:==,:>=,:>,:<,:<=,:===,:!=,:to_a,:to_s,:to_i,:to_f,:sqrt,:rand,:now,:=~,:!~,
+                    :each,:map,:reduce,:count,:find,:find_all,:sort,:sort_by,:min,:min_by,:max,:max_by,:select,:first,:last]
   EVAL_TIMEOUT=1
 
   attr_accessor :vars

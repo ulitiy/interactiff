@@ -16,11 +16,6 @@ describe EvalBlock do
     it { should eq(["var1","var2"]) }
   end
 
-  # describe "#replace_vars" do
-  #   subject { eb.replace_vars "var1+var1*var2.var22" }
-  #   it { should eq("@vars['var1']+@vars['var1']*@vars['var2'].var22") }
-  # end
-
   describe "#def_vars" do
     subject { eb.def_vars %w[var1 var2] }
     before { eb.vars={var1: 5, var2: 'qwer'} }
@@ -50,6 +45,7 @@ describe EvalBlock do
       before { Event.create user: user, block: answer, variable: var1, input: "ans" }
       subject { eb.calculate_value("last_answer==\"ans\"", user: user, game: game, handler: handler) }
       it { should be_true }
+      # it { eb.calculate_value "Block.first", user: user, game: game, handler: handler }
     end
     context "t_table" do
       let!(:table) { create :table, name: "table", game: game }
