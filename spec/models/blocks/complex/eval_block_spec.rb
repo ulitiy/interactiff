@@ -51,6 +51,17 @@ describe EvalBlock do
       subject { eb.calculate_value("last_answer==\"ans\"", user: user, game: game, handler: handler) }
       it { should be_true }
     end
+    context "t_table" do
+      let!(:table) { create :table, name: "table", game: game }
+      let!(:row1) { create :row, table: table }
+      let!(:row2) { create :row, table: table }
+      before do
+        row2.from_hash({ a: 1, b: "b"})
+        row2.save!
+      end
+      subject { eb.calculate_value("t_table[1]['a']", user: user, game: game, handler: handler) }
+      it { should eq 1 }
+    end
     context "cyrillic var" do
       subject { eb.calculate_value "'кириллица'", user: user, game: game }
       it { should eq("кириллица") }

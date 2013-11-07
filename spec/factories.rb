@@ -26,6 +26,8 @@ FactoryGirl.define do
   factory :setter
   factory :checker
   factory :variable
+  factory :table
+  factory :row
 
   factory :answer do
     sequence(:body) { |n| "answer#{n}" }

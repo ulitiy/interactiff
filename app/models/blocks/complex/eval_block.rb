@@ -27,6 +27,8 @@ class EvalBlock < Block
       if var_name=="last_answer"
         options[:handler]||=EventHandler.new user: options[:user], game: options[:game], task: options[:task] #TODO: test
         @vars[var_name]=options[:handler].last_answer; #TODO: плохо
+      elsif var_name=~/^t_(.*)$/
+        @vars[var_name]=options[:game].table($1).rows.order_by(_id:1).limit(100).to_a #TODO: find_or_create_by here((
       else
         @vars[var_name]=Variable.where(game: options[:game], name: var_name).first.value(options)
       end
