@@ -3,7 +3,7 @@ set :application, "interactiff.net"
 server application, :app, :web, :db, :primary => true
 set :deploy_to, "/home/interactiff/interactiff.net"
 set :domain, "interactiff@interactiff.net"
-set :port, 60321
+# set :port, 60321
 set :user, "interactiff"
 ssh_options[:forward_agent] = true #заставляет сервер юзать ключи компьютера
 set :repository, "git@github.com:ulitiy/interactiff.git"
